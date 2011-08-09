@@ -7,8 +7,8 @@ $FILE=$REQUEST.'/files';
 $IMAGE=$REQUEST.'/images';
 $JQUERY=$REQUEST.'/jquery';
 $PATH_TO_RECORDS='/var/www/take';
-$SONGDESTINATION='/var/www/take/songdestination/';//neccessary to add this '/''
-$THEM3UFOLDER='/var/www/take/all_m3u';////WRITE IT
+$SONGDESTINATION='/var/www/d_m_after/songdestination/';//neccessary to add this '/''
+$THEM3UFOLDER='/var/www/d_m_after/all_m3u';////WRITE IT
 $THEALLSONGANCHOR=$FILE.'/musiclibrary.php?librarypath=allsongs#';
 $THEPATH_TO_EACH_USER=$FILE.'/viewprofile.php';
 //one might need to change it
@@ -18,6 +18,16 @@ $sqlusername="root";
 $sqlpassword="maa";
 $databasename="application";
 $seconddatabasename="application1";
+
+$common_database='delta_music';
+$chart_for_all_users_basics='users_basic';
+//$chart_for_all_users_basics='users_logged_in';
+$chart_for_all_songrequests='songrequests';
+$chart_for_all_songs='allsongs';
+$chart_for_the_activity_log='theactivitylog';
+
+
+
 //var_dump($REQUEST);
 ?>
 
