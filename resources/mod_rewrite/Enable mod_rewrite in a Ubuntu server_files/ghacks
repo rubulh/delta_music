@@ -1,0 +1,74 @@
+
+var fmJsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+
+
+var fm_query_string = window.location.search.substr(1).split('&');
+var fm_pairs = {};
+for (var i = 0; i < fm_query_string.length; i++) {
+  var pair = fm_query_string[i].split("=");
+  fm_pairs[pair[0]] = pair[1];
+}
+
+if (typeof(fm_pairs['federated_media_section']) == "string") {
+	var federated_media_section = fm_pairs['federated_media_section'];
+}
+
+var federated_media_section_source = '';
+if (typeof(federated_media_section) == "string") {
+  federated_media_section_source = federated_media_section.replace(/([^a-zA-Z0-9_\-\/])|(^\/)/g, "");
+  var federated_media_sections = [];
+  var section_match = 0;
+  for (i = 0; i < federated_media_sections.length; i++) {
+    if (federated_media_section_source.toLowerCase() == federated_media_sections[i].toLowerCase()) {
+      federated_media_section_source = federated_media_sections[i];
+      section_match = 1;
+      break;
+    }
+  }
+  if (!section_match) {
+    federated_media_section_source = '';
+  }
+}
+
+document.write('<div style="position:absolute;left:0px;top:0px;visibility:hidden;"><img src="' + fmJsHost + 'tenzing.fmpub.net/?t=s&amp;n=627' + (federated_media_section_source != "" ? "&amp;s=" + federated_media_section_source : "") + '&amp;fleur_de_sel=' + Math.floor(Math.random()*10000000000000000) + '" alt="" style="width:0px;height:0px;" height="0" width="0" /></div>');
+
+// comscore tag
+var __cs_c1 = 8;
+var __cs_c2 = "3005693";
+var __cs_c3 = "1";
+var __cs_c4 = "http%3A%2F%2Fghacks.net";
+var __cs_c5 = "";
+var __cs_c6 = "";
+var __cs_c10 = "";
+var __cs_c15 = "";
+var __cs_params = ["c1=", __cs_c1, "&c2=", __cs_c2, "&c3=", __cs_c3, "&c4=", __cs_c4, "&c5=", __cs_c5, "&c6=", __cs_c6, "&c10=", __cs_c10, "&c15=", __cs_c15].join('');
+
+var __cs_reqfm = document.createElement('script'); __cs_reqfm.type = 'text/javascript'; __cs_reqfm.async = true; __cs_reqfm.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js?" + __cs_params;
+var __cssfm = document.getElementsByTagName('script')[0]; __cssfm.parentNode.insertBefore(__cs_reqfm, __cssfm);
+
+// quantcast tag
+_qoptions = {
+tags: 'Digital Influencers',
+qacct: 'p-9dsZX-5zhUuTg'
+};
+var __qc_req = document.createElement('script'); __qc_req.type = 'text/javascript'; __qc_req.async = true; __qc_req.src = fmJsHost +'pixel.quantserve.com/seg/' + _qoptions.qacct + '.js';
+var __qcs = document.getElementsByTagName('script')[0]; __qcs.parentNode.insertBefore(__qc_req, __qcs);
+var __qc_req2 = document.createElement('script'); __qc_req2.type = 'text/javascript'; __qc_req2.async = true; __qc_req2.src = fmJsHost +'edge.quantserve.com/quant.js';
+var __qcs2 = document.getElementsByTagName('script')[0]; __qcs2.parentNode.insertBefore(__qc_req2, __qcs2);
+
+// comscore tag
+var __cs_c1 = 2;
+var __cs_c2 = "3005693";
+var __cs_c3 = "1";
+var __cs_c4 = "http%3A%2F%2Fghacks.net";
+var __cs_c5 = "";
+var __cs_c6 = "";
+var __cs_c15 = "";
+var __cs_params = ["c1=", __cs_c1, "&c2=", __cs_c2, "&c3=", __cs_c3, "&c4=", __cs_c4, "&c5=", __cs_c5, "&c6=", __cs_c6, "&c15=", __cs_c15].join('');
+
+var __cs_req = document.createElement('script'); __cs_req.type = 'text/javascript'; __cs_req.async = true; __cs_req.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js?" + __cs_params;
+var __css = document.getElementsByTagName('script')[0]; __css.parentNode.insertBefore(__cs_req, __css);
+
+// crowdscience tag
+var __cdsci_req = document.createElement('script'); __cdsci_req.type = 'text/javascript'; __cdsci_req.async = true; __cdsci_req.src = 'http://static.crowdscience.com/start-5c5c650d27.js';
+var __cdscis = document.getElementsByTagName('script')[0]; __cdscis.parentNode.insertBefore(__cdsci_req, __cdscis);

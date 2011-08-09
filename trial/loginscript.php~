@@ -1,0 +1,43 @@
+<?php
+
+if(isset($_POST['submit']))
+{
+session_start();
+$name=$_POST['name'];
+$email=$_POST['email'];
+echo "<br><br><br>###############################################################<br>";
+$variable=session_save_path();
+var_dump($variable);
+echo "<br><br><br>###############################################################<br>";
+$olo=$name.$email;
+setcookie("thekey",md5($name),time()+60*60*10)or die('incorrect');
+$cn=mysqli_connect('localhost','root','maa','alltest');
+$query="insert into table2(name,email) values('$name','$email')";
+$res=mysqli_query($cn,$query)or die('error querying');
+$_SESSION['name']=$name;
+$_SESSION['email']=$email;
+echo"<br>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<br>";
+echo"<br>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%";
+echo "<br>{-$name-}<br>{-$email-}<br>";
+var_dump($_COOKIE);
+echo "<br>";
+$id=session_id();
+var_dump($id);
+echo"<br>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%";
+echo"<br>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<br>";
+echo"<br>you have been logged in go to <a href=http://localhost/take/trial/accept.php>this page</a>";
+echo"<br>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<br>";
+
+}
+
+else
+{
+?>
+<form method=POST action="<?=$_SERVER['PHP_SELF']?>">
+<input type=text name=name value='name here'><br>
+<input type=text name=email value='email here'><br>
+<input type=submit name=submit value=submit><br>
+</form>
+<?php
+}
+?>

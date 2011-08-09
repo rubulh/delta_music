@@ -1,0 +1,62 @@
+ <head>
+<script type="text/javascript" src="http://localhost/take/jquery/jquery.tools.min.js"></script>
+<style type="text/css">
+	.smallBox{
+		padding:0px;
+		border:1px solid blue;
+		margin:0px;
+height:10px;
+	}
+	.smallInnerBox{
+		padding:8px;
+		border:1px solid green;
+		margin:8px;
+	}
+</style>
+ 
+</head>
+<script>
+$(document).ready(function(){$(document).load(function(){$x=$(".smallbox").size();$("#counter").append("mnmn $x");});});
+</script>
+<body>
+<p id="counter">
+</p>
+  <h1>jQuery clone() example</h1>
+ 
+  <div class="smallBox">
+	
+   </div>
+ 
+  <p>
+  <button id="cloneButton1">clone()</button>
+ 
+  <button id="reset">reset</button>
+  </p>
+ 
+<script type="text/javascript">
+ 
+    $("#reset").click(function () {
+	  location.reload();
+    });
+ 
+    $("#cloneButton1").click(function () {
+ 
+	  $(".smallBox").clone().insertAfter(".smallBox");
+ 
+    });
+ 
+    $("#cloneButton2").click(function () {
+ 
+	  $("#cloneButton1'").clone(false).insertAfter("#cloneButton1");
+ 
+    });
+ 
+    $("#cloneButton3").click(function () {
+ 
+	  $("#cloneButton1").clone(true).insertAfter("#cloneButton1");
+ 
+    });
+ 
+</script>
+</body>
+</html

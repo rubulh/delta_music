@@ -1,0 +1,89 @@
+/* Content Widths */
+#header,
+#sub_header,
+#content,
+#footer {
+  width: 980px;
+}
+/* Sidebar */
+#sidebar {
+  width: 210px;
+}
+#sidebar .plus_member .plus_icon,
+#sidebar .rockable_book .rockable_book_icon,
+#sidebar .session_side .session_side_icon {
+  margin: 0px 25px 15px 35px;
+}
+#sidebar .snipplr .snipplr_icon {
+  height: 42px;
+  background: url(../images/global/snipplr-small.png) no-repeat 0 0;
+  margin: 0px 25px 10px 0px;
+}
+.creattica {
+  padding: 20px 19px 17px 19px;
+  font-size: 11px;
+  text-align: center;
+}
+.creattica p {
+  padding-bottom: 5px;
+}
+#social_networking {
+  display: block !important;
+}
+#social_networking ul.tabs {
+  display: none;
+}
+.creattica .creattica_img {
+  display: block;
+  margin: 0 auto;
+  padding-right: 5px;
+  float: none;
+  top: 0;
+}
+.creattica img.creattica_item {
+  width: 160px;
+  height: 130px;
+  margin-bottom: 12px;
+}
+#social_networking h3 {
+  font-size: 14px;
+  line-height: 1.1em;
+  padding: 20px 15px 5px 60px;
+}
+#twitter_tab h3 {
+  background: #fff url(../images/global/global_sprite.png) no-repeat -348px -345px;
+  padding-bottom: 10px;
+}
+#twitter_tab ul {
+  padding-top: 10px;
+}
+#facebook_tab h3 {
+  background: #fff url(../images/global/global_sprite.png) no-repeat -348px -244px;
+}
+#facebook_tab h3 {
+  padding-bottom: 25px;
+}
+.facebook_wrap {
+  display: none;
+}
+#flickr_tab h3 {
+  background: #fff url(../images/global/global_sprite.png) no-repeat -347px -148px;
+}
+.sidebar_subscribe .get_updates {
+  width: 29px;
+}
+.sidebar_subscribe .tutorial_count {
+  padding-bottom: 10px;
+}
+.side_basix .basix_logo {
+  margin: 0 0 20px 35px;
+}
+.other_plus {
+  width: 215px;
+}
+a.site_icon_sm {
+  margin-right: 2px;
+}
+#sidebar .marketplace-popular div h3 {
+  float: none;
+}

@@ -1,0 +1,120 @@
+error messages
+
+1.for the user trying to register if the email id i s available but something went wrong in the attemmpt to write in the users basic table
+script:   /var/www/take/files/functions/register_user.php                                    down=1
+
+2.failure to write the startup registered string in the user specific file in the registererd directory 
+script:   /var/www/take/files/functions/register_user.php                                    down=2
+
+3.failure to write the  registration string in the date specific activity file 
+script:   /var/www/take/files/functions/register_user.php                                    down=3
+
+4.multiple rows for the email_id field
+script:/var/www/take/files/functions/login_user.php                                           down=4
+
+5.failed to write the login string to the user specfic directory
+script:/var/www/take/files/functions/login_user.php                                           down=5
+
+6.failed to write the login string to the datespecific 
+script:/var/www/take/files/functions/login_user.php                                           down=6
+
+7.failed to insert the user specific  row in the logged in table;
+script:/var/www/take/files/functions/login_user.php                                           down=7
+
+8.failed to update the users_basic chart according to latest data;
+script:/var/www/take/files/functions/login_user.php                                           down=8
+
+9.failed to update the guests_basic chart according to latest data;
+script:/var/www/take/files/functions/guest_setter.php                                           down=9
+
+10.9.failed to update the guests_logged_in chart according to latest data;
+script:/var/www/take/files/functions/guest_setter.php                                           down=10
+
+11.failed to write in the guest specific datewise file
+script:/var/www/take/files/functions/guest_setter.php                                           down=11
+
+12.failed to write the data in the activity file
+script:/var/www/take/files/functions/guest_setter.php                                           down=12
+
+13.the authkey cookie could not be set
+script:/var/www/take/files/r_d_m.php                                                                    down=13
+
+14.even if a sesion id is found to be obsolete it could not be removed from the database
+script:/var/www/take/files/functions/unlogger.php                                                   down=14
+
+15.the log for the unlogging activity could not be written on the activity log file
+script:/var/www/take/files/functions/unlogger.php                                                   down=15
+
+16.the unlogging activity could not be written for an user in the user specifivc log file
+script:/var/www/take/files/functions/unlogger.php                                                   down=16
+
+17.the unlogging activity could not be written for an guest in the guest specifivc log file
+script:/var/www/take/files/functions/unlogger.php                                                   down=17
+
+18.some thing went wrong bet ween getting the users basic registration query rows index value and putting it in the users_all_indexes database
+script:/var/www/take/files/functions/register_user.php                                                   down=18
+
+19.some thing went wrong bet ween getting the guests_basic  query rows index value and putting it in the guests_all_indexes database
+script:/var/www/take/files/functions/register_user.php                                                   down=19
+
+20.here error is shown that something went wrong in between extracting the index of logged_in_users and updatingit in  the users all indexes
+script:/var/www/take/files/functions/login_user.php                                                         down=20
+
+21.here error is shown that something went wrong in between extracting the index of logged_in_guests and updatingit in  the guests all indexes
+script:/var/www/take/files/functions/nick_setter.php                                                         down=21
+
+22.error is that something went wrong updating the logged in databse by the trackker script and writing the new values of authkey  new session id aetc
+script:/var/www/take/files/functions/trackker.php                                                         down=22
+
+23.error is that something went wrong updating the basic in databse by the trackker script and writing the new values of old sessionid ip user agent  new session id aetc
+script:/var/www/take/files/functions/trackker.php                                                         down=23
+
+24.user enetered an in correct email_id string in the space bar and so as for no user exsting or some suspectible data 
+show error 24
+script:/var/www/take/files/viewprofile.php                                                                      down=24
+
+25.that value other than guest or user was set as the huh post variable'
+script: /var/www/take/files/r_d_m.php                                                                              down:25
+
+26.could not make the user  specific database
+script: /var/www/take/files/register_user.php                                                                              down:26
+
+27.could not make all the required tables in the user  specific database
+script: /var/www/take/files/register_user.php                                                                              down:27
+
+28.could not write the trackker enabled to the guest date specific page
+script: /var/www/take/files/functions/trackker.php                                                                              down:28
+
+29.could not write the trackker enabled to the guest activity page
+script: /var/www/take/files/functions/trackker.php                                                                              down:29
+
+30.could not write the trackker data in the user specific file
+script: /var/www/take/files/functions/trackker.php                                                                              down:30
+
+
+31.could not write the trackker activity data in the activity
+script: /var/www/take/files/functions/trackker.php                                                                              down:31
+
+32.eror inserting the message into the reciever specific database allmessages chart                 
+script:/var/www/take/files/messagehandler.php                                                                                   down:32
+
+33.eror inserting the message into the sender specific database allmessages chart                 
+script:/var/www/take/files/messagehandler.php                                                                                   down:33
+
+34.error updating the song download times in the general databse allsongs               
+script:/var/www/take./files/downloadhandler.php                                                                                    down:34
+35.
+same script
+
+
+36
+failed to write the m3u and so ceate the m3u
+down:36
+script:/var/www/take/files/uploadhandler.php
+
+37.failed to insert row for new uploaded song in tthe general db and allsongs table
+down:37
+script:/var/www/take/files/uploadhandler.php
+
+
+NOTE THAT I AM USING HTTP REFERRRER AND SO THE HTTP REFERRER HAS TO BE ENAVBLED IN THE SEREVR

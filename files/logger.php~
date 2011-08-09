@@ -1,0 +1,72 @@
+<?php
+require_once("/var/www/take/files/thekey.php");
+
+// ONE HAS TO FIX THIS LINE;;SEE IF IT CAN BE DONE WITHOUT USING DIRECT FILE NAMES AND FOLDER NAMES
+?>
+
+<?php
+
+function logger($chart,$thetask)
+{
+$connection_logger=mysqli_connect($_SERVER['HTTP_HOST'],$sqlusername,$sqlpassword,$databasename);
+session_start();
+    if($_POST['huh']='guest')
+      {
+      $queryname=$_POST['nick'];
+      $queryemail_id=$_POST['email_id'];
+      $querylogin_timestamp=time();
+      $querylogout_timestamp=time();
+      $querylogin_time_24=;
+      $querylogout_time_24=;
+      $queryday_week_year_weekday=;
+      $queryip=$_SERVER['HTTP_HOST'];
+      $queryuseragent=$_SERVER['HTTP_USER_AGENT'];
+      $querysession_id=session_id();
+      //so in case we find the session id the field session_id and session_id_bygone are the same which shall be made more meaningful in the trackker.php scripts
+      $querysession_id_bygone=$session_id;
+      $queryinvolved=($querysession_id_bygone-$querysession_id);//irrelevant in this function but shall be useful in trackker.php
+      
+      //put this thing in the authkey nick.email_id.timestamplogin
+      //as session variable set this -the key of the all key table;
+      //one shall extract the key of the other tables by putting queries to this table
+      // and in turn the other tables ll be queried to get the appropiate response
+      //a round turn but it does obscure the keys of the tables which contain useful user data
+      // and what i do is set the keys to the other tables under nonsense column names as even if some one gets that database nothing can be understood from it
+      $query_logger_insert_nick_nick_basic="insert into guest_basic (nick,email_id,login_timestamp,logout_timestamp,login_time_24,logout_time_24,day_week_year_weekday,ip,user_agent,session_id,session_id_bygone,involved) values('$querynick','$queryemail_id',$querylogin_timestamp,$querylogout_timestamp,'$querylogin_time_24','$querylogout_time_24','$queryday_week_year_weekday','$queryip','$queryuser_agent','$querysession_id','$querysession_id_bygone',$queryinvolved)";
+      $res_query_logger_insert_nick_nick_basic=mysqli_query($connection_logger,$query_logger_insert_nick_nick_basic);
+      if(mysqli_affected_rows($connection_logger)==1)
+       {;;//might be useful to set any statements
+        //for now i am using it to get the id and then set in another major table the id of which holds the session variable;;
+        $query_logger_get_id_nick_nick_basic="select kick_guests_basic where nick='$querynick' and login_timestamp=$querylogin_timestamp and email_id=$queryemail"; 
+        $res_query_logger_get_id_nick_nick_basic=mysqli_query($connection_logger,$query_logger_get_id_nick_nick_basic);
+        mysqli_fetch_field();
+       }
+       $query_logger_insert_nick_nick_logged_in="insert into guest_logged_in (nick,email_id,session_id,last_activity_timestamp)values('$querynick','$queryemail_id','$querysession_id',$querylogin_timestamp)";
+      }
+
+
+    else if($_POST['huh']='user')
+      {
+   
+      }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+
+
+
+
+?>

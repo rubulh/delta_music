@@ -1,0 +1,48 @@
+in the r_d_m.php
+i have to check the regex for username in the register section
+and that of the password too
+
+
+
+
+
+
+<!--
+
+this is the email_checker function script it checks whether the email id entered for user registration has already been taken 
+if taken it returns false 
+else it returns true
+-->
+<?php
+function email_checker()
+{
+global $connection_register;
+$request_email_id_email_checker=$_POST['email_id'];
+$query_availability_email_checker="select email_id from users_basic where email_id=$request_email_id_email_checker";
+$result_availability_email_checker=mysqli_query($connection_register,$query_availability_email_checker);
+$row_email_checker=mysqli_fetch_array($result_availability_email_checker);
+if(($row_email_checker==NULL)){ return true;}
+else {return false;}
+}
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+als o      i    h ave to   add  t h e  copyin g  allsongs from general databse  to mysongs in the user specifo  database for every user;;;;

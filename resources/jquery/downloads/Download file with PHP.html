@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Download file with PHP</title><meta name="description" content="PHP web design tutorials explains how to create download link with php, download file with php and php download script" /><meta name="keywords" content="PHP web design tutorials, download link with php, download file with php, php download script, download script, save as with php, save file with php, php save file, save file script with php, php script, php code, php tutorials, php, tutorials, tutorial," /><meta name="google-site-verification" content="anxWx3NZ1oVx2JG4oe4-c6E_bBRjLCRYwvkYQ420e9g" />
+<meta name="y_key" content="c56495d7c34bc622" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link href="/style/call/core.css" rel="stylesheet" media="all" type="text/css" /><link rel="image_src" href="http://www.ssdtutorials.com/resources/tutorials/download-file-with-php.png" /></head>
+<body>
+<div id="outer">
+	<div id="wrapper">
+		<div id="back-to-top" title="Scroll page back to the top">Scroll page back to the top</div>
+		<div id="header">
+			<div id="logo"><a href="/" title="Web Design Tutorials">Web Design Tutorials</a></div>
+			<ul id="top_navigation">
+	<li><a href="http://feeds.feedburner.com/ssdtutorials" title="RSS Feed" target="_blank">Tutorials Feed</a></li>
+	<li><a href="http://feeds.feedburner.com/ssddesignarticles" title="RSS Feed" target="_blank">Articles Feed</a></li>
+	<li>
+		<a href="/request-tutorial.html" title="Request tutorial">
+			Request tutorial
+		</a>
+	</li>
+	<li>
+		<a href="/basket.html" title="View Basket">View Basket</a>
+	</li>
+</ul>			<ul id="navigation">
+	<li>
+		<a href="/" title="Home">Home</a>
+	</li>
+		
+	<li class="active">
+		<a href="/tutorials.html" title="Web Design Tutorials">Tutorials</a>
+	</li>
+	
+	<li>
+		<a href="/premium-tutorials.html" title="Premium Tutorials">Premium</a>
+	</li>
+	
+	<li>
+		<a href="/bundles.html" title="Bundles">Bundles</a>
+	</li>
+	
+	<li>
+		<a href="/articles.html" title="Web Design Articles">Articles</a>
+	</li>
+	
+	<li>
+		<a href="/freebies.html" title="Free Downloads">Freebies</a>
+	</li>
+	
+			<li>
+			<a href="/login.html" title="Login">Login</a>
+		</li>
+	</ul>		</div>		
+		<div id="content">		
+		<noscript class="noscript"><div><p class="noscript_hd">JavaScript Alert!</p><p>To use this website and have a full access to all of the features you are required to enable javascript in your browser.<br />Not doing so may affect website accessibility.</p><p>Find out more on how you can <a href="https://www.google.com/adsense/support/bin/answer.py?hl=en&amp;answer=12654" title="Enable JavaScript" target="_blank">enable javascript</a> in your browser or <a href="/contact.html">contact us</a> for additional support.</p></div></noscript><div id="content_wrapper">
+	<div id="left">
+	<h1>Download file with PHP</h1>	
+			
+
+<a href="javascript:history.go(-1)" class="button button_green">Go back</a>
+<div class="dev">&nbsp;</div>
+
+	<div class="dev br_td">&nbsp;</div>
+
+<p>In this tutorial I will show you how to create a link to a file which prompts the user for a download.</p>
+<p>To start with create two new files and call them <strong>download.php</strong> and <strong>index.php</strong>.<br />
+  Open the <strong>download.php</strong> and remove the entire content which your editor added to it, then start typing the following:</p>
+
+<pre class="php">
+&lt;?php
+// block any attempt to the filesystem
+if (isset($_GET['file']) &amp;&amp; basename($_GET['file']) == $_GET['file']) {
+	$filename = $_GET['file'];
+} else {
+	$filename = NULL;
+}
+</pre>
+  
+<p>First we are checking if the the url contains the parameter <strong>file</strong> and whether <strong>basename($_GET['file'])</strong> and <strong>$_GET['file']</strong> have the same value – this is to prevent any attackers from downloading files we don´t want them to download.</p>
+
+<p>If the condition is <strong>true</strong> then we are assigning the value of the <strong>file</strong> to the variable called <strong>$filename</strong>, however if the condition is <strong>false</strong> then we are assigning <strong>NULL</strong> to the variable.</p>
+
+<p>On the next line type:</p>
+
+<pre class="php">
+// define error message
+$err = '&lt;p style="color:#990000"&gt;Sorry, the file you are requesting is unavailable.&lt;/p&gt;';
+</pre>
+  
+<p>This line of code creates a new variable called <strong>$err</strong> and assigns the default message which will be displayed to the user when the file is unavailable or any other problem occur.</p>
+
+<pre class="php">
+	if (!$filename) {
+		// if variable $filename is NULL or false display the message
+		echo $err;
+	} else {
+		// define the path to your download folder plus assign the file name
+		$path = 'downloads/'.$filename;
+		// check that file exists and is readable
+		if (file_exists($path) &amp;&amp; is_readable($path)) {
+			// get the file size and send the http headers
+			$size = filesize($path);
+			header('Content-Type: application/octet-stream');
+			header('Content-Length: '.$size);
+			header('Content-Disposition: attachment; filename='.$filename);
+			header('Content-Transfer-Encoding: binary');
+			// open the file in binary read-only mode
+			// display the error messages if the file can´t be opened
+			$file = @ fopen($path, 'rb');
+			if ($file) {
+				// stream the file and exit the script when complete
+				fpassthru($file);
+				exit;
+			} else {
+				echo $err;
+			}
+		} else {
+			echo $err;
+		}
+	}
+?&gt;
+</pre>
+
+<p>What´s happening here is - first we check whether the <strong>$filename</strong> is <strong>NULL</strong> and if so we are displaying our message <strong>$err</strong> message. If it isn´t <strong>NULL</strong> then we are creating the variable called <strong>$path</strong> which stores the path to the file and assigns the populated name of the file to the end of it.</p>
+
+<p>Next we are checking whether the file exists and is readable, if so then we are sending the appropriate http headers with file size and opening the file in binary read-only mode (rb). Then, if the file has been opened successfully, we are using the <strong>fpassthru()</strong> function to write the result to the output buffer.<br />
+  If any of the condition was unsuccessfull we are displaying our <strong>$err</strong> message.</p>
+<p>Now open <strong>index.php</strong> and type the following:</p>
+
+<pre class="php">
+&lt;a href="download.php?file=picture.jpg"&gt;Download file&lt;/a&gt;
+</pre>
+
+<p>And that´s all there is to it.</p>
+ 
+
+	
+	
+	<div class="dev br_td">&nbsp;</div>
+	
+	<h5>Add a comment</h5>
+	
+	<form method="post" action="/comment/type/1/key/token_1240114129.html"
+		 class="form_submit" id="token_1240114129">
+	
+		<table border="0" cellpadding="0" cellspacing="0" class="table_two_columns">	
+			<tr>
+				<th class="label_name"><label for="name">Name: *</label></th>
+				<th class="label_email"><label for="email">Email: *</label></th>
+			</tr>	
+			<tr>
+				<td>
+					<input type="text" name="name" id="name" class="field fld_small required" 
+						title="Please provide your name"
+						value="" />
+				</td>
+				<td>
+					<input type="text" name="email" id="email" class="field fld_small required" 
+						title="Please provide your valid email address"
+						value="" />
+				</td>
+			</tr>	
+			<tr>
+				<th class="label_website"><label for="website">Website:</label></th>
+				<th class="label_twitter"><label for="twitter">Twitter:</label></th>
+			</tr>	
+			<tr>
+				<td>
+					<input type="text" name="website" id="website" class="field fld_small" 
+						value="" />
+				</td>
+			<td>
+				<input type="text" name="twitter" id="twitter" class="field fld_small" 
+					value="" />
+			</td>
+			</tr>	
+			<tr>
+				<th colspan="2" class="full_size label_comment"><label for="comment">Comment (no html allowed): *</label></th>
+			</tr>
+			<tr>
+				<td colspan="2" class="full_size">
+					<textarea name="comment" id="comment" cols="" rows="" class="field area required"
+						title="Please provide your comment"></textarea>
+				</td>
+			</tr>	
+			<tr>
+				<td colspan="2" class="full_size">
+					<a href="#" class="button button_green submit">
+						Add Comment
+					</a>
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+</div>
+	<div id="right"><div class="box">
+	<div class="summary">
+		<div class="summmary_left">
+			<span>Total items:</span> 
+			<span class="no_of_items">0</span>
+		</div>
+		<div class="summmary_right">
+			<span>Subtotal:</span> 
+			<span class="sub_total">&pound;0.00</span>
+		</div>
+	</div>
+	<a href="/checkout.html" title="Checkout" class="button button_blue fl_r">Checkout</a>
+	<a href="/basket.html" title="View Basket" class="button button_blue">View Basket</a>
+</div>
+<div class="dev br_t">&nbsp;</div><div class="box mr_b0">
+	
+	<div class="addthis_toolbox addthis_default_style ">        
+        <a class="addthis_button_twitter"></a>
+        <a class="addthis_button_facebook"></a>
+        <a class="addthis_button_linkedin"></a>
+        <a class="addthis_button_stumbleupon"></a>
+        <a class="addthis_button_digg"></a>		
+		<a class="addthis_button_email"></a>
+		<a class="addthis_button_compact"></a>		
+		<a class="addthis_button_google_plusone"></a>
+	</div>
+
+</div>
+
+
+<div class="dev br_t">&nbsp;</div>	
+		
+		<div class="advert"><a href="https://secure.avangate.com/order/cart.php?PRODS=4525333&QTY=1&AFFILIATE=27817" title="AVChat Software" target="_blank"><img src="/resources/ads/1162010537x20110711074527.jpg" alt="AVChat Software" width="125" height="125" /></a></div><div class="advert odd"><a href="https://secure.avangate.com/order/cart.php?PRODS=4437184&QTY=1&AFFILIATE=27817" title="BlogCafe Premier Membership" target="_blank"><img src="/resources/ads/1670166271x20110711074932.jpg" alt="BlogCafe Premier Membership" width="125" height="125" /></a></div><div class="advert"><a href="http://www.kqzyfj.com/click-5371266-10459964" title="DreamTemplate - Web Templates" target="_blank">
+<img src="http://www.ftjcfx.com/image-5371266-10459964" width="125" height="125" alt="DreamTemplate - Web Templates" border="0" /></a></div><div class="advert odd"><a href="http://www.dpbolvw.net/click-5371266-10811795" title="Logo Design Concepts" target="_blank">
+<img src="http://www.awltovhc.com/image-5371266-10811795" width="125" height="125" alt="Get 50-150 Logo Design Concepts in only a few day" border="0" /></a></div><div class="advert"><a href="/advertise-wish-us.html" title="Advertise Here">Advertise Here</a></div><div class="advert odd"><a href="/advertise-wish-us.html" title="Advertise Here">Advertise Here</a></div><div class="dev_s">&nbsp;</div>		
+		
+				
+		
+</div>
+</div>
+		</div>				
+	</div>
+	<div class="cl">&nbsp;</div>
+</div>
+<div id="footer">	
+	<div id="footer-container">
+		<div id="footer-top">
+			<div id="footer-left-column">
+				<h4>Subscribe and receive discounts!</h4>
+					<div id="newsletter_form">
+		<form action="/newsletter/action/submit/key/token_1275464493.html" 
+			method="post" class="form_submit" id="token_1275464493">
+			<table cellspacing="0" cellpadding="0" border="0" class="tbl_footer">				
+				<tr>
+					<th class="label_newsletter_first_name">
+						<label for="newsletter_first_name">First name: *</label>
+					</th>
+				</tr>
+				<tr>
+					<td><input type="text" id="newsletter_first_name" name="newsletter_first_name" 
+						value="" class="fld_ft required" title="Please provide your first name" /></td>
+				</tr>		
+				<tr>
+					<th class="label_newsletter_email">
+						<label for="newsletter_email">E-mail: *</label>
+					</th>
+				</tr>
+				<tr>
+					<td><input type="text" id="newsletter_email" name="newsletter_email" 
+						value="" class="fld_ft required" title="Please provide a valid email address" /></td>
+				</tr>
+				<tr>
+					<td>
+						<a href="#" class="button button_green submit">
+							Subscribe
+						</a>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+			
+			</div>
+			<div id="footer-middle-column">
+				<h4>Tutorial categories</h4>
+					<ul id="footer_categories">
+					<li>
+				<a href="/tutorials/category/css.html" 
+					title="Css Tutorials">
+					Css				</a>
+			</li>
+					<li>
+				<a href="/tutorials/category/dreamweaver.html" 
+					title="Dreamweaver Tutorials">
+					Dreamweaver				</a>
+			</li>
+					<li>
+				<a href="/tutorials/category/javascript.html" 
+					title="JavaScript Tutorials">
+					JavaScript				</a>
+			</li>
+					<li>
+				<a href="/tutorials/category/other.html" 
+					title="Other Tutorials">
+					Other				</a>
+			</li>
+					<li>
+				<a href="/tutorials/category/photoshop.html" 
+					title="Photoshop Tutorials">
+					Photoshop				</a>
+			</li>
+					<li>
+				<a href="/tutorials/category/php-mysql.html" 
+					title="PHP / MySQL Tutorials">
+					PHP / MySQL				</a>
+			</li>
+					<li>
+				<a href="/tutorials/category/video-editing.html" 
+					title="Video Editing Tutorials">
+					Video Editing				</a>
+			</li>
+			</ul>
+			
+			</div>
+			<div id="footer-right-column">
+				<h4>Looking for something?</h4>
+				<form action="/search.html" method="post" id="search_footer">
+	<table cellspacing="0" cellpadding="0" border="0" class="tbl_footer">
+		<tr>
+			<th class="search_keyword">
+				<label for="search_keyword">Search for:</label>
+			</th>
+		</tr>
+		<tr>
+			<td><input type="text" name="search_keyword" 
+				value="" 
+				class="fld_ft" id="search_keyword" /></td>
+		</tr>
+		<tr>
+			<td>
+				<a href="#" class="button button_green submit">
+					Search
+				</a>
+			</td>
+		</tr>
+	</table>
+</form>				<h4>Want to get in touch?</h4>
+				<p><a href="/contact.html">
+					Contact SSD Tutorials
+				</a></p>	
+			</div>
+		</div>
+		<div id="footer-bottom">
+			<p>&copy; <a href="/">Web Design Tutorials</a> &ndash; SSD Tutorials is operated by <a href="http://www.coremediadesign.co.uk" title="Web Design Somerset" target="_blank">Web Design Somerset</a> : Core Media Design<br />
+	<a href="http://www.webdesignbognorregis.co.uk" title="Web Design Bognor Regis" target="_blank">Web Design Bognor Regis</a> :: 
+	<a href="http://www.webdesignserviceschichester.co.uk" title="Web Design Chichester" target="_blank">Web Design Chichester</a> :: 
+	<a href="http://www.toolsforbusiness.co.uk" title="Website Design Packages" target="_blank">Website Design Packages</a>
+</p>		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/js/jquery-1.6.1.min.js"></script>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4e0c280a7bc1d21f"></script>
+<script type="text/javascript" src="/script/call/core.js"></script></body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+
+<!-- Website Design By: www.happyworm.com -->
+<title>Quick Start Guide : Step 1 : Upload jPlayer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="description" content="The CSS styleable jQuery media player plugin with HTML5 support!" />
+<meta name="keywords" content="jPlayer, jQuery, jQuery plugin, media, video, audio, media player, video player, audio player, mp3, mp4, m4a, m4v, aac, h264, ogg, oga, ogv, wav, webm" />
+<meta name="company" content="Happyworm" />
+<link href="/css/jPlayer.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="/graphics/jplayer.ico" type="image/x-icon" />
+<!--[if IE]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!--[if IE 6]>
+<link href="/css/ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<script type="text/javascript">
+(function() {
+	var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+	s.type = 'text/javascript';
+	s.async = true;
+	s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+	t.parentNode.insertBefore(s, t);
+})();
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-3557377-9']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+<body class="guide">
+<div id="container">
+
+	<header>
+	<a href="/"><img src="/graphics/jplayer_logo.gif" alt="jPlayer" /><h1>HTML5 Audio & Video for jQuery</h1></a>
+
+		<p><a href="http://www.happyworm.com" title="a project by happyworm">a project by happyworm</a></p>
+		<nav class="main">
+			<ul>
+				<li id="home"><a href="/">home</a></li>
+				<li id="demos"><a href="/latest/demos/">demos</a></li>
+				<li id="download"><a href="/download/">download</a></li>
+				<li id="dev_guide"><a href="/latest/developer-guide/">dev guide</a></li>
+				<li id="support"><a href="/support/">support</a></li>
+				<li id="sites"><a href="/sites/">sites</a></li>
+				<li id="about"><a href="/about/">about</a></li>
+				<!-- <li id="skins"><a href="/skins/">skins</a></li> -->
+			</ul>
+		</nav>
+
+	</header>
+	
+	<div id="content_main">
+<nav>
+			<ul id="breadcrumbs">
+				<li><a href="../">Quick Start Guide (jPlayer 2.0.0)</a></li>
+				<li>> Step 1</li>
+			</ul>
+</nav>			
+	
+		<section>
+
+			<h2>Step 1 : Upload the jPlayer plugin</h2>
+
+			<p>
+				Perform the following actions:
+			</p>
+			<ul>
+				<li>Download the jPlayer plugin from the <a href="/download/">download</a> page.</li>
+				<li>Unzip the ZIP to get your <a href="../../developer-guide/#jPlayer-files-plugin">plugin files</a>.</li>
+				<li>Upload the jPlayer <strong>JavaScript</strong> file and <strong>SWF</strong> file to your web server.</li>
+			</ul>
+			<p>
+				For the purpose of this guide, upload them to a directory called "js" located at the root of your domain.
+				This will allow you to easily reference the jPlayer plugin from anywhere on your site using:<br />
+				<code>/js/jquery.jplayer.min.js</code>
+			</p>
+			<p>
+				Additionally, this allows you to easily set an important jPlayer option, the <a href="../../developer-guide/#jPlayer-option-swfPath">swfPath</a>, by using the constructor option:<br />
+				<code>{ swfPath: "/js" }</code>
+			</p>
+			<p><a href="../step-2/">next step</a></p>
+
+			<section class="note">
+				<h3>Notes:</h3>
+				<p>
+					The <a href="../../developer-guide/#jPlayer-option-swfPath">swfPath</a> is important because jPlayer must know where the SWF file is for the Flash fallback to work.
+					Failure to upload the SWF file and set the swfPath correctly will cause your site to have problems on older browsers that do not support HTML5 Media in the formats you <a href="../../developer-guide/#jPlayer-option-supplied">supplied</a>.
+				</p>
+				<p>
+					For example, Firefox 3.6 is a browser with decent HTML5 Spec compliance, but you will need to have <a href="../../developer-guide/#jPlayer-option-supplied">supplied</a> OGG files for jPlayer to use its HTML solution.
+					If you have only <a href="../../developer-guide/#jPlayer-option-supplied">supplied</a> MP3 files, then the Flash fallback solution would be used.
+				</p>
+				<p>
+					We recommend using absolute paths so that you can use jPlayer once or many times throughout your entire site structure.
+					You can of course use relative paths if you want and understand why it is appropriate for your site.
+				</p>
+				<p>
+					For example, the jPlayer site uses relative paths to make it easier to maintain a history of all its releases.
+					Plus all our demos are structured in a directory specific to their release.
+				</p>
+			</section>
+		</section>
+
+
+	</div>
+	<aside>
+
+			<div class="section highlight">
+			<h2><a href="https://groups.google.com/forum/#!forum/jplayer">jPlayer Community</a></h2>
+				<p> members and counting!</p>
+				<form action="http://groups.google.com/group/jplayer/boxsubscribe">
+					<input type="text" name="email" value="your email" class="placeholder" onfocus="javascript:if(this.value==='your email'){this.value='';this.style.color='#333';}" onblur="javascript:if(this.value===''){this.value='your email';this.style.color='#999';}"/>
+					<input type="submit" value="join" class="btn" />
+				</form>
+		</div>
+
+		<div class="section highlight">
+			<h2>Hire Us!</h2>
+			<p>Need a media based solution realized or just need some help. Hire <a href="http://www.happyworm.com">Happyworm</a>!<br />
+			Contact: <a href="mailto:hire.us@happyworm.com" alt="Hire Happyworm" title="Hire Happyworm">hire.us@happyworm.com</a>.</p>
+		</div>
+
+				<div class="section highlight">
+			<h2>Help us improve jPlayer</h2>
+			<p>Developing and supporting jPlayer is almost a full-time job and we are really just beginning. Help us continue to help you.</p>
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input type="hidden" name="cmd" value="_s-xclick" /><input type="hidden" name="hosted_button_id" value="5356703" /><input type="image" src="http://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online." /><img alt="" border="0" src="https://www.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1" /><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://www.jplayer.org"></a></form>
+		</div>
+
+		<!--<div class="section highlight">
+			<h2><a href="http://jplayer.it">jPlayer.it</a></h2>
+			<p>Customize your player!</p>
+		</div>-->
+
+		<div class="section  highlight">
+			<h2>Plugin corner</h2>
+			<ul>
+				<li><a href="http://wordpress.org/extend/plugins/mp3-jplayer/">Wordpress</a></li>
+				<li><a href="http://drupal.org/project/jplayer">Drupal</a></li>
+				<li><a href="/sites/#jPlayer-plugin-sites">more...</a></li>
+			</ul>
+		</div>
+		<div class="section ralign">
+		<a href='https://developer.mozilla.org/en/JavaScript/Reference/' title='JavaScript Reference'><img src='/graphics/betterJS.gif' alt='JavaScript Reference'/></a>
+		</div>
+		<div class="section transbgr">
+			<h3>Also by <a href="http://www.happyworm.com">Happyworm</a>:</h3>
+			<h2><a href="http://www.happyworm.com/projects/Qwiiz/qwiiz-massively-multiplayer-quiz-game.htm">Qwiiz</a></h2>
+			<p>Massively multiplayer real-time quiz game. Cross platform and tuned for the iPad. <a href="http://www.happyworm.com/projects/Qwiiz/qwiiz-massively-multiplayer-quiz-game.htm">Try it!</a></p>
+		</div>
+
+	</aside>
+	<footer>
+		<p>
+			<a href="http://www.happyworm.com"><img src="/graphics/worm.jpg" />&copy; 2009 - 2011 Happyworm Ltd</a> - Last update: 4th January 2011		</p>
+		<a href="http://www.w3.org/html/logo/"><img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-semantics.png" width="165" height="64" alt="HTML5 Powered with CSS3 / Styling, and Semantics" title="HTML5 Powered with CSS3 / Styling, and Semantics"></a>
+		<a id="twitter" href="http://twitter.com/happyworm"><img alt="twitter" src="/graphics/twitter_small.png"/> follow us on twitter </a>
+	</footer>
+</div>
+</body>
+</html>

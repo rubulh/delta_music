@@ -1,0 +1,1407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0059)http://www.workingwith.me.uk/articles/scripting/mod_rewrite -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   
+   <meta name="generator" content="Movable Type 3.2">
+
+   <link rel="stylesheet" href="./mod_rewrite, a beginner's guide (with examples)2_files/screen.css" type="text/css">
+   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.workingwith.me.uk/index.xml">
+
+
+<link rel="icon" href="http://www.workingwith.me.uk/favicon.ico">
+<link rel="shortcut icon" href="http://www.workingwith.me.uk/favicon.ico">
+
+   <title>mod_rewrite, a beginner's guide (with examples)</title>
+   
+   <link rel="start" href="http://www.workingwith.me.uk/" title="Home">
+
+   <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.workingwith.me.uk/articles/scripting/mod_rewrite"
+    trackback:ping="http://www.workingwith.me.uk/cgi-bin/type/mt-tb.cgi/8"
+    dc:title="mod_rewrite, a beginner&apos;s guide (with examples)"
+    dc:identifier="http://www.workingwith.me.uk/articles/scripting/mod_rewrite"
+    dc:subject="scripting"
+    dc:description="mod_rewrite is used for rewriting a URL at the server level.  We show you how to redirect all your URLs at a single &quot;mother&quot; page, for reprocessing, and how to stop people from hotlinking to your images."
+    dc:creator="thevoicewithin"
+    dc:date="2004-05-23T12:00:00+00:00" />
+</rdf:RDF>
+-->
+
+
+   
+
+</head>
+
+<body>
+
+<div id="container">
+
+		<div id="header">
+		<div id="flaghead"><a href="http://www.workingwith.me.uk/">workingwith.me.uk</a></div>
+		<div id="tagline">this is not the geek you are looking for</div>
+		<div id="skipToContent"><a href="http://www.workingwith.me.uk/articles/scripting/mod_rewrite#content">skip to content</a></div>
+		<ul id="navigation">
+			<li><a href="http://www.workingwith.me.uk/blog/">Blog</a></li>
+			<li><a href="http://www.workingwith.me.uk/articles/">Articles</a></li>
+			<li><a href="http://www.workingwith.me.uk/table_free/">Table Free</a></li>
+			<li><a href="http://www.workingwith.me.uk/faq/">FAQ</a></li>
+			<li><a href="http://www.workingwith.me.uk/neil/">Neil Crosby</a></li>
+			<li><a href="http://www.workingwith.me.uk/contact/">Contact</a></li>
+			<li><a href="http://www.workingwith.me.uk/feeds/">Feeds</a></li>
+		</ul>
+	</div><!-- end header -->
+
+
+	<div id="content" class="clearfix">
+<!-- google_ad_section_start -->
+		<div id="primaryContent">
+			<div class="blogEntry">
+				<h1><a href="./mod_rewrite, a beginner's guide (with examples)2_files/mod_rewrite, a beginner's guide (with examples)2.html">mod_rewrite, a beginner’s guide (with examples)</a></h1>
+				<p class="byLine">
+					Posted by <a href="http://www.workingwith.me.uk/neil/">Neil Crosby</a>
+					on May 23, 2004 12:00 PM
+				</p>
+
+				<iframe src="./mod_rewrite, a beginner's guide (with examples)2_files/cm.html" style="float: right; margin-left: 1em; width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+<p>
+   Until recently, I only had the vaguest of ideas of what mod_rewrite was, and I certainly
+   had no clue about how to use it.  So, when I started designing this site, I decided to 
+   delve into the wonders that are the mod_rewrite Apache module.
+</p>
+
+<h3>So, what is mod_rewrite for?</h3>
+
+<p>
+   Simply, mod_rewrite is used for rewriting a URL at the server level, giving the user 
+   output for that final page.  So, for example, a user may ask for 
+   <code>http://www.somesite.com/widgets/blue/</code>, but will really be given 
+   <code>http://www.somesite.com/widgets.php?colour=blue</code> by the server.  Of course, the
+   user will be none the wiser to this little bit of chicanery.
+</p>
+
+<p>
+   On <a href="http://www.workingwith.me.uk/">workingwith.me.uk</a>, 
+   <a href="http://www.workingwith.me.uk/blog/31743/">I use mod_rewrite to 
+   redirect all pages to one central PHP page</a>, which then loads the data that the user wanted 
+   from an external data file.  Lots of people use mod_rewrite to show an “alternative” image
+   when people are hotlinking directly to their images.
+</p>
+                                <h3>What do I need to get mod_rewrite working?</h3>
+
+<p>
+   There’s pretty much only one thing you’ll need to get mod_rewrite working for you,
+   and that’s to have the mod_rewrite module installed on your Apache server!  
+</p>
+<p>
+   For the
+   purpose of this article, I’m going to assume that you don’t have access to view or edit 
+   the Apache server httpd.conf file, so the easiest way to check whether the mod_rewrite
+   module is installed will be to look on your phpinfo page.  If you’ve not already created
+   one of these for yourself, just copy and paste the following code into an new text file 
+   using your favourite text editor, save it as <code>phpinfo.php</code>, and upload it to 
+   your server:
+</p>
+
+<pre>&lt;?php phpinfo(); ?&gt;</pre>
+
+<p>
+   Load that page up in your web browser, and perform a search for “mod_rewrite”.  All being well,
+   you’ll find it in the “Apache loaded modules” section of the page.  If it isn’t there,
+   you’ll have to contact your hosting company and politely ask them to add it to the Apache
+   configuration.
+</p>
+
+<p>
+   Assuming the mod_rewrite module is loaded, then you’re good to go!
+</p>
+
+<h3>A simple mod_rewrite example</h3>
+
+<p>
+   So, let’s write a simple mod_rewrite example.  This isn’t going to be anything fancy; we’re
+   just going to redirect people who ask for <code>alice.html</code> to the page 
+   <code>bob.html</code> instead.  First, let’s create the Alice and Bob pages.  Below is
+   Alice’s webpage - create a similar one for Bob.
+
+</p>
+
+<pre>&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Alice's webpage&lt;/title&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;p&gt;
+         This is Alice's webpage
+      &lt;/p&gt;
+   &lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<p>
+  Upload both of these to your web server, and check that you can view both of them.  Now
+  comes the fun - we’re going to add a couple of lines to your .htaccess file.
+  The .htaccess file is a text file which contains Apache directives.  Any directives which
+  you place in it will apply to the directory which the .htaccess file sits in, and any
+  below it.  To ours, we’re going to add the following:
+
+</p>
+
+<pre>RewriteEngine on
+RewriteRule ^alice.html$ bob.html</pre>
+
+<p>
+   Upload this .htaccess file to the same directory as alice.html and bob.html, and reload
+   Alice’s page.  You should see Bob’s page being displayed, but Alice’s URL.  If you still see 
+   Alice’s page being displayed, then check you’ve followed the instructions correctly (you 
+   may have to clear your cache).  If things still aren’t working for you, then contact your 
+   technical support people and ask them to enable mod_rewrite and the FileInfo override in 
+   their httpd.conf file for you
+</p>
+
+<h3>The structure of a RewriteRule</h3>
+
+<pre>RewriteRule <i>Pattern Substitution [OptionalFlags]</i></pre>
+
+<p>
+   The general structure of a RewriteRule is fairly simple if you already understand
+   regular expressions.  This article isn’t intended to be a tutorial about regular
+   expressions though - there are already plenty of those available.  RewriteRules are
+   broken up as follows:
+</p>
+
+<dl>
+	<dt>RewriteRule</dt>
+	<dd>
+	   <p>
+         This is just the name of the command.
+	   </p>
+	</dd>
+
+	<dt>Pattern</dt>
+	<dd>
+	   <p>
+         A regular expression which will be applied to the “current” URL.  If any RewriteRules
+         have already been performed on the requested URL, then that changed URL will be the
+         current URL.
+	   </p>
+	</dd>
+
+	<dt>Substitution</dt>
+
+	<dd>
+	   <p>
+         Substitution occurs in the same way as it does in Perl, PHP, etc.
+	   </p>
+	   <p>
+	      You can include backreferences and server variable names (<code>%{VARNAME}</code>) 
+	      in the substitution.  Backreferences to this RewriteRule should be written as
+	      <code>$N</code>, whereas backreferences to the previous RewriteCond should be written
+	      as <code>%N</code>.
+	   </p>
+
+	   
+	   <p>
+	      A special substitution is <code>-</code>.  This substitution tells Apache to not
+	      perform any substitution.  I personally find that this is useful when using the
+	      <code>F</code> or <code>G</code> flags (see below), but there are other uses as well.
+	   </p>
+	</dd>
+
+	<dt>OptionalFlags</dt>
+
+	<dd>
+	   <p>
+         This is the only part of the RewriteRule which isn’t mandatory.  Any flags which you
+         use should be surrounded in square brackets, and comma separated.  The flags which
+         I find to be most useful are: 
+	   </p>
+	   
+	   <ul>
+	      <li>
+	         <p>
+	            <code>F</code> - 
+	            Forbidden.  The user will receive a 403 error.
+	         </p>
+
+	      </li>
+	      <li>
+	         <p>
+	            <code>L</code> - 
+	            Last Rule.  No more rules will be proccessed if this one was successful.
+	         </p>
+	      </li>
+	      <li>
+	         <p>
+
+	            <code>R[=code]</code> - 
+	            Redirect.  The user’s web browser will be visibly redirected to the substituted
+	            URL.  If you use this flag, you <em>must</em> prefix the substitution with
+	            <code>http://www.somesite.com/</code>, thus making it into a true URL.  If no
+	            code is given, then a HTTP reponse of 302 (temporarily moved) is sent.
+	         </p>
+	      </li>
+	   </ul>
+	   
+	   <p>
+	      A full list of flags is given in the Apache mod_rewrite manual.
+	   </p>
+
+	</dd>
+
+</dl>
+
+<h3>A slightly more complicated mod_rewrite example</h3>
+
+<p>
+  Let’s try a slightly more meaty example now.  Suppose you have a web page which takes
+  a parameter.  This parameter tells the page how to be displayed, and what content to pull
+  into it.  Humans don’t tend to like remembering the additional syntax of query strings for
+  URLs, and neither do search engines.  Both sets of people seem to much prefer a straight
+  URL, with no extra bits tacked onto the end.
+</p>
+<p>
+   In our example, you’ve created a main index page with takes a <code>page</code> parameter.
+   So, a link like <code>index.php?page=software</code> would take you to a software page,
+   while a link to <code>index.php?page=interests</code> would take you to an interests page.
+   What we’ll do with mod_rewrite is to silently redirect users from 
+   <code>page/software/</code> to <code>index.php?page=software</code> etc.   
+
+</p>
+
+<p>
+   The following is what needs to go into your .htaccess file to accomplish that:
+</p>
+
+<pre>RewriteEngine on
+RewriteRule ^page/([^/\.]+)/?$ index.php?page=$1 [L]</pre>
+
+<p>
+   Let’s walk through that RewriteRule, and work out exactly what’s going on:
+</p>
+<dl>
+	<dt>^page/</dt>
+
+	<dd>
+	   <p>
+	      Sees whether the requested page starts with <code>page/</code>.  If it doesn’t,
+	      this rule will be ignored.
+	   </p>
+	</dd>
+	<dt>([^/.]+)</dt>
+	<dd>
+	   <p>
+
+	      Here, the enclosing brackets signify that anything that is matched will be
+	      remembered by the RewriteRule.  Inside the brackets, it says “I’d like one or
+	      more characters that aren’t a forward slash or a period, please”.   Whatever is found
+	      here will be captured and remembered.
+	   </p>
+	</dd>
+	<dt>/?$</dt>
+	<dd>
+	   <p>
+	      Makes sure that the only thing that is found after what was just matched is a
+	      possible forward slash, and nothing else.  If anything else is found, then this
+	      RewriteRule will be ignored.
+	   </p>
+	</dd>
+
+	<dt>index.php?page=$1</dt>
+	<dd>
+	   <p>
+	      The actual page which will be loaded by Apache.  <code>$1</code> is magically
+	      replaced with the text which was captured previously.  
+	   </p>
+	</dd>
+
+	<dt>[L]</dt>
+	<dd>
+	   <p>
+	      Tells Apache to not process any more RewriteRules if this one was successful.
+	   </p>
+	</dd>
+</dl>
+
+<p>
+   Let’s write a quick page to test that this is working.  The following test script will simply
+   echo the name of the page you asked for to the screen, so that you can check that the 
+   RewriteRule is working.
+
+</p>
+<pre>&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Second mod_rewrite example&lt;/title&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;p&gt;
+         The requested page was:
+         &lt;?php echo $_GET['page']; ?&gt;
+      &lt;/p&gt;
+   &lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<p>
+   Again, upload both the index.php page, and the .htaccess file to the same directory. 
+   Then, test it!  If you put the page in <code>http://www.somesite.com/mime_test/</code>,
+   then try requesting <code>http://www.somesite.com/mime_test/page/software</code>.  The
+   URL in your browser window will show the name of the page which you requested, but the
+   content of the page will be created by the <code>index.php</code> script!  This technique
+   can obviously be extended to pass multiple query strings to a page - all you’re limited
+   by is your imagination.
+
+</p>
+
+<h3>Conditional Statements and mod_rewrite</h3>
+
+<p>
+   But what happens when you start getting people hotlinking to your images (or other files)?
+   Hot linking is the act of including an image, media file, etc from someone else’s server
+   in one of your own pages as if it were your own.  Obviously, as a webmaster, there are
+   plenty of times when you don’t want people doing that.  You’ll almost certainly have seen examples
+   where someone has linked to one image on a website, only for a completely different, 
+   “nasty” one to be shown instead.  So, how is this done?
+</p>
+
+<p>
+   It’s pretty simple really.  All it takes are a couple of RewriteCond statements in your
+   .htaccess file.
+</p>
+
+<p>
+   RewriteCond statements are as they sound - conditional statements for RewriteRules.
+   The basic format for a RewriteCond is <code>RewriteCond test_string cond_pattern</code>.
+   For our purpose, we will set the test_string to be the HTTP_REFERER.  If the test string
+   is neither empty nor our own server, then we will serve an alternative (low bandwidth)
+   image, which tells the person who is hotlinking off for stealing our bandwidth.
+
+</p>
+
+<p>
+   Here’s how we do that:
+</p>
+
+<pre>RewriteEngine on
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?somesite.com/.*$ [NC]
+RewriteRule \.(gif|jpg|png)$ http://www.somesite.com/nasty.gif [R,L]</pre>
+
+<p>
+   Here, the RewriteRule will only be performed if all the preceeding RewriteConds are
+   fulfilled.  In the second RewriteCond, <code>[NC]</code> simply means “No Case”, so it
+   doesn’t matter whether the domain name was written in upper case, lower case or a mixture
+   of the two.  So, any requests for gif, jpg or png files from referers other than somesite.com
+   will result in your “nasty” image being shown instead.  
+</p>
+
+<p>
+   The <code>[R,L]</code> in
+   the RewriteRule simply means “Redirect, Last”.  So, the RewriteRule will visibly redirect 
+   output to “nasty.gif” and no more RewriteRules will be performed on this URL.
+</p>
+<p>
+   If you simply don’t want the hot linkers to see any image at all when they hot link to your
+   images, then simply change the final line to 
+   <code>RewriteRule \.(gif|jpg|png)$ - [F]</code>.  The <code>-</code> means “don’t rewrite 
+   the requested URL”, and the <code>[F]</code> means “Forbidden”.  So, the hot linker will 
+   get a “403 Forbidden message”, and you don’t end up wasting your bandwidth.
+
+</p>
+
+<h3>Conclusion</h3>
+
+<p>
+  mod_rewrite is an incredibly handy tool to have in your arsenal.  This article only
+  scratched the surface of what is possible with mod_rewrite, but should have given you
+  enough information to go out and start mod_rewriting history yourself!
+</p>
+
+<h2>References</h2>
+<p>
+   <a class="external" href="http://httpd.apache.org/docs/mod/mod_rewrite.html">Apache module
+   mod_rewrite</a> - Apache’s big long document about the mod_rewrite module.
+</p>
+<p>
+<a href="http://www.amazon.co.uk/exec/obidos/redirect?link_code=as2&path=ASIN/1590595610&tag=workingwmeuk-21&camp=1634&creative=6738">The Definitive Guide to Apache mod_rewrite</a> - If you’re serious about learning how to use mod_rewrite and need more detail than you got in this article, then I can sincerely recommend buying <a href="http://www.workingwith.me.uk/blog/review/the_definitive_guide_to_apache_mod_rewrite">The Definitive Guide to Apache mod_rewrite</a>.
+</p>
+									<div class="advertising">
+						<p>
+							If you enjoyed reading this and would like other
+							people to read it as well, please add it to
+							<a href="http://del.icio.us/post?url=http%3A%2F%2Fwww.workingwith.me.uk%2Farticles%2Fscripting%2Fmod_rewrite&title=mod_rewrite%2C%20a%20beginner%27s%20guide%20%28with%20examples%29">del.icio.us</a>,
+							<a href="http://digg.com/submit?phase=2&url=http%3A%2F%2Fwww.workingwith.me.uk%2Farticles%2Fscripting%2Fmod_rewrite">digg</a> or
+							<a href="http://www.furl.net/storeIt.jsp?u=http%3A%2F%2Fwww.workingwith.me.uk%2Farticles%2Fscripting%2Fmod_rewrite&t=mod_rewrite%2C%20a%20beginner%27s%20guide%20%28with%20examples%29">furl</a>.
+						</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-4287914808447079";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "text_image";
+google_ad_channel ="6959787886";
+google_color_border = "FFFFFF";
+google_color_link = "666666";
+google_color_bg = "FFFFFF";
+google_color_text = "000000";
+google_color_url = "008000";
+//--></script>
+<script type="text/javascript" src="./mod_rewrite, a beginner's guide (with examples)2_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px"><ins id="aswift_0_anchor" style="display:block;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px"><iframe allowtransparency="true" frameborder="0" height="60" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){i+=&#39;.call&#39;;setTimeout(h,0)}else if(h.match){i+=&#39;.nav&#39;;w.location.replace(h)}s.log&amp;&amp;s.log.push(i)}" scrolling="no" vspace="0" width="468" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+<p>
+If you <strong>really</strong> enjoyed what you just read, why not <a href="http://www.amazon.co.uk/gp/redirect.html?ie=UTF8&location=http%3A%2F%2Fwww.amazon.co.uk%2F&tag=workingwmeuk-21&linkCode=ur2&camp=1634&creative=6738">buy yourself something from Amazon</a>?  You get something nice for yourself, and I get a little bit of commission to pay for servers and the like.  Everyone's a winner! 
+</p>
+					</div>
+				
+				<p class="blogEntryFooter">
+											<a href="http://www.workingwith.me.uk/articles/scripting/mod_rewrite#comments">comments (41)</a>
+						|
+						<a href="http://www.workingwith.me.uk/articles/scripting/mod_rewrite#writeComment">write a comment</a>
+						|
+					
+					<a href="./mod_rewrite, a beginner's guide (with examples)2_files/mod_rewrite, a beginner's guide (with examples)2.html">permalink</a>
+|
+<a href="http://technorati.com/search/http%3A%2F%2Fwww.workingwith.me.uk%2Farticles%2Fscripting%2Fmod_rewrite?sub=nscosmos" rel="linkcount">View blog reactions</a>
+				</p>
+			</div>
+			
+			
+			
+																		<div class="comments">
+							<h2><a id="comments">Comments</a></h2>
+							<ol>
+					
+
+								<li class="comment_">
+									<h3>
+										by Anonymous 
+										on October 22, 2005 08:41 AM
+									</h3>
+									<p>Fancy article, very helpful.  Thanks for share it.</p>
+
+<p>Could you write some samples for the solution to impleentation of such as secondary domain things.</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_">
+									<h3>
+										by Anonymous 
+										on October 23, 2005 07:55 PM
+									</h3>
+									<p>This is an excellent article. The rewriting of <a href="http://www.site.com/content" rel="nofollow">http://www.site.com/content</a> to <a href="http://www.site.com/?id=content" rel="nofollow">http://www.site.com/?id=content</a> is the most interesting one to me, although I’m curious how one would rewrite <a href="http://www.site.com/content/edit" rel="nofollow">http://www.site.com/content/edit</a> to something like <a href="http://www.site.com/?id=content&action=edit." rel="nofollow">http://www.site.com/?id=content&amp;action=edit.</a> Now THAT would be excellent!</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_neil_crosby">
+									<h3>
+										by <a href="http://www.workingwith.me.uk/" rel="nofollow">Neil Crosby</a> <a class="commenter-profile" href="http://profile.typekey.com/thevoicewithin"><img alt="[TypeKey Profile Page]" src="./mod_rewrite, a beginner's guide (with examples)2_files/nav-commenters.gif"></a>
+										on October 23, 2005 08:18 PM
+									</h3>
+									<p>Thanks for the complement. In fact, I did write a blog entry about how to do just that a couple of weeks ago. You can find the relevent entry at:
+<a href="http://www.workingwith.me.uk/blog/software/open_source/apache/mod_rewriting_an_entire_site" rel="nofollow">mod_rewriting an entire site</a></p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_">
+									<h3>
+										by Anonymous 
+										on October 30, 2005 02:58 AM
+									</h3>
+									<p>A most excellent article, many thanks.
+Unfortunately, I fell over it just as I had solved my problem :(
+Am appending the problem and the solution in case it’s useful:</p>
+
+<p>Problem: how to determine which language to use when serving files,
+and then make it look to the user as if the files are being served out
+of a language-specific directory (trying to be helpful)
+Content negotiation wasn’t the answer, as the content is dbase driven.
+So I wanted to append a query string to all urls, but have it be invisible to users.</p>
+
+<p>Solution:
+if ( mysite.com/ is requested )
+then serve up mysite.com/index.html
+and determine user’s preferred language from the browser.
+if lang. preference not set, default to english
+and set $lang=’en’</p>
+
+<p>then parse all docs thusly:</p>
+
+<pre><code># rewrite all requests for language-specific files
+RewriteEngine on
+Options +FollowSymlinks
+RewriteRule ^en/(.*)$ $1?lang=en [NC,L]
+RewriteRule ^de/(.*)$ $1?lang=de [NC,L]
+RewriteRule ^fr/(.*)$ $1?lang=fr [NC,L]</code></pre>
+
+<p>so eg. all requests for german files look like this:
+<a href="http://mysite.com/de/valley/page.html" rel="nofollow">http://mysite.com/de/valley/page.html</a>
+and bookmarked links automatically come up with the correct language.
+Look Ma, no cookies!</p>
+
+<p>By the way, if you know of a better solution, please don’t hesitate to tell me.</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_grimboyvidentityorg">
+									<h3>
+										by <a href="http://grimboy.videntity.org/" rel="nofollow">grimboy.videntity.org</a> 
+										on December  2, 2005 11:35 PM
+									</h3>
+									<p>Yes, also you might want to use the link tag to specify other language versions as a schematic thing. Like it says near the bottom of <a href="http://www.w3.org/TR/REC-html40/struct/links.html" rel="nofollow">http://www.w3.org/TR/REC-html40/struct/links.html</a></p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_">
+									<h3>
+										by Anonymous 
+										on December 31, 2005 11:33 PM
+									</h3>
+									<p>this is the FIRST mod_rewrite tutorial that I have found that actually explains it simply. Now at <a href="http://barnt.org:81/~jared/" rel="nofollow">http://barnt.org:81/~jared/</a> all my links are redirected as <a href="http://barnt.org:81/~jared/id/theidoftheblogpost" rel="nofollow">http://barnt.org:81/~jared/id/theidoftheblogpost</a> . It took only a few minutes thanks to this tutorial.</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_">
+									<h3>
+										by Anonymous 
+										on January  1, 2006 04:19 PM
+									</h3>
+									<p>There is a massive bug in mod<em>rewrite in current Apache releases: mod</em>rewrite strips one level of URL encoding between matched strings and output values. If your incoming URL happens to contain URL encoded values, it will thus generate invalid URLs. for example:</p>
+
+<pre><code>RewriteRule ^something/(.*) something.php?var=$1</code></pre>
+
+<p>If you pass in a URL like</p>
+
+<pre><code>something/hello%20world</code></pre>
+
+<p>It will be rewritten as:</p>
+
+<pre><code>something.php?var=hello world</code></pre>
+
+<p>which is not a valid URL.</p>
+
+<p>It happens that this is bearable for many cases (also why it has not been fixed), as URL encoding does not affect many string values, but if you’re doing anything like passing entire URLs as parameters (e.g. for a redirector), this can cause major problems. This problem has nothing to do with the [NE] option, which is concerned with allowing URL encoded values in the rewrite rule itself, not the string it is applied to.</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_tomw">
+									<h3>
+										by <a href="http://www.corruptive.co.uk/" rel="nofollow">tomw</a> 
+										on January  2, 2006 02:57 AM
+									</h3>
+									<p>I have had a go at solving the problem below.</p>
+
+<pre><code>/pictures/index.php?path=&amp;img=test.jpg
+/pictures/index.php?path=prague&amp;img=DSC01062.JPG</code></pre>
+
+<p>The idea being that the url becomes /pictures/test</p>
+
+<p>The only thing with this is that I am not that great at finding the solution.
+Also, Blorp in creating url direct from the directory and file structure so /pictures/prague/DSC01062.JPG really is a url also. I could use /pictures/prague/DSC01062 without the .JPG file extension but have found that this is a bit hard.</p>
+
+<p>Example:</p>
+
+<pre><code>&lt;IfModule mod_rewrite.c&gt;
+#RewriteEngine On
+RewriteBase /pictures/
+RewriteEngine on
+RewriteRule ^alice.html$ bob.html
+#RewriteRule ^page/([^/\.]+)/?$ index.php?page=$1 [L]
+#/pictures/index.php?path=&amp;img=test.jpg
+#/pictures/index.php?path=prague&amp;img=DSC01062.JPG
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.\?/]+)/([0-9]+)$ /pictures/index.php?path=$1&amp;img=$2 [QSA]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.\?/]+)/([A-Za-z_0-9\-]+)$ /pictures/index.php?path=$1&amp;img=$2 [QSA]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.\?/]+)/$ /pictures/$1 [R]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.\?/]+)$ /pictures/index.php?path=$1 [QSA]
+&lt;/IfModule&gt;</code></pre>
+
+<p>Cheers</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_rajan_vohra">
+									<h3>
+										by Rajan Vohra 
+										on February 16, 2006 11:03 AM
+									</h3>
+									<p>I want to redirect the user if he/she directly enters the address of the page in the address bar, but wants to permit the users who enter the page after passing through the authentication page.
+please suggest the solutions</p>
+
+<p>Thanks</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_paul_ingram">
+									<h3>
+										by Paul Ingram 
+										on February 27, 2006 08:34 AM
+									</h3>
+									<p>Rajan,</p>
+
+<p>I would have thought this would be something you can do in the language you’re using. In PHP, I assign the login status to a variable which is included with every page. If the user hits a page requiring login, it’s something like:</p>
+
+<pre><code>if ($login==0) {
+  # Not logged in, redirect
+  header('location: otherpage.php');
+  die;
+}
+</code></pre>
+
+<p>Note that because I’ve used the header command and therefore am modifying the HTTP headers, this must go before any output to the browser.</p>
+
+<p>Hope this helps…</p>
+
+<p>Paul</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_matt">
+									<h3>
+										by <a href="http://n/A." rel="nofollow">Matt</a> 
+										on February 27, 2006 06:08 PM
+									</h3>
+									<p>Great tutorial.  I’m just learning about Mod_Rewrites. Unfortunately, I’m still having problems including a query string in my redirect.  I’m trying to do the following but need some help:</p>
+
+<p><a href="http://www.example.com/index.php?pageId=0&start=0" rel="nofollow">http://www.example.com/index.php?pageId=0&amp;start=0</a></p>
+
+<p>needs to redirect to:</p>
+
+<p><a href="http://www.example.com/index.php?pageId=117&start=0" rel="nofollow">http://www.example.com/index.php?pageId=117&amp;start=0</a></p>
+
+<p>This is what I tried in my .htaccess dir, but it’s not doing anything:</p>
+
+<pre><code>RewriteEngine on
+RewriteRule ^gallery/index.php?pageId=0&amp;start=0 gallery/index.php?pageId=117&amp;start=0 [L]
+</code></pre>
+
+								</li>
+
+					
+									
+
+								<li class="comment_neil_crosby">
+									<h3>
+										by <a href="http://www.workingwith.me.uk/" rel="nofollow">Neil Crosby</a> <a class="commenter-profile" href="http://profile.typekey.com/thevoicewithin"><img alt="[TypeKey Profile Page]" src="./mod_rewrite, a beginner's guide (with examples)2_files/nav-commenters.gif"></a>
+										on March 12, 2006 03:46 PM
+									</h3>
+									<p><strong>Matt</strong>: Sorry it’s taken me a while to reply to you, and I hope you’ve managed to find the solution to your problem elsewhere by now!</p>
+
+<p>Just in case you haven’t though, here we go.  I’ve not actually checked that this works, but even if it doesn’t it should give you somewhere to go from:</p>
+
+<pre><code>RewriteCond %{QUERY_STRING} ^pageId=0&amp;start=0$
+RewriteRule ^gallery/index.php gallery/index.php?pageId=117&amp;start=0
+</code></pre>
+
+<p>Basically, the query string is not part of the URL that the RewriteRule looks at, so you have to check this in a RewriteCond beforehand. Basically, the rule above says “Is the query string for this URL ‘pageId=0&amp;start=0’?  It is?  Excellent!  Now, does the URL I’ve been given start with ‘gallery/index.php’?  It does?  Fantastic!  Lets rewrite the user to ‘gallery/index.php?pageId=117&amp;start=0’.”</p>
+
+<p>One thing to note is that if you were wanting to redirect the user to a different URL with the same query string, then you could use the QSA (query string append) flag on the end of the rule to tack the original query string onto the redirected URL. </p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_sumer">
+									<h3>
+										by Sumer 
+										on March 22, 2006 09:50 AM
+									</h3>
+									<p>Where exactly is </p>
+
+<p><a href="http://www.site.com/content" rel="nofollow">http://www.site.com/content</a>
+to 
+<a href="http://www.site.com/?id=content" rel="nofollow">http://www.site.com/?id=content</a></p>
+
+<p>with mod rewrite?</p>
+
+<p>I dont see it on this web site.</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_tarek">
+									<h3>
+										by tarek 
+										on March 23, 2006 01:12 PM
+									</h3>
+									<p>please help me to convert dynamic url to static url</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_james">
+									<h3>
+										by <a href="http://www.moving-butler.com/" rel="nofollow">James</a> 
+										on March 25, 2006 10:24 PM
+									</h3>
+									<p>On my site: <a href="http://www.moving-butler.com/" rel="nofollow">www.moving-butler.com</a>, I have been trying to test a way to convert a dynamic site I manage. The dynamic site outputs dynamic links. Could I use mod_rewrite to change everything in the web site so it would appear static for the search engines, or would I have to rewrite the entire PHP script set? </p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_bobby">
+									<h3>
+										by <a href="http://www.duanium.com/" rel="nofollow">Bobby</a> 
+										on March 29, 2006 07:53 AM
+									</h3>
+									<p>Thank you so much for this article!  You made mod_rewrite understandable.  I finally can implement this on my website!!</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_dawson">
+									<h3>
+										by <a href="http://hrhsfalcons.net/" rel="nofollow">Dawson</a> 
+										on April  3, 2006 04:15 AM
+									</h3>
+									<p>I think I love you.  <em>sigh</em>  Four hours of fussing over a line of code, and then I find this and fix it in a matter of minutes…</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_great_stuff_lik0r">
+									<h3>
+										by <a href="http://www.dynamic-web-solutions.co.uk/" rel="nofollow">Great Stuff Lik-0r</a> 
+										on May 20, 2006 05:11 PM
+									</h3>
+									<p>Hey my friend,</p>
+
+<p>thanks a lot. I had grasp on regular expressions before, which is pretty simple. But I learned to properly use for mod_rewrite here in your tutorial. Great stuff man, and I like it cause I am the Great Stuff Lik-0r :) </p>
+
+<p>Cheers man, keep up the good work!!</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_maulana_kurniawan">
+									<h3>
+										by <a href="http://www.imoel.net/" rel="nofollow">Maulana Kurniawan</a> 
+										on May 26, 2006 06:53 AM
+									</h3>
+									<p>Hi, </p>
+
+<p>I’m quite sure that this article is very usefull, but my local-private-server mod<em>rewrite won’t work…I’m using Fedora Core 5, Apache2, and mod</em>rewrite loaded. All of mod_rewrite function didn’t shown up. I’ve search through google, fedora forum, apache documentation, etc, nothing usefull for me. Could you or someine please help me?</p>
+
+<p>Thanks a lot.</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_apanath">
+									<h3>
+										by <a href="http://www.workingwith.me.uk/" rel="nofollow">Apanath</a> 
+										on May 27, 2006 10:04 AM
+									</h3>
+									<p>I have my URL as</p>
+
+<p><a href="http://www.mydomain.com/menu.php?result=education%20online" rel="nofollow">http://www.mydomain.com/menu.php?result=education%20online</a></p>
+
+<p>I have written the rule as </p>
+
+<p>^(.<em>)/    menu.php?result=$1
+^(.</em>).php$  menu.php?result=$1</p>
+
+<p>But it is giving me error.</p>
+
+<p>Where an I wrong in the two rules.</p>
+
+<p>can any one help me.</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_nilesh_vaidya">
+									<h3>
+										by Nilesh Vaidya 
+										on May 31, 2006 07:45 AM
+									</h3>
+									<p>First off all a real COOL article Neil, the knowledge provide in it is more than enough to make some good things if anyone is realy interested.</p>
+
+<p>I have a few question though, if possible could you please guide us on to them:</p>
+
+Case 1
+
+<p>www.abc.com/index.php?s=mobiles
+can easy be converted to 
+www.abc.com/mobiles.htm
+* It works good fine and preety easy to do that.</p>
+
+Case 2 ????????
+
+<p>www.abc.com/index.php?s=mobiles phones
+www.abc.com/index.php?s=mobiles%20phones</p>
+
+<p>How can these be converted to 
+www.abc.com/mobiles_phones.htm ????</p>
+
+<p>Well i am a bit ok with regex, definately not expert nor good but also not dumb, can use them when i want them too. :)</p>
+
+<p>how will replace from ” ” to “<em>” take over here ?
+We do not have preg</em>replace or anything like that….</p>
+
+<p>Also will using mod_rewrite damage us at the SE side. I mean will google treat them as normal html files.</p>
+
+<p>Awaiting for your valued reply.</p>
+
+<p>Thanks,
+Nilesh</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_anil">
+									<h3>
+										by Anil 
+										on July  3, 2006 06:57 AM
+									</h3>
+									<p>Hi… it’s a great tutorial and has helped me to understand mod_rewrite to some extent. I want to rewrite the following URL but am not bale to figure out how should i do it. If you can give me any pointers it would be helpful.</p>
+
+<pre><code>&lt;a href="http://localhost/pizzaman/additems.php?mainitemid=1&amp;subitemid=1&amp;itemid=1&amp;sizeid=1"&gt;http://localhost/pizzaman/additems.php?mainitemid=1&amp;subitemid=1&amp;itemid=1&amp;sizeid=1&lt;/a&gt;
+</code></pre>
+
+<p>After going through the tutorial i was able to rewrite the URL for first key-value in the query string but how to handle multiple key-values as given above.</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_fowmow">
+									<h3>
+										by fowmow 
+										on July  6, 2006 11:53 AM
+									</h3>
+									<p>Anil,</p>
+
+<pre><code>RewriteRule ^pizzaman/([^/.]+)/([^/.]+)/([^/.]+)/([^/.]+)/?$ /pizzaman/additems.php?mainitemid=$1&amp;subitemid=$2&amp;itemid=$3&amp;sizeid=$4 [L]
+</code></pre>
+
+<p>This allows for a URL like:</p>
+
+<pre><code>domain.com/pizzaman/one/two/three/four/
+</code></pre>
+
+								</li>
+
+					
+									
+
+								<li class="comment_bubs">
+									<h3>
+										by <a href="http://www.bubblessoc.net/" rel="nofollow">Bubs</a> 
+										on July  8, 2006 01:41 AM
+									</h3>
+									<p>Excellent article… thanks so much!</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_s_sparkie">
+									<h3>
+										by S Sparkie 
+										on July 13, 2006 04:48 PM
+									</h3>
+									<p>Hi there,</p>
+
+<p>Really good article that has explained this subject really well but please may I ask if the following is possible? I cannot work it out. </p>
+
+<p>I have a site tha is written in PHP and pulls data from a MySql DB. The site utilises query strings and I would like to map the query generated pages to the more search engine friendly page titles. For example I would like to acheive to the following mappings:</p>
+
+<p>content.php?id=1 to map to /aboutus
+content.php?id=2 to map to /contactus
+content.php?id=3 to map to /newfiles</p>
+
+<p>There are about 80 odd pages on the site and would like to know if I would need to map each link as there are all in the format ?id=x or is there a more elegant way to approach this?</p>
+
+<p>Thanks for any help
+S</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_isaac">
+									<h3>
+										by <a href="http://thepeccavi.co.uk/" rel="nofollow">Isaac</a> 
+										on July 17, 2006 05:16 PM
+									</h3>
+									<p>Thank you for this great tutorial! I am now going to switch to a host with .htaccess enabled so that i can use it!</p>
+
+<p>I have not found another tutorial this useful (infact any other tutorial that was any good at all!) on the internet!</p>
+
+<p>Thank you!!!</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_mark">
+									<h3>
+										by Mark 
+										on July 21, 2006 08:28 AM
+									</h3>
+									<p>Wow, this is an excellent tutorial both for the noobs and for the more advanced webdevs.</p>
+
+<p>Here’s a little tutorial to people who have no idea how to use mod_rewrite:</p>
+
+<p>If your site consists of only a few pages and you’ve seen the fancy url’s like domain.com/contact rather than domain.com/contact.html you can just use:</p>
+
+<p>RewriteEngine on
+RewriteRule ^contact$ /contact.html [L]</p>
+
+<p>And if you want to hide the filename from being guessed, rename it to con1.html, than you’ll have</p>
+
+<p>RewriteEngine on
+RewriteRule ^contact$ /con1.html [L]</p>
+
+<p>Play around with the forward slashes (/) since one webserver may differ from the other.</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_plamen_markov">
+									<h3>
+										by <a href="http://plamen.lynxlake.org/" rel="nofollow">Plamen Markov</a> 
+										on July 23, 2006 09:15 PM
+									</h3>
+									<p>One note for Windows users: When create .htaccess file with Notepad make sure that Word Wrap option is unchecked</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_ken">
+									<h3>
+										by Ken 
+										on July 24, 2006 01:30 PM
+									</h3>
+									<p>Hi,</p>
+
+<p>Is it possible to use mod_rewrite for src property of img tag</p>
+
+<p>so assuming that I have this line in html
+</p>
+
+<p>then Apache server will rewrite it as
+</p>
+
+<p>thanks.</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_vex">
+									<h3>
+										by <a href="http://www.vexone.com/" rel="nofollow">vex</a> 
+										on July 31, 2006 11:24 AM
+									</h3>
+									<p>Awesome guide, many thanks!</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_bobo">
+									<h3>
+										by <a href="http://www.platinum-card.net/" rel="nofollow">bobo</a> 
+										on July 31, 2006 10:56 PM
+									</h3>
+									<p>This site helped me a lot, but something is still not ok for me.</p>
+
+<p>I have to rewrite <a href="http://127.0.0.1/apphandler/func1/param1/" rel="nofollow">http://127.0.0.1/apphandler/func1/param1/</a> to <a href="http://127.0.0.1//index.php?function=func1&params=param1" rel="nofollow">http://127.0.0.1//index.php?function=func1&amp;params=param1</a></p>
+
+<p>My rewrite rule is </p>
+
+<pre><code>RewriteRule ^/apphandler/([^/.]+)/([^/.]+)/?$ /index.php?function=$1&amp;params=$2 [L]
+</code></pre>
+
+<p>which returns with “No input file specified” instead of the page. If I use [L,R] redirection instead of [L], it is working though. Here is the rewrite.log:</p>
+
+<pre><code>[rid#7a5450/initial] (2) init rewrite engine with requested uri /apphandler/func1/param1/
+[rid#7a5450/initial] (3) applying pattern '^/apphandler/([^/.]+)/([^/.]+)/?$' to uri '/apphandler/func1/param1/'
+[rid#7a5450/initial] (2) rewrite '/apphandler/func1/param1/' -&gt; '/index.php?function=func1&amp;params=param1'
+[rid#7a5450/initial] (3) split uri=/index.php?function=func1&amp;params=param1 -&gt; uri=/index.php, args=function=func1&amp;params=param1
+[rid#7a5450/initial] (2) local path result: /index.php
+[rid#7a5450/initial] (2) prefixed with document_root to C:/Program Files/Apache Software Foundation/Apache2.2/htdocs/index.php
+[rid#7a5450/initial] (1) go-ahead with C:/Program Files/Apache Software Foundation/Apache2.2/htdocs/index.php [OK]
+[rid#7aab48/initial/redir#1] (2) init rewrite engine with requested uri /php/php-cgi.exe/apphandler/func1/param1/
+[rid#7aab48/initial/redir#1] (3) applying pattern '^/apphandler/([^/.]+)/([^/.]+)/?$' to uri '/php/php-cgi.exe/apphandler/func1/param1/'
+[rid#7aab48/initial/redir#1] (1) pass through /php/php-cgi.exe/apphandler/func1/param1/
+[rid#7ad4d0/subreq] (2) init rewrite engine with requested uri /apphandler/func1/param1/
+[rid#7ad4d0/subreq] (3) applying pattern '^/apphandler/([^/.]+)/([^/.]+)/?$' to uri '/apphandler/func1/param1/'
+[rid#7ad4d0/subreq] (2) rewrite '/apphandler/func1/param1/' -&gt; '/index.php?function=func1&amp;params=param1'
+[rid#7ad4d0/subreq] (3) split uri=/index.php?function=func1&amp;params=param1 -&gt; uri=/index.php, args=function=func1&amp;params=param1
+[rid#7ad4d0/subreq] (2) local path result: /index.php
+[rid#7ad4d0/subreq] (2) prefixed with document_root to C:/Program Files/Apache Software Foundation/Apache2.2/htdocs/index.php
+[rid#7ad4d0/subreq] (1) go-ahead with C:/Program Files/Apache Software Foundation/Apache2.2/htdocs/index.php [OK]
+</code></pre>
+
+								</li>
+
+					
+									
+
+								<li class="comment_tj">
+									<h3>
+										by TJ 
+										on August  9, 2006 03:10 PM
+									</h3>
+									<p>Very good article. It really helpful. Thank you so much</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_alex">
+									<h3>
+										by <a href="http://www.propellingsolutions.com/" rel="nofollow">Alex</a> 
+										on August 17, 2006 07:11 AM
+									</h3>
+									<p>Hey, thanks so much for this article.</p>
+
+<p>I’ve been looking for something like this forever, i’ve just never known how to word it when searching.</p>
+
+<p>I found you through a google group (php.general).</p>
+
+<p>Thanks, great article!</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_abhijith">
+									<h3>
+										by Abhijith 
+										on August 27, 2006 09:44 PM
+									</h3>
+									<p>Hi
+How Can i make </p>
+
+<p>www.mysite.com/scripts/main.php?user=username</p>
+
+<p>work just using the url</p>
+
+<p>www.mysite.com/username</p>
+
+<p>Can anyone help&gt;any help will be appreciated.</p>
+
+<p>Thanks in advance</p>
+
+<p>Abhijith</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_peter">
+									<h3>
+										by Peter 
+										on August 29, 2006 05:43 PM
+									</h3>
+									<p>Thx, your article gives me a headstart!  :-)</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_mick">
+									<h3>
+										by <a href="http://whichone/?" rel="nofollow">mick</a> 
+										on September 10, 2006 05:07 PM
+									</h3>
+									<p>Hi,</p>
+
+<p>thanks for the well written article, it “may” have solved my probs for me. As you are well aware there is a huge problem with web application security, in particular flash/php, i have been looking for a solution to be able to invisibly pass something unique to flash from the server thus identifying to all php files that its a legitimate request. With this i think it might stump most hackers as they will never actually manage to find out where they are so i can use the secretly hidden url as a first step security measure and create a dummy index.html with a dummy php code passed to the flash which will never work.</p>
+
+<p>Do i have any holes in this argument that you can see?</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_chris">
+									<h3>
+										by chris 
+										on September 12, 2006 07:46 AM
+									</h3>
+									<p>Great article - love the simplicity you start off with!</p>
+
+<p>I want to know if I can use mod_rewrite to test a new host  with root relative links, before the domain is resolved to the new host.  The temp domain is www.servername.com/~mysite.  My images and scripts of course don’t work, so I cannot test.  Can I rewrite the document (web) root?  I tried the example in Apache’s URL rewriting guide: (Moved Document Root)</p>
+
+<p>RewriteRule   ^/$  /e/www/  [R]</p>
+
+<p>This has no effect when I try it locally, so maybe I’m missing something.  (BTW, your simple example at the top does work).  This must have a very simple answer, I’m just new at it!  Thank you to anyone who can point me in the right direction!</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_ali">
+									<h3>
+										by Ali 
+										on October 25, 2006 07:07 AM
+									</h3>
+									<p>This will turn /gallerysix into index.php?show=gallerysix</p>
+
+<p>RewriteEngine On
+RewriteRule ^([A-Za-z]+)$ index.php?show=$1</p>
+
+<p>Hope this helps somebody!</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_uno">
+									<h3>
+										by <a href="http://www.thesopranos.com/index.php" rel="nofollow">uno</a> 
+										on December 16, 2006 03:50 AM
+									</h3>
+									<p>Case 2 ???????? 
+www.abc.com/index.php?s=mobiles phones www.abc.com/index.php?s=mobiles%20phones</p>
+
+<p>How can these be converted to www.abc.com/mobiles_phones.htm ????</p>
+
+<p>Has this been answered?  I need to be able to do this also.</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_abhimanyu">
+									<h3>
+										by abhimanyu 
+										on January 20, 2007 12:17 PM
+									</h3>
+									<p>U r article helped me a lot about using mod<em>rewrite.
+Thanks for contributing u r knowledge with all.
+But i am having one question —-
+Is this true that when we use mod</em>rewrite then all the paths to external css files and javascript files are removed from the result page.</p>
+
+<p>Becoz when i used the code the final page(result page) has no css rules applied to it and the page is getting totally destorted.</p>
+
+<p>Help me in this problem.Suggest me the solution for the same.</p>
+
+<p>Thanks a lot,
+Abhimanyu</p>
+
+								</li>
+
+					
+									
+
+								<li class="comment_info_web_services">
+									<h3>
+										by <a href="http://www.infowebservices.org/" rel="nofollow">Info web services</a> 
+										on January 24, 2007 09:31 AM
+									</h3>
+									<p>Contents provided here on mod rewrite are great. I too was looking for a way to convert dynamic php pages into static html pages by using mod rewrite command in .ht access file in root.</p>
+
+								</li>
+
+												</ol>
+				<div style="text-align: center">
+<script type="text/javascript"><!--
+google_ad_client = "pub-4287914808447079";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="6392476631";
+google_color_border = "000084";
+google_color_bg = "FFFFFF";
+google_color_link = "000000";
+google_color_text = "000000";
+google_color_url = "008000";
+//--></script>
+<script type="text/javascript" src="./mod_rewrite, a beginner's guide (with examples)2_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px"><ins id="aswift_1_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px"><iframe allowtransparency="true" frameborder="0" height="280" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){i+=&#39;.call&#39;;setTimeout(h,0)}else if(h.match){i+=&#39;.nav&#39;;w.location.replace(h)}s.log&amp;&amp;s.log.push(i)}" scrolling="no" vspace="0" width="336" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;"></iframe></ins></ins>				
+							</div>
+						</div>
+					
+				
+
+				
+				
+			
+
+		</div><!-- primaryContent -->
+<!-- google_ad_section_end -->
+
+		<div id="secondaryContent">
+			
+						<div id="search">
+				<h1><label for="search">search</label></h1>
+
+				<form method="get" action="http://www.workingwith.me.uk/cgi-bin/type/mt-search.cgi">
+					<p class="bordered">
+					<input type="hidden" name="IncludeBlogs" value="1">
+					<input name="search">
+					</p>
+					<p class="align_right">
+					<button type="submit">Search</button>
+					</p>
+				</form>
+			</div>
+
+			
+
+<div id="relevantPages">
+	<h1>other relevant pages</h1>
+	<ul>
+									<li><a href="http://www.workingwith.me.uk/blog/apple/itunes/how_to_sync_the_next_n_unwatched_tv_shows_to">Syncing the Next n Unwatched TV Shows to your iPod, AppleTV or iPhone using iTunes</a></li>
+			
+									<li><a href="http://www.workingwith.me.uk/articles/scripting/standardista_table_sorting">Standardista Table Sorting (A client-side JavaScript Table Sort module)</a></li>
+			
+					
+									<li><a href="http://www.workingwith.me.uk/articles/scripting/mimetypes">Serving XHTML with the correct mime type using PHP</a></li>
+			
+		
+	</ul>
+				
+<script type="text/javascript"><!--
+google_ad_client = "pub-4287914808447079";
+google_ad_width = 200;
+google_ad_height = 90;
+google_ad_format = "200x90_0ads_al";
+google_ad_channel ="1503759248";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000EE";
+google_color_url = "008000";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript" src="./mod_rewrite, a beginner's guide (with examples)2_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:200px"><ins id="aswift_2_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:200px"><iframe allowtransparency="true" frameborder="0" height="90" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){i+=&#39;.call&#39;;setTimeout(h,0)}else if(h.match){i+=&#39;.nav&#39;;w.location.replace(h)}s.log&amp;&amp;s.log.push(i)}" scrolling="no" vspace="0" width="200" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+</div>
+
+
+			
+
+			<div id="bestOf">
+				<h1>the best of wwm</h1>
+				<ul>
+											<li><a href="http://www.workingwith.me.uk/articles/changing_a_files_icon_in_mac_os_x_in_5_easy_steps">Changing a file’s icon in Mac OS X in 5 easy steps</a></li>
+											<li><a href="http://www.workingwith.me.uk/articles/scripting/standardista_table_sorting">Standardista Table Sorting (A client-side JavaScript Table Sort module)</a></li>
+											<li><a href="http://www.workingwith.me.uk/blog/review/o2_xda_mini_s_review">O2 XDA Mini S Review</a></li>
+											<li><a href="http://www.workingwith.me.uk/table_free/seven_reasons_to_go_table_free">Seven Reasons to go Table Free</a></li>
+											<li><a href="http://www.workingwith.me.uk/blog/software/open_source/apache/mod_rewriting_an_entire_site">mod_rewriting an entire site</a></li>
+											<li><a href="http://www.workingwith.me.uk/blog/apple/itunes/creating_smart_playlists_in_it">Creating Smart Playlists in iTunes</a></li>
+											<li><a href="http://www.workingwith.me.uk/articles/java/itunes-com-with-java-and-swing">Using the iTunes COM Interface with Java and Swing</a></li>
+											<li><a href="./mod_rewrite, a beginner's guide (with examples)2_files/mod_rewrite, a beginner's guide (with examples)2.html">mod_rewrite, a beginner’s guide (with examples)</a></li>
+					
+				</ul>
+			</div>
+						<div id="aboutSite">
+				<h1>about <abbr title="Working With Me">wwm</abbr></h1>
+				<p class="vcard">
+					<a class="url" href="http://www.workingwith.me.uk/">workingwith.me.uk</a> is a resource for web developers created
+					by <a href="http://neilcrosby.com/vcard" rel="me" class="fn">Neil Crosby</a>, a <span class="title">web developer</span> who lives and works in <span class="adr"><span class="locality">London</span>, <span class="country-name">England</span></span>.
+					<a href="http://www.workingwith.me.uk/about/">More about the site.</a>
+				</p>
+<p>
+Neil Crosby now blogs at <a href="http://thecodetrain.co.uk/" rel="me">The Code Train</a> and also runs <a href="http://neilcrosby.com/" rel="me">NeilCrosby.com</a>, <a href="http://thetenwordreview.com/" rel="me">The Ten Word Review</a> and <a href="http://everythingisrubbish.com/" rel="me">Everything is Rubbish</a>.
+</p>
+			</div>
+
+
+				<div id="copyright">
+		<h1>leftovers</h1>
+		<ul>
+		<li>
+			copyright ©
+			<a href="http://www.workingwith.me.uk/neil/">Neil Crosby</a> 2004-2008
+		</li><li>
+			<a href="http://www.workingwith.me.uk/table_free/">Table Free</a>
+		</li><li>
+			<a href="http://validator.w3.org/check/referer">XHTML 1.0 Strict</a>
+		</li><li>
+			<a href="http://jigsaw.w3.org/css-validator/validator">CSS</a>
+		</li><li>
+			<a href="http://www.workingwith.me.uk/feeds/">Feeds</a>
+	        </li><!--<li>
+			<a href='#'>Accessibility</a>
+                </li>-->
+		</ul>
+	</div><!-- footer -->
+
+
+		</div><!-- secondaryContent -->
+	</div><!-- content -->
+
+</div><!-- container -->
+<script type="text/javascript" src="./mod_rewrite, a beginner's guide (with examples)2_files/main.js"></script>
+<script src="./mod_rewrite, a beginner's guide (with examples)2_files/workingwithme" type="text/javascript" charset="utf-8"></script><script src="./mod_rewrite, a beginner's guide (with examples)2_files/workingwithme(1)" type="text/javascript"></script>
+
+</body></html>

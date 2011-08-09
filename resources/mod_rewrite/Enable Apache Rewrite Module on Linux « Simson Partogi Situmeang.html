@@ -1,0 +1,733 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0086)http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+
+		<title>Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang</title>
+
+		<link href="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/style.css" media="screen" rel="stylesheet" type="text/css">
+		<link href="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/print.css" media="print" rel="stylesheet" type="text/css">
+		<!--[if IE]>
+		<link href="http://s2.wp.com/wp-content/themes/pub/notepad/ie.css?m=1300143257g" media="screen" rel="stylesheet" type="text/css" />
+		<![endif]-->
+		<!--[if lte IE 6]>
+		<link href="http://s2.wp.com/wp-content/themes/pub/notepad/ie6.css?m=1300143257g" media="screen" rel="stylesheet" type="text/css" />
+		<![endif]-->
+
+		<link rel="pingback" href="http://simsonsitumeang.wordpress.com/xmlrpc.php">
+
+		
+		<meta name="google-site-verification" content="3LppTVBhskPbxgrCVqrzSUG41xE0Y4htUhGvIFWcfLI">
+<meta name="y_key" content="b2c701d1e9b7829d">
+<link rel="alternate" type="application/rss+xml" title="Simson Partogi Situmeang » Feed" href="http://simsonsitumeang.wordpress.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Simson Partogi Situmeang » Comments Feed" href="http://simsonsitumeang.wordpress.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Simson Partogi Situmeang » Enable Apache Rewrite Module on Linux Comments Feed" href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/feed/">
+<script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<link rel="stylesheet" href="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/global.css" type="text/css">
+<link rel="stylesheet" id="sharedaddy-css" href="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/sharing.css" type="text/css" media="all">
+<script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/l10n.js"></script>
+<script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/jquery.js"></script>
+<script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/comment-reply.js"></script>
+<link rel="stylesheet" id="highlander-comments-css" href="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/style(1).css" type="text/css" media="all">
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='http://s0.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1307172300g&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://simsonsitumeang.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://simsonsitumeang.wordpress.com/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="Simson Partogi Situmeang" href="http://simsonsitumeang.wordpress.com/">
+<link rel="prev" title="Restore Windows 7 MBR after GRUB" href="http://simsonsitumeang.wordpress.com/2011/04/25/restore-windows-7-mbr-after-grub/">
+<link rel="next" title="How to Take a Screenshot on Samsung Galaxy Ace (Froyo)" href="http://simsonsitumeang.wordpress.com/2011/05/14/how-to-take-a-sceenshot-on-samsung-galaxy-ace-froyo/">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang.html">
+<link rel="shortlink" href="http://wp.me/p1kgeJ-2Y">
+<link rel="shortcut icon" type="image/x-icon" href="http://s1.wp.com/i/favicon-stacked.ico?m=1300143239g" sizes="16x16 24x24 32x32 48x48">
+<link rel="icon" type="image/x-icon" href="http://s1.wp.com/i/favicon-stacked.ico?m=1300143239g" sizes="16x16 24x24 32x32 48x48">
+<link rel="apple-touch-icon" href="http://s0.wp.com/wp-content/themes/h4/i/webclip.png?m=1300143246g">
+<link rel="openid.server" href="http://simsonsitumeang.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="http://simsonsitumeang.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="http://simsonsitumeang.wordpress.com/osd.xml" title="Simson Partogi Situmeang">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com">
+<style type="text/css">.recentcomments a{display:inline !important;padding: 0 !important;margin: 0 !important;}</style>
+	<style type="text/css">
+	/* <![CDATA[ */
+				div#likes { margin-top: 15px; }
+		.like-button { border: 1px solid #eee; padding: 2px 6px; font-size: 13px; font-family: arial, tahoma, sans-serif; }
+		#wpl-likebox { clear: left; font-size: 11px; font-family: arial, tahoma, verdana, sans-serif !important; min-height: 30px; margin: 10px 0 !important; padding: 5px 0 10px 0 !important; }
+		#wpl-button { float: left; background: url( http://s0.wp.com/i/buttonbg.png ) top left repeat-x; margin-right: 7px; border: 1px solid #d4d4d4; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+		#wpl-button a { border-bottom: none !important; color: #666 !important; line-height: 130% !important; text-decoration: none !important; outline: none; float: left; padding: 3px 6px 2px 24px !important; font-size: 11px !important; background: url( http://s1.wp.com/i/likestar.png ) 6px 49.8% no-repeat; }
+		#wpl-button a:hover { border-bottom: none !important; }
+		#wpl-button.liked { background: #feffce; border: 1px solid #f3e389; }
+		#wpl-button.liked a { color: #ba871b !important; }
+		#wpl-likebox #wpl-count { min-height: 25px; line-height: 130% !important; float: left; padding-top: 4px; }
+		#wpl-likebox #wpl-avatars { clear: left; max-height: 98px; overflow: hidden; margin-top: 15px; line-height: 130% !important; }
+		#wpl-likebox #wpl-avatars img { border: none !important; }
+		#wpl-likebox #wpl-mustlogin { line-height: 14px !important; font-size: 11px; clear: left; margin-top: 5px; background: #f0f0f0; padding: 10px; width: 65%; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+		#wpl-likebox #wpl-mustlogin a { color: #888; text-decoration: underline; }
+		#wpl-likebox #wpl-mustlogin p { margin: 5px 0; padding: 0 }
+		#wpl-likebox #wpl-mustlogin input.input { padding: 2px; background: #fff; font-size: 11px; font-family: inherit; border: 1px solid #ccc; -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1) inset; -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1) inset; line-height: 12px; }
+		#wpl-likebox #wpl-mustlogin input#wp-submit { border: 1px solid #ccc; font-size: 11px; background: #fafafa; repeat-x; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; padding: 2px 4px !important; line-height: 12px; }
+		#wpl-likebox #wpl-mustlogin label { position: relative; cursor: text; }
+		#wpl-likebox #wpl-mustlogin label span { position: absolute; top: 0px; left: 5px; padding: 0 !important; }
+		#wpl-likebox #wpl-mustlogin label span { top /*\**/: -10px\9; }
+	/* ]]> */
+	</style>
+	<meta name="application-name" content="Simson Partogi Situmeang"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-tooltip" content="The Man Who Can Dream With His Eyes Open"><meta name="msapplication-task" content="name=Subscribe;action-uri=http://simsonsitumeang.wordpress.com/feed/;icon-uri=http://s1.wp.com/i/favicon-stacked.ico"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico">
+<style type="text/css">
+table.recentcommentsavatar img.avatar {border: 0px; margin:0;}
+table.recentcommentsavatar a {border: 0px !important;background-color: transparent !important}
+td.recentcommentsavatartop {padding:0px 0px 1px 0px;margin:0px; }
+td.recentcommentsavatarend {padding:0px 0px 1px 0px;margin:0px; }
+td.recentcommentstexttop { border: none !important;padding:0px 0px 0px 10px;}
+td.recentcommentstextend { border: none !important;padding:0px 0px 2px 10px;}
+</style>
+<script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/google_service.js">
+</script>
+<script type="text/javascript">
+GS_googleAddAdSenseService("ca-pub-3443918307802676");
+GS_googleEnableAllServices();
+</script><script src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/google_ads.js"></script>
+<script type="text/javascript">
+GA_googleAddSlot("ca-pub-3443918307802676", "wpcom_below_post");
+</script>
+<script type="text/javascript">
+GA_googleFetchAds();
+</script><script type="text/javascript"> 
+	window.google_analytics_uacct = "UA-52447-2"; 
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-52447-2']);
+	_gaq.push(['_setDomainName', 'wordpress.com']);
+	_gaq.push(['_initData']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+</script><script type="text/javascript" async="" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/ga.js"></script>
+	<script src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/googleapis.client__plusone.js"></script><link rel="stylesheet" type="text/css" href="http://s0.wp.com/wp-content/plugins/syntaxhighlighter-wpcom/shThemeDefault.css?m=1300143244g&amp;ver=2.1.364b"><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="http://s.gravatar.com/css/hovercard.css?v=4"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="http://s.gravatar.com/css/services.css?v=4"></head>
+	<body class="single single-post postid-184 single-format-standard typekit-enabled highlander-enabled highlander-light">
+		<div id="pagewrapper">
+		<div id="header">
+			<h1 id="logo">
+				<a href="http://simsonsitumeang.wordpress.com/">Simson Partogi Situmeang</a>
+			</h1>
+			<p class="description">The Man Who Can Dream With His Eyes Open</p>
+
+			<p class="socialmedia">
+										<a href="http://twitter.com/pakcom"><img alt="Twitter" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/twitter.png">Twitter</a>
+													<a href="http://facebook.com/pakcom"><img alt="Facebook" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/facebook.png">Facebook</a>
+											<a href="http://simsonsitumeang.wordpress.com/feed/"><img alt="RSS" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/rss.png">RSS</a>
+							</p>
+
+			<div class="menu"><ul class="menu"><li><a href="http://simsonsitumeang.wordpress.com/" title="Home">Home</a></li><li class="page_item page-item-31"><a href="http://simsonsitumeang.wordpress.com/about/" title="About Me">About&nbsp;Me</a></li></ul></div>
+
+		</div>
+		<!--/header -->
+		<div id="wrapper">
+
+	<div id="content">
+
+		<p class="post-nav">
+			<span class="previous">
+				<a href="http://simsonsitumeang.wordpress.com/2011/04/25/restore-windows-7-mbr-after-grub/" rel="prev">Restore Windows 7 MBR after&nbsp;GRUB</a>			</span>
+			<span class="next">
+				<a href="http://simsonsitumeang.wordpress.com/2011/05/14/how-to-take-a-sceenshot-on-samsung-galaxy-ace-froyo/" rel="next">How to Take a Screenshot on Samsung Galaxy Ace&nbsp;(Froyo)</a>			</span>
+		</p>
+
+	
+		<div class="post-184 post type-post status-publish format-standard hentry category-computer tag-apache tag-linux" id="post-184">
+			<h2 class="post-title">
+				<a href="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang.html" title="Enable Apache Rewrite Module on Linux">Enable Apache Rewrite Module on&nbsp;Linux</a>
+			</h2>
+			<p class="post-date">
+				April 28, 2011			</p>
+			<p class="post-data">
+				<span class="postauthor">
+					<a href="http://simsonsitumeang.wordpress.com/" title="Visit pakcom’s website" rel="external">pakcom</a>				</span>
+				<span class="postcategory">
+					<a href="http://en.wordpress.com/tag/computer/" title="View all posts in Computer" rel="category tag">Computer</a>				</span>
+				<span class="posttag"><a href="http://en.wordpress.com/tag/apache/" rel="tag">Apache</a>, <a href="http://en.wordpress.com/tag/linux/" rel="tag">Linux</a></span>				<span class="postcomment">
+					<a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#comments" title="Comment on Enable Apache Rewrite Module on Linux">3 Comments</a>				</span>
+							</p>
+			<div class="post-content">
+				<p>I use Linux Mint 10 “Julia”. After I installed apache, rewrite module was disabled by default. We need to do some configuration to enable it. It’s easy <img src="http://s0.wp.com/wp-includes/images/smilies/icon_smile.gif?m=1300143241g" alt=":-)" class="wp-smiley"> </p>
+<p>Here I describe the steps to enable rewrite module (mod_rewrite)</p>
+<p><a href="http://www.apache.org/" target="_blank"><img class="aligncenter size-full wp-image-194" title="feather-small" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/feather-small.gif" alt="" width="203" height="61"></a></p>
+<p>Move to apache folder. Type :</p>
+<div id="highlighter_300606" class="syntaxhighlighter  "><div class="bar  "><div class="toolbar"><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_300606_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_300606" menu="false" src="http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1300143244g"></div><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="functions">cd</code> <code class="plain">/etc/apache2</code></td></tr></tbody></table></div></div></div>
+<p>Enable mod_rewrite. Type :</p>
+<div id="highlighter_275550" class="syntaxhighlighter  "><div class="bar "><div class="toolbar"><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_275550_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_275550" menu="false" src="http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1300143244g"></div><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="functions">sudo</code> <code class="functions">cp</code> <code class="plain">mods-available/rewrite.load mods-enabled/</code></td></tr></tbody></table></div></div></div>
+<p>Then edit overriding configuration on /etc/apache2/sites-available/000-default.</p>
+<p>We can edit it with editor like nano or gedit, suit your self . If you choose nano editor, you could do it by type :</p>
+<div id="highlighter_726609" class="syntaxhighlighter  "><div class="bar "><div class="toolbar"><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_726609_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_726609" menu="false" src="http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1300143244g"></div><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="functions">sudo</code> <code class="plain">nano /etc/apache2/sites-available/000-default</code></td></tr></tbody></table></div></div></div>
+<p>Find the following :</p>
+<div id="highlighter_136795" class="syntaxhighlighter  "><div class="bar  "><div class="toolbar"><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_136795_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_136795" menu="false" src="http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1300143244g"></div><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="plain">Options Indexes FollowSymLinks MultiViews</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>2</code></td><td class="content"><code class="plain">AllowOverride None</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>3</code></td><td class="content"><code class="plain">Order allow,deny</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>4</code></td><td class="content"><code class="plain">allow from all</code></td></tr></tbody></table></div></div></div>
+<p>and change it to :</p>
+<div id="highlighter_585871" class="syntaxhighlighter  "><div class="bar    "><div class="toolbar"><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_585871_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_585871" menu="false" src="http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1300143244g"></div><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="plain">Options Indexes FollowSymLinks MultiViews</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>2</code></td><td class="content"><code class="plain">AllowOverride all</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>3</code></td><td class="content"><code class="plain">Order allow,deny</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>4</code></td><td class="content"><code class="plain">allow from all</code></td></tr></tbody></table></div></div></div>
+<p>Finally, restart&nbsp; your Apache by type</p>
+<div id="highlighter_780098" class="syntaxhighlighter  "><div class="bar  "><div class="toolbar"><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_780098_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_780098" menu="false" src="http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1300143244g"></div><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="functions">sudo</code> <code class="plain">/etc/init.d/apache2 restart</code></td></tr></tbody></table></div></div></div>
+<p>Done!</p>
+<p>Leave your comment please <img src="http://s0.wp.com/wp-includes/images/smilies/icon_smile.gif?m=1300143241g" alt=":-)" class="wp-smiley"> </p>
+<div class="snap_nopreview sharing robots-nocontent">
+<ul>
+<li class="sharing_label">Share this:</li>
+<li class="share-google-plus-1 share-regular">
+<div class="googleplus1_button"><div id="___plusone_0" style="height: 15px; width: 70px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; background-position: initial initial; background-repeat: initial initial; "><iframe allowtransparency="true" frameborder="0" hspace="0" id="I1_1310446234026" marginheight="0" marginwidth="0" name="I1_1310446234026" scrolling="no" src="https://plusone.google.com/u/0/_/+1/button?hl=en-US&jsh=r%3Bgc%2F22224365-adc8a19e#url=http%3A%2F%2Fsimsonsitumeang.wordpress.com%2F2011%2F04%2F28%2Fenable-apache-rewrite-module-on-linux%2F&size=small&count=true&id=I1_1310446234026&parent=http%3A%2F%2Fsimsonsitumeang.wordpress.com&rpctoken=48743404&_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe" style="position:absolute;left:-10000px;top:-10000px;width:70px" tabindex="-1" vspace="0" width="100%"></iframe></div></div>
+</li>
+<li class="share-twitter share-regular">
+<div class="twitter_button"><iframe allowtransparency="true" frameborder="0" scrolling="no" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/tweet_button.html" style="width:97px; height:20px;"></iframe></div>
+</li>
+<li class="share-facebook share-regular"><a rel="nofollow" class="share-facebook share-icon" href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/?share=facebook&nb=1" target="_blank" title="Share on Facebook">Facebook</a></li>
+<li class="share-email share-regular share-service-visible"><a rel="nofollow" class="share-email share-icon" href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/?share=email&nb=1" target="_blank" title="Click to email this to a friend">Email</a></li>
+<li class="share-end"></li>
+</ul>
+<div class="sharing-clear"></div>
+</div>
+
+<!-- wpcom_below_post -->
+<div align="center" style="margin-bottom: 10px;">
+<script type="text/javascript">
+GA_googleAddAttr("AdOpt", "1");
+GA_googleAddAttr("Origin", "extsearch");
+GA_googleAddAttr("SearchTerm", "install"); GA_googleAddAttr("SearchTerm", "mod_rewrite"); GA_googleAddAttr("SearchTerm", "modules"); GA_googleAddAttr("SearchTerm", "in"); GA_googleAddAttr("SearchTerm", "apache"); GA_googleAddAttr("SearchTerm", "under"); GA_googleAddAttr("SearchTerm", "linux"); GA_googleAddAttr("SearchTerm", "mint"); GA_googleAddAttr("SearchTerm", "10"); GA_googleAddAttr("theme_bg", "fafad3"); GA_googleAddAttr("theme_border", "644527"); GA_googleAddAttr("theme_text", "6f5e4e"); GA_googleAddAttr("theme_link", "644527"); GA_googleAddAttr("theme_url", "ca6c18"); GA_googleAddAttr("LangId", "1");
+GA_googleAddAttr("Autotag", "technology"); GA_googleAddAttr("Tag", "computer"); GA_googleAddAttr("Tag", "apache"); GA_googleAddAttr("Tag", "linux"); 
+GA_googleFillSlot("wpcom_below_post");
+</script><script src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/ads"></script><div id="google_ads_div_wpcom_below_post_ad_container">
+<ins style="width: 300px; height: 250px; display: inline-table; position: relative; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; "><ins style="width: 300px; height: 250px; display: block; position: relative; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; "><iframe id="google_ads_iframe_wpcom_below_post" name="google_ads_iframe_wpcom_below_post" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; position: absolute; top: 0px; left: 0px; "></iframe></ins></ins></div>
+<script>GA_googleCreateDomIframe("google_ads_div_wpcom_below_post_ad_container" ,"wpcom_below_post");</script>
+</div>			</div>
+					</div>
+		<!--/post -->
+
+		<div id="wpl-likebox"><div id="wpl-button"><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/?like=1&_wpnonce=ee5e6c7dd8" title="I like this post" class="like needs-login" rel="nofollow"><span>Like</span></a></div><div id="wpl-count">Be the first to like this post.</div></div>
+<!-- You can start editing here. -->
+
+	<h4 id="comments">
+		3 Comments		<em>(<a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#respond">+add yours?</a>)</em>
+	</h4>
+
+	<div class="comment-nav">
+		<span class="previous"></span>
+		<span class="next"></span>
+	</div>
+
+	<ol class="commentlist snap_preview">
+		   <li class="comment even thread-even depth-1 highlander-comment" id="comment-23">
+		<p class="comment-author">
+			<img alt="" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/3be932ef29b7aad4b6ef794648d1c684" class="avatar avatar-48 grav-hashed grav-hijack" height="48" width="48" id="grav-3be932ef29b7aad4b6ef794648d1c684-0">			<cite><a href="http://www.peredur.net/" rel="external nofollow" class="url">Peredur ab Efrog</a></cite><br>
+			<small>
+				<strong>May 12, 2011</strong> @ 22:00:00							</small>
+		</p>
+
+		
+		<div class="commententry" id="comment-23">
+			
+			<p>Thanks for that.  Got me sorted.  Just a couple of things, though…</p>
+<p>I’m using Linux Mint 10, but didn’t have 000-default in sites-available, just default—which I altered instead.  So a word about this possibility might be a good idea.  Secondly, it might be worth warning readers that nano is an editor.  It’s not one I’d heard of, so I was a bit thrown for a minute: then I just substituted gedit.  I know.  Wimp!</p>
+<p>And finally, you’ve mis-spelt ‘etc’ in ‘/ect/init.d/apache2 restart’</p>
+<p>Thanks again</p>
+<p>PAE</p>
+		</div>
+
+
+		<p class="reply">
+			<a class="comment-reply-link" href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/?replytocom=23#respond" onclick="return addComment.moveForm(&quot;commententry-23&quot;, &quot;23&quot;, &quot;respond&quot;, &quot;184&quot;)">Reply</a>		</p>
+
+		
+<ul class="children">
+   <li class="comment byuser comment-author-simsonsitumeang bypostauthor odd alt depth-2 highlander-comment" id="comment-24">
+		<p class="comment-author">
+			<img alt="" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/75e11c36ce98c4b5a1e37d27877d085a" class="avatar avatar-48 grav-hashed grav-hijack" height="48" width="48" id="grav-75e11c36ce98c4b5a1e37d27877d085a-0">			<cite><a href="http://simsonsitumeang.wordpress.com/about" rel="external nofollow" class="url">pakcom</a></cite><br>
+			<small>
+				<strong>May 12, 2011</strong> @ 22:18:00							</small>
+		</p>
+
+		
+		<div class="commententry" id="comment-24">
+			
+			<p>Thank you for your comment. I really appreciate that. I have updated this post to make it clearer.</p>
+		</div>
+
+
+		<p class="reply">
+			<a class="comment-reply-link" href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/?replytocom=24#respond" onclick="return addComment.moveForm(&quot;commententry-24&quot;, &quot;24&quot;, &quot;respond&quot;, &quot;184&quot;)">Reply</a>		</p>
+
+		
+</li>
+</ul>
+</li>
+   <li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="comment-25">
+		<p class="comment-author">
+			<img alt="" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/f460462b59bb9253f6473671e766ca5c" class="avatar avatar-48 grav-hashed grav-hijack" height="48" width="48" id="grav-f460462b59bb9253f6473671e766ca5c-0">			<cite><a href="http://www.facebook.com/ASeaOfSins" rel="external nofollow" class="url">toasty redhead</a></cite><br>
+			<small>
+				<strong>May 15, 2011</strong> @ 04:50:40							</small>
+		</p>
+
+		
+		<div class="commententry" id="comment-25">
+			
+			<p>Good points</p>
+		</div>
+
+
+		<p class="reply">
+			<a class="comment-reply-link" href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/?replytocom=25#respond" onclick="return addComment.moveForm(&quot;commententry-25&quot;, &quot;25&quot;, &quot;respond&quot;, &quot;184&quot;)">Reply</a>		</p>
+
+		
+</li>
+	</ol>
+
+ 
+
+
+								<div id="respond" class="js">
+				<h3 id="reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://simsonsitumeang.wordpress.com/wp-comments-post.php" method="post" id="commentform">
+																										
+
+
+												
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest">
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea style="resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; width: 498px; line-height: 19px; text-decoration: none; letter-spacing: normal; height: 145px; " tabindex="-1"></textarea><textarea id="comment" name="comment" style="resize: none; overflow-y: hidden; height: 145px; "></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+
+		<div id="comment-form-nascar">
+		<ul>
+			<li class="selected"><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#comment-form-guest" title="Guest" id="postas-guest" class="social_buttons sb_24 sb_guest"><span>Guest</span></a></li>
+			<li><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#comment-form-wordpress" title="Log In" id="postas-wordpress" class="social_buttons sb_24 sb_wordpress"><span>Log In</span></a></li>
+			<li><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#comment-form-load-service:Twitter" title="Log In" id="postas-twitter" class="social_buttons sb_24 sb_twitter"><span>Log In</span></a></li>
+			<li><a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#comment-form-load-service:Facebook" title="Log In" id="postas-facebook" class="social_buttons sb_24 sb_facebook"><span>Log In</span></a></li>
+		</ul>
+	</div>
+		
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/ad516503a11cd5ca435acc9bb6523536" alt="Gravatar" width="25" class="no-grav">
+			</div>
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Not published)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="text" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="text" value=""></div>
+				</div> 
+			</div>
+	
+		</div>
+		
+			</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/wplogo.png" alt="WordPress.com Logo" width="25" class="no-grav">
+			</div>
+				<div class="comment-form-fields">
+					<p id="wordpress-login-first">Please log in to WordPress.com to post a comment to your blog.</p>
+				<iframe id="wordpress-login-iframe" data-srcurl="http://simsonsitumeang.wordpress.com/wp-login.php?redirect_to=http%3A%2F%2Fsimsonsitumeang.wordpress.com%2Fhighlander.login%2F&amp;action=highlander-login&amp;skin=light"></iframe>
+				</div>
+	
+		</div>
+		
+			</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/ad516503a11cd5ca435acc9bb6523536" alt="Twitter picture" width="25" class="no-grav">
+			</div>
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="">
+				<p class="comment-form-posting-as"><strong></strong> You are commenting using your Twitter account. <span class="comment-form-log-out">(<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log Out</a>)</span></p>
+			</div>
+	
+		</div>
+		
+			</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/ad516503a11cd5ca435acc9bb6523536" alt="Facebook photo" width="25" class="no-grav">
+			</div>
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="">
+				<p class="comment-form-posting-as"><strong></strong> You are commenting using your Facebook account. <span class="comment-form-log-out">(<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log Out</a>)</span></p>
+			</div>
+	
+		</div>
+		
+			</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service"> 
+		<p>Connecting to %s</p> 
+	</div>
+
+	
+</div>
+
+
+
+<div id="comment-form-subscribe"> 
+<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;" tabindex="6"> <label class="subscribe-label" id="subscribe-label" for="subscribe">Notify me of follow-up comments via email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;" tabindex="7"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts via email.</label></p></div>
+												<p class="form-submit">
+							<input name="submit" type="submit" id="comment-submit" value="Post Comment">
+							<input type="hidden" name="comment_post_ID" value="184" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						
+<input type="hidden" name="genseq" value="1310446123">
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="94d53def4c"></p><script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/form.js"></script>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="1310447263452"></p>					</form>
+							</div><!-- #respond -->
+			<div style="clear: both"></div>			
+
+		<p class="post-nav">
+			<span class="previous">
+				<a href="http://simsonsitumeang.wordpress.com/2011/04/25/restore-windows-7-mbr-after-grub/" rel="prev">Restore Windows 7 MBR after&nbsp;GRUB</a>			</span>
+			<span class="next">
+				<a href="http://simsonsitumeang.wordpress.com/2011/05/14/how-to-take-a-sceenshot-on-samsung-galaxy-ace-froyo/" rel="next">How to Take a Screenshot on Samsung Galaxy Ace&nbsp;(Froyo)</a>			</span>
+		</p>
+
+	
+
+	</div>
+	<!--/content -->
+
+	<div id="sidebar">
+
+<div id="search-4" class="widget widget_search"><h4 class="widgettitle">Search</h4><form method="get" id="searchform" action="http://simsonsitumeang.wordpress.com/">
+	<input type="text" value="Search..." name="s" id="s">
+	<input type="hidden" id="searchsubmit">
+</form></div><div id="text-4" class="widget widget_text">			<div class="textwidget"><iframe src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/follow_button.html" allowtransparency="true" frameborder="0" scrolling="no" class="twitter-follow-button" style="width: 300px; height: 20px; " title=""></iframe></div>
+		</div><div id="archives-3" class="widget widget_archive"><h4 class="widgettitle">Archives</h4>		<select name="archive-dropdown" onchange="document.location.href=this.options[this.selectedIndex].value;"> <option value="">Select Month</option> 	<option value="http://simsonsitumeang.wordpress.com/2011/06/"> June 2011 &nbsp;(1)</option>
+	<option value="http://simsonsitumeang.wordpress.com/2011/05/"> May 2011 &nbsp;(2)</option>
+	<option value="http://simsonsitumeang.wordpress.com/2011/04/"> April 2011 &nbsp;(3)</option>
+	<option value="http://simsonsitumeang.wordpress.com/2011/03/"> March 2011 &nbsp;(5)</option>
+	<option value="http://simsonsitumeang.wordpress.com/2011/02/"> February 2011 &nbsp;(1)</option>
+	<option value="http://simsonsitumeang.wordpress.com/2011/01/"> January 2011 &nbsp;(3)</option>
+	<option value="http://simsonsitumeang.wordpress.com/2010/04/"> April 2010 &nbsp;(2)</option>
+	<option value="http://simsonsitumeang.wordpress.com/2010/03/"> March 2010 &nbsp;(2)</option>
+	<option value="http://simsonsitumeang.wordpress.com/2010/01/"> January 2010 &nbsp;(1)</option>
+ </select>
+</div><div id="categories-4" class="widget widget_categories"><h4 class="widgettitle">Categories</h4>		<ul>
+			<li class="cat-item cat-item-2016"><a href="http://simsonsitumeang.wordpress.com/category/college/" title="View all posts filed under College">College</a> (1)
+</li>
+	<li class="cat-item cat-item-258"><a href="http://simsonsitumeang.wordpress.com/category/computer/" title="Computer Stuff">Computer</a> (5)
+</li>
+	<li class="cat-item cat-item-5966"><a href="http://simsonsitumeang.wordpress.com/category/it-news/" title="View all posts filed under IT News">IT News</a> (4)
+</li>
+	<li class="cat-item cat-item-5248"><a href="http://simsonsitumeang.wordpress.com/category/mobile-phone/" title="View all posts filed under Mobile Phone">Mobile Phone</a> (2)
+</li>
+	<li class="cat-item cat-item-196"><a href="http://simsonsitumeang.wordpress.com/category/programming/" title="View all posts filed under Programming">Programming</a> (2)
+</li>
+	<li class="cat-item cat-item-1"><a href="http://simsonsitumeang.wordpress.com/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a> (8)
+</li>
+		</ul>
+</div>	<div id="recent-comments" class="widget widget_recent_comments">		<h4 class="widgettitle">Recent Comments</h4>		<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0"><tbody><tr><td title="Siblyx" class="recentcommentsavatartop" style="height:48px; width:48px"><img alt="" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/dd7175968c9323730fe050713066c9b6" class="avatar avatar-48 grav-hashed grav-hijack" height="48" width="48" id="grav-dd7175968c9323730fe050713066c9b6-0"></td><td class="recentcommentstexttop">Siblyx on <a href="http://simsonsitumeang.wordpress.com/2011/05/14/how-to-take-a-sceenshot-on-samsung-galaxy-ace-froyo/#comment-67">How to Take a Screenshot on Sa…</a></td></tr><tr><td title="pakcom" class="recentcommentsavatarend" style="height:48px; width:48px"><a href="http://simsonsitumeang.wordpress.com/" rel="nofollow"><img alt="" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/75e11c36ce98c4b5a1e37d27877d085a" class="avatar avatar-48 grav-hashed" height="48" width="48" id="grav-75e11c36ce98c4b5a1e37d27877d085a-1"></a></td><td class="recentcommentstextend"><a href="http://simsonsitumeang.wordpress.com/" rel="nofollow">pakcom</a> on <a href="http://simsonsitumeang.wordpress.com/2011/05/14/how-to-take-a-sceenshot-on-samsung-galaxy-ace-froyo/#comment-66">How to Take a Screenshot on Sa…</a></td></tr><tr><td title="clyde" class="recentcommentsavatarend" style="height:48px; width:48px"><img alt="" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/03d9b714b385f013197501e6382e0344" class="avatar avatar-48 grav-hashed grav-hijack" height="48" width="48" id="grav-03d9b714b385f013197501e6382e0344-0"></td><td class="recentcommentstextend">clyde on <a href="http://simsonsitumeang.wordpress.com/2011/05/14/how-to-take-a-sceenshot-on-samsung-galaxy-ace-froyo/#comment-65">How to Take a Screenshot on Sa…</a></td></tr><tr><td title="pakcom" class="recentcommentsavatarend" style="height:48px; width:48px"><a href="http://simsonsitumeang.wordpress.com/" rel="nofollow"><img alt="" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/75e11c36ce98c4b5a1e37d27877d085a" class="avatar avatar-48 grav-hashed" height="48" width="48" id="grav-75e11c36ce98c4b5a1e37d27877d085a-2"></a></td><td class="recentcommentstextend"><a href="http://simsonsitumeang.wordpress.com/" rel="nofollow">pakcom</a> on <a href="http://simsonsitumeang.wordpress.com/2011/05/14/how-to-take-a-sceenshot-on-samsung-galaxy-ace-froyo/#comment-64">How to Take a Screenshot on Sa…</a></td></tr><tr><td title="pakcom" class="recentcommentsavatarend" style="height:48px; width:48px"><a href="http://simsonsitumeang.wordpress.com/" rel="nofollow"><img alt="" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/75e11c36ce98c4b5a1e37d27877d085a" class="avatar avatar-48 grav-hashed" height="48" width="48" id="grav-75e11c36ce98c4b5a1e37d27877d085a-3"></a></td><td class="recentcommentstextend"><a href="http://simsonsitumeang.wordpress.com/" rel="nofollow">pakcom</a> on <a href="http://simsonsitumeang.wordpress.com/2011/05/14/how-to-take-a-sceenshot-on-samsung-galaxy-ace-froyo/#comment-63">How to Take a Screenshot on Sa…</a></td></tr></tbody></table>
+	</div><div id="blog_subscription-3" class="widget widget_blog_subscription"><h4 class="widgettitle"><label for="subscribe-field">Email Subscription</label></h4>
+<form action="http://subscribe.wordpress.com/" method="post" accept-charset="utf-8" id="subscribe-blog">
+			<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+		<p><input type="text" name="email" style="width: 95%; padding: 1px 2px" value="" id="subscribe-field"></p>
+	
+	<input type="hidden" name="action" value="subscribe">
+	<input type="hidden" name="blog_id" value="19605313">
+	<input type="hidden" name="source" value="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/">
+	<input type="hidden" name="sub-type" value="widget">
+
+	<input type="hidden" id="_wpnonce" name="_wpnonce" value="3dae2f0b8e"><input type="hidden" name="_wp_http_referer" value="/2011/04/28/enable-apache-rewrite-module-on-linux/">
+	<p><input type="submit" value="Sign me up!"></p>
+</form>
+
+</div><div id="twitter-2" class="widget widget_twitter"><h4 class="widgettitle"><a href="http://twitter.com/pakcom">My Tweet</a></h4><ul class="tweets">
+<li>Spiderman: with great power, comes great responsibility. Transformer: with great robots, comes great explosivity :-) <a href="http://twitter.com/pakcom/statuses/90580023899201536" class="timesince">4&nbsp;hours&nbsp;ago</a></li>
+<li>walaupun lemot browsing, masih bisa dipake video call skype barusan.. yaa bolehlah axis, saya maafkan :D <a href="http://twitter.com/pakcom/statuses/90449249308917760" class="timesince">12&nbsp;hours&nbsp;ago</a></li>
+<li>Burger King and Quiksilver for today.. Lumayan :p <a href="http://twitter.com/pakcom/statuses/90424677230575616" class="timesince">14&nbsp;hours&nbsp;ago</a></li>
+<li>@<a href="http://twitter.com/shirokuade">shirokuade</a> @<a href="http://twitter.com/yophaa">yophaa</a> yekk kok SI seh.. hahha :-D <a href="http://twitter.com/pakcom/statuses/90424446539677696" class="timesince">14&nbsp;hours&nbsp;ago</a></li>
+<li>internet axis lemot poll.. gara2 hemat beb iki.. offline dulu deh -__-" <a href="http://twitter.com/pakcom/statuses/90371951041851392" class="timesince">17&nbsp;hours&nbsp;ago</a></li>
+<li>xD "@<a href="http://twitter.com/F_UUUUU">F_UUUUU</a>: WHEN YOU PRESS SEND BUT YOU'RE NOT FINISHED WITH YOUR MESSAGE FUUUUUUUUUUUUUUUU" <a href="http://twitter.com/pakcom/statuses/90265786106658816" class="timesince">1&nbsp;day&nbsp;ago</a></li>
+</ul>
+</div><div id="linkcat-1356" class="widget widget_links"><h4 class="widgettitle">Blogroll</h4>
+	<ul class="xoxo blogroll">
+<li><a href="http://www.toni-kun.co.cc/" title="Informatics Engineering ITS 2008">Toni Kun</a></li>
+<li><a href="http://ramzasasou.wordpress.com/" title="Informatics ITS 2008" target="_blank">Rama</a></li>
+<li><a href="http://haridewa.wordpress.com/" title="Informatics Engineering ITS 2008">Rahadian D. Dewandono</a></li>
+<li><a href="http://mulinnuha.wordpress.com/" title="Informatics Engineering ITS 2008">M. Ulin Nuha</a></li>
+<li><a href="http://times.imkrisna.com/" title="Informatics Engineering ITS 2007">I Made Krisna</a></li>
+<li><a href="http://computermaniax.wordpress.com/" title="Informatics Engineering ITS 2008">Christian Ivan</a></li>
+<li><a href="http://4dgeek.wordpress.com/" title="Angelus Custos I Junior High School">Jennifer Ariesta</a></li>
+<li><a href="http://khalifafilardha.wordpress.com/" title="Informatics Engineering ITS 2008">Khalifa Filardha</a></li>
+<li><a href="http://azerdark.wordpress.com/" title="Informatics Engineering ITS 2007">Reza Adhitya S.</a></li>
+<li><a href="http://coexistentrandom.wordpress.com/" title="Informatics Engineering ITS 2008">Iqbal C.R.</a></li>
+
+	</ul>
+</div>
+<div id="text-3" class="widget widget_text"><h4 class="widgettitle">QR Code</h4>			<div class="textwidget"><p align="center"><img src="http://qrcode.kaywa.com/img.php?s=5&d=http%3A%2F%2Fsimsonsitumeang.wordpress.com" alt="qrcode"></p></div>
+		</div>
+	</div>
+	<!--/sidebar --></div>
+<!--/wrapper -->
+
+<div id="footer">
+	<p class="generator">
+		<a href="http://wordpress.com/?ref=footer" rel="generator">Blog at WordPress.com</a>.
+	</p>
+	<p class="credits">
+		Theme: <a href="http://theme.wordpress.com/themes/notepad/">Notepad</a> by <a href="http://www.ndesign-studio.com/" rel="designer">N. Design</a>. 	</p>
+</div>
+<!--/footer -->
+
+</div>
+<!--/pagewrapper -->
+
+<script type="text/javascript">
+/* <![CDATA[ */
+if(document.getElementById("s")) {
+	document.getElementById("s").onfocus = function() {
+		if (this.value == "Search...")
+			this.value = "";
+	}
+	document.getElementById("s").onblur = function() {
+		if (this.value == '')
+			this.value = "Search...";
+	}
+}
+/* ]]> */
+</script>
+
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script type="text/javascript">_qoptions={qacct:'p-18-mFEk4J448M',labels:'language.en,type.wpcom,posttag.apache,posttag.linux'};</script>
+<script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/quant.js"></script>
+<noscript>&lt;p&gt;&lt;img class="robots-nocontent" src="http://pixel.quantserve.com/pixel/p-18-mFEk4J448M.gif?labels=language.en%2Ctype.wpcom%2Cposttag.apache%2Cposttag.linux" style="display:none" height="1" width="1" alt="" /&gt;&lt;/p&gt;</noscript>
+	<script type="text/javascript">
+	/* <![CDATA[ */
+		jQuery( function() {
+			
+			jQuery('#wpl-button > a.like').click( function(e) {
+				e.preventDefault();
+				
+				jQuery('#wpl-mustlogin').remove();
+
+				jQuery.post( 'http://simsonsitumeang.wordpress.com/wp-admin/admin-ajax.php', { 
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_like_click'
+				} );
+
+				var tenMins = new Date();
+				tenMins.setTime( tenMins.getTime() + 600000 );
+				document.cookie = 'wpl_rand=4ad602ce3c; expires=' + tenMins.toGMTString() + '; domain=wordpress.com; path=/;';
+				
+				jQuery('#wpl-count').after( '\
+					<div id="wpl-mustlogin"> \
+						<form action="http://simsonsitumeang.wordpress.com/wp-login.php" method="post"> \
+							<p>Just one more step to like this post:</p> \
+							<label><span>Username</span> <input type="text" name="log" id="user_login" class="input" value="" size="20" tabindex="80" /></label> \
+							<label><span>Password</span> <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" tabindex="81" /></label> \
+							<input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="Log In" tabindex="82" /> \
+							<input type="hidden" name="redirect_to" value="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/?like=1" /> \
+							<input type="hidden" name="wpl_rand" value="4ad602ce3c" /> \
+							<p>Not a member yet? <a href="http://wordpress.com/signup/?ref=likebox" id="wpl-signup-link">Sign up with WordPress.com</a></p> \
+						</form> \
+					</div> \
+				');
+				
+				jQuery('#wpl-mustlogin').hide().slideDown('fast');
+			} );
+			
+			jQuery('#wpl-mustlogin input.input').live( 'focus', function() {
+				jQuery(this).prev().hide();
+			}).live( 'blur', function() {
+				if ( jQuery(this).val() == '' )
+					jQuery(this).prev().show();
+			});
+			
+			jQuery('#wpl-mustlogin input#wp-submit').live( 'click', function(e) {
+				e.preventDefault();
+				
+				jQuery.post( 'http://simsonsitumeang.wordpress.com/wp-admin/admin-ajax.php', { 
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_login_submit'
+				}, function() {
+					jQuery('#wpl-mustlogin form').submit();
+				} );
+			});			
+			
+			jQuery('#wpl-mustlogin a#wpl-signup-link').live( 'click', function(e) {
+				e.preventDefault();
+				
+				var link = jQuery(this).attr('href');
+				
+				jQuery.post( 'http://simsonsitumeang.wordpress.com/wp-admin/admin-ajax.php', { 
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_signup_click'
+				}, function() {
+					location.href = link;
+				} );
+			});					
+			
+		});
+	/* ]]> */
+	</script>
+<script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {
+	my_hash: ""
+};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/wpgroho.js"></script>
+	<div style="display:none">
+	<div class="grofile-hash-map-3be932ef29b7aad4b6ef794648d1c684">
+	</div>
+	<div class="grofile-hash-map-75e11c36ce98c4b5a1e37d27877d085a">
+	</div>
+	<div class="grofile-hash-map-9872352132134298297922e6376ebc9d">
+	</div>
+	<div class="grofile-hash-map-dd7175968c9323730fe050713066c9b6">
+	</div>
+	<div class="grofile-hash-map-03d9b714b385f013197501e6382e0344">
+	</div>
+	</div>
+<script type="text/javascript">
+/* <![CDATA[ */
+var HighlanderComments = {
+	loggingInText: "Logging In&hellip;",
+	submittingText: "Posting Comment&hellip;",
+	postCommentText: "Post Comment",
+	connectingToText: "Connecting to %s",
+	commentingAsText: "%1$s: You are commenting using your %2$s account.",
+	logoutText: "Log Out",
+	loginText: "Log In",
+	connectURL: "http://simsonsitumeang.wordpress.com/public.api/connect/?action=request",
+	homeURL: "http://simsonsitumeang.wordpress.com/",
+	postID: "184",
+	gravDefault: "identicon",
+	enterACommentError: "Please enter a comment",
+	enterEmailError: "Email address required",
+	invalidEmailError: "Invalid email address",
+	enterAuthorError: "Name required"
+};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/script.js"></script>
+ 
+		<img src="https://stats.wordpress.com/b.gif?v=anonymous_usage3&c=cz8jL2xVTkNId2NRVlohc0c1a3QrejBMZXlOP3V8TywoakZwWzoqLCtjMiFoQDpbLTFTdmIoVWhPdklneDZsXjNLc3p8dTJz" alt="" style="display:none">
+		<script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/sharing.js"></script>
+	<script type="text/javascript" charset="utf-8">
+	function sharing_plusone( obj ) { 
+		jQuery.ajax( {
+			url: 'http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/?share=google-plus-1',
+			type: 'POST',
+			data: obj
+		} );
+	}
+	</script>
+	<script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/plusone.js"></script>
+	<div id="sharing_email" style="display: none;">
+		<form action="" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input type="text" name="target_email" id="target_email" value="">
+			
+			
+				<label for="source_name">Your Name</label>
+				<input type="text" name="source_name" id="source_name" value="">
+				
+				<label for="source_email">Your Email Address</label>
+				<input type="text" name="source_email" id="source_email" value="">
+
+						
+			<div class="recaptcha" id="sharing_recaptcha"></div>
+			<img style="float: right; display: none" class="loading" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/loading.gif" alt="loading" width="16" height="16">
+			<input type="submit" value="Send Email" class="sharing_send">
+			<a href="http://simsonsitumeang.wordpress.com/2011/04/28/enable-apache-rewrite-module-on-linux/#cancel" class="sharing_cancel">Cancel</a>
+			
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+			
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div>
+<script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/widgets.js"></script>
+<script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/beacon.js"></script><script type="text/javascript">try{COMSCORE.beacon({c1:2,c2:7518284});}catch(e){}</script><noscript>&lt;p class="robots-nocontent"&gt;&lt;img src="http://b.scorecardresearch.com/p?cj=1c1=2&amp;#038;c2=7518284" alt="" style="display:none" width="1" height="1" /&gt;&lt;/p&gt;</noscript><script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/shCore.js"></script>
+<script type="text/javascript" src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/shBrushBash.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var themecssurl = "http://s0.wp.com/wp-content/plugins/syntaxhighlighter-wpcom/shThemeDefault.css?m=1300143244g&amp;ver=2.1.364b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.getElementsByTagName("head")[0].appendChild(themecss);
+	})();
+	SyntaxHighlighter.config.clipboardSwf = 'http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1300143244g';
+	SyntaxHighlighter.config.strings.expandSource = 'show source';
+	SyntaxHighlighter.config.strings.viewSource = 'view source';
+	SyntaxHighlighter.config.strings.copyToClipboard = 'copy to clipboard';
+	SyntaxHighlighter.config.strings.copyToClipboardConfirmation = 'The code is in your clipboard now';
+	SyntaxHighlighter.config.strings.print = 'print';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.all();
+</script>
+<script src="./Enable Apache Rewrite Module on Linux « Simson Partogi Situmeang_files/w.js" type="text/javascript"></script>
+<script type="text/javascript">
+st_go({'blog':'19605313','v':'wpcom','user_id':'0','post':'184','subd':'simsonsitumeang'});
+ex_go({'crypt':'UE5XaFBLcG9HLE5XPUhlbC8mTGtZYStmOGpLcV96UkpLeFE4clc/ZlJFRnxRbTFOeTUxbFhNYTZualVYSCZ5ZnNWcXpxWWt6VFhvK2hlbT1qLU1nSGhTOFlFVVBzVno3LWNDU25oVjV8MjJfWUNHSDRBRkZ4JXhJZ2xOdzBZU3ZRTjhpUlZybGI4MmJ3LUMtSndHV35SMyVWX21aW0ktYyVodFpHSjltPVA5MHZfdGhqSFhaNTR1VVlxYVdlakZRfFdlRF9McVcmL0FFZU5fVzBZVi0rYyx4TzdqTWxpQ24xRGFt'});
+addLoadEvent(function(){linktracker_init('19605313',184);});
+	</script><img id="wpstats" src="http://stats.wordpress.com/g.gif?host=simsonsitumeang.wordpress.com&rand=0.29746668227016926&blog=19605313&v=wpcom&user_id=0&post=184&subd=simsonsitumeang&ref=http%3A//www.google.co.in/search%3Fsourceid%3Dchrome%26ie%3DUTF-8%26q%3Dinstall+mod_rewrite+modules+in+apache+under+linux+mint+10" alt=""><img id="wpstats2" src="http://stats.wordpress.com/g.gif?v=wpcom2&rand=0.8203256246633828&crypt=UE5XaFBLcG9HLE5XPUhlbC8mTGtZYStmOGpLcV96UkpLeFE4clc/ZlJFRnxRbTFOeTUxbFhNYTZualVYSCZ5ZnNWcXpxWWt6VFhvK2hlbT1qLU1nSGhTOFlFVVBzVno3LWNDU25oVjV8MjJfWUNHSDRBRkZ4JXhJZ2xOdzBZU3ZRTjhpUlZybGI4MmJ3LUMtSndHV35SMyVWX21aW0ktYyVodFpHSjltPVA5MHZfdGhqSFhaNTR1VVlxYVdlakZRfFdlRF9McVcmL0FFZU5fVzBZVi0rYyx4TzdqTWxpQ24xRGFt" alt="" style="display:none">
+
+</body></html>

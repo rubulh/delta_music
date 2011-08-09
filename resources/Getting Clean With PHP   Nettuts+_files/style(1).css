@@ -1,0 +1,69 @@
+/* ---------------------------------------------------------------- 
+ *  Site Switcher
+ * ---------------------------------------------------------------- 
+*/ 
+.switcher_wrap {
+	position: absolute;
+	right: 0px;
+	top: 18px;
+	width: 254px;
+	font-size: 12px;
+	z-index: 99;
+	color: #c5c0b0;
+	padding-bottom: 5px;
+	float: left;
+}
+  .switcher_wrap .swither_header {
+  	width: 99px;
+  	height: 25px;
+  	display: block;
+  	float: right;
+  	text-indent: -9999px;
+  	background: transparent url(switcher_header.png) no-repeat 0 0;
+  	cursor: pointer;
+  }
+  .switcher_wrap .swither_header:hover {
+  	background-position: 0 -25px;
+  }
+  .switcher_wrap #links {
+  	position:absolute;
+  	right: 0px;
+  	top: 24px;
+  	width: 254px;
+  	border: 1px solid #000;
+  	background: #302820 url(divider.png) repeat-y 126px 0px;
+  	line-height: 18px;
+  	display: none;
+  	float: left;
+  	padding: 1px 0;
+  }
+    .switcher_wrap #links ul {
+    	list-style: none;
+    	left: 0px;
+    	float: left;
+    }
+      .switcher_wrap #links ul li {
+        display: block;
+        padding: 3px 4px;
+        border-bottom: 1px solid #3e342a;
+      }
+      .switcher_wrap #links ul li:last-child {
+        border-bottom: none;
+      }
+        .switcher_wrap #links ul li a {
+        	display: block;
+          background: transparent;
+          line-height: 12px;
+          padding: 5px 7px;
+          color: #cfc5ac;
+          border: 1px solid transparent;
+          -moz-border-radius: 5px;
+        	-webkit-border-radius: 5px;
+        	border-radius: 5px;
+        	width: 103px;
+        }
+        .switcher_wrap #links ul li a:hover {
+          background: #463a2f;
+          color: #cfc5ac;
+          border: 1px solid #463a2f;
+        }

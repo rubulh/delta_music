@@ -1,0 +1,98 @@
+ <?php
+
+
+session_start();
+require_once("/var/www/take/files/thekey.php");
+require_once("/var/www/take/files/functions/trackker.php");
+require_once("/var/www/take/files/functions/randomstring.php");
+require_once("/var/www/take/files/functions/profilestring.php");
+require_once("/var/www/take/files/functions/unlogger.php");
+require_once("/var/www/take/files/functions/restrictor.php")  ;
+//ONE HAS TO FIX THIS LINE;;SEE IF IT CAN BE DONE WITHOUT USING DIRECT FILE NAMES AND FOLDER NAMES
+//here i need some extra code so as to account and check for cookies sessions
+$THEEMAILIDINSESSION=$_SESSION['email_id'];
+$connection_welcome=mysqli_connect($_SERVER['HTTP_HOST'],$sqlusername,$sqlpassword,$databasename);
+ $query_THE_LEAD=mysqli_query($connection_welcome,"select profile_string from users_basic where email_id='$THEEMAILIDINSESSION'")or die(mysqli_error($connectiom_welcome));
+$fetch_the_lead=mysqli_fetch_array($query_THE_LEAD);
+$profile_string_this_is=$fetch_the_lead['profile_string'];
+
+
+trackker();
+$email_id_prim=$_SESSION['email_id'];
+
+$connection_edit=mysqli_connect($_SERVER['HTTP_HOST'],$sqlusername,$sqlpassword,$databasename);
+$query_to_edit="select registration_timestamp, username,profile_string from users_basic where email_id='$email_id_prim'";//echo "thdhd";
+$result_to_edit=mysqli_query($connection_edit,$query_to_edit) or die(mysqli_error($connection_edit)) ;//or die(mysqli_error($connection_musiclibrary));
+$answer_to_edit=mysqli_fetch_array($result_to_edit);
+//var_   d   
+$registration_timestamp_edit=$answer_to_edit['registration_timestamp'];
+$username_edit=$answer_to_edit['username'];
+$profile_string_edit=$answer_to_edit['profile_string'];
+$database_edit=$username_edit.'___'.$email_id_prim .'___'.$registration_timestamp_edit;
+//var_dump($database_edit);
+$change_to_user_specific=mysqli_select_db($connection_edit,$database_edit)or die(mysqli_error($connection_edit)) ;;
+$result_extraction_values=mysqli_query($connection_edit,"select * from usercomplete where primary_email_id='$email_id_prim'")or die(mysqli_error($connection_edit)) ;;
+$array_extraction_values=mysqli_fetch_array($result_extraction_values);
+//var_dump($array_extraction_values);
+foreach($array_extraction_values as &$back_again){$back_again=mysqli_real_escape_string($connection_edit,$back_again);}
+//echo "<br><br>";var_dump($array_extraction_values);
+$branch_edit=$array_extraction_values['branch'];
+$year_edit=$array_extraction_values['year'];
+$email_id_edit=$array_extraction_values['email_id'];
+//$_edit=$array_extraction_values['email_id'];
+$phone_edit=$array_extraction_values['phone'];
+$about_me_edit=$array_extraction_values['about_me'];
+?>
+<html>
+<body>
+<?php
+if(!isset($_POST['submit']))
+{
+//var_dump($_SESSION);
+?>
+<h2>you are logged in as <?php echo"$username_edit";?></h2>
+<h1>edit your profile</h1>
+<form method="POST">
+branch<input type="text" name="branch" value="<?=$branch_edit?>"><br>
+year<input type="text" name="year" value="<?=$year_edit?>"><br>
+email_id<input type="text" name="email_id" value="<?=$email_id_edit?>"><br>
+phone<input type="text" name="phone" value="<?=$phone_edit?>"><br> 
+
+about me
+<br><textarea  rows="4"   cols="20  " name="about_me">
+   "<?=$branch_edit?>"
+   </textarea>
+   <br>
+<input type="submit" name="submit" value="submit"><br>
+
+
+</form>
+
+
+</body>
+<?php
+}
+else  {
+//extract the user specific database naedit and then write in to the users complete
+//sanitise
+foreach($_POST as &$arra)
+{
+	$arra=mysqli_real_escape_string($connection_edit,$arra);
+	
+	
+	}
+$about_me_edit=$_POST['about_me'];
+$phone_edit=$_POST['phone'];
+$branch_edit=$_POST['branch'];
+$email_id_edit=$_POST['email_id'];
+$year_edit=$_POST['year'];
+$query_update= "update usercomplete set branch='$branch_edit' ,year='$year_edit',email_id='$email_id_edit' ,phone='$phone_edit' ,about_me='$about_me_edit' where primary_email_id='$email_id_prim'";
+	//var_dump($query_update);
+	$result_update=mysqli_query($connection_edit,$query_update);//or die(mysqli_error($connection_edit));
+	if(mysqli_affected_rows($connection_edit)){;;}
+	//var_dump(mysqli_affected_rows($connection_edit));
+	echo "<h1>submitted</h1><a href='viewprofile.php?profile=$profile_string_edit'>view profile</a>";
+	}
+?>
+
+</html>

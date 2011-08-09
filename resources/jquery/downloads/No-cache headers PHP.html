@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>No-cache headers PHP</title>
+	<meta name="description" content="These php headers wil prevent client side caching of your php output..." />
+	<meta name="keywords" content="" />
+	<meta name="robots" content="index,follow" />
+
+	<link rel="stylesheet" type="text/css" href="http://www.hardcode.nl/css/site.css" />
+		<link type="text/css" href="http://www.hardcode.nl/css/dot-luv/jquery-ui-1.8.4.custom.css" rel="stylesheet" />	
+
+		<!--[if lte IE 6]><script src="http://www.hardcode.nl/js/ie6/warning.js"></script><script>window.onload=function(){e("js/ie6/")}</script><![endif]-->
+	<!--[if IE 7]> <link rel="stylesheet" type="text/css" href="http://www.hardcode.nl/css/ie7.css" /> <![endif]-->
+	
+	<script type="text/javascript">		
+
+		var globs={
+			currentCategory:4
+		}
+	
+		globs.categories ={"161":{"contcatname":"Home","sortorder":"100","contcatid":"161","catparentid":"0","subCategories":false,"urisafecontcatname":"home"},"158":{"contcatname":"Code","sortorder":"46","contcatid":"158","catparentid":"0","subCategories":{"9":{"contcatname":"ActionScript","sortorder":"0","contcatid":"9","catparentid":"0","subCategories":{"156":{"contcatname":"Actionscript2","sortorder":"0","contcatid":"156","catparentid":"9","subCategories":false,"urisafecontcatname":"actionscript2"},"155":{"contcatname":"Actionscript3","sortorder":"0","contcatid":"155","catparentid":"9","subCategories":false,"urisafecontcatname":"actionscript3"}},"urisafecontcatname":"actionscript","catContainerId":158},"146":{"contcatname":"Apache","sortorder":"0","contcatid":"146","catparentid":"0","subCategories":{"157":{"contcatname":".htaccess","sortorder":"0","contcatid":"157","catparentid":"146","subCategories":false,"urisafecontcatname":"htaccess"},"154":{"contcatname":"mod_rewrite","sortorder":"0","contcatid":"154","catparentid":"146","subCategories":false,"urisafecontcatname":"mod_rewrite"}},"urisafecontcatname":"apache","catContainerId":158},"2":{"contcatname":"CSS\/(X)HTML","sortorder":"0","contcatid":"2","catparentid":"0","subCategories":{"129":{"contcatname":"CSS3","sortorder":"0","contcatid":"129","catparentid":"2","subCategories":false,"urisafecontcatname":"css3"}},"urisafecontcatname":"css-(x)html","catContainerId":158},"1":{"contcatname":"Javascript","sortorder":"0","contcatid":"1","catparentid":"0","subCategories":{"139":{"contcatname":"jQuery","sortorder":"0","contcatid":"139","catparentid":"1","subCategories":false,"urisafecontcatname":"jquery"}},"urisafecontcatname":"javascript","catContainerId":158},"177":{"contcatname":"Perl","sortorder":"0","contcatid":"177","catparentid":"0","subCategories":false,"urisafecontcatname":"perl","catContainerId":158},"4":{"contcatname":"PHP","sortorder":"0","contcatid":"4","catparentid":"0","subCategories":{"173":{"contcatname":"PHP configuration","sortorder":"0","contcatid":"173","catparentid":"4","subCategories":false,"urisafecontcatname":"php-configuration"},"141":{"contcatname":"Smarty","sortorder":"0","contcatid":"141","catparentid":"4","subCategories":false,"urisafecontcatname":"smarty"},"132":{"contcatname":"Zend Framework","sortorder":"0","contcatid":"132","catparentid":"4","subCategories":false,"urisafecontcatname":"zend-framework"}},"urisafecontcatname":"php","catContainerId":158},"176":{"contcatname":"Python","sortorder":"0","contcatid":"176","catparentid":"0","subCategories":false,"urisafecontcatname":"python","catContainerId":158},"5":{"contcatname":"SQL","sortorder":"0","contcatid":"5","catparentid":"0","subCategories":{"145":{"contcatname":"MSSQL","sortorder":"0","contcatid":"145","catparentid":"5","subCategories":false,"urisafecontcatname":"mssql"},"142":{"contcatname":"MySQL","sortorder":"0","contcatid":"142","catparentid":"5","subCategories":false,"urisafecontcatname":"mysql"}},"urisafecontcatname":"sql","catContainerId":158},"143":{"contcatname":"Unix\/Linux","sortorder":"0","contcatid":"143","catparentid":"0","subCategories":{"149":{"contcatname":"BASH","sortorder":"0","contcatid":"149","catparentid":"143","subCategories":false,"urisafecontcatname":"bash"},"172":{"contcatname":"MacOSX","sortorder":"0","contcatid":"172","catparentid":"143","subCategories":false,"urisafecontcatname":"macosx"},"147":{"contcatname":"Samba","sortorder":"0","contcatid":"147","catparentid":"143","subCategories":false,"urisafecontcatname":"samba"},"144":{"contcatname":"Ubuntu","sortorder":"0","contcatid":"144","catparentid":"143","subCategories":false,"urisafecontcatname":"ubuntu"}},"urisafecontcatname":"unix-linux","catContainerId":158}},"urisafecontcatname":"code"},"168":{"contcatname":"Projects","sortorder":"35","contcatid":"168","catparentid":"0","subCategories":false,"urisafecontcatname":"projects"},"159":{"contcatname":"Contact","sortorder":"20","contcatid":"159","catparentid":"0","subCategories":false,"urisafecontcatname":"contact"},"170":{"contcatname":"Downloads","sortorder":"0","contcatid":"170","catparentid":"0","subCategories":false,"urisafecontcatname":"downloads"},"115":{"contcatname":"Resources","sortorder":"0","contcatid":"115","catparentid":"0","subCategories":false,"urisafecontcatname":"resources"}};  
+
+	</script>
+	<script type="text/javascript" type="text/javascript" src="http://www.hardcode.nl/js/siteScripts_2.js"></script>
+		
+
+	<script type="text/javascript" type="text/javascript">		
+		var oHCPage = new hardCodePage({
+			webRoot:'http://www.hardcode.nl/',
+			ZendPub:'http://www.hardcode.nl/ZFmin/feedreader/public/'
+		});
+	</script>	
+	<style type="text/css" >	
+
+		#menu #menuItem_158 .submenu{ display:block }
+		#menu #menuItem_4 .subsubmenu{ display:block }
+		
+	</style>
+</head>
+
+<body id="default">
+
+	<div id="container">
+		<div id="contentHolder">
+		<div id="codePageArticle">
+
+		<span class="dateTime">27-08-2008</span>
+
+	<h1 class="headLine">
+			
+			<a href="http://www.hardcode.nl/subcategory_4/">
+				PHP 
+			</a>
+			No-cache headers</h1>
+	
+	<div class="trailContainer">
+		<div class="buttonLink" style="z-index:4">
+			<a class="true ButtonStyleLink" href="http://www.hardcode.nl/category_158/" >
+				<span > Code </span>
+			</a>
+		</div>
+		<div class="buttonLink" style="z-index:3">
+			<a class="true ButtonStyleLink" href="http://www.hardcode.nl/subcategory_4/" >
+				<span > PHP </span>
+			</a>
+		</div>
+				<div class="buttonLink" style="z-index:1">
+			<a class="true ButtonStyleLink" id="terminator">
+				<span> No-cache headers </span>
+			</a>
+		</div>
+	</div>
+	<div class="contentItem">
+	 		  		<p>These php headers wil prevent client side caching of your php output:</p>
+	  		  		<pre class="c" style="font-family:monospace;"><span style="color: #339933;">&lt;?</span>php
+	<span style="color: #666666; font-style: italic;">//no  cache headers </span>
+	header<span style="color: #009900;">&#40;</span><span style="color: #ff0000;">&quot;Expires: Mon, 26 Jul 1990 05:00:00 GMT&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+	header<span style="color: #009900;">&#40;</span><span style="color: #ff0000;">&quot;Last-Modified: &quot;</span> . <span style="color: #202020;">gmdate</span><span style="color: #009900;">&#40;</span><span style="color: #ff0000;">&quot;D, d M Y H:i:s&quot;</span><span style="color: #009900;">&#41;</span> . <span style="color: #ff0000;">&quot; GMT&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+	header<span style="color: #009900;">&#40;</span><span style="color: #ff0000;">&quot;Cache-Control: no-store, no-cache, must-revalidate&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+	header<span style="color: #009900;">&#40;</span><span style="color: #ff0000;">&quot;Cache-Control: post-check=0, pre-check=0&quot;</span><span style="color: #339933;">,</span> <span style="color: #000000; font-weight: bold;">false</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+	header<span style="color: #009900;">&#40;</span><span style="color: #ff0000;">&quot;Pragma: no-cache&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #339933;">?&gt;</span></pre>
+	  		 </div> 		
+		<div>	
+</div>
+	
+		
+	
+	<div id ="otherContent">
+				
+		
+				
+			</div>
+</div>	
+<div id="commentContainer">
+	<h4>Comments:</h4>
+		<div class="buttonLink openCommentFormButton" id="openCommentFormContainer">
+	<a href="#" class="ButtonStyleLink" id="openCommentForm">
+		<span>  Leave a comment </span>
+	</a>
+</div>
+
+<div id="commentFormContainer">
+	<form name="commentForm" id="commentForm" action="dumm.php">		
+		
+				
+						
+		<fieldset>
+			<input type="hidden" name="formId" value="commentForm" />
+			<input type="hidden" name="replyTo" value="0" />
+			<input type="hidden" name="commentContentId" value="279" />
+			<legend>Your comment:</legend>	
+			<div id="commentFormFields">
+				<div class="fieldHolder">
+										<label for="anoname">Name:</label>
+					<input type="text" id="anoname" size="40" maxlength="50" name="anoname" class="mandatory" value="" />
+									</div>
+			
+				<br clear="all" />
+				<div>
+					<label for="comment" class="commentLabel">Comment:</label>
+					<textarea name="comment" id="comment" class="mandatory"></textarea>
+				</div>
+								<div class="captchaHolder">	
+					<label for="norobot"> Type this number &raquo; </label>
+					<img src="http://www.hardcode.nl/images/TTest.php" /> <span>&raquo;</span> 
+					<input class="mandatory" size="6" maxlength="4" type="text" name="norobot" id="norobot" />
+				</div>
+								<div class="buttonLink" id="linkSubmitContainer">
+					<a href="#" id="linkSubmit" class="ButtonStyleLink" id="commentFormSubmit" >
+						<span>  Send </span>
+					</a>
+				</div>				
+			</div>			
+		</fieldset>
+	</form>
+</div>
+	
+	<div id="comments">
+	
+	
+			<div class="comment" id="comment_8">
+			<div>
+				<span class="username">  musau</span>
+				<span class="commentDate">05/08/2009, 11:02 am</span>
+			</div>
+			<div class="commentTitle"></div>
+			<div class="commentText">what?</div>
+					</div>
+		<div class="buttonLink replyButtonContainer openCommentFormButton" id="replyButtonContainer_8">
+			<a href="#"  class="ButtonStyleLink" id="replyButton_8" >
+				<span>  Reply to this comment </span>
+			</a>
+		</div>				
+		</div>
+	<p>&nbsp;</p>
+</div>	
+		
+		</div>
+			<div id="footerContainer">
+			<div id="footer">
+
+				<span> Hardcode.nl == Joris Osterhaus</span> |
+				<span>
+				<script language="javascript" type="text/javascript">
+				document.write('info');
+				document.write('@');
+				document.write('hardcode.nl');
+				</script> 
+				</span> | <span>Tel: + 31 20-6167483 </span> | <span>KVK: 34324220</span> | <span>BTW: NL1762.51.248.B01</span>
+				<ul class="mySocials">
+					<li class="linkedin linked"></li>
+					<li class="twitter linked"></li>
+					<li class="facebook linked"></li>
+				</ul>
+
+			</div>
+			
+		</div>
+
+	</div>
+
+		
+		
+	</div>			
+		
+	<div id="topBar">
+		<div id="topCenter">
+
+			<div id="logoTextHolder" class="linked"></div>
+				<div id="googleSearchFormContainer">
+					<div id="closeButtonSearchForm" class="linked">[x]</div>
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									<form action="http://www.google.com/search" method="get" class="submitable" name="googleSearchForm">
+										<input type="text" maxlength="24" name="q" class="input linked" id="googleSearch" value="search" /> 
+										<input type="hidden" value="hardcode.nl" name="sitesearch"/>
+									</form>
+								</td>
+								<td>
+									
+								<div class="buttonLink googleSubmitContainer">
+									<a id="googleSubmit" class="ButtonStyleLink" href="#">
+										<span>Go</span>
+									</a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</div>
+	
+	</div>
+
+	
+	<div id="topLogoMenuContainer">
+			<a href="/" id="topLogo"></a>
+			    <div id="menu">
+		<ul>
+			<li class="menuItem"><a id="topMenuSearch" href="/" class="topMenuItem linked">search</a></li>
+							
+				<li class="menuItem" id="menuItem_161">
+					<a href="http://www.hardcode.nl/category_161/" id="top_menu_161" class="topMenuItem">Home</a>
+								</li>
+							
+				<li class="menuItem" id="menuItem_158">
+					<a href="http://www.hardcode.nl/category_158/" id="top_menu_158" class="topMenuItem">Code</a>
+									<ul class="submenu">
+											<li id="menuItem_9"><a href="http://www.hardcode.nl/subcategory_9/" class="subMenuItem" id="sub_menu_9">ActionScript</a>
+															<ul class="subsubmenu">
+																	<li id="menuItem_156"><a href="http://www.hardcode.nl/archives_156/"  class="subsubMenuItem" id="arc_menu_156">Actionscript2</a></li>
+																	<li id="menuItem_155"><a href="http://www.hardcode.nl/archives_155/"  class="subsubMenuItem" id="arc_menu_155">Actionscript3</a></li>
+																</ul>
+													</li>
+											<li id="menuItem_146"><a href="http://www.hardcode.nl/subcategory_146/" class="subMenuItem" id="sub_menu_146">Apache</a>
+															<ul class="subsubmenu">
+																	<li id="menuItem_157"><a href="http://www.hardcode.nl/archives_157/"  class="subsubMenuItem" id="arc_menu_157">.htaccess</a></li>
+																	<li id="menuItem_154"><a href="http://www.hardcode.nl/archives_154/"  class="subsubMenuItem" id="arc_menu_154">mod_rewrite</a></li>
+																</ul>
+													</li>
+											<li id="menuItem_2"><a href="http://www.hardcode.nl/subcategory_2/" class="subMenuItem" id="sub_menu_2">CSS/(X)HTML</a>
+															<ul class="subsubmenu">
+																	<li id="menuItem_129"><a href="http://www.hardcode.nl/archives_129/"  class="subsubMenuItem" id="arc_menu_129">CSS3</a></li>
+																</ul>
+													</li>
+											<li id="menuItem_1"><a href="http://www.hardcode.nl/subcategory_1/" class="subMenuItem" id="sub_menu_1">Javascript</a>
+															<ul class="subsubmenu">
+																	<li id="menuItem_139"><a href="http://www.hardcode.nl/archives_139/"  class="subsubMenuItem" id="arc_menu_139">jQuery</a></li>
+																</ul>
+													</li>
+											<li id="menuItem_177"><a href="http://www.hardcode.nl/subcategory_177/" class="subMenuItem" id="sub_menu_177">Perl</a>
+													</li>
+											<li id="menuItem_4"><a href="http://www.hardcode.nl/subcategory_4/" class="subMenuItem" id="sub_menu_4">PHP</a>
+															<ul class="subsubmenu">
+																	<li id="menuItem_173"><a href="http://www.hardcode.nl/archives_173/"  class="subsubMenuItem" id="arc_menu_173">PHP configuration</a></li>
+																	<li id="menuItem_141"><a href="http://www.hardcode.nl/archives_141/"  class="subsubMenuItem" id="arc_menu_141">Smarty</a></li>
+																	<li id="menuItem_132"><a href="http://www.hardcode.nl/archives_132/"  class="subsubMenuItem" id="arc_menu_132">Zend Framework</a></li>
+																</ul>
+													</li>
+											<li id="menuItem_176"><a href="http://www.hardcode.nl/subcategory_176/" class="subMenuItem" id="sub_menu_176">Python</a>
+													</li>
+											<li id="menuItem_5"><a href="http://www.hardcode.nl/subcategory_5/" class="subMenuItem" id="sub_menu_5">SQL</a>
+															<ul class="subsubmenu">
+																	<li id="menuItem_145"><a href="http://www.hardcode.nl/archives_145/"  class="subsubMenuItem" id="arc_menu_145">MSSQL</a></li>
+																	<li id="menuItem_142"><a href="http://www.hardcode.nl/archives_142/"  class="subsubMenuItem" id="arc_menu_142">MySQL</a></li>
+																</ul>
+													</li>
+											<li id="menuItem_143"><a href="http://www.hardcode.nl/subcategory_143/" class="subMenuItem" id="sub_menu_143">Unix/Linux</a>
+															<ul class="subsubmenu">
+																	<li id="menuItem_149"><a href="http://www.hardcode.nl/archives_149/"  class="subsubMenuItem" id="arc_menu_149">BASH</a></li>
+																	<li id="menuItem_172"><a href="http://www.hardcode.nl/archives_172/"  class="subsubMenuItem" id="arc_menu_172">MacOSX</a></li>
+																	<li id="menuItem_147"><a href="http://www.hardcode.nl/archives_147/"  class="subsubMenuItem" id="arc_menu_147">Samba</a></li>
+																	<li id="menuItem_144"><a href="http://www.hardcode.nl/archives_144/"  class="subsubMenuItem" id="arc_menu_144">Ubuntu</a></li>
+																</ul>
+													</li>
+										</ul>
+								</li>
+							
+				<li class="menuItem" id="menuItem_168">
+					<a href="http://www.hardcode.nl/category_168/" id="top_menu_168" class="topMenuItem">Projects</a>
+								</li>
+							
+				<li class="menuItem" id="menuItem_159">
+					<a href="http://www.hardcode.nl/category_159/" id="top_menu_159" class="topMenuItem">Contact</a>
+								</li>
+							
+				<li class="menuItem" id="menuItem_170">
+					<a href="http://www.hardcode.nl/category_170/" id="top_menu_170" class="topMenuItem">Downloads</a>
+								</li>
+							
+				<li class="menuItem" id="menuItem_115">
+					<a href="http://www.hardcode.nl/category_115/" id="top_menu_115" class="topMenuItem">Resources</a>
+								</li>
+						
+			</ul>
+		</div>
+    
+	</div>
+
+</body>
+</html>

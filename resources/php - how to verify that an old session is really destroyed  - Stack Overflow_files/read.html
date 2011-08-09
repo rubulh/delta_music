@@ -1,0 +1,22 @@
+
+<!-- saved from url=(0181)http://stackauth.com/auth/global/read?request=JHtv0NQWk17%2B1cEvFJElSn3%2F7Z4itxZBYzrPYCpaalg94vwbJdMDqYltwQdFV633pwKmNNh%2FQU0dBC46RL75aw%3D%3D&nonce=VdYQTgAAAADd6trz239W%2BQ%3D%3D -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                  <script type="text/javascript">
+                  var data = {"ReadSession":"http://stackauth.com/auth/global/read-session","Request":"JHtv0NQWk17+1cEvFJElSn3/7Z4itxZBYzrPYCpaalg94vwbJdMDqYltwQdFV633pwKmNNh/QU0dBC46RL75aw==","Nonce":"VdYQTgAAAADd6trz239W+Q==","Referrer":"http://stackoverflow.com/questions/2719262/how-to-verify-that-an-old-session-is-really-destroyed","StorageName":"GlobalLogin"};
+
+                  var obj = localStorage.getItem(data.StorageName);
+                  if(obj != null) {
+                  var req = new XMLHttpRequest();
+                  req.open('POST', data.ReadSession+'?request='+encodeURIComponent(data.Request)+'&nonce='+encodeURIComponent(data.Nonce)+'&seriesAndToken='+encodeURIComponent(obj), false);
+                  req.send(null);
+                  
+                    if(req.status == 200){
+                      top.postMessage(req.responseText, data.Referrer);
+                    }else{
+                      top.postMessage('No Session', data.Referrer);
+                    }
+                  }else{
+                    top.postMessage('No Local Storage', data.Referrer);
+                  }
+                  </script>
+                  </head><body></body></html>

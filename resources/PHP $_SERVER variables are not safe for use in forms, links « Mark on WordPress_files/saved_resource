@@ -1,0 +1,75 @@
+h1 {
+font-size:72px!important;
+}
+
+h2 {
+font-size:24px!important;
+}
+
+img {
+border:0!important;
+}
+
+#sidebar p {
+margin:10px 0;
+}
+
+div#mjcombar {
+font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+left:0;
+top:0;
+overflow:hidden;
+font-weight:bold;
+position:absolute;
+width:100%;
+height:30px;
+background:#ccc;
+display:none;
+}
+
+div#mjcombar ul {
+line-height:30px;
+white-space:nowrap;
+list-style-type:none;
+text-align:center;
+margin:0 auto;
+padding:0;
+}
+
+div#mjcombar ul li {
+display:inline;
+}
+
+div#mjcombar ul li a {
+border-right:1px solid #aaa;
+float:left;
+color:#000;
+text-decoration:none;
+padding:0 20px;
+}
+
+div#mjcombar ul li a:hover {
+background:#eee;
+color:#333;
+}
+
+div#mjcombar ul li a.current-site {
+background:#333;
+color:#fff;
+}
+
+div#container {
+position:static;
+}
+
+#disabled #wpcombar {
+top:28px!important;
+}
+
+#disabled body {
+margin-top:40px;
+}
+
+#bubble {
+top:80px;
+}

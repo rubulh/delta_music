@@ -1,0 +1,16 @@
+in creating the guests database::
+1.kick {the key}
+2.nick
+3.email_id
+4.date  {holds the date in this format 20-07-1991;;leading zeros necessary;i have set it as text with 10                     characters}
+5.login_timestamp {at current it is 10 numbers i have set it as a text field with 20 characters}
+6.logout_timestamp {at current it is 10 numbers i have set it as a text field with 20 characters}
+7.login_time_24 {holds the login time in 24 hour format:note that you have to create a function which appends the                    necessary zeros as the in built time function appends no zeros on the left::see make this happen                   }
+8.logout_time_24 {holds the login time in 24 hour format:note that you have to create a function which appends the                    necessary zeros as the in built time function appends no zeros on the left::see make this happen                   }
+9.day_week_year_weekday {holds the no.(day of the year) no.(week of the year) no.{year} and (the day of the week                             aka sunday monday)}
+10.ip {the ip address from where the request arose:note that if the ips keep changing write it down in a separate          file}
+11.user_agent{the agent complete desciption being used in the request:note that if the user agents keep changing                  write it down in a separatefile}
+12.session_id{okay i counted it in session id s generated and it came up to 26 characters in case i have to change                it :i have to change here the last session id that i have used session_regenerate_id  ids keep                      changing;and i have logged all the session ids for any usr separately in a different file}
+13.12.session_id_bygone{okay i counted it in session id s generated and it came up to 26 characters in case i have                           to change it :that i have used session_regenerate_id  ids keep                                                      changing:and this is the last expired session id;and i have logged all the session ids for                          any user separately in a different file}
+
+14.involved{okay this is the final time stamp- initial time stamp used to record how long the user has spent on the             site :as these are nick accounts}

@@ -1,0 +1,397 @@
+<?php 
+require_once("/var/www/take/files/thekey.php");
+
+//ONE HAS TO FIX THIS LINE;;SEE IF IT CAN BE DONE WITHOUT USING DIRECT FILE NAMES AND FOLDER NAMES
+?>
+<?php
+//code_to extract the registration timestamp of the user
+$connection_musiclibrary=mysqli_connect($_SERVER['HTTP_HOST'],$sqlusername,$sqlpassword,$databasename);
+$email_id_me=$_SESSION['email_id'];//email_id unique
+$query_to_me="select registration_timestamp, username,myplaylist_string from users_basic where email_id=$email_id_message";
+$result_to_me=mysqli_query($connection_message,$query_to_me);
+$answer_to_me=mysqli_fetch_array($result_to_me);
+$registration_timestamp_me=$answer_to_me['registration_timestamp'];
+$username_me=$answer_to_me['username'];
+$database_me="$username_me-$email_id_me--$registration_timestamp_me";
+$myplaylist_string_ml=$answer_to_me['myplaylist_string'];
+$database_connected_me=mysqli_select_db($connection_me,$database_me);
+
+?>
+<html>
+<head>
+<script src="<?=$JQUERY?>/jquery.tools.min.js"></script>
+<style>
+body{background-image:url(<?=$IMAGE?>/basic.png);}
+#complete{float:right;
+          
+          width:83%;
+          height:100%;
+          overflow:hidden;
+          border-style:groove;
+	       }
+#container{float:center;
+           overflow:hidden;
+           width:100%;
+           height:82%;
+          
+           margin-top:0px;
+           margin-bottom:1px;
+           margin-left:0px;
+           margin-right:0px;
+           }	       
+#headbar{width:100%;
+			float:center;
+			height:8%;
+			border-style:groove;
+			background-color:#666699;
+			
+			margin-bottom:6px;
+			opacity:0.7;
+			letter-spacing:2px;} 
+.liblinks{text-decoration:none;}
+.partsection{width:95%;
+				background-color:#9999CC;
+				
+				height:6%;
+				margin-bottom:3px;
+				border-style:groove;
+				border-color:#9966CC;
+				color:silver;
+				font-style:bold;
+				font-weight:900;
+				text-align:left;
+				padding-left:30px;
+				text-decoration:none;
+				padding-top:6px;
+				letter-spacing:3px;
+				}
+.eachsongdesc{
+		  width:95%;
+		  height:13%;
+		  background-color:#666699;
+		  opacity:0.7;
+
+		margin-bottom:3px;
+		border-style:groove;
+		border-color:#000083;
+		color:silver;
+		}	
+#accordion{
+	
+	width:1300px;
+	margin-top:2px;
+	margin-bottom:5px;
+	padding-right:7px;
+	height:18%;
+	float:left;
+	border-top-style:groove;
+	border-top-color:silver;
+	overflow:hidden;
+	}
+#accordion img {
+	float:left;
+	margin-right:-1px;
+	margin-left:5px;
+	margin-top: 2px;
+	cursor:pointer;
+	opacity:0.5;
+	filter: alpha(opacity=50);
+	}
+	
+	
+#accordion img.current {
+	cursor:default;
+	opacity:1;
+	filter: alpha(opacity=100);
+}
+
+.insideaccordion{
+	width:0px;
+	float:left;	
+	display:none;		
+	margin-right:10px;
+}
+</style>
+</head>
+<body>
+<?php
+//sanitise the entire get string 
+//for mysqli_real_escape string
+//html characters
+//also take care that one might try to pass multiple values or arrays in the get string
+//anything except the keywords
+//change the get string to null
+//keywords
+//allsongs
+//album
+//artist
+//languages
+//genres
+//lastplayed
+//mostplayed
+//downloaded
+//myplaylists
+?>
+<div id="complete">
+    <div id="container">
+	 <?php
+
+	 if($_GET['librarypath']=='myplaylists')
+			{
+		//the database used here is the user specific database but the name of the table name has to be extracted from the users basic
+		//the string
+		//which i shall explode to get the different table names in the user specific database
+			//echo "me";
+//and as the user visits this page i shall keep the playlists names in a  cookie;that helps in case user tries to make a new playlist and name clashes with that of the old one;
+//
+
+		$sub_chart_name_header="MY PLAYLISTS";
+		//get the list
+		echo "<div id='headbar'>
+		<pre><b>LIBRARY >>>$sub_chart_name_header</b>									you are logged in as $username_me</pre> 
+		</div>";
+echo "<div style='width:100%;height:90%;background-color:#9999CC;border-style:groove;border-color:#9966CC;color:silver;font-style:bold;font-weight:900;text-align:left;padding-left:0px;text-decoration:none;padding-top:20px;letter-spacing:3px;'>";
+		if($myplaylist_string_ml=="")
+		{
+$noplaylistscreated=<<<noplaylistshavebeencreated
+<h1>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;you have not created any playlist
+</h1>
+
+
+noplaylistshavebeencreated;
+echo "$noplaylistscreated";
+		}
+	     else
+		{
+		$myplaylistname_array_ml=explode("(`%^&#`)",$myplaylist_string_ml);
+			foreach($myplaylistname_array_ml as $nameofmyplaylists_ml)
+			{
+			echo "<div class='verticalscrollable' style='width:100%;height:8%;background-color:#9999CC;border-style:groove;border-color:#9966CC;color:grey;font-style:bold;font-weight:700;text-align:left;padding-left:30px;text-decoration:none;letter-spacing:1px;'>";
+			echo "$nameofmyplaylists_ml";
+		      echo "</div>";
+			}
+
+
+
+		}
+$createnewplaylist=<<<createnewplaylist
+<h2>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;create a new playlist here
+
+<button title="create_new_playlist" type="button" name="create_new_playlist"  value="create_new_playlist" style="color:black;"> CREATE NEW PLAYLIST</button>
+
+</h2>
+</div>
+<div id="">
+
+</div>
+
+
+
+createnewplaylist;
+
+echo "$createnewplaylist";
+			}
+//the database used here is the general use database
+	else if(isset($_GET['librarypath']))
+	   {
+		    {
+			if($_GET['librarypath']=='allsongs')
+			{
+		$sub_chart_name_header="ALL SONGS";
+		$query_allsongs_ml="select * from allsongs order by title asc";
+			}
+			else if($_GET['librarypath']=='album')
+			{
+		$sub_chart_name_header="ALBUMS";
+		$query_allsongs_ml="select * from allsongs order by album asc";
+			}
+			else if($_GET['librarypath']=='artist')
+			{
+		$sub_chart_name_header="ARTISTS";
+		$query_allsongs_ml="select * from allsongs order by artist asc";
+			}
+			else if($_GET['librarypath']=='languages')
+			{
+		$sub_chart_name_header="LANGUAGES";
+		$query_allsongs_ml="select * from allsongs order by language asc";
+			}
+			else if($_GET['librarypath']=='genres')
+			{
+		$sub_chart_name_header="GENRES";
+		$query_allsongs_ml="select * from allsongs order by album asc";
+			}
+			
+//here i got to change the entire database name to user specific database
+//common table
+			else if($_GET['librarypath']=='lastplayed')
+			{
+		$sub_chart_name_header="LAST PLAYED";
+		$query_allsongs_ml="select * from mysongs where the lastplayed=1 order by timestamp desc";
+			}
+			else if($_GET['librarypath']=='mostplayed')
+			{
+		$sub_chart_name_header="MOST PLAYED";
+		$query_allsongs_ml="select * from mysongs where the mostplayed=1 order by timestamp desc";
+			}
+			else if($_GET['librarypath']=='uploaded')
+			{
+		$sub_chart_name_header="UPLOADED";
+		$query_allsongs_ml="select * from mysongs where the uploaded=1 order by timestamp desc";
+			}
+			else if($_GET['librarypath']=='downloaded')
+			{
+		$sub_chart_name_header="DOWNLOADED";
+		$query_allsongs_ml="select * from mysongs where the downloaded=1 order by timestamp desc";
+			}
+
+		   }
+			
+	  ?>
+	 	<div id="headbar">
+		<pre><b>LIBRARY <?=">>>$sub_chart_name_header"?></b>									you are logged in as<?="$username_me"?></pre> 
+		</div>
+		<div>
+		<?php
+		
+		$result_allsongs_ml=mysqli_query($connection_musiclibrary,$query_allsongs_ml);
+			while(false!=($song_detail=mysqli_fetch_array($result_allsongs_ml)))
+			{
+			
+			echo "<div class='eachsongdesc'>";
+			$title_song=$song_detail['songtitle'];
+			
+			$source_path=$song_detail['source_path'];
+			//for now the source to the m3u file which i shall later change to adapt jplayer in the next page
+			//and show the comments download link likes dislikes all
+			//for now it ll show 
+			$download_path=$song_detail['download_path'];
+			$added_by_song=$song_detail['added_by'];
+			$artist_song=$song_detail['artist'];
+			$album_song=$song_detail['album'];
+			$language_song=$song_detail['language'];
+			$genre_song=$song_detail['genre'];
+			$likes_songs=$song_detail['likes_count'];
+			$dislikes_songs=$song_detail['dislikes_count'];
+			$total_rating=$song_detail['total_rating'];
+			$count_raters=$song_detail['count_raters'];
+			$rating_true_song=($total_rating/$count_raters);
+			$times_downloaded=$song_detail['times_download'];
+$string_music_decription_ml=<<<compsongdesc
+			<a href="$SONG/$source_path" style="text-decoration:none;font-style:bold;font-weight:900;font-size:high;">$title_song</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="font-style:normal;font-weight:200;font-size:lower;">average_rating:$rating_true_song</font>
+			<br>
+			<font style="font-style:italic;font-weight:200;font-size:furtherlower;">added-by:$added_by_song</font>
+			<font style="font-style:normal;font-weight:500;font-size:a bit high;">artist:$artist_song&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;album:$album_song</font><br>
+			<font style="font-style:italic;font-weight:200;font-size:decrease;">genre:$genre_song&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;likes:$likes_songs&nbsp;&nbsp;dislikes:$dislikes_songs</font>
+			<br>
+			<button title="" type="button"  value="play" style="customise the button"></button>
+			<button title="" type="button"  value="download" style="customise the button"></button>
+			<button title="" type="button"  value="view_comments" style="customise the button"></button>
+
+compsongdesc;
+			
+			echo "$string_music_decription_ml";
+
+
+			//the click button for view comments shall trigger the opening of this div
+			echo "<div class='comment_song_wise_ml'>";
+			$comments_all_string=$song_detail['all_comments'];
+			$array_of_commentator_comments=explode("{`#+*><`}",$comments_all_string);
+				foreach($array_of_commentator_comments as $commentator_and_comment_ml);
+				{
+					$either_commentator_or_comment=explode("(`#^$><`)",$commentator_and_comment_ml);
+					$comment_time_ml=$either_commentator_or_comment[0];
+					$commentator_name_ml=$either_commentator_or_comment[1];
+					$comment_song_ml=$either_commentator_or_comment[2];
+$each_comment_desc=<<<commentcompletedesc
+<font style="font-size:medium;">$comment_time_ml</font>
+<a href="the unique link to each user" style="font-size:greater;font-weight:800;">$commentator_name_ml</font>
+<br>
+<p style="background-color:same but i ll decide ">$comment_song_ml</p>
+<hr>
+commentcompletedesc;
+echo "$eachcommentdesc";
+				}
+			   ?>
+			<form>
+			<textarea name="mycomment" cols=40 rows=4>
+			</textarea>
+			<input type="submit" name="submitcomment" value="comment">
+			<!--sanitise this comment inserted -->
+			</form>
+			<br>
+			<button title="" type="button"  value="hide_comments" style="customise the button"></button>
+			<!--this button shall trigger the closing of this div-->
+			</div>
+			</div>
+			<?php
+			
+			}
+		?>
+		</div>
+	  <?php
+		}
+	  else if (!isset($_GET['librarypath'])){
+	      ?>
+		<div id="headbar">
+		<pre><b>LIBRARY</b>											you are logged in as<?="$username_me"?></pre> 
+		</div>
+		<div>
+		<a href="allsongs" class="liblinks"><div class="partsection">ALL-SONGS</div></a>
+		<a href="albums" class="liblinks"><div class="partsection">ALBUMS</div></a>
+		<a href="artists" class="liblinks"><div class="partsection">ARTISTS</div></a>
+		<a href="languages" class="liblinks"><div class="partsection">LANGUAGES</div></a>
+		<a href="genre" class="liblinks"><div class="partsection">GENRES</div></a>
+		<a href="lastplayed" class="liblinks"><div class="partsection">LASTPLAYED</div></a>
+		<a href="mostplayed" class="liblinks"><div class="partsection">MOSTPLAYED</div></a>
+		<a href="uploaded" class="liblinks"><div class="partsection">UPLOADED</div></a>
+		<a href="downloaded" class="liblinks"><div class="partsection">DOWNLOADED</div></a>
+		<a href="<?=$FILE?>/musiclibrary.php?librarypath=myplaylists" class="liblinks"><div class="partsection">MY PLAYLISTS</div></a>
+		</div>
+	  <?php
+		}
+	  ?>
+	</div>
+	<div id="accordion">
+   	<img src="<?=$IMAGE?>/formaccordionguest.png" class="tabes" alt="guest" >  
+      <div class="insideaccordion" style="width:410px;height:100px;margin-top:5px;background-color:#666699;">
+       <p style="font-size:10px;">
+       <PRE>
+        LIBRARY PLAYLISTS MY QUEUES     
+       </PRE>       
+       </p>      
+      </div>
+   
+    <img src="<?=$IMAGE?>/formaccordionsignin.png" class="tabes" alt="sign-in" >  
+      <div class="insideaccordion" style="width:410px;height:100px;margin-top:5px;background-color:#666699;">
+       <p style="font-size:10px;">
+         
+        </pre>                   
+       </p>      
+      </div>
+      
+     <img src="<?=$IMAGE?>/formaccordionsignup.png" class="tabes" alt="sign-up" >  
+      <div class="insideaccordion" style="width:410px;height:100px;margin-top:5px;background-color:#666699;">
+       <p>
+       
+                    
+       </p>      
+      </div>
+</div>
+           <script> 
+                $(function() {
+ 
+                       $("#accordion").tabs(".insideaccordion", {
+	                   tabs: '.tabes', 
+	                    effect: 'horizontal'
+                        });
+                });
+           </script>
+
+</div>
+
+</div>
+
+</body>
+</html>

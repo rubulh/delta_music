@@ -1,0 +1,1637 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0082)http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Sanitize and Validate Data with PHP Filters | Nettuts+</title>
+
+<!-- Styles -->
+<link href="./v_files/style.css" rel="stylesheet" type="text/css" media="screen">
+<link href="./v_files/theme.css" rel="stylesheet" type="text/css" media="screen">
+ 
+<link href="./v_files/print.css" rel="stylesheet" type="text/css" media="print">
+<link href="./v_files/widget.css" rel="stylesheet" type="text/css" media="screen">
+
+<link rel="shortcut icon" href="http://net.tutsplus.com/wp-content/themes/tuts/images/theme/nettuts/favicon.ico">
+<link rel="apple-touch-icon" href="http://net.tutsplus.com/wp-content/themes/tuts/images/theme/nettuts/apple-touch-icon.png">
+
+<!-- Page Size CSS -->
+<link href="./v_files/small.css" rel="stylesheet" type="text/css" media="screen">
+
+<!-- Scripts -->
+<script type="text/javascript" async="" src="./v_files/rum.js"></script><script>var NREUMQ=[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);(function(){var d=document;var e=d.createElement("script");e.type="text/javascript";e.async=true;e.src="https://d1ros97qkrwjf5.cloudfront.net/14/eum/rum.js	";var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(e,s);})();</script><link rel="alternate" type="application/rss+xml" title="Nettuts+ » Sanitize and Validate Data with PHP Filters Comments Feed" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/feed/">
+<link rel="stylesheet" id="ratings-css" href="./v_files/wp-post-ratings.css" type="text/css" media="all">
+<link rel="stylesheet" id="site-switcher-css-css" href="./v_files/style(1).css" type="text/css" media="all">
+<script type="text/javascript" src="./v_files/l10n.js"></script>
+<script type="text/javascript" src="./v_files/jquery.min.js"></script>
+<script type="text/javascript" src="./v_files/wp-post-ratings.js"></script>
+<script type="text/javascript" src="./v_files/switcher.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://net.tutsplus.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://net.tutsplus.com/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="Nettuts+" href="http://net.tutsplus.com/">
+<link rel="start" title="Launch!" href="http://net.tutsplus.com/articles/news/launch/">
+<link rel="prev" title="2009, Big % Increase &amp; GraphicRiver Beta Invites" href="http://net.tutsplus.com/articles/news/2009-big-increase-graphicriver-beta-invites/">
+<link rel="next" title="Two Weeks Left to Enter Two Contests!" href="http://net.tutsplus.com/competitions/contests/two-weeks-left-to-enter-two-contents/">
+<link rel="shortlink" href="http://net.tutsplus.com/?p=2595">
+
+<!-- All in One SEO Pack - Pro Version 1.72 by Michael Torbert of Semper Fi Web Design[231,292] -->
+<meta name="description" content="Data validation is an integral part of working with forms. Not only can invalid submitted data lead to security problems, but it can also break your webpage.">
+<meta name="keywords" content="php">
+<link rel="canonical" href="./v_files/v.html">
+<!-- /all in one seo pack Pro Version-->
+<script type="text/javascript" src="./v_files/audio-player.js"></script>
+<script type="text/javascript">AudioPlayer.setup("http://net.tutsplus.com/wp-content/plugins/audio-player/assets/player.swf?ver=2.0.4.1", {width:"290",animation:"yes",encode:"no",initialvolume:"60",remaining:"no",noinfo:"yes",buffer:"5",checkpolicy:"no",rtl:"no",bg:"468175",text:"ffffff",leftbg:"468175",lefticon:"ffffff",volslider:"b2d1cb",voltrack:"FFFFFF",rightbg:"468175",rightbghover:"75ada2",righticon:"ffffff",righticonhover:"FFFFFF",track:"468175",loader:"75ada2",border:"468175",tracker:"75ada2",skip:"ffffff",pagebg:"FFFFFF",transparentpagebg:"yes"});</script><style type="text/css" media="screen">p.audioplayer_container span {visibility:hidden;height:24px;overflow:hidden;padding:0;border:none;}</style>
+<script type="text/javascript" src="./v_files/swfobject.js"></script><link rel="stylesheet" href="./v_files/orgSeries.css" type="text/css" media="screen">
+<script type="text/javascript" src="./v_files/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="./v_files/jquery.ui.tabs.js"></script>
+<script type="text/javascript" src="./v_files/jobs.main.js"></script>
+<script type="text/javascript" src="./v_files/marketplace-url-rewriter.js"></script>
+<script type="text/javascript"> $(function() { MarketplaceUrlRewriter.rewrite_urls({host: window.location.host, target: document}) }) </script>
+<script type="text/javascript" src="./v_files/tutsResize.js"></script>
+<script type="text/javascript">
+  var ipad = function () {
+    return navigator.userAgent.match('iPad') != null
+  }
+  if (!ipad()) {
+    document.write('<script type="text/javascript" src="http://net.tutsplus.com/wp-content/themes/tuts/js/lazyload.js">')
+    document.write("<\/script>")
+  }
+  
+  var plus_member_logged_in = function() {
+    return (document.cookie.match('amember_logged_in') != null && document.cookie.match('PHPSESSID') != null)
+  }
+  
+  // fix flash z-index
+  $("embed").attr("wmode", "opaque");
+  
+    // Tutsplus Resize
+  $("#sidebar").tutsResize({
+    small_css_path: "http://net.tutsplus.com/wp-content/themes/tuts/css/small.css",
+    large_css_path: "http://net.tutsplus.com/wp-content/themes/tuts/css/large.css",
+    small_sessions_path: "",
+    large_sessions_path: "",
+    facebook_url: "http://facebook.com/nettutsplus"
+  });
+    
+  $(function() {
+    
+    // Extra Posts Div 
+    var left = 15;
+  	$('.extra_posts li div').each(function() {
+  		$(this).css('left', left);
+  		left += 114;
+  	});
+  	
+    // Subnavigation
+    $(".navigation li:has(ul)").addClass("parent");
+        // Lazy Loading
+    $(".tutorial_image img").lazyload({
+      placeholder : "http://net.tutsplus.com/wp-content/themes/tuts/images/global/box.gif",
+      threshold : 200
+    });
+    $(".post_image img").lazyload({
+      placeholder : "http://net.tutsplus.com/wp-content/themes/tuts/images/global/box.gif",
+      threshold : 200
+    });
+    $(".comment_author img").lazyload({
+      placeholder : "http://net.tutsplus.com/wp-content/themes/tuts/images/global/box.gif",
+      threshold : 200
+    });
+        
+  });
+  
+  //External links 
+  $(function() {
+    $('a[rel~=external]').attr('target', 'blank');
+  });
+</script><script type="text/javascript" src="./v_files/lazyload.js"></script>
+
+
+<link rel="alternate" type="application/rss+xml" title="Nettuts+ RSS Feed" href="http://net.tutsplus.com/feed/">
+<link rel="pingback" href="http://net.tutsplus.com/xmlrpc.php">
+<meta name="google-site-verification" content="SOPYMpXvuXhm5P8TUlyZBN7Jj8MZhi5a6QS34iJ7OLo">
+<script type="text/javascript" src="./v_files/single.js"></script>
+
+<script src="./v_files/ga.js" async="true"></script><script type="text/javascript" async="" src="./v_files/bsa.js"></script><script type="text/javascript" async="" src="./v_files/all.js"></script><script type="text/javascript" id="_bsap_js_d754f1e9ba63a736ba8ff5ece958f7dd" src="http://s3.buysellads.com/r/s_d754f1e9ba63a736ba8ff5ece958f7dd.js?v=1309635000000" async="async"></script><script type="text/javascript" src="http://freelanceswitch.com/jobswidget/jobscache/jobs.all.js"></script></head>
+
+<body class="single single-post postid-2595 single-format-standard">
+
+<!-- Tracking Code -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(
+    ['_setAccount', 'UA-11792865-8'],
+    ['_trackPageview'],
+    ['b._setAccount', 'UA-11792865-19'],
+    ['b._trackPageview']
+  );
+
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 
+        'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+<!-- END Tracking Code -->
+
+<!-- BuySellAds.com Ad Code -->
+<script type="text/javascript">
+if (!plus_member_logged_in()) {
+  (function(){
+    var bsa = document.createElement('script');
+       bsa.type = 'text/javascript';
+       bsa.async = true;
+       bsa.src = '//s3.buysellads.com/ac/bsa.js';
+    (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+  })();
+}
+</script>
+<!-- END BuySellAds.com Ad Code -->
+
+<div id="fb-root"></div>
+<!-- Facebook Code -->
+<script type="text/javascript">
+(function(){
+  var fb = document.createElement('script');
+  fb.type = 'text/javascript';
+  fb.async = true;
+  fb.src = document.location.protocol + '//connect.facebook.net/en_US/all.js#xfbml=1';
+  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(fb);
+})();
+</script>
+<!-- END Facebook Code -->
+
+
+<!-- Header -->
+<div id="header_wrap">
+  <div id="header">
+	
+    <a href="http://net.tutsplus.com/" class="logo">Nettuts+</a>
+    
+    <ul class="top_navigation">
+      <li><a href="http://buysellads.com/buy/view/id/197">Advertise</a></li>
+      <li><a href="http://net.tutsplus.com/about/write-a-tutorial/">Write for Us</a></li>
+      <li><a href="http://net.tutsplus.com/about/">About</a></li>
+      <li><a href="http://net.tutsplus.com/about/terms">Usage</a></li>
+    </ul>
+    
+    <div id="navigation">
+    	<ul class="navigation">
+    	  <li><a href="http://net.tutsplus.com/">Home</a></li>
+    	  <li><a href="http://net.tutsplus.com/category/tutorials/">Tutorials</a><ul class="child-nav">	<li class="cat-item cat-item-568"><a href="http://net.tutsplus.com/category/tutorials/asp-net/" title="ASP.NET programming tutorials.">ASP.NET</a>
+</li>
+	<li class="cat-item cat-item-464"><a href="http://net.tutsplus.com/category/tutorials/cmss/" title="Tutorials that details how to work with various CMSs.">CMSs</a>
+</li>
+	<li class="cat-item cat-item-547"><a href="http://net.tutsplus.com/category/tutorials/databases/" title="Learn how to work more efficiently with databases.">Databases</a>
+</li>
+	<li class="cat-item cat-item-286"><a href="http://net.tutsplus.com/category/tutorials/design-tutorials/" title="Learn the ins and outs of web design.">Design</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://net.tutsplus.com/category/tutorials/html-css-techniques/" title="Get up to speed with HTML and CSS.">HTML &amp; CSS</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://net.tutsplus.com/category/tutorials/javascript-ajax/" title="Learn about vanilla JavaScript, and the various popular libraries that are available, like jQuery.">JavaScript &amp; AJAX</a>
+</li>
+	<li class="cat-item cat-item-153"><a href="http://net.tutsplus.com/category/tutorials/other/" title="View all posts filed under Other">Other</a>
+</li>
+	<li class="cat-item cat-item-41"><a href="http://net.tutsplus.com/category/tutorials/php/" title="Learn how to use PHP.">PHP</a>
+</li>
+	<li class="cat-item cat-item-124"><a href="http://net.tutsplus.com/category/tutorials/ruby/" title="High quality Ruby and RoR tutorials and screencasts.">Ruby</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://net.tutsplus.com/category/tutorials/site-builds/" title="Learn how to convert a PSD to HTML from scratch.">Site Builds</a>
+</li>
+	<li class="cat-item cat-item-29"><a href="http://net.tutsplus.com/category/tutorials/tools-and-tips/" title="Details the most popular tools when building web applications.">Tools &amp; Tips</a>
+</li>
+	<li class="cat-item cat-item-35"><a href="http://net.tutsplus.com/category/tutorials/wordpress/" title="Become a WordPress master.">Wordpress</a>
+</li>
+</ul></li>
+    	  <li><a href="http://net.tutsplus.com/category/articles/">Articles</a><ul class="child-nav">	<li class="cat-item cat-item-128"><a href="http://net.tutsplus.com/category/articles/general/" title="Generic articles on web development.">General</a>
+</li>
+	<li class="cat-item cat-item-127"><a href="http://net.tutsplus.com/category/articles/interviews/" title="Interviews with prominent developers in the web development industry.">Interviews</a>
+</li>
+	<li class="cat-item cat-item-1084"><a href="http://net.tutsplus.com/category/articles/lectures/" title="Featured talks from web development conferences around the world.">Lectures</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://net.tutsplus.com/category/articles/news/" title="Recent news in the web development industry.">News</a>
+</li>
+	<li class="cat-item cat-item-437"><a href="http://net.tutsplus.com/category/articles/reviews/" title="Reviews of new web apps, frameworks, and books.">Reviews</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="http://net.tutsplus.com/category/articles/web-roundups/" title="Compilations of popular articles from around the web.">Web Roundups</a>
+</li>
+</ul></li>
+    	  <li><a href="http://net.tutsplus.com/tag/tips/">Tips</a><ul class="child-nav"><li><a href="http://net.tutsplus.com/category/tutorials/html-css-techniques/?tag=tips" title="HTML &amp; CSS">HTML &amp; CSS</a></li><li><a href="http://net.tutsplus.com/category/tutorials/php/?tag=tips" title="PHP">PHP</a></li><li><a href="http://net.tutsplus.com/category/tutorials/javascript-ajax/?tag=tips" title="JavaScript &amp; AJAX">JavaScript &amp; AJAX</a></li><li><a href="http://net.tutsplus.com/category/tutorials/other/?tag=tips" title="Other">Other</a></li><li><a href="http://net.tutsplus.com/category/tutorials/cmss/?tag=tips" title="CMSs">CMSs</a></li></ul></li>    	      	  <li><a href="http://net.tutsplus.com/sessions/">Sessions</a></li>    	  <li><a href="http://net.tutsplus.com/tag/basix/">Basix</a><ul class="child-nav"><li><a href="http://net.tutsplus.com/category/quizzes/?tag=basix" title="Quizzes">Quizzes</a></li><li><a href="http://net.tutsplus.com/category/tutorials/html-css-techniques/?tag=basix" title="HTML &amp; CSS">HTML &amp; CSS</a></li><li><a href="http://net.tutsplus.com/category/articles/?tag=basix" title="Articles">Articles</a></li><li><a href="http://net.tutsplus.com/category/articles/general/?tag=basix" title="General">General</a></li><li><a href="http://net.tutsplus.com/category/tutorials/php/?tag=basix" title="PHP">PHP</a></li></ul></li>    	  <li><a href="http://net.tutsplus.com/tag/videos/">Videos</a><ul class="child-nav"><li><a href="http://net.tutsplus.com/category/tutorials/html-css-techniques/?tag=videos" title="HTML &amp; CSS">HTML &amp; CSS</a></li><li><a href="http://net.tutsplus.com/category/tutorials/javascript-ajax/?tag=videos" title="JavaScript &amp; AJAX">JavaScript &amp; AJAX</a></li><li><a href="http://net.tutsplus.com/category/tutorials/php/?tag=videos" title="PHP">PHP</a></li></ul></li>    	  <li><a href="http://net.tutsplus.com/tag/premium/">Premium</a></li>
+    	</ul>
+    	<a href="http://net.tutsplus.com/tag/premium/" class="small_plus">Plus Premium</a>
+    	    </div>
+    
+    <div class="switcher_wrap"><div class="swither_header"><span class="switcher_arrow">Tuts+ Network</span></div><div id="links"><ul id="left_items"><li><a href="http://envato.com/">Envato</a></li>
+<li><a href="http://activeden.net/?ref=NetPremium">ActiveDen</a></li>
+<li><a href="http://audiojungle.net/?ref=NetPremium">AudioJungle</a></li>
+<li><a href="http://themeforest.net/?ref=NetPremium">ThemeForest</a></li>
+<li><a href="http://videohive.net/?ref=NetPremium">VideoHive</a></li>
+<li><a href="http://graphicriver.net/?ref=NetPremium">GraphicRiver</a></li>
+<li><a href="http://3docean.net/?ref=NetPremium">3DOcean</a></li>
+<li><a href="http://codecanyon.net/?ref=NetPremium">CodeCanyon</a></li>
+<li><a href="http://marketplace.tutsplus.com/?ref=NetPremium">Tuts+ Marketplace</a></li>
+<li><a href="http://creattica.com/">Creattica</a></li>
+<li><a href="http://appstorm.net/">AppStorm</a></li>
+<li><a href="http://mac.appstorm.net/">Mac.Appstorm</a></li>
+<li><a href="http://web.appstorm.net/">Web.Appstorm</a></li>
+<li><a href="http://iphone.appstorm.net/">iPhone.Appstorm</a></li>
+</ul>
+<ul id="right_items"><li><a href="http://tutsplus.com/">Plus</a></li>
+<li><a href="http://psd.tutsplus.com/">Psdtuts+</a></li>
+<li><a href="http://net.tutsplus.com/">Nettuts+</a></li>
+<li><a href="http://vector.tutsplus.com/">Vectortuts+</a></li>
+<li><a href="http://audio.tutsplus.com/">Audiotuts+</a></li>
+<li><a href="http://ae.tutsplus.com/">Aetuts+</a></li>
+<li><a href="http://active.tutsplus.com/">Activetuts+</a></li>
+<li><a href="http://cg.tutsplus.com/">Cgtuts+</a></li>
+<li><a href="http://photo.tutsplus.com/">Phototuts+</a></li>
+<li><a href="http://mobile.tutsplus.com/">Mobiletuts+</a></li>
+<li><a href="http://webdesign.tutsplus.com/">Webdesigntuts+</a></li>
+<li><a href="http://rockablepress.com/">Rockable Press</a></li>
+<li><a href="http://freelanceswitch.com/">FreelanceSwitch</a></li>
+<li><a href="http://sessions.tutsplus.com/creative/">Creative Sessions</a></li>
+</ul>
+</div></div>    
+    <ul class="rss_subscribe">
+      <li><a href="http://feeds.feedburner.com/nettuts" class="header_subscribe">Subscribe</a>
+        <ul>
+          <li><a href="http://feeds.feedburner.com/nettuts">Full Post RSS</a></li>
+          <li><a href="http://feedproxy.google.com/nettuts-summary">Summary RSS</a></li>
+          <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=nettuts">Subscribe via Email</a></li>
+        </ul>
+      </li>
+    </ul>
+    
+    <ul class="twitter_subscribe">
+      <li><a href="http://twitter.com/envatowebdev" class="header_twitter">Twitter Updates</a>
+        <ul>
+          <li><a href="http://twitter.com/envatowebdev">Nettuts+</a></li>
+          <li><a href="http://twitter.com/tutsplus">Plus Network</a></li>
+        </ul>
+      </li>
+    </ul>
+    
+    <div class="search_form">
+      <form method="get" action="http://net.tutsplus.com/">
+        <fieldset>
+          <input id="search_term" type="text" onclick="if(this.value == &#39;Search...&#39;) this.value=&#39;&#39;;" onblur="if(this.value.length == 0) this.value=&#39;Search...&#39;;" value="Search..." name="s">
+          <input class="submit_button" type="submit" value="Search">
+        </fieldset>
+      </form>
+    </div>
+
+  </div>
+</div>
+<!-- [END] Header -->
+
+<!-- Content Wrap -->
+<div id="content_wrap">
+  
+  <!-- Content -->
+  <div id="content" class="clearfix">
+
+    <!-- Page Wrap -->
+    <div class="page_wrap">
+      
+      <!-- Leader Board -->
+<div id="leader-board-wrap" style="">
+    <div class="leader_board">
+    <a href="http://buysellads.com/buy/view/id/197" class="LB_advert">Advertise Here</a>
+    <div class="lb_inner">
+      <div id="bsap_1245834" class="bsap_1245834 bsap"></div>    </div>
+  </div>
+  </div>
+<script type="text/javascript">
+  if (!plus_member_logged_in()) {
+    $('#leader-board-wrap').show()
+  }
+</script>
+<!-- [END] Leader Board -->
+
+      <!-- Page -->
+      <div id="page" class="single_post">
+      
+        <div class="page_inner">
+          
+                    
+            <div class="post post_inner" id="post-2595">
+  
+  <div class="tut_top">
+    
+    <!-- Post Image -->
+    <div class="post_image">
+      <a href="./v_files/v.html"><img src="http://nettuts.s3.amazonaws.com/179_dataValidation/200X200.jpg" alt="Sanitize and Validate Data with PHP Filters"></a>    </div>
+    
+    <div class="preview">
+    
+      <!-- Post Taxonomies -->
+      <div class="post_taxonomy">
+        <ul><li><a href="http://net.tutsplus.com/category/tutorials/">Tutorials</a><span>\</span></li><li><a href="http://net.tutsplus.com/category/tutorials/php/">PHP</a></li></ul><div id="tuts-rating" class=""><p><span> \</span>Rating:</p><ul id="">  <li><a href="javascript:void(0)" class="rate-this one active">1</a></li>  <li><a href="javascript:void(0)" class="rate-this two active">2</a></li>  <li><a href="javascript:void(0)" class="rate-this three active">3</a></li>  <li><a href="javascript:void(0)" class="rate-this four active">4</a></li>  <li><a href="javascript:void(0)" class="rate-this five">5</a></li></ul></div>      </div>
+      
+      <!-- Post Title -->
+      <h1 class="post_title">
+        Sanitize and Validate Data with PHP Filters      </h1>
+      
+      <!-- Post Meta -->
+      <div class="post_meta">
+        <a href="http://net.tutsplus.com/author/joetopjian/" title="Posts by Joe Topjian">Joe Topjian</a> on Jan 15th 2009 with <a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/#comments" title="Comment on Sanitize and Validate Data with PHP Filters">82 comments</a>      </div>
+    
+    </div>
+  
+  </div>
+  
+</div>
+
+<div class="tut_bottom">
+
+    
+    
+  <!-- Social Media -->
+  <div class="article_social_media">
+    
+    <div class="tweetmeme_btn">
+      <a href="http://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a><script type="text/javascript" src="./v_files/widgets.js"></script>
+    </div>
+    
+    <div class="facebook_send_btn">
+      <fb:send href="http%3A%2F%2Fnet.tutsplus.com%2Ftutorials%2Fphp%2Fsanitize-and-validate-data-with-php-filters%2F"></fb:send>
+    </div>
+      
+    <div class="facebook_btn">
+      <fb:like layout="button_count" width="100" height="21"></fb:like>
+    </div>
+      
+  </div>
+  <!-- [END] Social Media -->
+  
+    
+</div>
+
+
+
+<div class="post post_inner_article">
+
+    
+  <script type="text/javascript">
+//<![CDATA[
+$(function() { WpPostRatings({context: $('#post-2595'), post_id: 2595, rpc: 'http://net.tutsplus.com/wp-admin/admin-ajax.php', base_url: 'http://net.tutsplus.com', allow_voting: true}).init() })
+//]]&gt;
+</script><p>Data validation is an integral part of working with forms. Not only can invalid submitted data lead to security problems, but it can also break your webpage. Today, we’ll take a look at how to remove illegal characters and validate data by using the “filter_var” function.</p>
+<p><span id="more-2595"></span></p>
+<div class="tutorial_image">
+<a href="http://d2o0t5hpnwv4c1.cloudfront.net/179_dataValidation/Source%20Files.zip"><br>
+<img src="./v_files/button_src_nm.jpg" alt=""></a>
+</div>
+<p>An example can be seen below. A user has entered the text “I don’t have one” as their home page. If this data were to be entered into a database and then later retrieved as a link, the link would be broken.</p>
+<div class="tutorial_image"><img src="http://d2o0t5hpnwv4c1.cloudfront.net/179_dataValidation/form-invalid-url.png" border="0"></div>
+<p>Most people tend to think of data validation as an immensely tedious process where one either:</p>
+<ul>
+<li>Compares the data they want to validate against every possible combination they can think of.</li>
+<li>Tries to find a golden Regular Expression that will match every possible combination.</li>
+<li>A combination of the two.</li>
+</ul>
+<p>There are obvious problems with the above listed:</p>
+<ul>
+<li>It’s absolutely time consuming.</li>
+<li>There is a very high chance of error.</li>
+</ul>
+<p>Fortunately, beginning with version 5.2, PHP has included a great function called <code>filter_var</code> that takes away the pain of data validation.</p>
+<h3>filter_var In Action</h3>
+<p><code>filter_var</code> will do, both, sanitize and validate data. What’s the difference between the two?</p>
+<ul>
+<li>Sanitizing will remove any illegal character from the data.</li>
+<li>Validating will determine if the data is in proper form.</li>
+</ul>
+<p><em>Note:</em> why sanitize and not just validate? It’s possible the user accidentally typed in a wrong character or maybe it was from a bad copy and paste. By sanitizing the data, you take the responsibility of hunting for the mistake off of the user.</p>
+<h3>How to use <code>filter_var</code></h3>
+<p>Using <code>filter_var</code> is incredibly easy. It’s simply a PHP function that takes two pieces of data:</p>
+<ul>
+<li>The variable you want to check</li>
+<li>The type of check to use</li>
+</ul>
+<p>For example, the below code will remove all HTML tags from a string:</p>
+<pre name="code" class="php">$string = "&lt;h1&gt;Hello, World!&lt;/h1&gt;";
+$new_string = filter_var($string, FILTER_SANITIZE_STRING);
+// $new_string is now "Hello, World!"
+</pre>
+<p>Here’s another example — this time more difficult. The below code will ensure the value of the variable is a valid IP address:</p>
+<pre name="code" class="php">$ip = "127.0.0.1";
+$valid_ip = filter_var($ip, FILTER_VALIDATE_IP);
+// $valid_ip is TRUE
+
+$ip = "127.0.1.1.1.1";
+$valid_ip = filter_var($ip, FILTER_VALIDATE_IP);
+// $valid_ip is FALSE
+</pre>
+<p>That’s how simple it is to use <code>filter_var</code>. For a complete list of all the rules you can check against, see the end of this tutorial.</p>
+<h3>Sanitizing Example</h3>
+<p>Below is a quick example of sanitizing input from two fields: an email field and a home page field. This example will remove any characters that should not occur in either type of data.</p>
+<pre name="code" class="php">&lt;?php
+    if (isset($_POST['email'])) {
+        echo filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+        echo "&lt;br/&gt;&lt;br/&gt;";
+    }
+
+    if (isset($_POST['homepage'])) {
+        echo filter_var($_POST['homepage'], FILTER_SANITIZE_URL);
+        echo "&lt;br/&gt;&lt;br/&gt;";
+    }
+?&gt;
+
+&lt;form name="form1" method="post" action="form-sanitize.php"&gt;
+    Email Address: &lt;br/&gt;
+    &lt;input type="text" name="email" value="&lt;?php echo $_POST['email']; ?&gt;" size="50"/&gt; &lt;br/&gt;&lt;br/&gt;
+    Home Page: &lt;br/&gt;
+    &lt;input type="text" name="homepage" value="&lt;?php echo $_POST['homepage']; ?&gt;" size="50" /&gt; &lt;br/&gt;
+    &lt;br/&gt;
+    &lt;input type="submit" /&gt;
+&lt;/form&gt;
+</pre>
+<div class="tutorial_image"><img src="http://d2o0t5hpnwv4c1.cloudfront.net/179_dataValidation/form-sanitize.png" border="0"></div>
+<p>By using the <code>FILTER_SANITIZE_EMAIL</code> and <code>FILTER_SANITIZE_URL</code> constants definited by PHP, the guess work of knowing what characters are illegal is gone.</p>
+<h3>Validating Example</h3>
+<p>Just because the data is sanitized does not ensure that it’s properly formatted. In the example below, the data did not need to be sanitized, but it’s obvious that the user input is not an email or url.</p>
+<div class="tutorial_image"><img src="http://d2o0t5hpnwv4c1.cloudfront.net/179_dataValidation/form-sanitize-not-valid.png" border="0"></div>
+<p>In order to ensure the data is properly formatted, it needs to be validated.</p>
+<pre name="code" class="php">&lt;?php
+    if (isset($_POST['email'])) {
+        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "$email is a valid email address.&lt;br/&gt;&lt;br/&gt;";
+        } else {
+            echo "$email is &lt;strong&gt;NOT&lt;/strong&gt; a valid email address.&lt;br/&gt;&lt;br/&gt;";
+        }
+    }
+
+    if (isset($_POST['homepage'])) {
+        $homepage = filter_var($_POST['homepage'], FILTER_SANITIZE_URL);
+        if (filter_var($homepage, FILTER_VALIDATE_URL)) {
+            echo "$homepage is a valid URL.&lt;br/&gt;&lt;br/&gt;";
+        } else {
+            echo "$homepage is &lt;strong&gt;NOT&lt;/strong&gt; a valid URL.&lt;br/&gt;&lt;br/&gt;";
+        }
+    }
+?&gt;
+
+&lt;form name="form1" method="post" action="form-validate.php"&gt;
+Email Address: &lt;br/&gt;
+&lt;input type="text" name="email" value="&lt;?php echo $_POST['email']; ?&gt;" size="50"/&gt; &lt;br/&gt;&lt;br/&gt;
+Home Page: &lt;br/&gt;
+&lt;input type="text" name="homepage" value="&lt;?php echo $_POST['homepage']; ?&gt;" size="50" /&gt; &lt;br/&gt;
+&lt;br/&gt;
+&lt;input type="submit" /&gt;
+&lt;/form&gt;
+</pre>
+<div class="tutorial_image"><img src="http://d2o0t5hpnwv4c1.cloudfront.net/179_dataValidation/form-validate.png" border="0"></div>
+<p>Now that the data has been validated, you can be sure that the information submitted is exactly what you’re looking for.</p>
+<h3>Putting It All Together: An Email Submit Form</h3>
+<p>Now that data sanitation and validation have been covered, we’ll put those skills to use with a quick email submission form. This will by no means be of production quality — for example, no form should require a home page — but it’ll work perfect for this tutorial. The form will take 4 pieces of information:</p>
+<ul>
+<li>Name</li>
+<li>Email Address</li>
+<li>Home Page</li>
+<li>Message</li>
+</ul>
+<p>We’ll sanitize and validate against all 4 pieces of data and only send the email if they are all valid. If anything is invalid, or if any fields are blank, the form will be presented to user along with a list of items to fix. We’ll also return the sanitized data to the user in case they are unaware that certain characters are illegal. </p>
+<h3>Step 1 – Creating the Form</h3>
+<p>For the first step, simply create a form element with 5 fields: the for listed above and a submit button:</p>
+<pre name="code" class="php">&lt;form name="form1" method="post" action="form-email.php"&gt;
+    Name: &lt;br/&gt;
+    &lt;input type="text" name="name" value="&lt;?php echo $_POST['name']; ?&gt;" size="50" /&gt;&lt;br/&gt;&lt;br/&gt;
+    Email Address: &lt;br/&gt;
+    &lt;input type="text" name="email" value="&lt;?php echo $_POST['email']; ?&gt;" size="50"/&gt; &lt;br/&gt;&lt;br/&gt;
+    Home Page: &lt;br/&gt;
+    &lt;input type="text" name="homepage" value="&lt;?php echo $_POST['homepage']; ?&gt;" size="50" /&gt; &lt;br/&gt;&lt;br/&gt;
+    Message: &lt;br/&gt;
+    &lt;textarea name="message" rows="5" cols="50"&gt;&lt;?php echo $_POST['message']; ?&gt;&lt;/textarea&gt;
+    &lt;br/&gt;
+    &lt;input type="submit" name="Submit" /&gt;
+&lt;/form&gt;
+</pre>
+<h3>Step 2 – Determine if the Form was Submitted</h3>
+<p>You can check to see if a form was submitted by seeing if the submit button was “set”. Place the following code above your form:</p><div class="tutorial_image"><script type="text/javascript"><!--
+google_ad_client = "pub-9093712935949486";
+/* 300x250 nettuts middle tutsads */
+google_ad_slot = "1775681443";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<pre name="code" class="php">if (isset($_POST['Submit'])) {
+
+}
+</pre>
+<h3>Step 3 – Validating the Name and Message Field</h3>
+<p>Since both the name and message fields will be sanitized and validated the same, we’ll do them together. First, check to see if either field is blank by doing the following:</p>
+<pre name="code" class="php">if ($_POST['name'] == "")
+
+if ($_POST['message'] == "")
+</pre>
+<p>Next, sanitize them with the <code>FILTER_SANITIZE_STRING</code> constant</p>
+<pre name="code" class="php">$_POST['name'] = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+
+$_POST['message'] = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
+</pre>
+<p>Finally, check to make sure that the two fields still are not blank. This is to ensure that after removing all illegal characters, you are not left with a blank field:</p>
+<pre name="code" class="php">if ($_POST['name'] == "")
+
+if ($_POST['message'] == "")
+</pre>
+<p>We won’t do any validation on these two fields simply because there is no absolute way to validate against a Name or arbitrary message.</p>
+<p>The final code looks like this:</p>
+<pre name="code" class="php">if ($_POST['name'] != "") {
+    $_POST['name'] = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+    if ($_POST['name'] == "") {
+        $errors .= 'Please enter a valid name.&lt;br/&gt;&lt;br/&gt;';
+    }
+} else {
+    $errors .= 'Please enter your name.&lt;br/&gt;';
+}
+
+if ($_POST['message'] != "") {
+    $_POST['message'] = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
+    if ($_POST['message'] == "") {
+        $errors .= 'Please enter a message to send.&lt;br/&gt;';
+    }
+} else {
+    $errors .= 'Please enter a message to send.&lt;br/&gt;';
+}
+</pre>
+<h3>Step 4 — Validate the Email Field</h3>
+<p>The email field will be sanitized and validated just as it was earlier in the tutorial.</p>
+<p>First, check to make sure it is not blank:</p>
+<pre name="code" class="php">if ($_POST['email'] != "")</pre>
+<p>Next, sanitize it:</p>
+<pre name="code" class="php">$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);</pre>
+<p>Finally, validate it as a true email address:</p>
+<pre name="code" class="php">if (!filter_var($email, FILTER_VALIDATE_EMAIL))</pre>
+<p>The final code looks like this:</p>
+<pre name="code" class="php">if ($_POST['email'] != "") {
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors .= "$email is &lt;strong&gt;NOT&lt;/strong&gt; a valid email address.&lt;br/&gt;&lt;br/&gt;";
+    }
+} else {
+    $errors .= 'Please enter your email address.&lt;br/&gt;';
+}
+</pre>
+<h3>Step 5 — Validate the Home Page Field</h3>
+<p>Again, the home page field will be sanitized and validated the same way as earlier in the tutorial.</p>
+<p>First, make sure it is not blank:</p>
+<pre name="code" class="php">if ($_POST['homepage'] != "")</pre>
+<p>Next, sanitize it and remove any illegal characters:</p>
+<pre name="code" class="php">$homepage = filter_var($_POST['homepage'], FILTER_SANITIZE_URL)</pre>
+<p>Finally, validate it to make sure it’s a true URL:</p>
+<pre name="code" class="php">if (!filter_var($homepage, FILTER_VALIDATE_URL))</pre>
+<p>The final code looks like this:</p>
+<pre name="code" class="php">if ($_POST['homepage'] != "") {
+    $homepage = filter_var($_POST['homepage'], FILTER_SANITIZE_URL);
+    if (!filter_var($homepage, FILTER_VALIDATE_URL)) {
+        $errors .= "$homepage is &lt;strong&gt;NOT&lt;/strong&gt; a valid URL.&lt;br/&gt;&lt;br/&gt;";
+    }
+} else {
+    $errors .= 'Please enter your home page.&lt;br/&gt;';
+}
+</pre>
+<h3>Step 6 — Check for Errors and Send the Message</h3>
+<p>Now that we’ve gone through all fields, it’s time to either report the errors or send the message. Start off by assuming there were no errors:</p>
+<pre name="code" class="php">if (!$errors) {</pre>
+<p>Then build the email message:</p>
+<pre name="code" class="php">$mail_to = 'me@somewhere.com';
+$subject = 'New Mail from Form Submission';
+$message  = 'From: ' . $_POST['name'] . "\n";
+$message .= 'Email: ' . $_POST['email'] . "\n";
+$message .= 'Homepage: ' . $_POST['homepage'] . "\n";
+$message .= "Message:\n" . $_POST['message'] . "\n\n";
+</pre>
+<p>And finally, send the message:</p>
+<pre name="code" class="php">mail($to, $subject, $message);</pre>
+<p>However, if there were any errors, report them and have the user try again:</p>
+<pre name="code" class="php">echo '&lt;div style="color: red"&gt;' . $errors . '&lt;br/&gt;&lt;/div&gt;';</pre>
+<p>The completed project looks like this:</p>
+<pre name="code" class="php">&lt;?php
+
+    if (isset($_POST['Submit'])) {
+
+        if ($_POST['name'] != "") {
+            $_POST['name'] = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+            if ($_POST['name'] == "") {
+                $errors .= 'Please enter a valid name.&lt;br/&gt;&lt;br/&gt;';
+            }
+        } else {
+            $errors .= 'Please enter your name.&lt;br/&gt;';
+        }
+
+        if ($_POST['email'] != "") {
+            $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $errors .= "$email is &lt;strong&gt;NOT&lt;/strong&gt; a valid email address.&lt;br/&gt;&lt;br/&gt;";
+            }
+        } else {
+            $errors .= 'Please enter your email address.&lt;br/&gt;';
+        }
+
+        if ($_POST['homepage'] != "") {
+            $homepage = filter_var($_POST['homepage'], FILTER_SANITIZE_URL);
+            if (!filter_var($homepage, FILTER_VALIDATE_URL)) {
+                $errors .= "$homepage is &lt;strong&gt;NOT&lt;/strong&gt; a valid URL.&lt;br/&gt;&lt;br/&gt;";
+            }
+        } else {
+            $errors .= 'Please enter your home page.&lt;br/&gt;';
+        }
+
+        if ($_POST['message'] != "") {
+            $_POST['message'] = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
+            if ($_POST['message'] == "") {
+                $errors .= 'Please enter a message to send.&lt;br/&gt;';
+            }
+        } else {
+            $errors .= 'Please enter a message to send.&lt;br/&gt;';
+        }
+
+        if (!$errors) {
+            $mail_to = 'me@somewhere.com';
+            $subject = 'New Mail from Form Submission';
+            $message  = 'From: ' . $_POST['name'] . "\n";
+            $message .= 'Email: ' . $_POST['email'] . "\n";
+            $message .= 'Homepage: ' . $_POST['homepage'] . "\n";
+            $message .= "Message:\n" . $_POST['message'] . "\n\n";
+            mail($to, $subject, $message);
+
+            echo "Thank you for your email!&lt;br/&gt;&lt;br/&gt;";
+        } else {
+            echo '&lt;div style="color: red"&gt;' . $errors . '&lt;br/&gt;&lt;/div&gt;';
+        }
+    }
+?&gt;
+
+&lt;form name="form1" method="post" action="form-email.php"&gt;
+Name: &lt;br/&gt;
+&lt;input type="text" name="name" value="&lt;?php echo $_POST['name']; ?&gt;" size="50" /&gt;&lt;br/&gt;&lt;br/&gt;
+Email Address: &lt;br/&gt;
+&lt;input type="text" name="email" value="&lt;?php echo $_POST['email']; ?&gt;" size="50"/&gt; &lt;br/&gt;&lt;br/&gt;
+Home Page: &lt;br/&gt;
+&lt;input type="text" name="homepage" value="&lt;?php echo $_POST['homepage']; ?&gt;" size="50" /&gt; &lt;br/&gt;&lt;br/&gt;
+Message: &lt;br/&gt;
+&lt;textarea name="message" rows="5" cols="50"&gt;&lt;?php echo $_POST['message']; ?&gt;&lt;/textarea&gt;
+&lt;br/&gt;
+&lt;input type="submit" name="Submit" /&gt;
+&lt;/form&gt;
+</pre>
+<h3>Summary</h3>
+<p>I hope reading this tutorial gave you a good introduction to PHP’s new data filtering features. There are still many more functions and rules that were not covered, so if you’re interested in learning more, please see the <a href="http://php.net/manual/en/book.filter.php" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;php.net&#39;]);">Data Filtering</a> section in the PHP manual.</p>
+<ul class="webroundup">
+<li>Subscribe to the <a href="http://feeds.feedburner.com/nettuts" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;feeds.feedburner.com&#39;]);" title="NETTUTS RSS Feed">NETTUTS RSS Feed</a> for more daily web development tuts and articles.</li>
+</ul>
+<p>
+<script type="text/javascript"><!--digg_url = "post permalink (not digg url)"; // -->
+</script><br>
+<script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script></p>
+<div style="clear:both;padding-bottom:20px;"><fb:like layout="standard" width="450" height="30"></fb:like></div>
+<p style="text-align: center;"><!-- BuySellAds.com Zone Code -->
+</p><div id="bsap_1260864" class="bsap_1260864 bsap"></div>
+<!-- End BuySellAds.com Zone Code --><p></p>  
+    
+</div>
+            
+            <div id="marketplace-author"><div><span>Find more web development tutorials on</span> <a href="http://marketplace.tutsplus.com/?ref=NetPremium" class="author-icon site-tutsmarketplace" rel="external nofollow">Tutsmarketplace</a></div><ul><li><a href="http://marketplace.tutsplus.com/item/the-ins-and-outs-of-amazon-ec2/195567?ref=NetPremium" rel="external nofollow"><img src="./v_files/thumb.jpg" alt="" title="The Ins and Outs of Amazon EC2 only $5.00" width="80" height="80"></a></li><li><a href="http://marketplace.tutsplus.com/item/the-11-javascript-mistakes-youre-making/267373?ref=NetPremium" rel="external nofollow"><img src="./v_files/thumb(1).jpg" alt="" title="The 11 JavaScript Mistakes You&#39;re Making only $3.00" width="80" height="80"></a></li><li><a href="http://marketplace.tutsplus.com/item/create-a-media-player-and-playlist/310130?ref=NetPremium" rel="external nofollow"><img src="./v_files/media_thumb.jpg" alt="" title="Create a Media Player and Playlist only $3.00" width="80" height="80"></a></li><li><a href="http://marketplace.tutsplus.com/item/diving-into-websockets/299931?ref=NetPremium" rel="external nofollow"><img src="./v_files/websockets.jpg" alt="" title="Diving into WebSockets only $4.00" width="80" height="80"></a></li><li><a href="http://marketplace.tutsplus.com/item/build-your-own-javascript-library/159166?ref=NetPremium" rel="external nofollow"><img src="./v_files/js-library-thumb.jpg" alt="" title="Build your Own JavaScript Library only $3.00" width="80" height="80"></a></li><li><a href="http://marketplace.tutsplus.com/item/roll-your-own-templating-system-in-php/159131?ref=NetPremium" rel="external nofollow"><img src="./v_files/1a-thumb.jpg" alt="" title="Roll your Own Templating System in PHP only $4.00" width="80" height="80"></a></li><li class="last-item"><a href="http://marketplace.tutsplus.com/item/build-a-spiffy-quiz-engine/243456?ref=NetPremium" rel="external nofollow"><img src="http://s3.envato.com/files/2484586/thumb.jpg" alt="" title="Build a Spiffy Quiz Engine only $3.00" width="80" height="80"></a></li></ul></div>            
+                        
+            <div class="post_footer" style="padding-bottom: 170px;">
+            
+              <div class="enjoyed_post">
+                <span class="thumb_icon">&nbsp;</span>
+                <h5>Enjoyed this Post?</h5>
+                <p>Subscribe to our <a href="http://feeds.feedburner.com/nettuts">RSS Feed</a>, <a href="http://twitter.com/envatowebdev">Follow us on Twitter</a> or simply recommend us to friends and colleagues!</p>
+                <!-- Social Media -->
+                <div class="article_social_media">
+                  <div class="tweetmeme_btn">
+                    <a href="http://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a><script type="text/javascript" src="./v_files/widgets.js"></script>
+                  </div>
+                  <div class="facebook_send_btn left">
+                    <fb:send href="http%3A%2F%2Fnet.tutsplus.com%2Ftutorials%2Fphp%2Fsanitize-and-validate-data-with-php-filters%2F"></fb:send>
+                  </div>
+                  <div class="facebook_btn">
+                    <fb:like layout="button_count" width="100" height="21"></fb:like>
+                  </div>
+                </div>
+                <!-- [END] Social Media -->
+              </div>
+              
+              <div class="the_author">
+                <img alt="" src="http://0.gravatar.com/avatar/cd28ea5c3958757d017a897eaa6e4391?s=40&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D40&r=PG" class="avatar avatar-40 photo" height="40" width="40">                <h5>By <a href="http://net.tutsplus.com/author/joetopjian/" title="Posts by Joe Topjian">Joe Topjian</a></h5>
+                <p class="the_author_p">Rollover to read this author's bio or click through to see a full list of posts by this author.</p>
+                <div class="autor_div">
+                  I'm Joe Topjian from Calgary, Alberta. I'm seeing how long I can hack it as a freelance Systems Administrator and Web Developer before I have to go back to a cube.                  <span class="arrow">&nbsp;</span>
+                </div>
+              </div>
+              
+              <br class="clear">
+              
+                            <div class="plus_membership">
+                <div class="plus_membership_text">
+                  <a href="" class="plus_icon">Plus Premium</a>
+                  
+                  <div id="logged-in-plus-footer" style="display: none">
+
+                    <div class="plus_content wide">
+                      <h3>Hello!</h3>
+                      <p>You can grab source files and bonus tutorials from the <a href="http://tutsplus.com/plus-content/">members area</a>.</p>
+                                          </div>
+                    <div class="plus_form">
+            
+                    </div>
+                  </div>
+                  
+                  <div id="logged-out-plus-footer" style="">
+                  
+                    <div class="plus_content">
+                      <h3>Premium Members</h3>
+                      <p>Source Files, Bonus Tutorials &amp; More for all relevant Tuts+ sites in one subscription. <a href="http://tutsplus.com/amember/signup.php">Join Now</a></p>
+                    </div>
+                    <div class="plus_form">
+                      <form name="login" method="post" action="http://tutsplus.com/amember/login.php?amember_redirect_url=http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/" id="signIn">
+                        <fieldset>
+                        <input type="text" name="amember_login" id="username" class="input">
+                        <input type="password" name="amember_pass" id="password" class="input">
+                        <input type="submit" id="submit_plus" class="submit_plus" value="Sign In">
+                        </fieldset>
+                      </form>
+                    </div>
+
+                  </div>
+                  
+                </div>
+                <div class="left_corner">&nbsp;</div>
+                <div class="right_corner">&nbsp;</div>
+              </div>
+
+              
+              <script type="text/javascript">
+                if (plus_member_logged_in()) {
+                  $('#logged-in-plus-footer').show()
+                } else {
+                  $('#logged-out-plus-footer').show()
+                }
+              </script>
+              
+            </div>
+            
+            <div class="post extra_posts single">
+              <h3>Related Posts</h3>
+              <ul class="related_list"><li><a href="http://net.tutsplus.com/tutorials/php/working-with-restful-services-in-codeigniter-2/" rel="nofollow"><img src="http://nettuts.s3.amazonaws.com/183_codeIgniter/200x200.png" height="100" width="100" alt="Working with RESTful Services in CodeIgniter"></a> <div><a href="http://net.tutsplus.com/tutorials/php/working-with-restful-services-in-codeigniter-2/" rel="nofollow"><span>Working with RESTful Services in CodeIgniter</span> 141 Comments <span class="arrow"></span></a></div></li><li><a href="http://net.tutsplus.com/tutorials/php/codeigniter-from-scratch-the-calendar-library/" rel="nofollow"><img src="./v_files/200x200.jpg" height="100" width="100" alt="CodeIgniter from Scratch: The Calendar Library"></a> <div><a href="http://net.tutsplus.com/tutorials/php/codeigniter-from-scratch-the-calendar-library/" rel="nofollow"><span>CodeIgniter from Scratch: The Calendar Library</span> 137 Comments <span class="arrow"></span></a></div></li><li><a href="http://net.tutsplus.com/tutorials/php/learn-php-from-scratch-part-2/" rel="nofollow"><img src="http://nettuts.s3.amazonaws.com/Articles/011_PHPBasics/200.jpg" height="100" width="100" alt="Learn PHP from Scratch - Part 2"></a> <div><a href="http://net.tutsplus.com/tutorials/php/learn-php-from-scratch-part-2/" rel="nofollow"><span>Learn PHP from Scratch - Part 2</span> 87 Comments <span class="arrow"></span></a></div></li><li><a href="http://net.tutsplus.com/tutorials/php/display-anything-you-want-from-the-envato-api-using-php/" rel="nofollow"><img src="http://themeforest.s3.amazonaws.com/117_envatoAPI/200x200.jpg" height="100" width="100" alt="Display Anything you want from the Envato API using PHP"></a> <div><a href="http://net.tutsplus.com/tutorials/php/display-anything-you-want-from-the-envato-api-using-php/" rel="nofollow"><span>Display Anything you want from the Envato API using PHP</span> 9 Comments <span class="arrow"></span></a></div></li><li><a href="http://net.tutsplus.com/tutorials/php/codeigniter-from-scratch-day-8-ajax/" rel="nofollow"><img src="./v_files/200x200.jpg" height="100" width="100" alt="CodeIgniter from Scratch: Day 8 - AJAX"></a> <div><a href="http://net.tutsplus.com/tutorials/php/codeigniter-from-scratch-day-8-ajax/" rel="nofollow"><span>CodeIgniter from Scratch: Day 8 - AJAX</span> 143 Comments <span class="arrow"></span></a></div></li><li><a href="http://net.tutsplus.com/articles/general/language-war-php-vs-ruby-2/" rel="nofollow"><img src="http://d2o0t5hpnwv4c1.cloudfront.net/915_languageWars/language-wars.jpg" height="100" width="100" alt="Language War: PHP vs. Ruby"></a> <div><a href="http://net.tutsplus.com/articles/general/language-war-php-vs-ruby-2/" rel="nofollow"><span>Language War: PHP vs. Ruby</span> 150 Comments <span class="arrow"></span></a></div></li></ul>            </div>
+            
+            <div class="comments">  
+              
+<!-- You can start editing here. -->
+<a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/#respond" name="comments" class="add_comment_link">Add Comment</a>
+<h1 class="comments-header">Discussion <span>82 Comments</span></h1>
+
+  <div class="pagination-wrap"><div class="wp-pagenavi"><span class="pages">Comment Page 3 of 3</span><a class="prev page" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comments">«</a>
+<a class="page" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-1/#comments">1</a>
+<a class="page" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comments">2</a>
+<span class="current">3</span></div></div>  
+  <ol class="commentlist">
+  			<li class="comment even thread-even depth-1" id="comment-95306">
+				<div id="div-comment-95306" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/c71d252940743ab2db3bc1b49e33efdb?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://thetaba.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;thetaba.com&#39;]);" rel="external nofollow" class="url">taba</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-95306">
+			August 22, 2009 at 10:16 am</a>		</div>
+
+		<p>Good Stuff</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=95306#respond" onclick="return addComment.moveForm(&quot;div-comment-95306&quot;, &quot;95306&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-106828">
+				<div id="div-comment-106828" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/fd564cb6b8e0d5d3ccdbf4b8feacbaa0?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.arabaoyunlari1.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.arabaoyunlari1.com&#39;]);" rel="external nofollow" class="url">Araba Oyunları</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-106828">
+			September 15, 2009 at 6:02 am</a>		</div>
+
+		<p>thanks !! very helpful plugin</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=106828#respond" onclick="return addComment.moveForm(&quot;div-comment-106828&quot;, &quot;106828&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-even depth-1 parent" id="comment-112688">
+				<div id="div-comment-112688" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/55118ffec8d473a006ec4199938c822f?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.arabaoyunlri60.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.arabaoyunlri60.com&#39;]);" rel="external nofollow" class="url">Araba Oyunları</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-112688">
+			September 28, 2009 at 3:22 pm</a>		</div>
+
+		<p>Thanks for nice posting and usefull message</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=112688#respond" onclick="return addComment.moveForm(&quot;div-comment-112688&quot;, &quot;112688&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment odd alt depth-2" id="comment-320617">
+				<div id="div-comment-320617" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/a885ecf36e0336356e86701b37137496?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">al</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-320617">
+			October 3, 2010 at 8:27 am</a>		</div>
+
+		<p>function bbcode($s) {<br>
+	static $bbcode = array(<br>
+			‘#\[(h[1-6])\](.+?)\[/\1\]#is’			=&gt; ‘\2′,<br>
+			‘#\[p\](.+?)\[/p\]#is’					=&gt; ‘\1′,<br>
+			‘#\[b\](.+?)\[/b\]#is’					=&gt; ‘<b>\1</b>‘,<br>
+			‘#\[i\](.+?)\[/i\]#is’					=&gt; ‘<i>\1</i>‘,<br>
+			‘#\[u\](.+?)\[/u\]#is’					=&gt; ‘\1′,<br>
+			‘#\[code\](.+?)\[/code\]#is'			=&gt; '<code>\1</code>',<br>
+			'#\[(url)\=(.+?)\](.*?)\[/\1\]#is'		=&gt; '<a href="http://net.tutsplus.com/2" rel="nofollow">\3</a>',<br>
+			'#\[(url)\](.*?)\[/\1\]#is'				=&gt; '<a href="http://net.tutsplus.com/2" rel="nofollow">\2</a>',<br>
+			'#\[(email)\=(.+?)\](.*?)\[/\1\]#is'	=&gt; '<a href="mailto:\2" rel="nofollow">\3</a>',<br>
+			'#\[(email)\](.*?)\[/\1\]#is'			=&gt; '<a href="mailto:\2" rel="nofollow">\2</a>',<br>
+			'#\[(img)\](.*?)\[/\1\]#is'				=&gt; '',<br>
+			'#\[br\]#is'							=&gt; '',<br>
+			);</p>
+<p>	$r = preg_replace(array_keys($bbcode), array_values($bbcode), $s);</p>
+<p>	return $r;<br>
+}</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=320617#respond" onclick="return addComment.moveForm(&quot;div-comment-320617&quot;, &quot;320617&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+</ul>
+</li>
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-117438">
+				<div id="div-comment-117438" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/0dc539f6230740030c3c73aface55e02?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://forum.salatalik.info/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;forum.salatalik.info&#39;]);" rel="external nofollow" class="url">Forum</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-117438">
+			October 11, 2009 at 8:01 am</a>		</div>
+
+		<p>woows. Thanks</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=117438#respond" onclick="return addComment.moveForm(&quot;div-comment-117438&quot;, &quot;117438&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-even depth-1" id="comment-147596">
+				<div id="div-comment-147596" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/1655c0ca768ba3f38bc96e5e5ded10c0?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.neophytech.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.neophytech.com&#39;]);" rel="external nofollow" class="url">Neophytech</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-147596">
+			December 18, 2009 at 9:59 pm</a>		</div>
+
+		<p>nice tutorials will definitely have a go <img src="./v_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=147596#respond" onclick="return addComment.moveForm(&quot;div-comment-147596&quot;, &quot;147596&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-148285">
+				<div id="div-comment-148285" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/b8f731bb098c5bdbedb5fabb052cf8dc?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://w3spice.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;w3spice.com&#39;]);" rel="external nofollow" class="url">waqas</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-148285">
+			December 21, 2009 at 2:25 am</a>		</div>
+
+		<p>very helpful and well taught</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=148285#respond" onclick="return addComment.moveForm(&quot;div-comment-148285&quot;, &quot;148285&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-even depth-1" id="comment-157764">
+				<div id="div-comment-157764" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/3572928809f2c36cbcfca82e38a904e5?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">tamo</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-157764">
+			January 7, 2010 at 9:50 pm</a>		</div>
+
+		<p>Is it possible to hack a web form from the message box. i notice it was not validated, does this not also pose a security risk (sql injection etc)?</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=157764#respond" onclick="return addComment.moveForm(&quot;div-comment-157764&quot;, &quot;157764&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-177533">
+				<div id="div-comment-177533" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/7a82f5c8546027deff5e02e0b658892d?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.giochidiben10.it/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.giochidiben10.it&#39;]);" rel="external nofollow" class="url">Giochi di Ben 10</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-177533">
+			January 24, 2010 at 2:03 pm</a>		</div>
+
+		<p>Thanks for info. very helpfull</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=177533#respond" onclick="return addComment.moveForm(&quot;div-comment-177533&quot;, &quot;177533&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-even depth-1" id="comment-198573">
+				<div id="div-comment-198573" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/48d00b7c737424d8156b20c6b6645b95?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">Catalin</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-198573">
+			February 11, 2010 at 5:37 am</a>		</div>
+
+		<p>thanks! this is indeed a very good tutorial.</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=198573#respond" onclick="return addComment.moveForm(&quot;div-comment-198573&quot;, &quot;198573&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-198575">
+				<div id="div-comment-198575" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/48d00b7c737424d8156b20c6b6645b95?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">Catalin</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-198575">
+			February 11, 2010 at 5:38 am</a>		</div>
+
+		<p>Thanks! Indeed, this is a very good tutorial.</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=198575#respond" onclick="return addComment.moveForm(&quot;div-comment-198575&quot;, &quot;198575&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-even depth-1" id="comment-251569">
+				<div id="div-comment-251569" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/588431fb3dc9e05f3d185b539cfda0d3?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">David</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-251569">
+			April 8, 2010 at 3:34 pm</a>		</div>
+
+		<p>@tamo<br>
+No, he didn’t validate it because as he said, there is no way to validate a text string. He did sanitize the data, however, and that is what protects against SQL injection attacks and illegal characters. All data in his form was sanitized, not just the message.</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=251569#respond" onclick="return addComment.moveForm(&quot;div-comment-251569&quot;, &quot;251569&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-272074">
+				<div id="div-comment-272074" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/9dd58ff38786f947e59e79a668c45a49?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://jaiunblog.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;jaiunblog.com&#39;]);" rel="external nofollow" class="url">ben</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-272074">
+			May 4, 2010 at 2:11 am</a>		</div>
+
+		<p>Hi,</p>
+<p>An error in variable name ;¬)<br>
+//mail($to, $subject, $message);<br>
+48. mail($mail_to, $subject, $message);</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=272074#respond" onclick="return addComment.moveForm(&quot;div-comment-272074&quot;, &quot;272074&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-even depth-1" id="comment-274542">
+				<div id="div-comment-274542" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/8031fb0e8ad92c4aa0a6d79c915ef755?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.arabaoyunlarim.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.arabaoyunlarim.com&#39;]);" rel="external nofollow" class="url">araba oyunları</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-274542">
+			May 8, 2010 at 4:00 am</a>		</div>
+
+		<p>I think you had a wonder knowledge in programming language. May be you can help me lot of people with your programs who are not familiar with this one… think it of again. Thanks for the post</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=274542#respond" onclick="return addComment.moveForm(&quot;div-comment-274542&quot;, &quot;274542&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-274874">
+				<div id="div-comment-274874" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/0cabcccda8f48afbdab5ef76fb3e9211?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.vistaoyun.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.vistaoyun.com&#39;]);" rel="external nofollow" class="url">oyun</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-274874">
+			May 8, 2010 at 1:29 pm</a>		</div>
+
+		<p>thanks god error</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=274874#respond" onclick="return addComment.moveForm(&quot;div-comment-274874&quot;, &quot;274874&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-even depth-1" id="comment-287914">
+				<div id="div-comment-287914" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/e9dc8e271c69d8e4be6750eee94eff30?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://freegames.graphicedit.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;freegames.graphicedit.com&#39;]);" rel="external nofollow" class="url">FG</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-287914">
+			May 26, 2010 at 12:04 pm</a>		</div>
+
+		<p>Thanks for info. very helpfull</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=287914#respond" onclick="return addComment.moveForm(&quot;div-comment-287914&quot;, &quot;287914&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-305176">
+				<div id="div-comment-305176" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/f932dde0fcb517ae5f2d52a0195abe7d?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">tashi</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-305176">
+			June 18, 2010 at 12:14 pm</a>		</div>
+
+		<p>Good tutorial!!!!<br>
+But i guess we need to consider the version of php as the above function are available for PHP 5 &gt;= 5.2.0</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=305176#respond" onclick="return addComment.moveForm(&quot;div-comment-305176&quot;, &quot;305176&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-even depth-1" id="comment-307111">
+				<div id="div-comment-307111" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/72cd339b7b131ce688fe09b686b0ce41?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.phptechie.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.phptechie.com&#39;]);" rel="external nofollow" class="url">remote php developer</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-307111">
+			June 23, 2010 at 1:33 am</a>		</div>
+
+		<p>Hi..,<br>
+ This is a nice script. Its easy to understand and help to me..<br>
+you done a good job. <img src="./v_files/icon_smile.gif" alt=":-)" class="wp-smiley"> </p>
+<p>Thanks a lot..!</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=307111#respond" onclick="return addComment.moveForm(&quot;div-comment-307111&quot;, &quot;307111&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-316065">
+				<div id="div-comment-316065" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/24fb72fd19db368bac7619bba74b8525?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://zubiandmelmo.net/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;zubiandmelmo.net&#39;]);" rel="external nofollow" class="url">Melanie Thewlis</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-316065">
+			August 19, 2010 at 3:00 pm</a>		</div>
+
+		<p>Thanks heaps!  This was really well laid out and easy to understand.</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=316065#respond" onclick="return addComment.moveForm(&quot;div-comment-316065&quot;, &quot;316065&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-even depth-1" id="comment-323356">
+				<div id="div-comment-323356" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/a0f3fcf736e918384b31c440fda0cc35?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">Troy F.</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-323356">
+			October 27, 2010 at 11:10 am</a>		</div>
+
+		<p>Nice tutorial, code and example. </p>
+<p>Glad my webhost has the latest version of PHP to support these more contemporary filters<br>
+and validations. </p>
+<p>Thankyou for posting this.<br>
+  TAF</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=323356#respond" onclick="return addComment.moveForm(&quot;div-comment-323356&quot;, &quot;323356&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-324226">
+				<div id="div-comment-324226" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/10d8edd2d39c1e2e39944036adc570e4?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">Andre Dublin</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-324226">
+			November 5, 2010 at 10:15 am</a>		</div>
+
+		<p>Wow, this was so easy to add to my forms, thank you so much!</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=324226#respond" onclick="return addComment.moveForm(&quot;div-comment-324226&quot;, &quot;324226&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-even depth-1" id="comment-352013">
+				<div id="div-comment-352013" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/47abd467c1436c02c340914793fe8054?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.merjj.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.merjj.com&#39;]);" rel="external nofollow" class="url">Sarah Tailor</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-352013">
+			January 11, 2011 at 2:04 pm</a>		</div>
+
+		<p>Thanks,,,, really helped a lot, I was considering to code my own function to remove illegal characters but this will do <img src="./v_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=352013#respond" onclick="return addComment.moveForm(&quot;div-comment-352013&quot;, &quot;352013&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-352014">
+				<div id="div-comment-352014" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/47abd467c1436c02c340914793fe8054?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.merjj.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.merjj.com&#39;]);" rel="external nofollow" class="url">Sarah Tailor</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-352014">
+			January 11, 2011 at 2:04 pm</a>		</div>
+
+		<p>Thanks,,,, really helped a lot, I was considering to code my own function to remove illegal characters but this will do <img src="./v_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=352014#respond" onclick="return addComment.moveForm(&quot;div-comment-352014&quot;, &quot;352014&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-even depth-1" id="comment-356296">
+				<div id="div-comment-356296" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/bfca0f8a1d04c15db6f9c5f7dbe0fa50?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">meltz</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-356296">
+			February 11, 2011 at 11:34 pm</a>		</div>
+
+		<p>Nice tutorial nvn know php 5 come with this new functions but I prefer to use php empty($var) to check for blank field.</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=356296#respond" onclick="return addComment.moveForm(&quot;div-comment-356296&quot;, &quot;356296&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-356297">
+				<div id="div-comment-356297" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/bfca0f8a1d04c15db6f9c5f7dbe0fa50?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">meltz</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-356297">
+			February 11, 2011 at 11:36 pm</a>		</div>
+
+		<p>nice tutorial never know php 5 come with this new functions but I prefer to check for empty string using empty($var) function.</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=356297#respond" onclick="return addComment.moveForm(&quot;div-comment-356297&quot;, &quot;356297&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-even depth-1" id="comment-358913">
+				<div id="div-comment-358913" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/8b949460df402a0abdf05329ff1c10b0?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.devsolus.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.devsolus.com&#39;]);" rel="external nofollow" class="url">johan</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-358913">
+			March 8, 2011 at 7:51 am</a>		</div>
+
+		<p>very usuful and helpful<br>
+keep it up<br>
+thanks</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=358913#respond" onclick="return addComment.moveForm(&quot;div-comment-358913&quot;, &quot;358913&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-359306">
+				<div id="div-comment-359306" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./v_files/b73b043ec5cf0db8cdd493a8892979c4" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">Chris Kennon</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-359306">
+			March 11, 2011 at 11:09 am</a>		</div>
+
+		<p>It seems in the final example, that the mail sanitizing fails.</p>
+<p> if ($_POST['email'] != “”) {<br>
+		    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);<br>
+		    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {<br>
+		        $errors .= “$email is <strong>NOT</strong> a valid email address.”;<br>
+		    }<br>
+		} else {<br>
+		    $errors .= ‘Please enter your email address.’;<br>
+		}</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=359306#respond" onclick="return addComment.moveForm(&quot;div-comment-359306&quot;, &quot;359306&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-even depth-1" id="comment-365310">
+				<div id="div-comment-365310" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/8830eb266f48818b11ae03bb8ffcdad4?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.rimpe.net/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.rimpe.net&#39;]);" rel="external nofollow" class="url">rimpe</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-365310">
+			May 12, 2011 at 3:26 am</a>		</div>
+
+		<p>Great work. But I didnt see the php filters on any projects, like wordpress.</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=365310#respond" onclick="return addComment.moveForm(&quot;div-comment-365310&quot;, &quot;365310&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-366724">
+				<div id="div-comment-366724" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./v_files/bcda6ffce2a02fde93792e4ac63c28c2" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.onefastsnail.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.onefastsnail.com&#39;]);" rel="external nofollow" class="url">Paul Stewart</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-366724">
+			May 27, 2011 at 4:30 pm</a>		</div>
+
+		<p>Good post <img src="./v_files/icon_smile.gif" alt=":)" class="wp-smiley"> . This is just an teaser of what it can do! Amen to good old regex!</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=366724#respond" onclick="return addComment.moveForm(&quot;div-comment-366724&quot;, &quot;366724&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-even depth-1" id="comment-369388">
+				<div id="div-comment-369388" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./v_files/505d6968626491df3ad46af0efa60a16" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.datakey.co.za/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.datakey.co.za&#39;]);" rel="external nofollow" class="url">John S</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-369388">
+			June 27, 2011 at 3:36 am</a>		</div>
+
+		<p>thanks for the awesome article! </p>
+<p>I started implementing the above validation in my code, but then stumbled onto a plug and play type of validation class at <a href="http://github.com/Wixel/GUMP" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-comment&#39;,&#39;github.com&#39;]);" rel="nofollow">http://github.com/Wixel/GUMP</a> – this was immensely helpful. </p>
+<p>Someone else might find it useful.</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=369388#respond" onclick="return addComment.moveForm(&quot;div-comment-369388&quot;, &quot;369388&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-369556">
+				<div id="div-comment-369556" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/2a34aad852d61b9cdc0360e81004fac1?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">Online Calculator</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-2/#comment-369556">
+			June 28, 2011 at 9:47 am</a>		</div>
+
+		<p>i m finding Browse file system any Programmer Help me ? ? ?</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/?replytocom=369556#respond" onclick="return addComment.moveForm(&quot;div-comment-369556&quot;, &quot;369556&quot;, &quot;respond&quot;, &quot;2595&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+  </ol>
+  
+  <div class="pagination-wrap"><div class="wp-pagenavi"><span class="pages">Comment Page 2 of 2</span><a class="prev page" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-1/#comments">«</a>
+<a class="page" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/comment-page-1/#comments">1</a>
+<span class="current">2</span></div></div>	
+
+
+<div id="respond">
+  
+  <a name="respond"></a>
+	<h1>Add a Comment</h1>
+
+		
+		<form action="http://net.tutsplus.com/wp-comments-post.php" method="post" id="commentform">
+
+		
+			<p class="input_block">
+		    <label for="author">Name</label>
+				<input type="text" name="author" class="txt" id="author" value="" size="22" tabindex="1">
+			</p>
+
+			<p class="input_block">
+		    <label for="email">Email Address</label>
+				<input type="text" name="email" class="txt" id="email" value="" size="22" tabindex="2">
+			</p>
+
+			<p class="input_block">
+		    <label for="url">URL</label>
+				<input type="text" name="url" class="txt" id="url" value="" size="22" tabindex="3">
+			</p>
+
+		
+		<p class="textarea_block">
+		  <label for="comment">Your Comments</label>
+		  <textarea name="comment" id="comment" rows="15" cols="50" tabindex="4"></textarea>
+		</p>
+		
+				<p class="textarea_block">
+		  To add a code snippet to your comment, please wrap your code like so: &lt;pre name="code" class="html"&gt;YOUR CODE&lt;/pre&gt;. You can replace the class name with "js," "css," "sql," or "php." If there are any "&lt;" or "&gt;" within your code, please search and replace them with: &amp;lt; and &amp;gt; respectively. 
+		</p>
+				
+		<div class="cancel-comment-reply">
+		  <a rel="nofollow" id="cancel-comment-reply-link" href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/#respond" style="display:none;">Click here to cancel reply.</a>    </div>
+
+		<input name="submit" type="submit" id="add_comment" tabindex="5" value="Add Comment">
+		<input type="hidden" name="comment_post_ID" value="2595">
+		
+		<input type="hidden" name="comment_post_ID" value="2595" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+		<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="0d8d808682"></p>
+		</form><!-- /#commentform -->
+
+	
+</div><!-- /#respond -->
+
+            </div>
+          
+            	
+            
+              		  
+        </div>
+        
+      </div>
+      <!-- [END] Page -->
+
+    </div>
+    <!-- [END] Page Wrap -->
+		
+    <!-- sidebar -->
+    <div id="sidebar">
+
+      <!-- Subscriptions -->
+<div class="sidebar_subscribe">
+
+  <ul class="get_updates">
+    <li class="sm_rss"><a href="http://feeds.feedburner.com/nettuts">RSS Updates</a></li>
+    <li class="sm_email"><a href="http://feedburner.google.com/fb/a/mailverify?uri=nettuts">Email Updates</a></li>
+    <li class="sm_twitter"><a href="http://twitter.com/envatowebdev">Twitter</a></li>
+    <li class="sm_facebook"><a href="http://facebook.com/nettutsplus">Facebook</a></li>
+  </ul>
+  
+    <div class="feedburner_count s_count">
+    <span class="side-link"><em>RSS Subscribers</em> 
+      <a href="http://feeds.feedburner.com/nettuts">
+        84,351      </a>
+    </span>
+  </div>
+    
+    <div class="twitter_count s_count">
+    <span class="side-link"><em>Twitter Followers</em> 
+      <a href="http://twitter.com/envatowebdev">
+        43,391      </a>
+    </span>
+  </div>
+    
+    <div class="facebook_count s_count">
+    <span class="side-link"><em>Facebook Fans</em> 
+      <a href="http://facebook.com/nettutsplus">
+        17,509      </a>
+    </span>
+  </div>
+    
+</div>
+<!-- [END] Subscriptions -->
+
+<!-- Sidebar Ad Zone -->
+<div id="ads" style="">
+  <div id="bsap_1616" class="bsap_1616 bsap"></div>  <a href="http://buysellads.com/buy/view/id/197" class="side_advert_here">Advertise Here</a>
+</div>
+<script type="text/javascript">
+  if (!plus_member_logged_in()) {
+    $('#ads').show()
+  }
+</script>
+<!-- [END] Sidebar Ad Zone -->
+
+
+<!-- Plus Members -->
+
+<div id="plus-sidebar-logged-out" style="">
+  <img src="http://net.tutsplus.com/wp-content/themes/tuts/images/global/access-premium.jpg" alt="Become a member for access to over 500 bonus tutorials and 1000 source files.">
+  <a href="http://tutsplus.com/amember/go.php?r=51841&i=l2" id="plus-big-button" rel="external">Learn More...</a>
+  <p>Already a member? <a href="http://tutsplus.com/amember/login.php?amember_redirect_url=http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/">Sign In</a></p>
+</div>
+
+<div class="plus_member" id="plus-sidebar-logged-in" style="display: none">
+  <div class="plus_icon">
+    Plus Icon
+  </div>
+  <div class="plus_text">
+    <h3>Hello!</h3>
+    <p>Source Files, Bonus Tutorials &amp; More for all relevant Tuts+ sites in one subscription</p>
+    <ul>
+      <li><a href="http://tutsplus.com/plus-content/">Members Area</a></li>
+      <li><a id="sidebar_logout_link" href="http://tutsplus.com/amember/logout.php?amember_redirect_url=http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/">Logout</a></li>
+    </ul>
+  </div>
+</div>
+
+<script type="text/javascript">
+  if ( plus_member_logged_in() ) {
+    $('#plus-sidebar-logged-in').show()
+  } else {
+    $('#plus-sidebar-logged-out').show()
+  }
+</script>
+
+<!-- [END] Plus Members -->
+
+<!-- Rockable Book -->
+      <div class="rockable_book">
+        <div class="rockable_book_icon">
+          <a href="http://rockablepress.com/books/rockstar-wordpress-designer/" rel="external nofollow"><img src="http://rockable.s3.amazonaws.com/covers/135_wordpress.png" alt="Rockstar WordPress Designer"></a>
+        </div>
+        <div class="rockable_book_text">
+      		<h3 class="side-link"><a href="http://rockablepress.com/books/rockstar-wordpress-designer/" rel="external nofollow">Rockstar WordPress Designer</a></h3>
+          <p>You’ll build THREE WordPress themes before the end of the book. Each project teaches you different aspects of WordPress theming and all three are packaged in with the book so you’ll have Photoshop, HTML, CSS and WordPress PHP files to refer to.</p>
+          <ul>
+            <li><a href="http://rockablepress.com/books/rockstar-wordpress-designer/" rel="external nofollow">Find Out More</a></li>
+          </ul>
+        </div>
+      </div>
+<!-- [END] Rockable Book -->
+
+<!-- Series/Session -->
+<!-- [END] Series/Session -->
+
+<!-- Snipplr -->
+<!-- [END] Snipplr -->
+
+<!-- Social Networking -->
+<div id="social_networking">
+
+  <ul class="tabs">
+    <li><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/#facebook_tab" class="tab_2">Facebook</a></li>
+		<li><a href="http://net.tutsplus.com/tutorials/php/sanitize-and-validate-data-with-php-filters/#twitter_tab" class="tab_1">Twitter</a></li>			</ul>
+  
+  <!-- Facebook -->  
+  <div id="facebook_tab" class="tab_div">
+
+  </div>
+  <!-- [END] Facebook -->
+  
+  <!-- Twitter -->
+    <div id="twitter_tab" class="tab_div">
+    <h3>Follow <a href="http://twitter.com/envatowebdev">Nettuts+</a> and <a href="http://twitter.com/tutsplus">Tuts+</a> on Twitter</h3>
+    <ul><li><a href="http://www.twitter.com/Sitebase">@Sitebase</a> Press r</li><li>Brand new AudioJungle Podcast Out Now! If you like <a href="http://twitter.com/#search?q=%23Dubstep" rel="external">#Dubstep</a>, you're in for a big treat! <a href="http://enva.to/traxpodcast">http://enva.to/traxpodcast</a></li><li><a href="http://www.twitter.com/GoGoGarrett">@GoGoGarrett</a> Disabled right now.</li><li>So this is the part where I go to competing social networks and say, "Let's be friends on Google+" - <a href="http://t.co/NACIwpv">http://t.co/NACIwpv</a></li></ul>  </div>
+    <!-- [END] Twitter -->
+  
+  <!-- Flickr -->
+    <!-- [END] Flickr -->
+
+</div>
+<!-- [END] Social Networking -->
+
+<!-- MailChimp -->
+<!-- [END] MailChimp -->
+
+<!-- Popular Marketplace Items --><div class="marketplace-wrap"><div class="marketplace-popular"><div class="site-codecanyon"><h3>Top Selling</h3> <span>on <a href="http://codecanyon.net/?ref=NetPremium" rel="external nofollow">Codecanyon</a></span></div><ul><li><a href="http://codecanyon.net/item/css3-mega-drop-down-menu/126387?ref=NetPremium" rel="external nofollow" title="CSS3 Mega Drop Down Menu"><img src="http://s3.envato.com/files/2399515/thumbnail.jpg" alt="" width="80" height="80">CSS3 Mega Drop Down Menu only $5.00 <span>by Keliah</span></a></li><li><a href="http://codecanyon.net/item/sticklr-sticky-side-panel-css3-jquery-plugin/302039?ref=NetPremium" rel="external nofollow" title="Sticklr - Sticky Side Panel CSS3 + jQuery Plugin"><img src="http://s3.envato.com/files/3474037/sticklr-thumb.png" alt="" width="80" height="80">Sticklr - Sticky Side Panel  ... only $5.00 <span>by amatyr4n</span></a></li></ul></div></div><!-- [END] Popular Marketplace Items -->
+<div class="marketplace-popular"><div class="site-tutsmarketplace"><h3>New Tutorials</h3> <span>on <a href="http://marketplace.tutsplus.com/?ref=NetPremium" rel="external nofollow">Tuts+ Marketplace</a></span></div><ul><li><a href="http://marketplace.tutsplus.com/item/create-a-media-player-and-playlist/310130?ref=NetPremium" rel="external nofollow" title="Create a Media Player and Playlist"><img src="./v_files/media_thumb.jpg" alt="" width="80" height="80">Create a Media Player and Pl ... only $3.00 <span>by NetPremium</span></a></li><li><a href="http://marketplace.tutsplus.com/item/diving-into-websockets/299931?ref=NetPremium" rel="external nofollow" title="Diving into WebSockets"><img src="./v_files/websockets.jpg" alt="" width="80" height="80">Diving into WebSockets only $4.00 <span>by NetPremium</span></a></li></ul></div>
+<!-- Sessions -->
+<!-- [END] Sessions -->
+
+<!-- Creattica Images -->
+<div class="creattica">
+  <a href="http://feedproxy.google.com/~r/creattica-css/~3/hzXaZgKPWtA/63137" rel="external nofollow"><img src="./v_files/320x260.jpg" alt="" class="creattica_item"></a><p>Jad Limcaco - San Jose Web Designer - <a href="http://creattica.com/css/latest-designs" rel="external nofollow">More</a></p><span class="creattica_img"></span></div>
+<!-- [END] Creattica Images -->
+
+<!-- Jobs -->
+<div id="fsjobs">
+   
+	<div id="fsjobs_header">
+		Freelance Jobs
+	</div>
+	<div id="fsjobs_body">
+    <ul id="fsjobs_list">
+    </ul>
+    <span class="side_job_number"> </span>
+    <a href="http://jobs.freelanceswitch.com/" class="more_jobs" title="Freelance Job Board">More Freelance Jobs...</a>
+  </div>
+</div>
+<!-- [END] Jobs -->
+
+<!-- Basix -->
+<div class="side_basix">
+
+  <div class="basix_logo">
+    Basix
+  </div>
+  
+  <div class="basix_text">
+    <h3 class="side-link"><a href="http://net.tutsplus.com/tag/basix/">
+    Web Basix</a></h3>
+    <p>Just getting started? Start with our basix tutorials on the fundamentals. <a href="http://net.tutsplus.com/tag/basix/">View All Basix Tutorials</a></p>
+  </div>
+  
+</div>
+<!-- [END] Basix -->
+
+<!-- Write For Us -->
+<div class="write_for_us">
+
+  <h3 class="side-link"><a href="http://net.tutsplus.com/about/write-a-tutorial/">Create a Tutorial, Get Paid!</a></h3>
+  <p>Have something to teach the world? Want to earn money doing it? Tutorials, screencasts, and articles published here on Nettuts+ are largely contributed by readers just like you! We'll pay you great money for good content. <a href="http://net.tutsplus.com/about/write-a-tutorial/">Find Out More</a></p>
+  
+</div>
+<!-- [END] Write For Us -->
+
+<!-- Other Networks -->
+<div class="other_networks">
+    <div class="network smashing">
+    <h3 class="side-link"><a href="http://www.smashingmagazine.com/the-smashing-network/" rel="external nofollow" title="Link to the Smashing Network">Smashing</a></h3>
+    <p>This site is part of the Smashing network.</p>
+  </div>
+  </div>
+<!-- [END] Other Networks -->
+      
+    </div>
+    <!-- [END] Sidebar -->
+	
+  </div>
+  <!-- [END] Content -->
+  
+</div>
+<!-- [END] Content Wrap -->
+
+<!-- Footer -->
+<div id="footer_wrap">
+  <div id="footer">
+    <div class="footer_inner">
+    
+      <div class="power_up">
+        <a href="http://net.tutsplus.com/" class="footer_logo">Nettuts+</a>
+        <p class="plus_network">Part of the Plus education network</p>
+        <a href="http://envato.com/" class="powered_by">Powered by: Envato</a>
+      </div>
+      
+      <ul class="get_updates">
+        <li class="sm_rss"><a href="http://feeds.feedburner.com/nettuts">RSS Updates</a></li>
+        <li class="sm_email"><a href="http://feedburner.google.com/fb/a/mailverify?uri=nettuts">Email Updates</a></li>
+        <li class="sm_twitter"><a href="http://twitter.com/envatowebdev">Twitter</a></li>
+        <li class="sm_facebook"><a href="http://facebook.com/nettutsplus">Facebook</a></li>
+      </ul>
+      
+      <ul class="footer_links">
+        <li class="first">Copyright © 2011 <a href="http://envato.com/">Envato</a></li>
+        <li><a href="http://buysellads.com/buy/view/id/197">Advertise</a></li>
+        <li><a href="http://www.formstack.com/forms/envato-tuts__contact_form">Suggestions</a></li>
+        <li><a href="http://net.tutsplus.com/about/">About Us</a></li>
+        <li><a href="http://wefunction.com/" rel="nofollow external">Icons by WeFunction</a></li>
+              </ul>
+      
+    </div>
+  </div>
+</div>
+<!-- [END] Footer -->
+
+<script type="text/javascript">
+  // Sample image replacement
+  $(window).load(function(){
+    var regex = /sample.png/;
+    var newimage = 'http://net.tutsplus.com/wp-content/themes/tuts/images/global/adhere_330.jpg';
+    if($('img', '.bsa_it_i').attr("src",regex)) {
+      $('img', '.bsa_it_i').attr("src",newimage);
+    } 
+  });
+
+  // comment-ribbon 
+  $(function() {
+    $('.is-staff, .is-author').addClass('highlighted').children('div').wrapInner('<div class="wrap-comment" />');
+  });
+
+  // session list text
+	/*
+$('.session-list li').hover(function(){
+    $(".session-block", this).slideDown('fast');
+	}, function() {
+		$(".session-block", this).stop(true, true).slideUp('fast');
+	});
+*/
+  (function($) {
+    $(document).ready(function() {
+      var list_count = $('.single-post .session-list ul').children().length;
+      if ( list_count > 1 ) {
+        $('.single-post .session-post em').append(' - <a href="JavaScript:void(0);" class="show-all">Show All</a>');
+      }
+      $('a.show-all').click(function() {
+        $('.session-list').toggle();
+      });
+    });
+  })(jQuery);
+</script>
+<script type="text/javascript" src="./v_files/widget.js"></script>
+				<script type="text/javascript"><!--
+			var seriesdropdown = document.getElementById("orgseries_dropdown");
+			if (seriesdropdown) { 
+			 function onSeriesChange() {
+					if ( seriesdropdown.options[seriesdropdown.selectedIndex].value != ( 0 || -1 ) ) {
+						location.href = "http://net.tutsplus.com/series/"+seriesdropdown.options[seriesdropdown.selectedIndex].value;
+					}
+				}
+				seriesdropdown.onchange = onSeriesChange;
+			}
+			--></script>
+			<script type="text/javascript">
+/* <![CDATA[ */
+var mcapi = {
+	url: "http://net.tutsplus.com/wp-content/themes/tuts/functions/mc/mail-chimp.php"
+};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./v_files/mail-chimp.js"></script>
+<script class="javascript" src="./v_files/shCore.js"></script>
+<script class="javascript" src="./v_files/shBrushAll.js"></script>
+	<script class="javascript">
+dp.SyntaxHighlighter.ClipboardSwf = 'http://net.tutsplus.com/wp-content/plugins/google-syntax-highlighter/Scripts/clipboard.swf';
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+<script type="text/javascript" charset="utf-8">NREUMQ.push(["nrf2","beacon-1.newrelic.com","fcf8d519de",85036,"WQQXTEVBTUJBWk0WH1QODk1FQU1eQ19ZCUIYEQsSHkdYX1hCUR9UGgANBhxCWF1YUlkRVBoFAhZQGU5YRV4VFVlHTAULXUBcQ0IZ",0,768])</script><!-- 153 queries. 0.768 seconds -->
+
+
+
+<!-- Dynamic Page Served (once) in 0.769 seconds -->
+</body></html>

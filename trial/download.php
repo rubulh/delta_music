@@ -1,0 +1,56 @@
+<?php 
+require_once("/var/www/take/files/thekey.php");
+
+//ONE HAS TO FIX THIS LINE;;SEE IF IT CAN BE DONE WITHOUT USING DIRECT FILE NAMES AND FOLDER NAMES
+?>
+
+<?php
+session_start();
+//var_dump($_COOKIE);
+//var_dump($_COOKIE['authkey']);exit();
+
+    
+$the_current_timestamp_downloadhandler=time();
+$thesong_key=$_POST['anchor'];
+//get the file path
+//put it for download
+//update users database downloaded-timestamp
+//update song databse downloads+1;
+$connection_downloadhandler=mysqli_connect($_SERVER['HTTP_HOST'],$sqlusername,$sqlpassword,$databasename);
+//select general databse
+//extract song download path
+//and download times
+$basicdatabase_select_downloadhandler=mysqli_select_db($connection_downloadhandler,$databasename);
+$query_extract_song_details="select download_path,times_download,kick_song_index from allsongs where the_anchor='$thesong_key'";
+$result_extract_song_details=mysqli_query($connection_downloadhandler,$query_extract_song_details)or die(mysqli_error($connection_downloadhandler));
+$answer_extract_song_details=mysqli_fetch_array($result_extract_song_details);
+//var_dump($answer_extract_song_details);echo "ioioioio1<br><br>";
+$the_download_path=$answer_extract_song_details['download_path'];
+$the_times_downloaded=$answer_extract_song_details['times_download'];
+$apparent_song_key=$answer_extract_song_details['kick_song_index'];
+$the_times_downloaded+=1; 
+?>
+ <?php
+ 
+ $connection=mysqli_connect('localhost' ,'root','maa');
+ 
+ $file = 'http://localhost/03.mp3' ;
+
+if (file_exists($file)) {
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename='.basename($file));
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($file));
+    ob_clean();
+    flush();
+    readfile($file);
+    
+}
+else{echo  "in correct";}
+
+$cn_close=mysqli_close($connection);
+   ?>

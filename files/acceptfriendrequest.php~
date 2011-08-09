@@ -1,0 +1,140 @@
+<?php 
+require_once("/var/www/take/files/thekey.php");
+
+//ONE HAS TO FIX THIS LINE;;SEE IF IT CAN BE DONE WITHOUT USING DIRECT FILE NAMES AND FOLDER NAMES
+?>
+
+<?php
+//remove the row from all requests
+//from fr_sent
+//fr_recieved
+//transfer the email id to friends
+session_start();
+$the_current_email_afr=$_SESSION['email_id'];
+$the_friend_requester_profile_string=$_POST['friendaccfrom'];//its profile string;;;;ll correct later
+$connection_afr=mysqli_connect($_SERVER['HTTP_HOST'],$sqlusername,$sqlpassword,$databasename);;
+$the_current_timestamp=time();
+$the_current_time=date("G-i-s");
+$the_true_date=date("d-M-Y");
+//get the friend name_email_from_allrequests
+//place_friend name-in friends-both chart
+//remove_from all reuests
+//remove from fr_in
+//remove from fr_outc where
+
+//remove from frout
+$query_remove_from_fr_out="select fr_out,email_id from users_basic where profile_string='$the_friend_requester_profile_string'";
+
+
+
+//var_dump($query_remove_from_fr_out);echo"<br>";
+
+
+
+$result_remove_from_fr_out=mysqli_query($connection_afr,$query_remove_from_fr_out);//or die(mysqli_error($connection_afr));
+$answer_remove_from_fr_out=mysqli_fetch_array($result_remove_from_fr_out);
+
+
+//var_dump($answer_remove_from_fr_out);
+
+
+
+$old_fr_out_afr=$answer_remove_from_fr_out['fr_out'];
+$the_friend_requester_email=$answer_remove_from_fr_out['email_id'];
+//$new_fr_out=$the_current_email_afr.'(`#$&^@!--`)'.$old_fr_out_afr;
+$new_fr_out=str_replace($the_current_email_afr.'(`#$&^@!--`)','',$old_fr_out_afr);
+//var_dump($the_current_email_afr.'(<{`@`+=&&@^&)');
+//echo "<br>";
+//var_dump($new_fr_out);
+
+
+
+$query_update_fr_out="update users_basic set fr_out='$new_fr_out' where email_id='$the_friend_requester_email'";
+//echo "<br>";
+//var_dump($query_update_fr_out);
+$result_update_fr_out=mysqli_query($connection_afr,$query_update_fr_out)or die(mysqli_error($connection_afr));//or die(mysqli_error($connection_afr));
+if(mysqli_affected_rows($connection_afr))
+	{
+	//confirm
+	}
+//remove from fr in
+$query_remove_from_fr_in="select fr_in from users_basic where email_id='$the_current_email_afr'";
+$result_remove_from_fr_in=mysqli_query($connection_afr,$query_remove_from_fr_in);
+$answer_remove_from_fr_in=mysqli_fetch_array($result_remove_from_fr_in);
+//echo "<br>";
+//var_dump($answer_remove_from_fr_out);
+//echo "<br>";echo "sgfhd";
+
+$old_fr_in_afr=$answer_remove_from_fr_in['fr_in'];
+$new_fr_in=str_replace($the_friend_requester_email.'(`#$&^@!--`)','',$old_fr_in_afr);
+//var_dump($new_fr_in);echo "<br>";
+$query_update_fr_in="update users_basic set fr_in='$new_fr_in' where email_id='$the_current_email_afr'";
+$result_update_fr_in=mysqli_query($connection_afr,$query_update_fr_in);
+if(mysqli_affected_rows($connection_afr))
+	{
+	//confirm
+	}
+//insert reciever to frinends
+$query_get_reciever_friends="select friends from users_basic where email_id='$the_current_email_afr'";
+$result_get_reciever_friends=mysqli_query($connection_afr,$query_get_reciever_friends);//or die(mysqli_error($connection_afr));;
+$answer_get_reciever_friends=mysqli_fetch_array($result_get_reciever_friends);
+$friends_get_reciever_friends=$answer_get_reciever_friends['friends'];
+$new_friends_string=$the_friend_requester_email.'(`#$&^@!--`)'.$friends_get_reciever_friends;
+//var_dump($new_friends_string);
+$query_update_reciever_friends="update users_basic set friends='$new_friends_string' where email_id='$the_current_email_afr'";
+$result_update_reciever_friends=mysqli_query($connection_afr,$query_update_reciever_friends);//or die(mysqli_error($connection_afr));
+if(mysqli_affected_rows($connection_afr))
+{
+//confirm
+}
+
+//insert reciever to frinends
+$query_get_sender_friends="select friends,username,registration_timestamp from users_basic where email_id='$the_friend_requester_email'";
+$result_get_sender_friends=mysqli_query($connection_afr,$query_get_sender_friends);
+$answer_get_sender_friends=mysqli_fetch_array($result_get_sender_friends);
+$friends_get_sender_friends=$answer_get_sender_friends['friends'];
+$username_get_sender_friends=$answer_get_sender_friends['username'];
+$friends_get_sender_friends=$answer_get_sender_friends['registration_timestamp'];
+
+$new_friends_string_again=$the_current_email_afr.'(`#$&^@!--`)'.$friends_get_sender_friends;
+$query_update_sender_friends="update users_basic set friends='$new_friends_string_again' where email_id='$the_friend_requester_email'";
+$result_update_sender_friends=mysqli_query($connection_afr,$query_update_sender_friends);
+if(mysqli_affected_rows($connection_afr))
+{
+//confirm
+}
+
+
+
+
+
+
+
+$query_get_the_reciever_database="select username,profile_string,registration_timestamp from users_basic where email_id='$the_current_email_afr'";
+$result_get_the_reciever_database=mysqli_query($connection_afr,$query_get_the_reciever_database);
+$answer_get_the_reciever_database=mysqli_fetch_array($result_get_the_reciever_database);
+$username_answer_get_the_reciever_database=$answer_get_the_reciever_database['username'];
+$profile_string_answer_get_the_reciever_database=$answer_get_the_reciever_database['profile_string'];
+$registration_timstamp_get_the_reciever_database=$answer_get_the_reciever_database['registration_timestamp'];
+$database_fr_reciever=$username_answer_get_the_reciever_database.'___'.$the_current_email_afr.'___'.$registration_timstamp_get_the_reciever_database;;
+
+//remove from alrequests
+$change_database=mysqli_select_db($connection_afr,$database_fr_reciever)or die(mysqli_error($connection_afr));
+$remove_from_allrequests="delete from allrequests where category='friend_requests' and email_id_requester='$the_friend_requester_email'";var_dump($remove_from_allrequests);
+$resultremove_from_allrequests=mysqli_query($connection_afr,$remove_from_allrequests)or die(mysqli_error($connection_afr));;var_dump(mysqli_affected_rows($connection_afr));
+if(mysqli_affected_rows($connection_afr))
+{
+//confirm
+}
+$put_a_notification_in_reciever_current_email="insert into all_notifications (notification_by,notification_by_profile_string,notification_by_email,notification_category,notification_details,notification_timestamp,notification_time_24,notification_date) values('$username_get_sender_friends','$the_friend_requester_profile_string','$the_friend_requester_email','friend_request_held','','$the_current_timestamp','$the_current_time','$the_true_date')";
+$result_put_notification_in_current=mysqli_query($connection_afr,$put_a_notification_in_reciever_current_email)or die(mysqli_error($connection_afr));echo "%%%%%%%%%";
+if(mysqli_affected_rows($connection_afr)){;;}//confirm here
+
+$the_friend_req_sender_database=$username_get_sender_friends.'___'.$the_friend_requester_email.'___'.$friends_get_sender_friends;
+$database_onto_the_fr_sender=mysqli_select_db($connection_afr,$the_friend_req_sender_database)or die(mysqli_error($connection_afr));
+$put_a_notification_in_sender="insert into all_notifications (notification_by,notification_by_profile_string,notification_by_email,notification_category,notification_details,notification_timestamp,notification_time_24,notification_date) values('$username_answer_get_the_reciever_database','$profile_string_answer_get_the_reciever_database','$the_current_email_afr','friend_request_accepted','','$the_current_timestamp','$the_current_time','$the_true_date')";
+$result_put_notification_in_sender=mysqli_query($connection_afr,$put_a_notification_in_sender)or die(mysqli_error($connection_afr));
+if(mysqli_affected_rows($connection_afr)){;;}//confirm here
+
+;
+?>

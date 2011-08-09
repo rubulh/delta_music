@@ -1,0 +1,710 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Chaining a bind and trigger with jQuery to elminiate functions &laquo;  Rip&#039;s Domain</title>
+<link rel="stylesheet" href="http://s2.wp.com/wp-content/themes/pub/journalist-13/style.css?m=1308958605g" type="text/css" media="screen" />
+<link rel="pingback" href="http://rip747.wordpress.com/xmlrpc.php" />
+<link rel="alternate" type="application/rss+xml" title="Rip&#039;s Domain &raquo; Feed" href="http://rip747.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Rip&#039;s Domain &raquo; Comments Feed" href="http://rip747.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Rip&#039;s Domain &raquo; Chaining a bind and trigger with jQuery to elminiate&nbsp;functions Comments Feed" href="http://rip747.wordpress.com/2008/07/17/chaining-a-bind-and-trigger-with-jquery-to-elminiate-functions/feed/" />
+<script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<link rel="stylesheet" href="http://s0.wp.com/wp-content/themes/h4/global.css?m=1308958548g" type="text/css" />
+<link rel='stylesheet' id='sharedaddy-css'  href='http://s0.wp.com/wp-content/mu-plugins/post-react-1/sharing/sharing.css?m=1308958544g&#038;ver=MU' type='text/css' media='all' />
+<script type='text/javascript' src='http://s1.wp.com/wp-includes/js/l10n.js?m=1308958540g&amp;ver=20101110'></script>
+<script type='text/javascript' src='http://s0.wp.com/wp-includes/js/jquery/jquery.js?m=1308958540g&amp;ver=1.6.1'></script>
+<script type='text/javascript' src='http://s1.wp.com/wp-includes/js/comment-reply.js?m=1308958540g&amp;ver=20090102'></script>
+<link rel='stylesheet' id='highlander-comments-css'  href='http://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1309455922g&#038;ver=20110620' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='http://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1308958544g&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://rip747.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://rip747.wordpress.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='index' title='Rip&#039;s Domain' href='http://rip747.wordpress.com/' />
+<link rel='prev' title='My many&nbsp;hats' href='http://rip747.wordpress.com/2008/07/10/my-many-hats/' />
+<link rel='next' title='Open source&nbsp;comedy' href='http://rip747.wordpress.com/2008/07/18/open-source-comedy-2/' />
+<meta name="generator" content="WordPress.com" />
+<link rel='canonical' href='http://rip747.wordpress.com/2008/07/17/chaining-a-bind-and-trigger-with-jquery-to-elminiate-functions/' />
+<link rel='shortlink' href='http://wp.me/p1eRu-6Z' />
+<link rel="shortcut icon" type="image/x-icon" href="http://s1.wp.com/i/favicon-stacked.ico?m=1308958539g" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="http://s1.wp.com/i/favicon-stacked.ico?m=1308958539g" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="http://s0.wp.com/wp-content/themes/h4/i/webclip.png?m=1308958547g" />
+<link rel='openid.server' href='http://rip747.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='http://rip747.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="http://rip747.wordpress.com/osd.xml" title="Rip&#039;s Domain" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding: 0 !important;margin: 0 !important;}</style>
+	<style type="text/css">
+	/* <![CDATA[ */
+				div#likes { margin-top: 15px; }
+		.like-button { border: 1px solid #eee; padding: 2px 6px; font-size: 13px; font-family: arial, tahoma, sans-serif; }
+		#wpl-likebox { clear: left; font-size: 11px; font-family: arial, tahoma, verdana, sans-serif !important; min-height: 30px; margin: 10px 0 !important; padding: 5px 0 10px 0 !important; }
+		#wpl-button { float: left; background: url( http://s0.wp.com/i/buttonbg.png ) top left repeat-x; margin-right: 7px; border: 1px solid #d4d4d4; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+		#wpl-button a { border-bottom: none !important; color: #666 !important; line-height: 130% !important; text-decoration: none !important; outline: none; float: left; padding: 3px 6px 2px 24px !important; font-size: 11px !important; background: url( http://s1.wp.com/i/likestar.png ) 6px 49.8% no-repeat; }
+		#wpl-button a:hover { border-bottom: none !important; }
+		#wpl-button.liked { background: #feffce; border: 1px solid #f3e389; }
+		#wpl-button.liked a { color: #ba871b !important; }
+		#wpl-likebox #wpl-count { min-height: 25px; line-height: 130% !important; float: left; padding-top: 4px; }
+		#wpl-likebox #wpl-avatars { clear: left; max-height: 98px; overflow: hidden; margin-top: 15px; line-height: 130% !important; }
+		#wpl-likebox #wpl-avatars img { border: none !important; }
+		#wpl-likebox #wpl-mustlogin { line-height: 14px !important; font-size: 11px; clear: left; margin-top: 5px; background: #f0f0f0; padding: 10px; width: 65%; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+		#wpl-likebox #wpl-mustlogin a { color: #888; text-decoration: underline; }
+		#wpl-likebox #wpl-mustlogin p { margin: 5px 0; padding: 0 }
+		#wpl-likebox #wpl-mustlogin input.input { padding: 2px; background: #fff; font-size: 11px; font-family: inherit; border: 1px solid #ccc; -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1) inset; -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1) inset; line-height: 12px; }
+		#wpl-likebox #wpl-mustlogin input#wp-submit { border: 1px solid #ccc; font-size: 11px; background: #fafafa; repeat-x; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; padding: 2px 4px !important; line-height: 12px; }
+		#wpl-likebox #wpl-mustlogin label { position: relative; cursor: text; }
+		#wpl-likebox #wpl-mustlogin label span { position: absolute; top: 0px; left: 5px; padding: 0 !important; }
+		#wpl-likebox #wpl-mustlogin label span { top /*\**/: -10px\9; }
+	/* ]]> */
+	</style>
+	<meta name="application-name" content="Rip&#039;s Domain" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-tooltip" content="Jquery, ColdFusion, SQL, CFWheels and just about life in general" /><meta name="msapplication-task" content="name=Subscribe;action-uri=http://rip747.wordpress.com/feed/;icon-uri=http://s1.wp.com/i/favicon-stacked.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=http://s2.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico" />
+<style type='text/css'>
+table.recentcommentsavatar img.avatar {border: 0px; margin:0;}
+table.recentcommentsavatar a {border: 0px !important;background-color: transparent !important}
+td.recentcommentsavatartop {padding:0px 0px 1px 0px;margin:0px; }
+td.recentcommentsavatarend {padding:0px 0px 1px 0px;margin:0px; }
+td.recentcommentstexttop { border: none !important;padding:0px 0px 0px 10px;}
+td.recentcommentstextend { border: none !important;padding:0px 0px 2px 10px;}
+</style>
+<script type='text/javascript' src='http://partner.googleadservices.com/gampad/google_service.js'>
+</script>
+<script type='text/javascript'>
+GS_googleAddAdSenseService("ca-pub-3443918307802676");
+GS_googleEnableAllServices();
+</script>
+<script type='text/javascript'>
+GA_googleAddSlot("ca-pub-3443918307802676", "wpcom_below_post");
+</script>
+<script type='text/javascript'>
+GA_googleFetchAds();
+</script><script type="text/javascript"> 
+	window.google_analytics_uacct = "UA-52447-2"; 
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-52447-2']);
+	_gaq.push(['_setDomainName', 'wordpress.com']);
+	_gaq.push(['_initData']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+</script>
+</head>
+
+<body class="typekit-enabled highlander-enabled highlander-light">
+<div id="container">
+<div id="skip">
+	<p><a href="#content" title="Skip to site content">Skip to content</a></p>
+	<p><a href="#search" title="Skip to search" accesskey="s">Skip to search - Accesskey = s</a></p>
+</div>
+	<h1><a href="http://rip747.wordpress.com/">Rip&#039;s Domain</a></h1>
+
+<div id="content">
+<div class="post-433 post type-post status-publish format-standard hentry category-jquery">
+		<h2 id="post-433"><a href="http://rip747.wordpress.com/2008/07/17/chaining-a-bind-and-trigger-with-jquery-to-elminiate-functions/" rel="bookmark">Chaining a bind and trigger with jQuery to elminiate&nbsp;functions</a></h2>	
+	<div class="meta">
+		Posted in <a href="http://en.wordpress.com/tag/jquery/" title="View all posts in Jquery" rel="category tag">Jquery</a> by rip747 on July 17, 2008	</div>
+	<div class="main">
+		<p>yesterday david shuck posted some jquery code he was using to toggle the display of some form information. one of the things i noticed about his code was that he was using jquery to bind to the change event of a radio button, but the code to acutally toggle the display was contained in a separate function.</p>
+<p>i commented him back about how he could combine these two functions into one jquery chain thus making the code a little more readable. today i want to share this with you, let&#8217;s take a look at the two functions:</p>
+<pre>$("#RequireCCInfo").change(function(){
+    toggleCreditCardCompanyPanel();
+}); 	
+
+function toggleCreditCardCompanyPanel()	{
+    if ($("#RequireCCInfo").attr("checked") == true)
+    $("#CreditCardCompanyPanel").show();
+    else $("#CreditCardCompanyPanel").hide();
+}
+
+toggleCreditCardCompanyPanel();</pre>
+<p>basically the first function bind to the change event of a checkbox with an id of RequireCCInfo and then calls the toggleCreditCardCompanyPanel to toggle the display of the panel.</p>
+<p>so how could chaining in jquery help us clean this up a little? remember that with jquery you can bind a function to an event and also trigger event. with this knowledge you can do things like:</p>
+<p>$(function(){<br />
+$(&#8220;#RequireCCInfo&#8221;).bind(&#8220;change&#8221;, function(){<br />
+// your code<br />
+}).change();<br />
+});</p>
+<p>as you can see from the code above, we&#8217;re binding some code to the change event and then immediately after triggering it, this is the same thing a creating a separate function and then calling it. armed with this knowledge we can now perform the clean up:</p>
+<p>$(function(){<br />
+$(&#8220;#RequireCCInfo&#8221;).bind(&#8220;change&#8221;, function(){<br />
+$(&#8220;#RequireCCInfo:checked&#8221;) ? $(&#8220;#CreditCardCompanyPanel&#8221;).show() : (&#8220;#CreditCardCompanyPanel&#8221;).hide();<br />
+}).change();<br />
+});</p>
+<div class="snap_nopreview sharing robots-nocontent">
+<ul>
+<li class="sharing_label">Share this:</li>
+<li class="share-twitter share-regular">
+<div class="twitter_button"><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.html?url=http%3A%2F%2Fwp.me%2Fp1eRu-6Z&#038;counturl=http%3A%2F%2Frip747.wordpress.com%2F2008%2F07%2F17%2Fchaining-a-bind-and-trigger-with-jquery-to-elminiate-functions%2F&#038;count=horizontal&#038;text=Chaining%20a%20bind%20and%20trigger%20with%20jQuery%20to%20elminiate%20functions: " style="width:97px; height:20px;"></iframe></div>
+</li>
+<li class="share-stumbleupon share-regular"><a rel="nofollow" class="share-stumbleupon share-icon" href="http://rip747.wordpress.com/2008/07/17/chaining-a-bind-and-trigger-with-jquery-to-elminiate-functions/?share=stumbleupon" title="Click to share on StumbleUpon">StumbleUpon</a></li>
+<li class="share-reddit share-regular"><a rel="nofollow" class="share-reddit share-icon" href="http://rip747.wordpress.com/2008/07/17/chaining-a-bind-and-trigger-with-jquery-to-elminiate-functions/?share=reddit" title="Click to share on Reddit">Reddit</a></li>
+<li class="share-email share-regular"><a rel="nofollow" class="share-email share-icon" href="http://rip747.wordpress.com/2008/07/17/chaining-a-bind-and-trigger-with-jquery-to-elminiate-functions/?share=email" title="Click to email this to a friend">Email</a></li>
+<li class="share-end"></li>
+</ul>
+<div class="sharing-clear"></div>
+</div>
+
+<!-- wpcom_below_post -->
+<div align="center" style="margin-bottom: 10px;">
+<script type="text/javascript">
+GA_googleAddAttr("AdOpt", "1");
+GA_googleAddAttr("Origin", "other");
+GA_googleAddAttr("theme_bg", "fff"); GA_googleAddAttr("theme_border", "777"); GA_googleAddAttr("theme_text", "222"); GA_googleAddAttr("theme_link", "004276"); GA_googleAddAttr("LangId", "1");
+GA_googleAddAttr("Autotag", "science"); GA_googleAddAttr("Autotag", "technology"); GA_googleAddAttr("Tag", "jquery"); 
+GA_googleFillSlot("wpcom_below_post");
+</script>
+</div>	</div>
+			<div class="tags">
+				</div>
+		<div class="comments">
+				<p><a href="http://rip747.wordpress.com/2008/07/17/chaining-a-bind-and-trigger-with-jquery-to-elminiate-functions/#comments" title="Comment on Chaining a bind and trigger with jQuery to elminiate&nbsp;functions"><strong>1</strong> comment</a></p>
+	</div>
+</div>
+
+<div class="navigation">
+<div class="previous">&laquo; <a href="http://rip747.wordpress.com/2008/07/10/my-many-hats/" rel="prev">My many&nbsp;hats</a></div>
+<div class="next"><a href="http://rip747.wordpress.com/2008/07/18/open-source-comedy-2/" rel="next">Open source&nbsp;comedy</a> &raquo;</div>
+</div>
+
+<div id="wpl-likebox"><div id="wpl-button"><a href='http://rip747.wordpress.com/2008/07/17/chaining-a-bind-and-trigger-with-jquery-to-elminiate-functions/?like=1&amp;_wpnonce=9ec74a6fdb' title='I like this post' class='like needs-login' rel='nofollow'><span>Like</span></a></div><div id="wpl-count">Be the first to like this post.</div></div>
+<a name="comments" id="comments"></a>
+
+	<h3 class="reply">One Response</h3> 
+<p class="comment_meta">Subscribe to comments with <a href="http://rip747.wordpress.com/2008/07/17/chaining-a-bind-and-trigger-with-jquery-to-elminiate-functions/feed/">RSS</a>.</p>
+	<ol class="commentlist">
+	<li id="comment-22034" class="comment even thread-even depth-1  highlander-comment highlander-comment"">
+	<div id="div-comment-22034">
+	<div class="comment_author vcard">
+		<img alt='' src='http://1.gravatar.com/avatar/da0fbaba09d5a315982b124f5c7377ea?s=32&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32' class='avatar avatar-32' height='32' width='32' />		<strong class="fn">Dinh Dinh</strong> said, on June 24, 2011 at <a href="http://rip747.wordpress.com/2008/07/17/chaining-a-bind-and-trigger-with-jquery-to-elminiate-functions/#comment-22034">8:33 pm</a> </strong>
+	</div>
+	
+	<p>Thank you so much !!!<br />
+Very nice and precise example &#8211; just what I need</p>
+			
+	<div class="reply">
+			</div>
+	</div>
+</li>
+	</ol>
+
+	<div class="navigation">
+		<div class="alignleft"></div>
+		<div class="alignright"></div>
+	</div>
+	<br />
+	
+	
+
+
+								<div id="respond">
+				<h3 id="reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2008/07/17/chaining-a-bind-and-trigger-with-jquery-to-elminiate-functions/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://rip747.wordpress.com/wp-comments-post.php" method="post" id="commentform">
+																										
+
+
+												
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment"></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+
+		<div id="comment-form-nascar">
+		<ul>
+			<li class="selected"><a href="#comment-form-guest" title="Guest" id="postas-guest" class="social_buttons sb_24 sb_guest"><span>Guest</span></a></li>
+			<li><a href="#comment-form-wordpress" title="Log In" id="postas-wordpress" class="social_buttons sb_24 sb_wordpress"><span>Log In</span></a></li>
+			<li><a href="#comment-form-load-service:Twitter" title="Log In" id="postas-twitter" class="social_buttons sb_24 sb_twitter"><span>Log In</span></a></li>
+			<li><a href="#comment-form-load-service:Facebook" title="Log In" id="postas-facebook" class="social_buttons sb_24 sb_facebook"><span>Log In</span></a></li>
+		</ul>
+	</div>
+		
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="http://www.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&d=mm" alt="Gravatar" width="25" class="no-grav" />
+			</div>
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Not published)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="text" value="" /></div>
+				</div> 
+			</div>
+	
+		</div>
+		
+			</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="http://s2.wp.com/wp-content/mu-plugins/highlander-comments/images/wplogo.png?m=1308958544g" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+				<div class="comment-form-fields">
+					<p id="wordpress-login-first">Please log in to WordPress.com to post a comment to your blog.</p>
+				<iframe id="wordpress-login-iframe" data-srcurl="http://rip747.wordpress.com/wp-login.php?redirect_to=http%3A%2F%2Frip747.wordpress.com%2Fhighlander.login%2F&#038;action=highlander-login&#038;skin=light"></iframe>
+				</div>
+	
+		</div>
+		
+			</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="http://www.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&d=mm" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+				<p class="comment-form-posting-as"><strong></strong> You are commenting using your Twitter account. <span class="comment-form-log-out">(<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log Out</a>)</span></p>
+			</div>
+	
+		</div>
+		
+			</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="http://www.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&d=mm" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+				<p class="comment-form-posting-as"><strong></strong> You are commenting using your Facebook account. <span class="comment-form-log-out">(<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log Out</a>)</span></p>
+			</div>
+	
+		</div>
+		
+			</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service"> 
+		<p>Connecting to %s</p> 
+	</div>
+
+	
+</div>
+
+
+
+<div id="comment-form-subscribe"> 
+<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;" tabindex="6"/> <label class="subscribe-label" id="subscribe-label" for="subscribe">Notify me of follow-up comments via email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;" tabindex="7"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts via email.</label></p></div>
+												<p class="form-submit">
+							<input name="submit" type="submit" id="comment-submit" value="Post Comment" />
+							<input type='hidden' name='comment_post_ID' value='433' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+						</p>
+						
+<input type="hidden" name="genseq" value="1310395206" />
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="fca62d24dd" /></p><script type='text/javascript' src='http://s2.wp.com/wp-content/mu-plugins/akismet-2.5/form.js?m=1308958545g&amp;ver=1'></script>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="203"/></p>					</form>
+							</div><!-- #respond -->
+			<div style="clear: both"></div>			
+
+
+<div id="postnav"></div>
+
+</div> <!-- End content -->
+
+<div id="sidebar">
+<h3>Personal Pages</h3>		<ul>
+			<li class="page_item page-item-716"><a href="http://rip747.wordpress.com/contact-me/" title="Contact&nbsp;Me">Contact&nbsp;Me</a></li>
+<li class="page_item page-item-646"><a href="http://rip747.wordpress.com/who-is-rip747/" title="Who is&nbsp;RIP747?">Who is&nbsp;RIP747?</a></li>
+		</ul>
+		<embed src="http://www.box.net/static/flash/widget_player.swf" type="application/x-shockwave-flash" FlashVars="subString=folderId=j6e9taqhw8,color=000000,title=Files" wmode="transparent" width="289" height="258"><a href=\"http://www.box.net/static/flash/widget_player.swf\">http://www.box.net/static/flash/widget_player.swf</a><a href=\"http://www.box.net/static/flash/widget_player.swf\">http://www.box.net/static/flash/widget_player.swf</a><a href=\"http://www.box.net/static/flash/widget_player.swf\">http://www.box.net/static/flash/widget_player.swf</a><a href=\"http://www.box.net/static/flash/widget_player.swf\">http://www.box.net/static/flash/widget_player.swf</a><form role="search" method="get" id="searchform" action="http://rip747.wordpress.com/" >
+	<div><label class="screen-reader-text" for="s">Search for:</label>
+	<input type="text" value="" name="s" id="s" />
+	<input type="submit" id="searchsubmit" value="Search" />
+	</div>
+	</form><h3>Blogroll</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://cfwheels.org/" title="Rails clone for ColdFusion" target="_blank">CFWheels!</a></li>
+<li><a href="http://myjunkmail.blogspot.com/" title="Where all the shit I get comes to rest">MyJunkMail &#8211; The Blog</a></li>
+<li><a href="http://www.reybango.com" title="jQuery blog">Rey Bango</a></li>
+
+	</ul>
+
+<h3>Downloads</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.box.net/shared/aewamdmisg" title="CF Default NEO-CRON.xml file" target="_blank">CF Default NEO-CRON.xml file</a></li>
+<li><a href="http://www.github.com/rip747/cf8xml" title="CF8 XML syntax dictionary for CFEclipse" target="_top">CF8 XML</a></li>
+<li><a href="http://www.box.net/shared/5c1fwerk0g" title="FamFamFam Silk Icons GIF set" target="_blank">FamFamFam Silk Icons GIF set</a></li>
+<li><a href="http://icegen.riaforge.org/index.cfm?event=action.download" title="Downalod ICEGEN">ICEGEN &#8211; Download the latest</a></li>
+<li><a href="http://rip747.github.com/popupwindow/" title="PopupWindow &#8211; Latest version" target="_blank">PopupWindow &#8211; Latest version</a></li>
+<li><a href="http://www.box.net/shared/ed60a8ykgg" title="Timezone CFC" target="_blank">Timezone CFC</a></li>
+
+	</ul>
+
+<h3>Jquery</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://docs.jquery.com/Donate" title="make a donation to supprt jQuery!">Donate to jQuery</a></li>
+<li><a href="http://www.jquery.com" title="making javascript easier for the masses">JQuery</a></li>
+
+	</ul>
+
+<h3>My Stuff</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.github.com/rip747" title="My github projects">My Projects</a></li>
+<li><a href="http://stackoverflow.com/users/31278" target="_blank">My Stack Overflow Profile</a></li>
+
+	</ul>
+
+<h3>Politics</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.ronpaul2008.com/" title="Ron Paul official campaign website">Ron Paul 2008</a></li>
+
+	</ul>
+
+					<h3>Top Posts</h3>			<ul><li><a href='http://rip747.wordpress.com/2009/08/08/russian-sleep-experiment-the-best-short-story-ive-read/'>Russian Sleep Experiment: the best short story I've read.</a></li><li><a href='http://rip747.wordpress.com/2008/09/12/git-clone-over-http-who-knew/'>GIT clone over HTTP: who knew?</a></li><li><a href='http://rip747.wordpress.com/2009/04/20/git-push-rejected-non-fast-forward/'>Git: push rejected non-fast forward</a></li><li><a href='http://rip747.wordpress.com/2007/11/28/cant-use-gmail-account-as-windows-live-id/'>Can't use GMail account as Windows Live ID</a></li><li><a href='http://rip747.wordpress.com/2007/03/02/the-return-of-popupwindow-jquery-plugin/'>The return of PopupWindow jQuery plugin</a></li><li><a href='http://rip747.wordpress.com/2008/09/04/magicjack-support-phone-number/'>MagicJack support phone number</a></li><li><a href='http://rip747.wordpress.com/2007/10/22/how-to-bypass-comcast%e2%80%99s-bittorrent-throttling-the-true-way/'>How To Bypass Comcast’s BitTorrent Throttling: the true way</a></li><li><a href='http://rip747.wordpress.com/2006/11/03/jquery-datepicker-plugin-bug-with-ie-and-table-cells-solution/'>JQuery: datePicker Plugin bug with IE and table cells *Solution*</a></li><li><a href='http://rip747.wordpress.com/2008/05/26/rebulding-msdb-in-sql-server-2005/'>Rebulding MSDB in SQL Server 2005</a></li><li><a href='http://rip747.wordpress.com/2007/06/11/did-tony-die/'>Did Tony die?</a></li></ul>					<h3>Comments</h3>		<table class='recentcommentsavatar' cellspacing='0' cellpadding='0' border='0'><tr><td title="Mark Picker" class="recentcommentsavatartop" style="height:48px; width:48px"><img alt='' src='http://0.gravatar.com/avatar/29a1ad2a1803038d7af47d064ae7189a?s=48&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D48' class='avatar avatar-48' height='48' width='48' /></td><td class="recentcommentstexttop">Mark Picker on <a href="http://rip747.wordpress.com/2011/03/09/setting-a-proxy-for-coldfusion/#comment-22051">Setting a proxy for&nbsp;coldf&hellip;</a></td></tr><tr><td title="Daniel Chatfield" class="recentcommentsavatarend" style="height:48px; width:48px"><img alt='' src='http://0.gravatar.com/avatar/c1f8a8d7e5c9f8f675c1601ef2d4d4f3?s=48&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D48' class='avatar avatar-48' height='48' width='48' /></td><td class="recentcommentstextend">Daniel Chatfield on <a href="http://rip747.wordpress.com/2008/04/10/css3-css-variables-are-a-bad-idea-just-allow-us-to-call-other-selectors/#comment-22048">CSS3: css variables are a bad &hellip;</a></td></tr><tr><td title="Adam" class="recentcommentsavatarend" style="height:48px; width:48px"><img alt='' src='http://0.gravatar.com/avatar/202c047409be2139bcea56cce4b299f0?s=48&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D48' class='avatar avatar-48' height='48' width='48' /></td><td class="recentcommentstextend">Adam on <a href="http://rip747.wordpress.com/2008/08/06/iis-admin-service-terminates-with-0x8021080a/#comment-22043">IIS Admin service terminates w&hellip;</a></td></tr><tr><td title="Eric Belair" class="recentcommentsavatarend" style="height:48px; width:48px"><img alt='' src='http://0.gravatar.com/avatar/46b2704c26143ab9c430b4250eb28f88?s=48&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D48' class='avatar avatar-48' height='48' width='48' /></td><td class="recentcommentstextend">Eric Belair on <a href="http://rip747.wordpress.com/2009/03/26/add-an-image-dynamically-to-a-pdf-with-cf-and-itext/#comment-22041">Add an image dynamically to a &hellip;</a></td></tr><tr><td title="Eric Belair" class="recentcommentsavatarend" style="height:48px; width:48px"><img alt='' src='http://0.gravatar.com/avatar/46b2704c26143ab9c430b4250eb28f88?s=48&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D48' class='avatar avatar-48' height='48' width='48' /></td><td class="recentcommentstextend">Eric Belair on <a href="http://rip747.wordpress.com/2009/03/26/add-an-image-dynamically-to-a-pdf-with-cf-and-itext/#comment-22040">Add an image dynamically to a &hellip;</a></td></tr></table>
+	<h3>a</h3><select name='cat' id='cat' class='postform' >
+	<option value='-1'>Select Category</option>
+	<option class="level-0" value="63373">2008 Elections&nbsp;&nbsp;(34)</option>
+	<option class="level-0" value="4640439">Americans are sheep&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="490">Animals&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="3768">Apache&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="40046">Apollo&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="2674">BASH!&nbsp;&nbsp;(33)</option>
+	<option class="level-0" value="1356">Blogroll&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="4360">Bookmarks&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="215897">CFEclipse&nbsp;&nbsp;(5)</option>
+	<option class="level-0" value="16806948">CFWheels&nbsp;&nbsp;(17)</option>
+	<option class="level-0" value="15607">Christmas&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="14133">ColdFusion&nbsp;&nbsp;(110)</option>
+	<option class="level-0" value="24433">Cygwin&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="148">Design&nbsp;&nbsp;(8)</option>
+	<option class="level-0" value="189468">Donating&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="205968">dzone&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="72245">Family Happenings&nbsp;&nbsp;(12)</option>
+	<option class="level-0" value="746">Frameworks&nbsp;&nbsp;(5)</option>
+	<option class="level-0" value="1478">Fridays&nbsp;&nbsp;(36)</option>
+	<option class="level-0" value="21">Games&nbsp;&nbsp;(3)</option>
+	<option class="level-0" value="209196">Git&nbsp;&nbsp;(10)</option>
+	<option class="level-0" value="590863">Goatse&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="99003">H&amp;R Block&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="6168">Halloween&nbsp;&nbsp;(4)</option>
+	<option class="level-0" value="378835">Health&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="4325">Holidays&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="56103">HowTos&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="1142792">ICEGen&nbsp;&nbsp;(13)</option>
+	<option class="level-0" value="14013">IIS&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="2106">Jokes&nbsp;&nbsp;(56)</option>
+	<option class="level-0" value="203308">Jquery&nbsp;&nbsp;(41)</option>
+	<option class="level-0" value="3155062">Just Geeky&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="610">Linux&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="27723">Mach-ii&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="637">Microsoft&nbsp;&nbsp;(4)</option>
+	<option class="level-0" value="43105">Model-glue&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="1113054">Money&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="190">movies&nbsp;&nbsp;(7)</option>
+	<option class="level-0" value="43808">MSSQL&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="7426">Networking&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="104268">oo&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="44">Opensource&nbsp;&nbsp;(5)</option>
+	<option class="level-0" value="3766">Oracle&nbsp;&nbsp;(5)</option>
+	<option class="level-0" value="2438">OS X&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="64">Personal&nbsp;&nbsp;(14)</option>
+	<option class="level-0" value="957939">PopWindow&nbsp;&nbsp;(14)</option>
+	<option class="level-0" value="395">Question&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="755">Quotes&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="3137447">Railo&nbsp;&nbsp;(3)</option>
+	<option class="level-0" value="47">Rants&nbsp;&nbsp;(32)</option>
+	<option class="level-0" value="216929">Ron Paul&nbsp;&nbsp;(45)</option>
+	<option class="level-0" value="3601">Ruby on Rails&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="101807">SCM&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="801">Security&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="10346">SQL&nbsp;&nbsp;(16)</option>
+	<option class="level-0" value="1428805">Super Tuesday&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="164684">SVN&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="966573">SwapIt&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="4517">Taxes&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="375303">TechSupport&nbsp;&nbsp;(33)</option>
+	<option class="level-0" value="1">Uncategorized&nbsp;&nbsp;(35)</option>
+	<option class="level-0" value="13766">Valentine&#8217;s Day&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="56988">Verity&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="38600">VMWare&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="800">Windows&nbsp;&nbsp;(5)</option>
+	<option class="level-0" value="204082">WSOP&nbsp;&nbsp;(4)</option>
+	<option class="level-0" value="6567">YouTube&nbsp;&nbsp;(4)</option>
+</select>
+
+<script type='text/javascript'>
+/* <![CDATA[ */
+	var dropdown = document.getElementById("cat");
+	function onCatChange() {
+		if ( dropdown.options[dropdown.selectedIndex].value > 0 ) {
+			location.href = "http://rip747.wordpress.com/?cat="+dropdown.options[dropdown.selectedIndex].value;
+		}
+	}
+	dropdown.onchange = onCatChange;
+/* ]]> */
+</script>
+
+				<h3>Recent Posts</h3>		<ul>
+				<li><a href="http://rip747.wordpress.com/2011/07/10/toshiba-40g300u1-updating-firmware/" title="Toshiba 40G300U1 &#8211; updating&nbsp;firmware">Toshiba 40G300U1 &#8211; updating&nbsp;firmware</a></li>
+				<li><a href="http://rip747.wordpress.com/2011/03/27/ora-04098-trigger-trigger-name-is-invalid-and-failed-re-validation/" title="ORA-04098: trigger is invalid and failed&nbsp;re-validation">ORA-04098: trigger is invalid and failed&nbsp;re-validation</a></li>
+				<li><a href="http://rip747.wordpress.com/2011/03/09/setting-a-proxy-for-coldfusion/" title="Setting a proxy for&nbsp;coldfusion">Setting a proxy for&nbsp;coldfusion</a></li>
+				<li><a href="http://rip747.wordpress.com/2011/01/29/my-cfwheels-git-workflow/" title="My CFWheels git&nbsp;workflow">My CFWheels git&nbsp;workflow</a></li>
+				<li><a href="http://rip747.wordpress.com/2011/01/25/railo-express-jetty-change-webroot/" title="Railo Express (jetty) change&nbsp;webroot">Railo Express (jetty) change&nbsp;webroot</a></li>
+				</ul>
+		<h3>Past Posts</h3>		<ul>
+			<li><a href='http://rip747.wordpress.com/2011/07/' title='July 2011'>July 2011</a>&nbsp;(1)</li>
+	<li><a href='http://rip747.wordpress.com/2011/03/' title='March 2011'>March 2011</a>&nbsp;(2)</li>
+	<li><a href='http://rip747.wordpress.com/2011/01/' title='January 2011'>January 2011</a>&nbsp;(3)</li>
+	<li><a href='http://rip747.wordpress.com/2010/12/' title='December 2010'>December 2010</a>&nbsp;(1)</li>
+	<li><a href='http://rip747.wordpress.com/2010/10/' title='October 2010'>October 2010</a>&nbsp;(2)</li>
+	<li><a href='http://rip747.wordpress.com/2010/09/' title='September 2010'>September 2010</a>&nbsp;(1)</li>
+	<li><a href='http://rip747.wordpress.com/2010/06/' title='June 2010'>June 2010</a>&nbsp;(2)</li>
+	<li><a href='http://rip747.wordpress.com/2010/05/' title='May 2010'>May 2010</a>&nbsp;(1)</li>
+	<li><a href='http://rip747.wordpress.com/2010/02/' title='February 2010'>February 2010</a>&nbsp;(2)</li>
+	<li><a href='http://rip747.wordpress.com/2010/01/' title='January 2010'>January 2010</a>&nbsp;(2)</li>
+	<li><a href='http://rip747.wordpress.com/2009/11/' title='November 2009'>November 2009</a>&nbsp;(4)</li>
+	<li><a href='http://rip747.wordpress.com/2009/10/' title='October 2009'>October 2009</a>&nbsp;(3)</li>
+	<li><a href='http://rip747.wordpress.com/2009/09/' title='September 2009'>September 2009</a>&nbsp;(2)</li>
+	<li><a href='http://rip747.wordpress.com/2009/08/' title='August 2009'>August 2009</a>&nbsp;(6)</li>
+	<li><a href='http://rip747.wordpress.com/2009/07/' title='July 2009'>July 2009</a>&nbsp;(3)</li>
+	<li><a href='http://rip747.wordpress.com/2009/06/' title='June 2009'>June 2009</a>&nbsp;(3)</li>
+	<li><a href='http://rip747.wordpress.com/2009/05/' title='May 2009'>May 2009</a>&nbsp;(7)</li>
+	<li><a href='http://rip747.wordpress.com/2009/04/' title='April 2009'>April 2009</a>&nbsp;(5)</li>
+	<li><a href='http://rip747.wordpress.com/2009/03/' title='March 2009'>March 2009</a>&nbsp;(5)</li>
+	<li><a href='http://rip747.wordpress.com/2009/02/' title='February 2009'>February 2009</a>&nbsp;(4)</li>
+	<li><a href='http://rip747.wordpress.com/2009/01/' title='January 2009'>January 2009</a>&nbsp;(2)</li>
+	<li><a href='http://rip747.wordpress.com/2008/12/' title='December 2008'>December 2008</a>&nbsp;(5)</li>
+	<li><a href='http://rip747.wordpress.com/2008/11/' title='November 2008'>November 2008</a>&nbsp;(1)</li>
+	<li><a href='http://rip747.wordpress.com/2008/10/' title='October 2008'>October 2008</a>&nbsp;(8)</li>
+	<li><a href='http://rip747.wordpress.com/2008/09/' title='September 2008'>September 2008</a>&nbsp;(11)</li>
+	<li><a href='http://rip747.wordpress.com/2008/08/' title='August 2008'>August 2008</a>&nbsp;(2)</li>
+	<li><a href='http://rip747.wordpress.com/2008/07/' title='July 2008'>July 2008</a>&nbsp;(5)</li>
+	<li><a href='http://rip747.wordpress.com/2008/06/' title='June 2008'>June 2008</a>&nbsp;(2)</li>
+	<li><a href='http://rip747.wordpress.com/2008/05/' title='May 2008'>May 2008</a>&nbsp;(3)</li>
+	<li><a href='http://rip747.wordpress.com/2008/04/' title='April 2008'>April 2008</a>&nbsp;(10)</li>
+	<li><a href='http://rip747.wordpress.com/2008/03/' title='March 2008'>March 2008</a>&nbsp;(13)</li>
+	<li><a href='http://rip747.wordpress.com/2008/02/' title='February 2008'>February 2008</a>&nbsp;(15)</li>
+	<li><a href='http://rip747.wordpress.com/2008/01/' title='January 2008'>January 2008</a>&nbsp;(36)</li>
+	<li><a href='http://rip747.wordpress.com/2007/12/' title='December 2007'>December 2007</a>&nbsp;(17)</li>
+	<li><a href='http://rip747.wordpress.com/2007/11/' title='November 2007'>November 2007</a>&nbsp;(24)</li>
+	<li><a href='http://rip747.wordpress.com/2007/10/' title='October 2007'>October 2007</a>&nbsp;(16)</li>
+	<li><a href='http://rip747.wordpress.com/2007/09/' title='September 2007'>September 2007</a>&nbsp;(17)</li>
+	<li><a href='http://rip747.wordpress.com/2007/08/' title='August 2007'>August 2007</a>&nbsp;(13)</li>
+	<li><a href='http://rip747.wordpress.com/2007/07/' title='July 2007'>July 2007</a>&nbsp;(14)</li>
+	<li><a href='http://rip747.wordpress.com/2007/06/' title='June 2007'>June 2007</a>&nbsp;(10)</li>
+	<li><a href='http://rip747.wordpress.com/2007/05/' title='May 2007'>May 2007</a>&nbsp;(16)</li>
+	<li><a href='http://rip747.wordpress.com/2007/04/' title='April 2007'>April 2007</a>&nbsp;(20)</li>
+	<li><a href='http://rip747.wordpress.com/2007/03/' title='March 2007'>March 2007</a>&nbsp;(9)</li>
+	<li><a href='http://rip747.wordpress.com/2007/02/' title='February 2007'>February 2007</a>&nbsp;(16)</li>
+	<li><a href='http://rip747.wordpress.com/2007/01/' title='January 2007'>January 2007</a>&nbsp;(13)</li>
+	<li><a href='http://rip747.wordpress.com/2006/12/' title='December 2006'>December 2006</a>&nbsp;(9)</li>
+	<li><a href='http://rip747.wordpress.com/2006/11/' title='November 2006'>November 2006</a>&nbsp;(6)</li>
+	<li><a href='http://rip747.wordpress.com/2006/10/' title='October 2006'>October 2006</a>&nbsp;(15)</li>
+	<li><a href='http://rip747.wordpress.com/2006/09/' title='September 2006'>September 2006</a>&nbsp;(2)</li>
+	<li><a href='http://rip747.wordpress.com/2006/08/' title='August 2006'>August 2006</a>&nbsp;(5)</li>
+	<li><a href='http://rip747.wordpress.com/2006/07/' title='July 2006'>July 2006</a>&nbsp;(12)</li>
+		</ul>
+					<h3>Top Clicks</h3>			<ul><li><a href='http://rip747.github.com/popupwindow/' target='_blank' rel='nofollow'>rip747.github.com/popupwi&#8230;</a></li><li><a href='http://www.gscottolson.com/weblog/2008/01/11/jquery-cheat-sheet/' target='_blank' rel='nofollow'>gscottolson.com/weblog/20&#8230;</a></li><li><a href='http://myjunkmail.blogspot.com/' target='_blank' rel='nofollow'>myjunkmail.blogspot.com</a></li><li><a href='http://www.magicjack.com/9/customercare.asp' target='_blank' rel='nofollow'>magicjack.com/9/customerc&#8230;</a></li><li><a href='http://www.passport.net/' target='_blank' rel='nofollow'>passport.net</a></li><li><a href='http://www.magicjack.com/' target='_blank' rel='nofollow'>magicjack.com</a></li><li><a href='http://en.wordpress.com/tag/toshiba/' target='_blank' rel='nofollow'>en.wordpress.com/tag/tosh&#8230;</a></li><li><a href='http://sejomagno.blogspot.com/2007/03/how-to-use-gmail-account-as-windows.html' target='_blank' rel='nofollow'>sejomagno.blogspot.com/20&#8230;</a></li><li><a href='http://www.prisonexp.org/' target='_blank' rel='nofollow'>prisonexp.org</a></li><li><a href='http://drbray.blogspot.com/2008/12/magicjack-reality.html' target='_blank' rel='nofollow'>drbray.blogspot.com/2008/&#8230;</a></li><li><a href='http://www.box.net/shared/8t7en86n76' target='_blank' rel='nofollow'>box.net/shared/8t7en86n76</a></li><li><a href='http://www.assetnow.com/index.cfm/1,82,252,0,html' target='_blank' rel='nofollow'>assetnow.com/index.cfm/1,&#8230;</a></li></ul>		<h3>Pages</h3>		<ul>
+			<li class="page_item page-item-716"><a href="http://rip747.wordpress.com/contact-me/" title="Contact&nbsp;Me">Contact&nbsp;Me</a></li>
+<li class="page_item page-item-646"><a href="http://rip747.wordpress.com/who-is-rip747/" title="Who is&nbsp;RIP747?">Who is&nbsp;RIP747?</a></li>
+		</ul>
+		
+			</div>
+
+<div class="clearleft"></div>
+
+<!-- begin footer -->
+</div>
+	<div id="footer">
+	<p><a href="http://wordpress.com/?ref=footer" rel="generator">Blog at WordPress.com</a>. Theme: The Journalist 1.3 by <a href="http://lucianmarin.com/" rel="designer">Lucian Marin</a>. </p>
+	</div>
+
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script type="text/javascript">_qoptions={qacct:'p-18-mFEk4J448M',labels:'language.en,type.wpcom'};</script>
+<script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script>
+<noscript><p><img class="robots-nocontent" src="http://pixel.quantserve.com/pixel/p-18-mFEk4J448M.gif?labels=language.en%2Ctype.wpcom" style="display:none" height="1" width="1" alt="" /></p></noscript>
+	<script type="text/javascript">
+	/* <![CDATA[ */
+		jQuery( function() {
+			
+			jQuery('#wpl-button > a.like').click( function(e) {
+				e.preventDefault();
+				
+				jQuery('#wpl-mustlogin').remove();
+
+				jQuery.post( 'http://rip747.wordpress.com/wp-admin/admin-ajax.php', { 
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_like_click'
+				} );
+
+				var tenMins = new Date();
+				tenMins.setTime( tenMins.getTime() + 600000 );
+				document.cookie = 'wpl_rand=38f285746b; expires=' + tenMins.toGMTString() + '; domain=wordpress.com; path=/;';
+				
+				jQuery('#wpl-count').after( '\
+					<div id="wpl-mustlogin"> \
+						<form action="http://rip747.wordpress.com/wp-login.php" method="post"> \
+							<p>Just one more step to like this post:</p> \
+							<label><span>Username</span> <input type="text" name="log" id="user_login" class="input" value="" size="20" tabindex="80" /></label> \
+							<label><span>Password</span> <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" tabindex="81" /></label> \
+							<input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="Log In" tabindex="82" /> \
+							<input type="hidden" name="redirect_to" value="http://rip747.wordpress.com/2008/07/17/chaining-a-bind-and-trigger-with-jquery-to-elminiate-functions/?like=1" /> \
+							<input type="hidden" name="wpl_rand" value="38f285746b" /> \
+							<p>Not a member yet? <a href="http://wordpress.com/signup/?ref=likebox" id="wpl-signup-link">Sign up with WordPress.com</a></p> \
+						</form> \
+					</div> \
+				');
+				
+				jQuery('#wpl-mustlogin').hide().slideDown('fast');
+			} );
+			
+			jQuery('#wpl-mustlogin input.input').live( 'focus', function() {
+				jQuery(this).prev().hide();
+			}).live( 'blur', function() {
+				if ( jQuery(this).val() == '' )
+					jQuery(this).prev().show();
+			});
+			
+			jQuery('#wpl-mustlogin input#wp-submit').live( 'click', function(e) {
+				e.preventDefault();
+				
+				jQuery.post( 'http://rip747.wordpress.com/wp-admin/admin-ajax.php', { 
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_login_submit'
+				}, function() {
+					jQuery('#wpl-mustlogin form').submit();
+				} );
+			});			
+			
+			jQuery('#wpl-mustlogin a#wpl-signup-link').live( 'click', function(e) {
+				e.preventDefault();
+				
+				var link = jQuery(this).attr('href');
+				
+				jQuery.post( 'http://rip747.wordpress.com/wp-admin/admin-ajax.php', { 
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_signup_click'
+				}, function() {
+					location.href = link;
+				} );
+			});					
+			
+		});
+	/* ]]> */
+	</script>
+<script type='text/javascript' src='http://s.gravatar.com/js/gprofiles.js?w&#038;ver=MU'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {
+	my_hash: ""
+};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1308958545g&amp;ver=MU'></script>
+	<div style="display:none">
+	<div class="grofile-hash-map-da0fbaba09d5a315982b124f5c7377ea">
+	</div>
+	<div class="grofile-hash-map-29a1ad2a1803038d7af47d064ae7189a">
+	</div>
+	<div class="grofile-hash-map-c7cf4f2c956682315d139e89d825203f">
+	</div>
+	<div class="grofile-hash-map-9344324fe25f689265c4594cfbd295cc">
+	</div>
+	<div class="grofile-hash-map-46b2704c26143ab9c430b4250eb28f88">
+	</div>
+	</div>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var HighlanderComments = {
+	loggingInText: "Logging In&hellip;",
+	submittingText: "Posting Comment&hellip;",
+	postCommentText: "Post Comment",
+	connectingToText: "Connecting to %s",
+	commentingAsText: "%1$s: You are commenting using your %2$s account.",
+	logoutText: "Log Out",
+	loginText: "Log In",
+	connectURL: "http://rip747.wordpress.com/public.api/connect/?action=request",
+	homeURL: "http://rip747.wordpress.com/",
+	postID: "433",
+	gravDefault: "mystery",
+	enterACommentError: "Please enter a comment",
+	enterEmailError: "Email address required",
+	invalidEmailError: "Invalid email address",
+	enterAuthorError: "Name required"
+};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://s0.wp.com/wp-content/mu-plugins/highlander-comments/script.js?m=1309455922g&amp;ver=20110616d'></script>
+<script type='text/javascript' src='http://s2.wp.com/wp-content/mu-plugins/post-react-1/sharing/sharing.js?m=1308958544g&amp;ver=0.2'></script>
+	<div id="sharing_email" style="display: none;">
+		<form action="" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input type="text" name="target_email" id="target_email" value="" />
+			
+			
+				<label for="source_name">Your Name</label>
+				<input type="text" name="source_name" id="source_name" value="" />
+				
+				<label for="source_email">Your Email Address</label>
+				<input type="text" name="source_email" id="source_email" value="" />
+
+						
+			<div class="recaptcha" id="sharing_recaptcha"></div>
+			<img style="float: right; display: none" class="loading" src="http://rip747.wordpress.com/wp-content/mu-plugins/post-react-1/sharing/images/loading.gif" alt="loading" width="16" height="16" />
+			<input type="submit" value="Send Email" class="sharing_send" />
+			<a href="#cancel" class="sharing_cancel">Cancel</a>
+			
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+			
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div>
+<script type="text/javascript" src="http://b.scorecardresearch.com/beacon.js"></script><script type="text/javascript">try{COMSCORE.beacon({c1:2,c2:7518284});}catch(e){}</script><noscript><p class="robots-nocontent"><img src="http://b.scorecardresearch.com/p?cj=1c1=2&#038;c2=7518284" alt="" style="display:none" width="1" height="1" /></p></noscript><script src="http://s.stats.wordpress.com/w.js?19" type="text/javascript"></script>
+<script type="text/javascript">
+st_go({'blog':'295460','v':'wpcom','user_id':'0','post':'433','subd':'rip747'});
+ex_go({'crypt':'UE5XaFBLcG9HLE5XPUhlbC8mTGtZYStmOGpLcV96UkpLeFE4clc/ZlJFRnxRbTFOeTUxbFhNYTZuanxOeC5Rcl1VY3Zod3VLJj10WHxtUCsmXyVyYUNhL09sSUY9MUJ3RkRjUE98QlBVWDE/aGxyd2ZhXXAyJUZ0SW1OUXBwcDFEN2YyRWI9VkU9dXcxWzR3NVc9YTV2Py0zNT98VkcwLT98ZlFaLGJTRS84NWdsXS00My1oSmd0Qll6RnJFKzNfdiYvLGVhQ1YvNGM/YkU0ajNbW2ps'});
+addLoadEvent(function(){linktracker_init('295460',433);});
+	</script>
+
+</body>
+</html>

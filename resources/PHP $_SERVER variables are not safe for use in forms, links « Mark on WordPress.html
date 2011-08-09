@@ -1,0 +1,2185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0087)http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en" class="wf-lemondesans1lemondesans2-n4-inactive wf-lemondesans1lemondesans2-i4-inactive wf-lemondesans1lemondesans2-n6-inactive wf-lemondesans1lemondesans2-i6-inactive wf-lemondesans1lemondesans2-n7-inactive wf-lemondesans1lemondesans2-i7-inactive wf-ffmetaserifwebpro1ffmetaserifwebpro2-n5-inactive wf-inactive"><!--
+	generated in 0.818 seconds
+	127734 bytes batcached for 300 seconds
+--><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>PHP $_SERVER variables are not safe for use in forms, links «  Mark on WordPress</title>
+
+<link rel="stylesheet" href="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/style.css" type="text/css" media="screen">
+<!--[if IE 6]>
+<link rel="stylesheet" href="http://s1.wp.com/wp-content/themes/pub/journalist/ie6.css?m=1308978522g" type="text/css" media="screen" />
+<![endif]-->
+<link rel="pingback" href="http://markjaquith.wordpress.com/xmlrpc.php">
+<link rel="alternate" type="application/rss+xml" title="Mark on WordPress » Feed" href="http://markjaquith.wordpress.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Mark on WordPress » Comments Feed" href="http://markjaquith.wordpress.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Mark on WordPress » PHP $_SERVER variables are not safe for use in forms, links Comments Feed" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/feed/">
+<script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<link rel="stylesheet" href="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/global.css" type="text/css">
+<link rel="stylesheet" id="sharedaddy-css" href="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/sharing.css" type="text/css" media="all">
+<script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/l10n.js"></script>
+<script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/jquery.js"></script>
+<script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/comment-reply.js"></script>
+<link rel="stylesheet" id="highlander-comments-css" href="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/style(1).css" type="text/css" media="all">
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='http://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1308978488g&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://markjaquith.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://markjaquith.wordpress.com/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="Mark on WordPress" href="http://markjaquith.wordpress.com/">
+<link rel="prev" title="TextMate WordPress Widget Snippet" href="http://markjaquith.wordpress.com/2009/08/31/textmate-wordpress-widget-snippet/">
+<link rel="next" title="Interview with Deutsche Welle on WordPress Security" href="http://markjaquith.wordpress.com/2009/09/27/interview-with-deutsche-welle-on-wordpress-security/">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress.html">
+<link rel="shortlink" href="http://wp.me/p56-5x">
+<link rel="shortcut icon" type="image/x-icon" href="http://0.gravatar.com/blavatar/e1868f2458e81a2c5454586dd4077539?s=16" sizes="16x16">
+<link rel="icon" type="image/x-icon" href="http://0.gravatar.com/blavatar/e1868f2458e81a2c5454586dd4077539?s=16" sizes="16x16">
+<link rel="apple-touch-icon" href="http://1.gravatar.com/blavatar/5bc2cda9e3556be7753b79c4d5700a93?s=158">
+<link rel="openid.server" href="http://markjaquith.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="http://markjaquith.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="http://markjaquith.wordpress.com/osd.xml" title="Mark on WordPress">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com">
+<script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/mfg1dlk.js"></script><style type="text/css">div#content h2{font-family:"lemonde-sans-1","lemonde-sans-2",sans-serif;}h1{font-family:"ff-meta-serif-web-pro-1","ff-meta-serif-web-pro-2",serif;}</style><link rel="stylesheet" href="http://use.typekit.com/k/mfg1dlk-d.css?3bb2a6e53c9684ffdc9a9bf61d5b2a62d6138ae381e419350a9e4b2d61b2b672ad21c72b0c8a5071665529141ceeba3b0a65dee59f096ac178c6a22e42a5561e5fbc301de79e85291ce602593712488d43e8a83d9e1d81f28766fc324e918312198a1e47bdf2cd47a0476c"><script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<style type="text/css">
+	/* <![CDATA[ */
+				div#likes { margin-top: 15px; }
+		.like-button { border: 1px solid #eee; padding: 2px 6px; font-size: 13px; font-family: arial, tahoma, sans-serif; }
+		#wpl-likebox { clear: left; font-size: 11px; font-family: arial, tahoma, verdana, sans-serif !important; min-height: 30px; margin: 10px 0 !important; padding: 5px 0 10px 0 !important; }
+		#wpl-button { float: left; background: url( http://s0.wp.com/i/buttonbg.png ) top left repeat-x; margin-right: 7px; border: 1px solid #d4d4d4; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+		#wpl-button a { border-bottom: none !important; color: #666 !important; line-height: 130% !important; text-decoration: none !important; outline: none; float: left; padding: 3px 6px 2px 24px !important; font-size: 11px !important; background: url( http://s1.wp.com/i/likestar.png ) 6px 49.8% no-repeat; }
+		#wpl-button a:hover { border-bottom: none !important; }
+		#wpl-button.liked { background: #feffce; border: 1px solid #f3e389; }
+		#wpl-button.liked a { color: #ba871b !important; }
+		#wpl-likebox #wpl-count { min-height: 25px; line-height: 130% !important; float: left; padding-top: 4px; }
+		#wpl-likebox #wpl-avatars { clear: left; max-height: 98px; overflow: hidden; margin-top: 15px; line-height: 130% !important; }
+		#wpl-likebox #wpl-avatars img { border: none !important; }
+		#wpl-likebox #wpl-mustlogin { line-height: 14px !important; font-size: 11px; clear: left; margin-top: 5px; background: #f0f0f0; padding: 10px; width: 65%; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+		#wpl-likebox #wpl-mustlogin a { color: #888; text-decoration: underline; }
+		#wpl-likebox #wpl-mustlogin p { margin: 5px 0; padding: 0 }
+		#wpl-likebox #wpl-mustlogin input.input { padding: 2px; background: #fff; font-size: 11px; font-family: inherit; border: 1px solid #ccc; -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1) inset; -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1) inset; line-height: 12px; }
+		#wpl-likebox #wpl-mustlogin input#wp-submit { border: 1px solid #ccc; font-size: 11px; background: #fafafa; repeat-x; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; padding: 2px 4px !important; line-height: 12px; }
+		#wpl-likebox #wpl-mustlogin label { position: relative; cursor: text; }
+		#wpl-likebox #wpl-mustlogin label span { position: absolute; top: 0px; left: 5px; padding: 0 !important; }
+		#wpl-likebox #wpl-mustlogin label span { top /*\**/: -10px\9; }
+	/* ]]> */
+	</style>
+	<meta name="application-name" content="Mark on WordPress"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-tooltip" content="WordPress puts food on my table."><meta name="msapplication-task" content="name=Subscribe;action-uri=http://markjaquith.wordpress.com/feed/;icon-uri=http://0.gravatar.com/blavatar/e1868f2458e81a2c5454586dd4077539?s=16"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/saved_resource">
+<link rel="stylesheet" type="text/css" href="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/shThemeDefault.css"><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/services.css"><script src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194.json" type="text/javascript"></script><script src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/849728b99fba132fcc9252e267d8d573.json" type="text/javascript"></script></head>
+
+<body class="single single-post postid-343 single-format-standard highlander-enabled highlander-light">
+<div id="container" class="group">
+
+<h1><a href="http://markjaquith.wordpress.com/">Mark on WordPress</a></h1>
+<div id="bubble"><p>WordPress puts food on my table.</p></div> <!-- erase this line if you want to turn the bubble off -->
+
+<div id="content" class="group">
+
+<h2 id="post-343">PHP $_SERVER variables are not safe for use in forms,&nbsp;links</h2>
+	<p class="comments"><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comments">with 76 comments</a></p>
+
+<div class="main">
+	<p>A common security mistake I see WordPress plugin authors (and PHP coders in general) make is using <code>$_SERVER['PHP_SELF']</code> or <code>$_SERVER['REQUEST_URI']</code> as the action of a form or part of an anchor’s <code>href</code> attribute. This is not safe to do, and opens your code up to XSS (cross-site scripting) exploits.</p>
+<p>Common example:</p>
+<div id="highlighter_651395" class="syntaxhighlighter nogutter  htmlscript"><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="htmlscript plain">&lt;</code><code class="htmlscript keyword">form</code> <code class="htmlscript plain">action="</code><code class="htmlscript script">&lt;?</code><code class="htmlscript plain">php </code><code class="htmlscript functions">echo</code> <code class="htmlscript variable">$_SERVER</code><code class="htmlscript plain">[</code><code class="htmlscript string">'PHP_SELF'</code><code class="htmlscript plain">]; </code><code class="htmlscript script">?&gt;</code><code class="htmlscript plain">"&gt;</code></td></tr></tbody></table></div></div></div>
+<p>Another example:</p>
+<div id="highlighter_97112" class="syntaxhighlighter nogutter  htmlscript"><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="htmlscript plain">&lt;</code><code class="htmlscript keyword">a</code> <code class="htmlscript plain">href="</code><code class="htmlscript script">&lt;?</code><code class="htmlscript plain">php </code><code class="htmlscript functions">echo</code> <code class="htmlscript variable">$_SERVER</code><code class="htmlscript plain">[</code><code class="htmlscript string">'PHP_SELF'</code><code class="htmlscript plain">]' </code><code class="htmlscript script">?&gt;</code><code class="htmlscript plain">?foo=bar"&gt;link title&lt;/</code><code class="htmlscript keyword">a</code><code class="htmlscript plain">&gt;</code></td></tr></tbody></table></div></div></div>
+<p>Here are my two rules regarding <code>$_SERVER['PHP_SELF']</code> or <code>$_SERVER['REQUEST_URI']</code> in forms:</p>
+<ul>
+<li>Do not use them</li>
+<li>If you use one of them, escape it with <code>esc_url()</code></li>
+</ul>
+<p>Most uses of <code>$_SERVER['PHP_SELF']</code> and <code>$_SERVER['REQUEST_URI']</code> are in HTML forms. If you want the <code>action</code> attribute to point to the current URL, <strong>leave it blank</strong>. URI references that are blank point to the current resource.</p>
+<div id="highlighter_313678" class="syntaxhighlighter nogutter  htmlscript"><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="htmlscript plain">&lt;</code><code class="htmlscript keyword">form</code> <code class="htmlscript color1">action</code><code class="htmlscript plain">=</code><code class="htmlscript string">""</code><code class="htmlscript plain">&gt;</code></td></tr></tbody></table></div></div></div>
+<p>If you do want to specify the action (and there are good reasons for wanting to do that, such as stripping the query string from the current URL), you <strong>must</strong> run it through <code>esc_url()</code>.</p>
+<div id="highlighter_303158" class="syntaxhighlighter nogutter  htmlscript"><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="htmlscript plain">&lt;</code><code class="htmlscript keyword">form</code> <code class="htmlscript plain">action="</code><code class="htmlscript script">&lt;?</code><code class="htmlscript plain">php </code><code class="htmlscript functions">echo</code> <code class="htmlscript plain">esc_url( </code><code class="htmlscript variable">$_SERVER</code><code class="htmlscript plain">[</code><code class="htmlscript string">'PHP_SELF'</code><code class="htmlscript plain">] ); </code><code class="htmlscript script">?&gt;</code><code class="htmlscript plain">"&gt;</code></td></tr></tbody></table></div></div></div>
+<p>The same applies to links… run the <code>href</code> attribute through <code>esc_url()</code>.</p>
+<div id="highlighter_194812" class="syntaxhighlighter nogutter  htmlscript"><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="htmlscript plain">&lt;</code><code class="htmlscript keyword">a</code> <code class="htmlscript plain">href="</code><code class="htmlscript script">&lt;?</code><code class="htmlscript plain">php </code><code class="htmlscript functions">echo</code> <code class="htmlscript plain">esc_url( </code><code class="htmlscript variable">$_SERVER</code><code class="htmlscript plain">[</code><code class="htmlscript string">'PHP_SELF'</code><code class="htmlscript plain">] . </code><code class="htmlscript string">'?foo=bar'</code> <code class="htmlscript plain">); </code><code class="htmlscript script">?&gt;</code><code class="htmlscript plain">"&gt;link title&lt;/</code><code class="htmlscript keyword">a</code><code class="htmlscript plain">&gt;</code></td></tr></tbody></table></div></div></div>
+<p>A quick search through the WordPress Plugin Directory showed that this problem is far too common.</p>
+<p><b>Updates:</b></p>
+<p>Examples of URLs that could exploit this for double-quoted actions:</p>
+<p><code>script.php/"%20onmouseover='alert(document.cookie)'</code></p>
+<p>And single-quoted actions:</p>
+<p><code>script.php/'%20onmouseover='alert(document.cookie)'</code></p>
+<p>No, just using a plain old <code>htmlentities()</code> wrapper is not going to help! That’s still vulnerable to XSS in certain situations. If you’re not using WordPress, you should copy the WordPress escaping functions (just remove the <code>apply_filters()</code> portions).</p>
+<p>If you are using the <code>base</code> tag, Safari will apply that base to the blank <code>action</code> attribute. So if you use the <code>base</code> tag (I never do), a blank <code>action</code> isn’t going to be for you. Use what you’ve been using, but escape it.</p>
+<p>Lester Chan has a handy snippet for the form action of WordPress plugin settings pages:</p>
+<div id="highlighter_63452" class="syntaxhighlighter nogutter  htmlscript"><div class="lines"><div class="line alt1"><table><tbody><tr><td class="content"><code class="htmlscript plain">&lt;</code><code class="htmlscript keyword">form</code> <code class="htmlscript plain">action="</code><code class="htmlscript script">&lt;?</code><code class="htmlscript plain">php </code><code class="htmlscript functions">echo</code> <code class="htmlscript plain">admin_url( </code><code class="htmlscript string">'admin.php?page='</code> <code class="htmlscript plain">. plugin_basename( </code><code class="htmlscript constants">__FILE__</code> <code class="htmlscript plain">) ); </code><code class="htmlscript script">?&gt;</code><code class="htmlscript plain">"&gt;</code></td></tr></tbody></table></div></div></div>
+<p><code>admin_url()</code> takes care of escaping for you, and is an easy way to create a full WP admin URL from a <code>wp-admin</code>-relative URL.</p>
+<div class="snap_nopreview sharing robots-nocontent">
+<ul>
+<li class="sharing_label">Share this:</li>
+<li class="share-twitter share-regular">
+<div class="twitter_button"><iframe allowtransparency="true" frameborder="0" scrolling="no" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/tweet_button.html" style="width:97px; height:20px;"></iframe></div>
+</li>
+<li class="share-facebook share-regular"><a rel="nofollow" class="share-facebook share-icon" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?share=facebook&nb=1" title="Share on Facebook">Facebook</a></li>
+<li class="share-end"></li>
+</ul>
+<div class="sharing-clear"></div>
+</div>
+	</div>
+
+<div class="meta group">
+<div class="signature">
+    <p>Written by Mark Jaquith <span class="edit"></span></p>
+    <p>September 21, 2009 at 10:50 pm</p>
+</div>	
+<div class="tags">
+    <p>Posted in <a href="http://en.wordpress.com/tag/wordpress/" title="View all posts in wordpress" rel="category tag">wordpress</a></p>
+    <p>Tagged with <a href="http://en.wordpress.com/tag/wordpress-security/" rel="tag">wordpress security</a></p></div>
+</div>
+
+<div class="navigation group">
+	<div class="alignleft">« <a href="http://markjaquith.wordpress.com/2009/08/31/textmate-wordpress-widget-snippet/" rel="prev">TextMate WordPress Widget&nbsp;Snippet</a></div>
+	<div class="alignright"><a href="http://markjaquith.wordpress.com/2009/09/27/interview-with-deutsche-welle-on-wordpress-security/" rel="next">Interview with Deutsche Welle on WordPress&nbsp;Security</a> »</div>
+</div>
+
+<div id="wpl-likebox"><div id="wpl-button"><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?like=1&_wpnonce=a45ff4b80c" title="I like this post" class="like needs-login" rel="nofollow"><span>Like</span></a></div><div id="wpl-count">Be the first to like this post.</div></div>
+<a name="comments" id="comments"></a>
+
+<h3 class="reply">76 Responses</h3> 
+<p class="comment_meta">Subscribe to comments with <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/feed/">RSS</a>.</p>
+
+<ol class="commentlist">
+<li id="comment-93053" class="comment even thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93053">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>What would an example of XSS attack be when using this? I’ve always run $_SERVER['PHP_SELF'] through htmlspecialchars. I’ve never heard of esc_url before either.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="http://1.gravatar.com/avatar/317569856a87fb3a1f27d28cf40c0d93?s=32&d=identicon&r=PG" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-317569856a87fb3a1f27d28cf40c0d93-0">	<p><strong class="fn"><a href="http://ifupdown.com/" rel="external nofollow" class="url">Ryan</a></strong></p>
+	<p><small>
+		September 21, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93053">10:57 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93053#respond" onclick="return addComment.moveForm(&quot;div-comment-93053&quot;, &quot;93053&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93054" class="comment byuser comment-author-markjaquith bypostauthor odd alt thread-odd thread-alt depth-1  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93054">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>A naked <code>htmlspecialchars()</code> won’t protect you completely.</p>
+<p>Consider a form with <code>htmlspecialchars($_SERVER['PHP_SELF'])</code> as the action, enclosed with single quotes. This will defeat it:</p>
+<p><code>script.php/'%20onmouseover='alert(document.cookie)'</code></p>
+<p>For a double-quoted version using naked <code>$_SERVER['PHP_SELF']</code>, this will defeat it:</p>
+<p><code>script.php/"%20onmouseover='alert(document.cookie)'</code></p>
+<p>For more on <code>esc_url()</code>, <code>esc_attr()</code> and the escaping API updates for WP 2.8, read <a href="http://markjaquith.wordpress.com/2009/06/12/escaping-api-updates-for-wordpress-2-8/" rel="nofollow">this post</a>.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-0">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 21, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93054">11:10 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93054#respond" onclick="return addComment.moveForm(&quot;div-comment-93054&quot;, &quot;93054&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93055" class="comment byuser comment-author-foofy even thread-even depth-1  byuser comment-author-foofy highlander-comment highlander-comment">
+	<div id="div-comment-93055">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>And I’ve done this hundreds and hundreds of time. It was actually in the O’Reilly PHP 4 book that I learned from. <img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/icon_sad.gif" alt=":-(" class="wp-smiley"> </p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/c196bc4405ac6fda307f10f8a192e4ec" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-c196bc4405ac6fda307f10f8a192e4ec-0">	<p><strong class="fn">Chancey Mathews</strong></p>
+	<p><small>
+		September 21, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93055">11:52 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93055#respond" onclick="return addComment.moveForm(&quot;div-comment-93055&quot;, &quot;93055&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93057" class="comment odd alt thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93057">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Hi Mark,</p>
+<p>How does &lt;form action="”&gt; leave you open for XSS?  I’ve never heard of this exploit before, do you have a link with more information?</p>
+<p>I typically do this form actions, because there’s an issue with Safari.  If you supplied a  earlier in the document, the form action goes there instead. (Last I checked, anyhow)</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/7b9fe224dd78d6c4a280a8471809a7ed" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-7b9fe224dd78d6c4a280a8471809a7ed-0">	<p><strong class="fn"><a href="http://www.fergusweb.net/" rel="external nofollow" class="url">Anthony</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93057">12:18 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93057#respond" onclick="return addComment.moveForm(&quot;div-comment-93057&quot;, &quot;93057&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93058" class="comment byuser comment-author-viper007bond even thread-even depth-1  byuser comment-author-viper007bond highlander-comment highlander-comment">
+	<div id="div-comment-93058">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Thanks for writing this post! This knowledge really needs to be spread around. <img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+<p>Question though: are the other $_SERVER variables safe? I thought I had read somewhere it was possible for a user to modify $_SERVER['HTTP_HOST']. I could be remembering entirely wrongly though.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/7da5bead8e47f9b9142a4bdd05975bac" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-7da5bead8e47f9b9142a4bdd05975bac-0">	<p><strong class="fn"><a href="http://www.viper007bond.com/" rel="external nofollow" class="url">Alex (Viper007Bond)</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93058">12:42 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93058#respond" onclick="return addComment.moveForm(&quot;div-comment-93058&quot;, &quot;93058&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93059" class="comment odd alt thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93059">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Hey Anthony, I believe Mark mentioned that  is a method to fix the vulnerability of XSS attack. <img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/3b7603cdac8c0d41d0550a2f75e3df4e" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-3b7603cdac8c0d41d0550a2f75e3df4e-0">	<p><strong class="fn"><a href="http://www.ocularharmony.com/" rel="external nofollow" class="url">Robin Bastien</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93059">12:44 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93059#respond" onclick="return addComment.moveForm(&quot;div-comment-93059&quot;, &quot;93059&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93060" class="comment byuser comment-author-markjaquith bypostauthor even thread-even depth-1  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93060">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<blockquote><p>How does <code>&lt;form action=""&gt;</code> leave you open for XSS? I’ve never heard of this exploit before, do you have a link with more information?</p></blockquote>
+<p>I didn’t say that it did… was there something specifically that seemed ambiguous on that point? Let me know and I’ll update to make it more clear.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-1">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93060">12:44 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93060#respond" onclick="return addComment.moveForm(&quot;div-comment-93060&quot;, &quot;93060&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93061" class="comment byuser comment-author-markjaquith bypostauthor odd alt thread-odd thread-alt depth-1  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93061">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<blockquote><p>Question though: are the other <code>$_SERVER</code> variables safe? I thought I had read somewhere it was possible for a user to modify <code>$_SERVER['HTTP_HOST']</code></p></blockquote>
+<p>I wouldn’t consider <strong>any</strong> of them safe. Any info that you didn’t specifically and statically populate yourself should be considered unsafe.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-2">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93061">12:49 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93061#respond" onclick="return addComment.moveForm(&quot;div-comment-93061&quot;, &quot;93061&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-93071" class="comment even depth-2  highlander-comment highlander-comment">
+	<div id="div-comment-93071">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>But of course that depends on how and where they’re used, right? We briefly discussed at WCPDX the use of <code>$_SERVER['HTTP_HOST']</code> in the WP_SITEURL and WP_HOME constants to make wp-config.php more portable between dev and production systems. In this use case, the web server is doing the filtering for you, in that any hostname it doesn’t recognize will never hit the VirtualHost in question (assuming a properly configured web server).</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/b56c0f69901591b1d517cd34e1d0cfb7" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-b56c0f69901591b1d517cd34e1d0cfb7-0">	<p><strong class="fn"><a href="http://www.corvidworks.com/" rel="external nofollow" class="url">Kenn</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93071">1:17 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+<li id="comment-93085" class="comment byuser comment-author-markjaquith bypostauthor odd alt depth-2  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93085">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Not all servers may be set up correctly, and may serve for *:80. When coding a plugin for public consumption, I wouldn’t assume they haven’t done that.</p>
+<p>For your example of using <code>WP_SITEURL</code> to allow for portable dev/production systems, you could whitelist certain domains (localhost/yourblog.com) or at least pass the <code>HTTP_HOST</code> setting through a <code>[a-z0-9.-]</code> filter.</p>
+<p>You’re right about context, but when dynamically populating a powerful constant like <code>WP_SITEURL</code>, it might be prudent to filter out unexpected data. That’s good coding practice anyway — especially in a dynamically-typed language like PHP where the difference between <code>0</code> and <code>FALSE</code> could cause your code to break.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-3">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93085">2:44 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-93062" class="comment even thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93062">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>How about this one:</p>
+<p>&lt;?php<br>
+$urlpath = explode("/", $_SERVER['REDIRECT_URL']);<br>
+$type_in_url = $urlpath[2];</p>
+<p>Is it safe you reckon? I use that in two non-WordPress files.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/ee26df0a6ec96583c135e3c6c8ba4c60" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-ee26df0a6ec96583c135e3c6c8ba4c60-0">	<p><strong class="fn"><a href="http://towelfell.com/" rel="external nofollow" class="url">Anne</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93062">12:51 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93062#respond" onclick="return addComment.moveForm(&quot;div-comment-93062&quot;, &quot;93062&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93063" class="comment odd alt thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93063">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Sorry folks, comment form took out the PHP tag, and I didn’t double check.  My bad.</p>
+<p>I typically do .  I do this because in Safari, if you have a  and then do , the action defaults to your BASE URL, instead of the current URL.</p>
+<p>Do you have a link with more information on how users can modify the $_SERVER variables?</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/7b9fe224dd78d6c4a280a8471809a7ed" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-7b9fe224dd78d6c4a280a8471809a7ed-1">	<p><strong class="fn"><a href="http://www.fergusweb.net/" rel="external nofollow" class="url">Anthony</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93063">12:52 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93063#respond" onclick="return addComment.moveForm(&quot;div-comment-93063&quot;, &quot;93063&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93064" class="comment even thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93064">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Retry:</p>
+<p>I typically do:</p>
+<div id="highlighter_646731" class="syntaxhighlighter  htmlscript"><div class="bar"><div class="toolbar"><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_646731_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_646731" menu="false" src="http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1308978490g"></div><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="htmlscript plain">&lt;</code><code class="htmlscript keyword">form</code> <code class="htmlscript plain">action="</code><code class="htmlscript script">&lt;?</code><code class="htmlscript plain">php </code><code class="htmlscript functions">echo</code> <code class="htmlscript variable">$_SERVER</code><code class="htmlscript plain">[</code><code class="htmlscript string">'REQUEST_URI'</code><code class="htmlscript plain">] </code><code class="htmlscript script">?&gt;</code><code class="htmlscript plain">"&gt;</code></td></tr></tbody></table></div></div></div>
+<p>I do this because in Safari, if you have a <code>base href="#"</code> then have <code>form action=""</code>, the action defaults to your base URL, not the current resource.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/7b9fe224dd78d6c4a280a8471809a7ed" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-7b9fe224dd78d6c4a280a8471809a7ed-2">	<p><strong class="fn"><a href="http://www.fergusweb.net/" rel="external nofollow" class="url">Anthony</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93064">12:55 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93064#respond" onclick="return addComment.moveForm(&quot;div-comment-93064&quot;, &quot;93064&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-93087" class="comment byuser comment-author-markjaquith bypostauthor odd alt depth-2  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93087">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>That’s a good point. You can use <code>REQUEST_URI</code>, but you need to filter it. In WP, <code>esc_url()</code> is your ticket. In non-WP… copy WP’s security functions and use them. <img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/icon_smile.gif" alt=":-)" class="wp-smiley"> </p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-4">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93087">2:50 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-93065" class="comment byuser comment-author-viper007bond even thread-odd thread-alt depth-1  byuser comment-author-viper007bond highlander-comment highlander-comment">
+	<div id="div-comment-93065">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>FYI to all commenters: you can use the “sourcecode” shortcode in comments. <img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/icon_wink.gif" alt=";)" class="wp-smiley"> </p>
+<p><a href="http://support.wordpress.com/code/#posting-source-code" rel="nofollow">http://support.wordpress.com/code/#posting-source-code</a></p>
+<div id="highlighter_942289" class="syntaxhighlighter  "><div class="bar "><div class="toolbar"><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_942289_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_942289" menu="false" src="http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1308978490g"></div><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="plain">&lt;?php</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>2</code></td><td class="content"><code class="variable">$urlpath</code> <code class="plain">= </code><code class="functions">explode</code><code class="plain">(</code><code class="string">"/"</code><code class="plain">, </code><code class="variable">$_SERVER</code><code class="plain">[</code><code class="string">'REDIRECT_URL'</code><code class="plain">]);</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>3</code></td><td class="content"><code class="variable">$type_in_url</code> <code class="plain">= </code><code class="variable">$urlpath</code><code class="plain">[2];</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>4</code></td><td class="content"><code class="plain">?&gt;</code></td></tr></tbody></table></div></div></div>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/7da5bead8e47f9b9142a4bdd05975bac" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-7da5bead8e47f9b9142a4bdd05975bac-1">	<p><strong class="fn"><a href="http://www.viper007bond.com/" rel="external nofollow" class="url">Alex (Viper007Bond)</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93065">12:58 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93065#respond" onclick="return addComment.moveForm(&quot;div-comment-93065&quot;, &quot;93065&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93066" class="comment byuser comment-author-markjaquith bypostauthor odd alt thread-even depth-1  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93066">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>@Anne: Again, I wouldn’t trust anything you didn’t explicitly and statically set yourself. If there is any amount of unpredictable variability, it’s suspect.</p>
+<p>This is mostly a matter of good habits. Once you get in them, it’ll come naturally, and it won’t slow you down.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-5">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93066">1:00 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93066#respond" onclick="return addComment.moveForm(&quot;div-comment-93066&quot;, &quot;93066&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-93122" class="comment even depth-2  highlander-comment highlander-comment">
+	<div id="div-comment-93122">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Mark, thanks, I will search for how would be the best to change that bit of the code for something else instead. Previously it was (EmptyReferrence!) also in form url. I am not programmer but, guys like you make looking for a related stuff easier. Thank you Mate.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/98c06830eb1583902fa8840a4b704967" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-98c06830eb1583902fa8840a4b704967-0">	<p><strong class="fn">Anne</strong></p>
+	<p><small>
+		September 23, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93122">6:55 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-93067" class="comment odd alt thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93067">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>So how exactly is that a security vulnerability?… I could claim anything is a vulnerability. Some examples would be really great otherwise this post is worthless to us and I leave not learning anything.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/600ddb6f19c716ca0c80802dcd5781c1" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-600ddb6f19c716ca0c80802dcd5781c1-0">	<p><strong class="fn"><a href="http://www.isearchnotes.com/" rel="external nofollow" class="url">CoryMathews</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93067">1:09 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93067#respond" onclick="return addComment.moveForm(&quot;div-comment-93067&quot;, &quot;93067&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-93082" class="comment byuser comment-author-markjaquith bypostauthor even depth-2  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93082">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>It allows for script injection — the running of arbitrary Javascript code. See the <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93054" rel="nofollow">second comment</a> on this post. The precise method of leveraging XSS is executing cookie-stealing Javascript in an authenticated user’s browser. With this access to an administrator-level account, an attacker can gain deeper levels of access.</p>
+<p>My goal with this post wasn’t to teach XSS from scratch, but bring to light a common XSS-enabling mistake that I’ve seen even XSS-aware coders make.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-6">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93082">2:21 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-93068" class="comment odd alt thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93068">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>“A quick search through the WordPress Plugin Directory”</p>
+<p>any tool for this ?</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/33ae983c72db97d93df45a6290d3f436" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-33ae983c72db97d93df45a6290d3f436-0">	<p><strong class="fn"><a href="http://planetozh.com/" rel="external nofollow" class="url">Ozh</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93068">1:11 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93068#respond" onclick="return addComment.moveForm(&quot;div-comment-93068&quot;, &quot;93068&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-93078" class="comment even depth-2  highlander-comment highlander-comment">
+	<div id="div-comment-93078">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Google:<br>
+<em>site:svn.wp-plugins.org/ form action=”$_SERVER[REQUEST_URI”</em></p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/1a526c8cd55ef6eca12a6fa7b29904cb" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-1a526c8cd55ef6eca12a6fa7b29904cb-0">	<p><strong class="fn"><a href="http://michaeltorbert.com/" rel="external nofollow" class="url">Michael Torbert</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93078">2:01 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+<li id="comment-93081" class="comment byuser comment-author-markjaquith bypostauthor odd alt depth-2  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93081">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>I have a local checkout of all the plugins in the repository, so I used <code>fgrep</code>. Unfortunately I don’t know of a hosted way to search through all the plugins…</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-7">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93081">2:16 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-93073" class="comment even thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93073">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>I think </p>
+<div id="highlighter_366289" class="syntaxhighlighter  "><div class="bar"><div class="toolbar"><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_366289_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_366289" menu="false" src="http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1308978490g"></div><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="plain">&lt;?php </code><code class="functions">echo</code> <code class="plain">admin_url(</code><code class="string">'admin.php?page='</code><code class="plain">.plugin_basename(</code><code class="constants">__FILE__</code><code class="plain">)); ?&gt;</code></td></tr></tbody></table></div></div></div>
+<p>is a good choice also</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/8fdd1c4a03682246e45b8b15cd08b854" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-8fdd1c4a03682246e45b8b15cd08b854-0">	<p><strong class="fn"><a href="http://lesterchan.net/" rel="external nofollow" class="url">Lester Chan</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93073">1:19 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93073#respond" onclick="return addComment.moveForm(&quot;div-comment-93073&quot;, &quot;93073&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-93083" class="comment byuser comment-author-markjaquith bypostauthor odd alt depth-2  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93083">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Yep, for plugin settings forms, that’s perfect.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-8">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93083">2:32 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-93074" class="comment even thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93074">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>@Alex (Viper007Bond) – My gratitude (and probably Mark’s) for the link!</p>
+<p>Looking around for examples of this vulnerability, found this:<br>
+<a href="http://www.mc2design.com/blog/php_self-safe-alternatives" rel="nofollow">http://www.mc2design.com/blog/php_self-safe-alternatives</a></p>
+<p>It’s from 2007 – scratching my head at how I’ve not heard of this before.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/7b9fe224dd78d6c4a280a8471809a7ed" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-7b9fe224dd78d6c4a280a8471809a7ed-3">	<p><strong class="fn"><a href="http://www.fergusweb.net/" rel="external nofollow" class="url">Anthony</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93074">1:21 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93074#respond" onclick="return addComment.moveForm(&quot;div-comment-93074&quot;, &quot;93074&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93076" class="comment odd alt thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93076">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Great advice, although the people from WordPress itself aren’t using it:</p>
+<p><a href="http://codex.wordpress.org/Adding_Administration_Menus#Sample_Menu_Page" rel="nofollow">http://codex.wordpress.org/Adding_Administration_Menus#Sample_Menu_Page</a></p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/b2b945013bba4ff68dafc8ebf8a0de7b" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-b2b945013bba4ff68dafc8ebf8a0de7b-0">	<p><strong class="fn"><a href="http://www.boosten.org/" rel="external nofollow" class="url">Peter Boosten</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93076">1:48 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93076#respond" onclick="return addComment.moveForm(&quot;div-comment-93076&quot;, &quot;93076&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-93079" class="comment byuser comment-author-markjaquith bypostauthor even depth-2  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93079">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Thanks. I updated that. In the future feel free to edit it yourself — it’s a wiki! <img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/icon_smile.gif" alt=":-)" class="wp-smiley"> </p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-9">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93079">2:13 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-93080" class="comment byuser comment-author-sumwatt odd alt thread-even depth-1  byuser comment-author-sumwatt highlander-comment highlander-comment">
+	<div id="div-comment-93080">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Interesting catch – there are a ton of books out there that use this method to teach you how to get up and running with form handling quickly. I’ve been doing it this way for over 6 years – except I never used it in production scenarios.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/3567eed7942846eda1f6ddac8d08aa27" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-3567eed7942846eda1f6ddac8d08aa27-0">	<p><strong class="fn"><a href="http://sumwatt.wordpress.com/" rel="external nofollow" class="url">sumwatt</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93080">2:16 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93080#respond" onclick="return addComment.moveForm(&quot;div-comment-93080&quot;, &quot;93080&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93088" class="comment even thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93088">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Hi,</p>
+<p>come on guys, don’t go bashing on those book authors from a few years ago. They were just trying to teach programming in a general way, not for security.</p>
+<p>Although Mark is of course right about the dangers of XSS and the need to properly escape things, I don’t really see this problem with PHP_SELF. It is set by the server and if the server can be manipulated to have PHP_SELF contain a string like in Mark’s example, there are probably other security issues with that server.<br>
+The problem is more severe with HTTP_USER_AGENT though.</p>
+<p>Regards,<br>
+Tobias</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/992d92327763cdd47f8223cfab508744" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-992d92327763cdd47f8223cfab508744-0">	<p><strong class="fn">Tobias</strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93088">2:59 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93088#respond" onclick="return addComment.moveForm(&quot;div-comment-93088&quot;, &quot;93088&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-93089" class="comment byuser comment-author-markjaquith bypostauthor odd alt depth-2  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93089">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>@Tobias, This isn’t an issue only with some esoteric server setup. Stock Apache 2.0 with stock PHP 5.2 on Linux is vulnerable to <code>PHP_SELF</code> injection like the following:</p>
+<p><code>script.php/"%20onmouseover='alert(document.cookie)'</code></p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-10">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93089">3:11 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-93090" class="comment even thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93090">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Hi Mark, thanks for the nice article. I have a question:</p>
+<p>I use <code>action="/"</code>. Do you think this is safe in your opinion?</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/90a40c56156243c84613c892939e8672" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-90a40c56156243c84613c892939e8672-0">	<p><strong class="fn">Chetan</strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93090">3:11 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93090#respond" onclick="return addComment.moveForm(&quot;div-comment-93090&quot;, &quot;93090&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-93091" class="comment byuser comment-author-markjaquith bypostauthor odd alt depth-2  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93091">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Literal strings are always safe. <img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/icon_smile.gif" alt=":-)" class="wp-smiley"> </p>
+<p>The danger is in variable data, specifically variable data that can be varied by an untrusted party.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-11">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93091">3:13 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-93092" class="comment even thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93092">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Oops, the previous comment got eaten away by the stripper:</p>
+<p>I use bloginfo(‘home’) template tag for action; do you think this is safe?</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/90a40c56156243c84613c892939e8672" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-90a40c56156243c84613c892939e8672-1">	<p><strong class="fn">Chetan</strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93092">3:13 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93092#respond" onclick="return addComment.moveForm(&quot;div-comment-93092&quot;, &quot;93092&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-93093" class="comment byuser comment-author-markjaquith bypostauthor odd alt depth-2  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93093">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Yes, that’s safe.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-12">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93093">3:23 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-93098" class="comment even thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93098">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Classic attack, its nearly always safer to hard code the URL. Its surprising the number of websites that are still vulnerable to XSS and CSRF attacks today.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/007e831cf15b0387f74b8d462ede34c0" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-007e831cf15b0387f74b8d462ede34c0-0">	<p><strong class="fn"><a href="http://www.idontplaydarts.com/" rel="external nofollow" class="url">Phil</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93098">8:48 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93098#respond" onclick="return addComment.moveForm(&quot;div-comment-93098&quot;, &quot;93098&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93100" class="comment odd alt thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93100">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>I just headed over here to read this article from a WordPress Dashboard…The title caught my attention big time because I work for a National Company and about a month ago during a routine security probe by controlscan-com, the only report that came back was this Javascript XSS expolit by my use of having Server Variables un-escaped.</p>
+<p>Great read, an a little extra work for me this morning wordpress and non-wordpress -</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/849728b99fba132fcc9252e267d8d573" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-849728b99fba132fcc9252e267d8d573-0">	<p><strong class="fn"><a href="http://giancarlocolfer.com/" rel="external nofollow" class="url">Giancarlo Colfer</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93100">10:09 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93100#respond" onclick="return addComment.moveForm(&quot;div-comment-93100&quot;, &quot;93100&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93101" class="comment even thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93101">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Awesome tip! I didn’t even know that could be an issue.  I had seen the $_SERVER['PHP_SELF'] trick, and have used it ever since.  Appreciate the improved version! Thanks. <img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/31c1f0d32bfca6e7990dacc423dd9197" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-31c1f0d32bfca6e7990dacc423dd9197-0">	<p><strong class="fn"><a href="http://www.inditetheweb.com/" rel="external nofollow" class="url">Kate</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93101">10:31 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93101#respond" onclick="return addComment.moveForm(&quot;div-comment-93101&quot;, &quot;93101&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93104" class="comment odd alt thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93104">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>It’s good your talking about this exploit, but you don’t really explain how it would be used very well. Here’s a better description:</p>
+<p><a href="http://bit.ly/qWUK4" rel="nofollow">http://bit.ly/qWUK4</a></p>
+<p>This is how an attack could happen…</p>
+<p>1. Fred, who is a member of your site, gets an email from a scammer saying their account has been compromised.<br>
+2. In the message, the scammer asks the user to confirm their account using a link (to your website).<br>
+3. That link includes extra JavaScript code added to the end of the URL that sends whatever is entered into the form to the scammer’s website<br>
+4. Fred follows the link and logs in. His account looks fine, but he’s just inadvertently given away his account login.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/716cac45f5e3df8f1eb9b83e4dc6bc2a" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-716cac45f5e3df8f1eb9b83e4dc6bc2a-0">	<p><strong class="fn"><a href="http://www.designspike.ca/" rel="external nofollow" class="url">Cody</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93104">3:40 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93104#respond" onclick="return addComment.moveForm(&quot;div-comment-93104&quot;, &quot;93104&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-98130" class="comment even depth-2  highlander-comment highlander-comment">
+	<div id="div-comment-98130">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Hey Cody! your the only person i actually know who has explained this perfectly. OMG i have read a ton of articles on this and still did not understand it. Now i do. I am wondering which is the best way to protect myself from this, i’m not sure.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/18101b67c4928171549ea781ad556909" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-18101b67c4928171549ea781ad556909-0">	<p><strong class="fn">Mathew</strong></p>
+	<p><small>
+		February 24, 2011 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-98130">3:41 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-93110" class="comment odd alt thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93110">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>&gt;&gt;&gt;&gt;Not all servers may be set up correctly, and may serve for *:80. </p>
+<p>Can you please explain how this is bad? Thanks</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/0c0b19278c8c452613f1de8d58fe1ea0" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-0c0b19278c8c452613f1de8d58fe1ea0-0">	<p><strong class="fn"><a href="http://hastek.net/" rel="external nofollow" class="url">Harold S</a></strong></p>
+	<p><small>
+		September 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93110">10:06 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93110#respond" onclick="return addComment.moveForm(&quot;div-comment-93110&quot;, &quot;93110&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-93116" class="comment byuser comment-author-markjaquith bypostauthor even depth-2  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93116">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>It’s not bad per se, but it might be bad in combination with code that blindly accepts the HTTP HOST the server is given.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-13">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 23, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93116">9:39 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-93121" class="comment odd alt thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93121">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>As PHP_SELF can be modified by the user, but SCRIPT_NAME cannot, would you say that this would be sufficient?</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/e70d4086e89c2e1e081870865be68485" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-e70d4086e89c2e1e081870865be68485-0">	<p><strong class="fn"><a href="http://garyjones.co.uk/" rel="external nofollow" class="url">Gary</a></strong></p>
+	<p><small>
+		September 23, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93121">6:30 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93121#respond" onclick="return addComment.moveForm(&quot;div-comment-93121&quot;, &quot;93121&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-93124" class="comment byuser comment-author-markjaquith bypostauthor even depth-2  byuser comment-author-markjaquith bypostauthor highlander-comment highlander-comment">
+	<div id="div-comment-93124">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>It may be, but why not escape, just in case? Consider this to be my version of Blaise Pascal’s Wager: What do you have to lose by believing that <code>$_SERVER</code> values are all suspect? <img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/icon_smile.gif" alt=":-)" class="wp-smiley"> </p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2666073f86ab71d7579ed8f4cf78e194" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2666073f86ab71d7579ed8f4cf78e194-14">	<p><strong class="fn"><a href="http://markjaquith.com/" rel="external nofollow" class="url">Mark Jaquith</a></strong></p>
+	<p><small>
+		September 23, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93124">9:55 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-93127" class="pingback odd alt thread-even depth-1 pingback highlander-comment highlander-comment">
+	<div id="div-comment-93127">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>[...] Mark Jaquith's article about PHP $_Server variables made me realize that my tutorial on "How to add a horizontal navigation bar to THE MORNING AFTER" [...]</p>
+	</div>
+	
+	<div class="comment_author vcard">
+		<p><strong class="fn"><a href="http://nickbohle.de/2009/09/24/the-morning-after-security-update-for-navigation-bar/" rel="external nofollow" class="url">The Morning After – Security Update for Navigation Bar! | nickbohle.de</a></strong></p>
+	<p><small>
+		September 24, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93127">1:40 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93127#respond" onclick="return addComment.moveForm(&quot;div-comment-93127&quot;, &quot;93127&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93128" class="comment even thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93128">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Well said re: Pascal’s Wager. I would rather add a tiny bit of overhead to insure that I still own my data rather than find out the hard way.</p>
+<p>It’s bad enough when it’s only your internal code, but the vulnerability footprint is huge if it’s popular. Consider WP itself, in self-hosted terms.</p>
+<p>Any vulnerability can crop up, and it may take a day or two for even their dedicated folks to fix and post a new incremental build. I believe in good hygiene as to login attempts, filtering the admin directory via other methods, etc. in addition to the default.</p>
+<p>Appreciate the reminder.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/c81be3ebcd5cdb5836f62d632118c122" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-c81be3ebcd5cdb5836f62d632118c122-0">	<p><strong class="fn"><a href="http://leveron.com/" rel="external nofollow" class="url">John</a></strong></p>
+	<p><small>
+		September 24, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93128">3:01 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93128#respond" onclick="return addComment.moveForm(&quot;div-comment-93128&quot;, &quot;93128&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93159" class="pingback odd alt thread-even depth-1 pingback highlander-comment highlander-comment">
+	<div id="div-comment-93159">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>[...] WordPress Mu/BuddyPress Contest Sociable Gets a New Home Should We all Dump Trackbacks? Careful with $_SERVER variables Punish IE6 [...]</p>
+	</div>
+	
+	<div class="comment_author vcard">
+		<p><strong class="fn"><a href="http://www.wptavern.com/wpweekly-episode-73-the-mystery-show" rel="external nofollow" class="url">WPWeekly Episode 73 – The Mystery Show</a></strong></p>
+	<p><small>
+		September 28, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93159">1:01 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93159#respond" onclick="return addComment.moveForm(&quot;div-comment-93159&quot;, &quot;93159&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93186" class="pingback even thread-odd thread-alt depth-1 pingback highlander-comment highlander-comment">
+	<div id="div-comment-93186">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>[...] Shared PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress [...]</p>
+	</div>
+	
+	<div class="comment_author vcard">
+		<p><strong class="fn"><a href="http://www.scratch99.com/2009/10/daily-digest-for-october-4th/" rel="external nofollow" class="url">Daily Digest for October 4th | More Than Scratch The Surface</a></strong></p>
+	<p><small>
+		October 4, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93186">9:29 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93186#respond" onclick="return addComment.moveForm(&quot;div-comment-93186&quot;, &quot;93186&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93245" class="comment byuser comment-author-aarondcampbell odd alt thread-even depth-1  byuser comment-author-aarondcampbell highlander-comment highlander-comment">
+	<div id="div-comment-93245">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Just thought I’d say thanks for bringing this up.  It’s been an oft-ignored issue for a long time (Writeup from 2005 that brought it to my attention 4+ years ago: <a href="http://seancoates.com/xss-woes" rel="nofollow">http://seancoates.com/xss-woes</a>).</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/f27b79eb04eb414c4c1fc98375fe7404" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-f27b79eb04eb414c4c1fc98375fe7404-0">	<p><strong class="fn">aarondcampbell</strong></p>
+	<p><small>
+		October 20, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93245">2:33 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93245#respond" onclick="return addComment.moveForm(&quot;div-comment-93245&quot;, &quot;93245&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93312" class="pingback even thread-odd thread-alt depth-1 pingback highlander-comment highlander-comment">
+	<div id="div-comment-93312">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>[...]   I found this on my WordPress news thang when I logged in today. Another WordPress user decided to write this article so that other developers would know that $_SERVER variable is NOT [...]</p>
+	</div>
+	
+	<div class="comment_author vcard">
+		<p><strong class="fn"><a href="http://sammaye.wordpress.com/2009/11/09/php-_server-variables-are-not-safe-for-use-in-forms-link-mark-on-wordpress/" rel="external nofollow" class="url">PHP $_SERVER variables are not safe for use in forms, link &lt;&lt; Mark on Wordpress « Sammaye's Blog</a></strong></p>
+	<p><small>
+		November 9, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93312">6:36 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93312#respond" onclick="return addComment.moveForm(&quot;div-comment-93312&quot;, &quot;93312&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93606" class="comment odd alt thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-93606">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>This is how I currently have it set up for a form I’m developing for a client.  The form returns to itself, and instead of leaving the action blank, I thought to set it to the permalink of the page the form is on.</p>
+<div id="highlighter_804207" class="syntaxhighlighter  "><div class="bar                       "><div class="toolbar"><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_804207_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_804207" menu="false" src="http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1308978490g"></div><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="plain">&lt;?php </code><code class="functions">echo</code> <code class="plain">esc_url( get_permalink(</code><code class="variable">$post</code><code class="plain">-&gt;ID) . </code><code class="string">'?action=post-new'</code> <code class="plain">);?&gt;</code></td></tr></tbody></table></div></div></div>
+<p>But I’m wondering since it’s using an internal WP function, is escaping still necessary?</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/a545222f17244065a227cfbce0a1ca4c" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-a545222f17244065a227cfbce0a1ca4c-0">	<p><strong class="fn"><a href="http://www.martinish.com/" rel="external nofollow" class="url">Darrin</a></strong></p>
+	<p><small>
+		December 18, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93606">1:39 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93606#respond" onclick="return addComment.moveForm(&quot;div-comment-93606&quot;, &quot;93606&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93632" class="pingback even thread-odd thread-alt depth-1 pingback highlander-comment highlander-comment">
+	<div id="div-comment-93632">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>[...] but Mark Jaquith (WP core developer) seems to think it's a really bad idea so best not use them: <a href="http://markjaquith.wordpress.com/200...orms-or-links/" rel="nofollow">http://markjaquith.wordpress.com/200…orms-or-links/</a>    Personal blog | Twitter Menu plugin | CSS Generator | Premium [...]</p>
+	</div>
+	
+	<div class="comment_author vcard">
+		<p><strong class="fn"><a href="http://www.wptavern.com/forum/plugins-hacks/1140-broken-plugin-when-upgraded-2-9-a.html#post10215" rel="external nofollow" class="url">Broken plugin when upgraded to 2.9 - WordPress Tavern Forum</a></strong></p>
+	<p><small>
+		December 22, 2009 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93632">9:24 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93632#respond" onclick="return addComment.moveForm(&quot;div-comment-93632&quot;, &quot;93632&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-93995" class="comment byuser comment-author-ryanhellyer odd alt thread-even depth-1  byuser comment-author-ryanhellyer highlander-comment highlander-comment">
+	<div id="div-comment-93995">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>I’m confused. You are using $_SERVER['HTTP_HOST'] in one of your own plugins … <a href="http://wordpress.org/extend/plugins/subscribe-to-comments/" rel="nofollow">http://wordpress.org/extend/plugins/subscribe-to-comments/</a></p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/a084125c824d274ff40cb834cf9f544a" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-a084125c824d274ff40cb834cf9f544a-0">	<p><strong class="fn"><a href="http://pixopoint.com/" rel="external nofollow" class="url">ryanhellyer</a></strong></p>
+	<p><small>
+		January 11, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93995">9:48 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=93995#respond" onclick="return addComment.moveForm(&quot;div-comment-93995&quot;, &quot;93995&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-93999" class="comment byuser comment-author-aarondcampbell even depth-2  byuser comment-author-aarondcampbell highlander-comment highlander-comment">
+	<div id="div-comment-93999">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>HTTP_HOST doesn’t suffer from the same issues as PHP_SELF and REQUEST_URI because it only holds the host part of the URL which can’t be modified by the user (or it wouldn’t be processed by your server).</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/f27b79eb04eb414c4c1fc98375fe7404" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-f27b79eb04eb414c4c1fc98375fe7404-1">	<p><strong class="fn">aarondcampbell</strong></p>
+	<p><small>
+		January 11, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-93999">12:03 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-94010" class="comment odd alt thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-94010">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>php not supported the esc_url().We can use the strip tag functions</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/edd2d8ff3fec16bf43cb96ab14821304" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-edd2d8ff3fec16bf43cb96ab14821304-0">	<p><strong class="fn">anish</strong></p>
+	<p><small>
+		January 12, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-94010">12:44 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=94010#respond" onclick="return addComment.moveForm(&quot;div-comment-94010&quot;, &quot;94010&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-94012" class="comment even thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-94012">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>今天百度挂了，呵呵，流量减低了一大半，真是的。郁闷之余来看看博主的博客，写的不错，加油。</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/da096d7ac0c6e79ead969d6cad49224b" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-da096d7ac0c6e79ead969d6cad49224b-0">	<p><strong class="fn"><a href="http://www.88471.cn/" rel="external nofollow" class="url">小区</a></strong></p>
+	<p><small>
+		January 12, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-94012">3:37 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=94012#respond" onclick="return addComment.moveForm(&quot;div-comment-94012&quot;, &quot;94012&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-94113" class="comment odd alt thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-94113">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>I’ve been trying to figure out how this is a security vulnerability for months. But a lightbulb just went off while looking through a few other links on the subject. That’s a nasty little trap to fall into! Thanks for the heads up. I don’t think I’ve used it before, but I can see how I could have used it without blinking an eye at it if I hadn’t read this blog post (numerous times).</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/a084125c824d274ff40cb834cf9f544a" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-a084125c824d274ff40cb834cf9f544a-1">	<p><strong class="fn"><a href="http://pixopoint.com/" rel="external nofollow" class="url">Ryan</a></strong></p>
+	<p><small>
+		January 19, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-94113">3:01 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=94113#respond" onclick="return addComment.moveForm(&quot;div-comment-94113&quot;, &quot;94113&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-94114" class="comment even thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-94114">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>@Mark – You recently found this security issue in a plugin in the repository. I won’t name it since it hasn’t been fixed yet, but I’m confused as to how this hack could affect that plugin since the form was something that is only displayed in the admin page. So wouldn’t that just mean that the only person who could hack the site, is the site owner? …. which really doesn’t seem like a security vulnerability.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/a084125c824d274ff40cb834cf9f544a" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-a084125c824d274ff40cb834cf9f544a-2">	<p><strong class="fn"><a href="http://pixopoint.com/" rel="external nofollow" class="url">Ryan</a></strong></p>
+	<p><small>
+		January 19, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-94114">3:18 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=94114#respond" onclick="return addComment.moveForm(&quot;div-comment-94114&quot;, &quot;94114&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+<ul class="children">
+<li id="comment-97654" class="comment odd alt depth-2  highlander-comment highlander-comment">
+	<div id="div-comment-97654">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>This was a stupid question. Clearly the answer was that someone simply had to send a link to the admin page to the site owner. Whammo, instant XSS attack. Now that I’ve learned a lot more about this sort of thing it’s scary to see the number of plugins that still do this.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/a084125c824d274ff40cb834cf9f544a" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-a084125c824d274ff40cb834cf9f544a-3">	<p><strong class="fn"><a href="http://pixopoint.com/" rel="external nofollow" class="url">Ryan</a></strong></p>
+	<p><small>
+		January 11, 2011 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-97654">11:21 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+			</div>
+	</div>
+</li>
+</ul>
+</li>
+<li id="comment-94117" class="comment even thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-94117">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Thanks so much for this post, v. valuable info.<br>
+I’m somewhere between noob and intermediate with php, and have been using $_SERVER['PHP_SELF'] for form processing for quite some time now. I’ll go fix.</p>
+<p>Quick Q, not too off topic I hope – is it safe to use $_SERVER['DOCUMENT_ROOT'] within an include call? I use this method all the time for pulling in header, nav etc.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/f5b5c7e6857c92270ba5945df3f85e4f" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-f5b5c7e6857c92270ba5945df3f85e4f-0">	<p><strong class="fn">aljuk</strong></p>
+	<p><small>
+		January 19, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-94117">10:26 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=94117#respond" onclick="return addComment.moveForm(&quot;div-comment-94117&quot;, &quot;94117&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-94175" class="pingback odd alt thread-even depth-1 pingback highlander-comment highlander-comment">
+	<div id="div-comment-94175">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>[...] those of you who are curious, the XSS vulnerability was due to an issue discussed here, by Mark Jaquith. While I understand how one could trigger the exploits, I don’t fully [...]</p>
+	</div>
+	
+	<div class="comment_author vcard">
+		<p><strong class="fn"><a href="http://transientmonkey.com/wp-slimbox2-v1-0-2-released" rel="external nofollow" class="url">WP-Slimbox2 v1.0.2 Released! | Transient Monkey</a></strong></p>
+	<p><small>
+		January 26, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-94175">5:51 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=94175#respond" onclick="return addComment.moveForm(&quot;div-comment-94175&quot;, &quot;94175&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-94262" class="comment even thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-94262">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>In a more general context, I’ve always been torn between the “filter what you use” and “pre-filter” arguments (for certain types of data).</p>
+<p>I think a valid argument could be made for at least running the $_SERVER and $_GET arrays through a filtering function before any other code is executed (re-building $_REQUEST afterwards). The data they hold shouldn’t be complex enough to get mangled by an xss filter IMO.</p>
+<p>So many times you see examples like:</p>
+<div id="highlighter_647541" class="syntaxhighlighter  "><div class="bar"><div class="toolbar"><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_647541_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_647541" menu="false" src="http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1308978490g"></div><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="plain">header(</code><code class="string">"Location: "</code> <code class="plain">. </code><code class="variable">$_GET</code><code class="plain">[</code><code class="string">'redirect'</code><code class="plain">]);</code></td></tr></tbody></table></div></div></div>
+<div id="highlighter_257567" class="syntaxhighlighter  "><div class="bar"><div class="toolbar"><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_257567_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_257567" menu="false" src="http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1308978490g"></div><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="functions">echo</code> <code class="variable">$_SERVER</code><code class="plain">[</code><code class="string">'HTTP_USER_AGENT'</code><code class="plain">];</code></td></tr></tbody></table></div></div></div>
+<p>Of course you should still filter what you use as well, but if others are writing plugins then it can make a difference.</p>
+<p>My own benchmarking has shown that to pre-filter every argument in the $_SERVER array with quite a thorough function (decoding data, removing unsafe strings such as data: and htmlspecialchars) takes only a few thousandths of a second, so it would seem to be worth considering.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/2f5128d507a0bb314f6b065a39049c42" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-2f5128d507a0bb314f6b065a39049c42-0">	<p><strong class="fn"><a href="http://www.oiopublisher.com/" rel="external nofollow" class="url">Simon</a></strong></p>
+	<p><small>
+		February 7, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-94262">3:56 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=94262#respond" onclick="return addComment.moveForm(&quot;div-comment-94262&quot;, &quot;94262&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-94432" class="pingback odd alt thread-even depth-1 pingback highlander-comment highlander-comment">
+	<div id="div-comment-94432">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>[...] Mark Jaquith has written a bit more detailed about the action attribute.   Tags: action attribute, forms [...]</p>
+	</div>
+	
+	<div class="comment_author vcard">
+		<p><strong class="fn"><a href="http://wpquicktips.wordpress.com/2010/02/17/use-an-empty-action-attribute-in-forms/" rel="external nofollow" class="url">Use an empty action attribute in forms « WordPress Quick Tips</a></strong></p>
+	<p><small>
+		February 21, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-94432">1:09 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=94432#respond" onclick="return addComment.moveForm(&quot;div-comment-94432&quot;, &quot;94432&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-95068" class="pingback even thread-odd thread-alt depth-1 pingback highlander-comment highlander-comment">
+	<div id="div-comment-95068">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>[...] Insecure use of $_SERVER data in header.php. WordPress developer Mark Jaquith elaborated on this issue on his blog. [...]</p>
+	</div>
+	
+	<div class="comment_author vcard">
+		<p><strong class="fn"><a href="http://www.blogtap.net/submitting-a-theme-to-the-wordpress-free-theme-directory-tips-and-how-to/" rel="external nofollow" class="url">Submitting a Theme to the WordPress Free Theme Directory [Tips and How-to] « Wordpress « Blogtap.net</a></strong></p>
+	<p><small>
+		June 3, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-95068">9:10 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=95068#respond" onclick="return addComment.moveForm(&quot;div-comment-95068&quot;, &quot;95068&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-95123" class="pingback odd alt thread-even depth-1 pingback highlander-comment highlander-comment">
+	<div id="div-comment-95123">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>[...] too. So I've stripped it out with esc_url.  More info. about this security vulnerability here … <a href="http://markjaquith.wordpress.com/200...orms-or-links/" rel="nofollow">http://markjaquith.wordpress.com/200…orms-or-links/</a>  I'll post the new version here shortly for anyone who has a use for it. The original credits are [...]</p>
+	</div>
+	
+	<div class="comment_author vcard">
+		<p><strong class="fn"><a href="http://www.wptavern.com/forum/plugins-hacks/1656-vslider-plugin-injecting-hidden-code-into-page-footers-3.html#post16350" rel="external nofollow" class="url">vSlider plugin injecting hidden code into page footers</a></strong></p>
+	<p><small>
+		June 14, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-95123">8:26 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=95123#respond" onclick="return addComment.moveForm(&quot;div-comment-95123&quot;, &quot;95123&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-95550" class="pingback even thread-odd thread-alt depth-1 pingback highlander-comment highlander-comment">
+	<div id="div-comment-95550">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>[...] to use $_SERVER['PHP_SELF'], better not to use it, but if you do, then make sure you escape it. &nbsp;http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/View full post on WordPress TracLeave a Reply Name (required) Mail (will not be published) [...]</p>
+	</div>
+	
+	<div class="comment_author vcard">
+		<p><strong class="fn"><a href="http://wordpress.mindblazetech.com/2010/07/20/ticket-14355-is_front_page-returns-false-if-used-after-the-loop-starts-closed/" rel="external nofollow" class="url">Ticket #14355 (is_front_page returns false – if used after the loop starts) closed | Wordpress Services</a></strong></p>
+	<p><small>
+		July 20, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-95550">4:50 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=95550#respond" onclick="return addComment.moveForm(&quot;div-comment-95550&quot;, &quot;95550&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-95790" class="pingback odd alt thread-even depth-1 pingback highlander-comment highlander-comment">
+	<div id="div-comment-95790">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>[...] Much nicer all round, and avoids using $_SERVER['PHP_SELF'], which is bad. [...]</p>
+	</div>
+	
+	<div class="comment_author vcard">
+		<p><strong class="fn"><a href="http://www.rhanney.co.uk/2010/08/10/google-calendar-events-0-3-1/" rel="external nofollow" class="url">Google Calendar Events, 0.3.1 « Ross Hanney</a></strong></p>
+	<p><small>
+		August 10, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-95790">6:38 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=95790#respond" onclick="return addComment.moveForm(&quot;div-comment-95790&quot;, &quot;95790&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-95825" class="comment even thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-95825">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Thank you for your beautiful and useful information.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/ed0e9a4a2df227180d1a8306babd83b2" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-ed0e9a4a2df227180d1a8306babd83b2-0">	<p><strong class="fn"><a href="http://www.saglikweb.com/" rel="external nofollow" class="url">Sağlık</a></strong></p>
+	<p><small>
+		August 15, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-95825">9:31 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=95825#respond" onclick="return addComment.moveForm(&quot;div-comment-95825&quot;, &quot;95825&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-95830" class="comment odd alt thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-95830">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>I enjoy  this blog</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="http://1.gravatar.com/avatar/1ba130790d60dfeee39d39dd845944d4?s=32&d=identicon&r=PG" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-1ba130790d60dfeee39d39dd845944d4-0">	<p><strong class="fn"><a href="http://www.freelancemachine.com/tag/jobs" rel="external nofollow" class="url">davidbradlybillysomeonestanleyryan</a></strong></p>
+	<p><small>
+		August 16, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-95830">1:29 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=95830#respond" onclick="return addComment.moveForm(&quot;div-comment-95830&quot;, &quot;95830&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-96911" class="comment even thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-96911">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>PHP = learning curve</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/4edce34d2cb754277d4732f735809ee7" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-4edce34d2cb754277d4732f735809ee7-0">	<p><strong class="fn">jonathan arriola</strong></p>
+	<p><small>
+		December 4, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-96911">1:19 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=96911#respond" onclick="return addComment.moveForm(&quot;div-comment-96911&quot;, &quot;96911&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-97499" class="comment odd alt thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-97499">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Yep, for plugin settings forms, that’s perfect.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="http://1.gravatar.com/avatar/b8eae28030271ec04f4fa6313c602ca0?s=32&d=identicon&r=PG" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-b8eae28030271ec04f4fa6313c602ca0-0">	<p><strong class="fn"><a href="http://www.yamansoft.com/" rel="external nofollow" class="url">web tasarımı</a></strong></p>
+	<p><small>
+		December 13, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-97499">9:07 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=97499#respond" onclick="return addComment.moveForm(&quot;div-comment-97499&quot;, &quot;97499&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-97528" class="comment even thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-97528">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Be glad of lifestyle because it gives you the chance to love, to operate, to play, and to seem up at the stars.</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/ea14ebe503a29d664c4999538ed7de14" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-ea14ebe503a29d664c4999538ed7de14-0">	<p><strong class="fn"><a href="http://www.thoughts.com/lanny79wilkins/auto-audio-manufacturers" rel="external nofollow" class="url">Lesley Sito</a></strong></p>
+	<p><small>
+		December 23, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-97528">6:13 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=97528#respond" onclick="return addComment.moveForm(&quot;div-comment-97528&quot;, &quot;97528&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-97535" class="comment odd alt thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-97535">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Muy buen articulo, quería decirles que pese a no participar, su  blog es uno de los poco que sigo diariamente. Saludos! Romina</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="http://1.gravatar.com/avatar/57358f0a790162b323f1b71d02b145d6?s=32&d=identicon&r=PG" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-57358f0a790162b323f1b71d02b145d6-0">	<p><strong class="fn"><a href="http://adenocarcinomapulmon.blogspot.com/" rel="external nofollow" class="url">Adenocarcinoma de pulmon</a></strong></p>
+	<p><small>
+		December 25, 2010 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-97535">4:39 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=97535#respond" onclick="return addComment.moveForm(&quot;div-comment-97535&quot;, &quot;97535&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-97651" class="comment even thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-97651">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>Nice info, i’ve never really considered main server vars as a potential injection source.</p>
+<p>Be nice to have a list of the server created vars for reference but always best to escape everything anyway. I used to use htmlentities myself as well but my favourite escaping method now is using ctype i like the way you can set what characters are allowed</p>
+<div id="highlighter_845871" class="syntaxhighlighter  "><div class="bar"><div class="toolbar"><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_845871_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_845871" menu="false" src="http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1308978490g"></div><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>01</code></td><td class="content"><code class="plain">$badString = 'file.php\\"?&amp;%^';</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>02</code></td><td class="content"><code class="plain">$goodString = 'file.php?id=37&amp;item=3';</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>03</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>04</code></td><td class="content"><code class="plain">function checkStr($str){</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>05</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">$chars = array('.','?','&amp;','=');//allowed characters</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>06</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">$strTest = str_replace($chars, '', $str);//take out the allowed chars to test</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>07</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">$result = ctype_alnum($strTest);//test if the string is no only alphanumeric chars</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>08</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">return $result;</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>09</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="plain">if(checkStr($badString)){</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;</code><code class="plain">echo 'Bad string passed&lt;br&gt;';</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="plain">}else{</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;</code><code class="plain">echo 'Bad string failed&lt;br&gt;';</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content"><code class="plain">if(checkStr($goodString)){</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;</code><code class="plain">echo 'Good string passed&lt;br&gt;';</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>17</code></td><td class="content"><code class="plain">}else{</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>18</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;</code><code class="plain">echo 'Good string failed&lt;br&gt;';</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>19</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div></div></div>
+<p>or if it is just quotes you don’t want you can just str_replace out the quotes or use strpos to check if it contains any quotes</p>
+<p>full documentation on ctype is on php.net <a href="http://php.net/manual/en/book.ctype.php" rel="nofollow">http://php.net/manual/en/book.ctype.php</a> as well as all the others</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/aa1b37492270fd1044db2dc519b69346" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-aa1b37492270fd1044db2dc519b69346-0">	<p><strong class="fn"><a href="http://www.merrehill.co.uk/" rel="external nofollow" class="url">Bim</a></strong></p>
+	<p><small>
+		January 11, 2011 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-97651">9:34 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=97651#respond" onclick="return addComment.moveForm(&quot;div-comment-97651&quot;, &quot;97651&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-98019" class="comment odd alt thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-98019">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>I am happy to find this very useful for me, as it contains lot of information. I always prefer to read the quality content<br>
+tr</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/ec9175730429ed9c950a1a4cbef320e2" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-ec9175730429ed9c950a1a4cbef320e2-0">	<p><strong class="fn"><a href="http://www.alimezdegi.com/" rel="external nofollow" class="url">estetik</a></strong></p>
+	<p><small>
+		February 16, 2011 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-98019">8:39 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=98019#respond" onclick="return addComment.moveForm(&quot;div-comment-98019&quot;, &quot;98019&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-98476" class="comment even thread-odd thread-alt depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-98476">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>nice info ..<br>
+very informative ..</p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="http://1.gravatar.com/avatar/bedddfa47fbaa716c04803e11a0b9d8c?s=32&d=identicon&r=PG" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-bedddfa47fbaa716c04803e11a0b9d8c-0">	<p><strong class="fn"><a href="http://www.halamanbermasalah.co.cc/" rel="external nofollow" class="url">halaman bermasalah</a></strong></p>
+	<p><small>
+		April 3, 2011 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-98476">12:10 am</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=98476#respond" onclick="return addComment.moveForm(&quot;div-comment-98476&quot;, &quot;98476&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+<li id="comment-98690" class="comment odd alt thread-even depth-1  highlander-comment highlander-comment">
+	<div id="div-comment-98690">
+	<div class="comment_mod">
+		</div>
+	
+	<div class="comment_text">
+	<p>qTD00r <a href="http://gdji3b7vawpu1m0dgpvjrrcu9fk.com/" rel="nofollow">http://gdjI3b7VaWpU1m0dGpvjRrcu9Fk.com</a></p>
+	</div>
+	
+	<div class="comment_author vcard">
+	<img alt="" src="http://1.gravatar.com/avatar/34d2b12c9cf737e6ea8d44774f9582c3?s=32&d=identicon&r=PG" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-34d2b12c9cf737e6ea8d44774f9582c3-0">	<p><strong class="fn"><a href="http://magicfish.net/" rel="external nofollow" class="url">frenky</a></strong></p>
+	<p><small>
+		May 7, 2011 at <a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-98690">1:43 pm</a>			</small></p>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="reply">
+		<a class="comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?replytocom=98690#respond" onclick="return addComment.moveForm(&quot;div-comment-98690&quot;, &quot;98690&quot;, &quot;respond&quot;, &quot;343&quot;)">Reply</a>	</div>
+	</div>
+</li>
+</ol>
+<div class="navigation">
+	<div class="alignleft"></div>
+	<div class="alignright"></div>
+</div>
+<br>
+
+	
+
+
+								<div id="respond" class="js">
+				<h3 id="reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://markjaquith.wordpress.com/wp-comments-post.php" method="post" id="commentform">
+																										
+
+
+												
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest">
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea style="resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; width: 678px; line-height: normal; text-decoration: none; letter-spacing: normal; height: 145px; " tabindex="-1"></textarea><textarea id="comment" name="comment" style="resize: none; overflow-y: hidden; height: 145px; "></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+
+	<div id="comment-form-nascar">
+		<ul>
+			<li class="selected"><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-form-guest" title="Guest" id="postas-guest" class="social_buttons sb_24 sb_guest"><span>Guest</span></a></li>
+			<li><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-form-wordpress" title="Log In" id="postas-wordpress" class="social_buttons sb_24 sb_wordpress"><span>Log In</span></a></li>
+			<li><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-form-load-service:Twitter" title="Log In" id="postas-twitter" class="social_buttons sb_24 sb_twitter"><span>Log In</span></a></li>
+			<li><a href="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/#comment-form-load-service:Facebook" title="Log In" id="postas-facebook" class="social_buttons sb_24 sb_facebook"><span>Log In</span></a></li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/ad516503a11cd5ca435acc9bb6523536" alt="Gravatar" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">Your email address will not be published.</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="text" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="text" value=""></div>
+				</div> 
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/wplogo.png" alt="WordPress.com Logo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+					<p id="wordpress-login-first">Please log in to WordPress.com to post a comment to your blog.</p>
+				<iframe id="wordpress-login-iframe" data-srcurl="http://markjaquith.wordpress.com/wp-login.php?redirect_to=http%3A%2F%2Fmarkjaquith.wordpress.com%2Fhighlander.login%2F&amp;action=highlander-login&amp;skin=light"></iframe>
+				</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/ad516503a11cd5ca435acc9bb6523536" alt="Twitter picture" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="">
+				<p class="comment-form-posting-as"><strong></strong> You are commenting using your Twitter account. <span class="comment-form-log-out">(<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log Out</a>)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/ad516503a11cd5ca435acc9bb6523536" alt="Facebook photo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="">
+				<p class="comment-form-posting-as"><strong></strong> You are commenting using your Facebook account. <span class="comment-form-log-out">(<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log Out</a>)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service"> 
+		<p>Connecting to %s</p> 
+	</div>
+
+	
+</div>
+
+
+<div id="comment-form-subscribe"> 
+<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;" tabindex="6"> <label class="subscribe-label" id="subscribe-label" for="subscribe">Notify me of follow-up comments via email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;" tabindex="7"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts via email.</label></p></div>
+												<p class="form-submit">
+							<input name="submit" type="submit" id="comment-submit" value="Post Comment">
+							<input type="hidden" name="comment_post_ID" value="343" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						
+<input type="hidden" name="genseq" value="1309640688">
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="0126019916"></p><script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/form.js"></script>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="1309640840930"></p>					</form>
+							</div><!-- #respond -->
+			<div style="clear: both"></div>			
+
+
+</div> 
+
+<div id="sidebar">
+<form role="search" method="get" id="searchform" action="http://markjaquith.wordpress.com/">
+	<div><label class="screen-reader-text" for="s">Search for:</label>
+	<input type="text" value="" name="s" id="s">
+	<input type="submit" id="searchsubmit" value="Search">
+	</div>
+	</form><h3>About</h3>			<div class="textwidget"><p>Hi, I'm <a href="http://markjaquith.com/">Mark Jaquith</a>, a provider of <a href="http://coveredwebservices.com/">freelance WordPress services</a>, and a <a href="http://wordpress.org/about/">lead developer</a> of the <a href="http://wordpress.org/">WordPress personal publishing platform</a>.</p>
+
+<p><img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/headshot-6-thin.jpg" alt="headshot of Mark Jaquith"></p>
+
+<p>This is my blog for all things WordPress.  Go to my digital hub at <a href="http://markjaquith.com/">markjaquith.com</a> for links to my other online presences.</p>
+
+<p><a href="http://twitter.com/markjaquith"><img src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/twitter.gif" alt="Follow me on Twitter!" title="Click here to view my Twitter stream and to follow me on Twitter"></a></p>
+
+<div id="mjcombar">
+<ul>
+	<li><a class="first" href="http://markjaquith.com/">Mark Jaquith</a></li>
+	<li><a href="http://txfx.net/">Tempus Fugit</a></li>
+	<li><a class="current-site" href="http://markjaquith.wordpress.com/">Mark on WordPress</a></li>
+	<li><a href="http://flickr.com/photos/markjaquith">Flickr Photostream</a></li>
+	<li><a href="http://coveredwebservices.com/">WordPress Consulting</a></li>
+	<li><a href="http://twitter.com/markjaquith">Twitter</a></li>
+	<li><a href="http://friendfeed.com/markjaquith">FriendFeed</a></li>
+	<li><a href="http://wordsplosion.com/">Wordsplosion!</a></li>
+</ul>
+</div>
+</div>
+		<h3>Ask a WordPress Dev</h3>			<div class="textwidget"><p>Do you have an interesting WordPress-related question? <a href="http://markjaquith.wordpress.com/ask-wordpress/">Submit your questions</a>, and I'll periodically pick the best one and answer it here on my blog! It can be anything from usage tips to hardcore WP development questions.</p>
+</div>
+		<h3><a class="rsswidget" href="http://txfx.net/feed/" title="Syndicate this content"><img style="background:orange;color:white;border:none;" width="14" height="14" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/rss.png" alt="RSS"></a> <a class="rsswidget" href="http://txfx.net/" title="Mark Jaquith&#39;s blog about capitalism, freedom, WordPress, the web, and personal topics">Tempus Fugit | Mark’s personal blog</a></h3><ul><li><a class="rsswidget" href="http://txfx.net/2011/07/01/cory-maye-to-be-released/" title="Cory Maye will be released from prison and escape death row, in a plea agreement. In 2006, Maye was convicted of first degree murder and sentenced to death, for the shooting of a police office who barged through his door in the middle of the night, unannounced (according to Maye’s testimony). While it’s wonderful that [...]">Cory Maye to be released</a></li><li><a class="rsswidget" href="http://txfx.net/2011/06/13/becket-jaquith/" title="Our second child, F. Becket Jaquith (“Becket”), was born at 1:50pm on June 13th, 2011. Vitals: Boy 7 lb, 3.5 oz 20 in Sparse, light hair Blue eyes 2 dimples! He’ll go by Becket — named after Thomas Becket, the principled and stubborn Bishop who stood up to King Henry II, even though it cost [...]">F. Becket Jaquith — “Becket”</a></li><li><a class="rsswidget" href="http://txfx.net/2011/05/31/we-are-not-the-center-of-the-universe/" title="All of the time-lapse videos of the stars are taken from a fixed perspective on earth, which makes it look like the galaxy is spinning around us. This video has been edited to hold the stars stationary. Quite a powerful way to illustrate that we’re all riding a rock that’s hurtling through space.">We are not the center of the universe</a></li><li><a class="rsswidget" href="http://txfx.net/2011/05/24/harold-camping-isnt-a-fringe-christian/" title="Believers weren’t “raptured” up into heaven on May 21st, 2011, like Harold Camping had predicted. That’s no surprise. Camping was a fringe kook. Right? Don’t be so quick to judge. A 2010 Pew Research poll found that a staggering 41% of Americans believe that Jesus of Nazareth will probably return to earth by 2050. That’s [ […]">Harold Camping isn’t a fringe Christian</a></li><li><a class="rsswidget" href="http://txfx.net/2011/05/19/usa-japan-guns-video-games/" title="Fascinating. Certainly nails why I am a gun owner, despite being non-violent and non-confrontational. I’m extremely invested in ideals of independence and autonomy.">US &amp; Japanese views on guns, through video games</a></li></ul>
+
+</div>
+
+</div>
+
+<div id="footer">
+	<p><a href="http://wordpress.com/?ref=footer" rel="generator">Blog at WordPress.com</a>. Theme: <a href="http://theme.wordpress.com/themes/journalist/">The Journalist v1.9</a> by <a href="http://lucianmarin.com/" rel="designer">Lucian E. Marin</a>. <a href="http://en.support.wordpress.com/custom-design/#custom-fonts" rel="external" title="Learn more about the fonts on this blog and the Custom Design upgrade">Fonts on this blog</a>.</p>
+</div>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script type="text/javascript">_qoptions={qacct:'p-18-mFEk4J448M',labels:'language.en,type.wpcom,posttag.wordpress-security'};</script>
+<script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/quant.js"></script>
+<noscript>&lt;p&gt;&lt;img class="robots-nocontent" src="http://pixel.quantserve.com/pixel/p-18-mFEk4J448M.gif?labels=language.en%2Ctype.wpcom%2Cposttag.wordpress-security" style="display:none" height="1" width="1" alt="" /&gt;&lt;/p&gt;</noscript>
+	<script type="text/javascript">
+	/* <![CDATA[ */
+		jQuery( function() {
+			
+			jQuery('#wpl-button > a.like').click( function(e) {
+				e.preventDefault();
+				
+				jQuery('#wpl-mustlogin').remove();
+
+				jQuery.post( 'http://markjaquith.wordpress.com/wp-admin/admin-ajax.php', { 
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_like_click'
+				} );
+
+				var tenMins = new Date();
+				tenMins.setTime( tenMins.getTime() + 600000 );
+				document.cookie = 'wpl_rand=b1769d3f34; expires=' + tenMins.toGMTString() + '; domain=wordpress.com; path=/;';
+				
+				jQuery('#wpl-count').after( '\
+					<div id="wpl-mustlogin"> \
+						<form action="http://markjaquith.wordpress.com/wp-login.php" method="post"> \
+							<p>Just one more step to like this post:</p> \
+							<label><span>Username</span> <input type="text" name="log" id="user_login" class="input" value="" size="20" tabindex="80" /></label> \
+							<label><span>Password</span> <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" tabindex="81" /></label> \
+							<input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="Log In" tabindex="82" /> \
+							<input type="hidden" name="redirect_to" value="http://markjaquith.wordpress.com/2009/09/21/php-server-vars-not-safe-in-forms-or-links/?like=1" /> \
+							<input type="hidden" name="wpl_rand" value="b1769d3f34" /> \
+							<p>Not a member yet? <a href="http://wordpress.com/signup/?ref=likebox" id="wpl-signup-link">Sign up with WordPress.com</a></p> \
+						</form> \
+					</div> \
+				');
+				
+				jQuery('#wpl-mustlogin').hide().slideDown('fast');
+			} );
+			
+			jQuery('#wpl-mustlogin input.input').live( 'focus', function() {
+				jQuery(this).prev().hide();
+			}).live( 'blur', function() {
+				if ( jQuery(this).val() == '' )
+					jQuery(this).prev().show();
+			});
+			
+			jQuery('#wpl-mustlogin input#wp-submit').live( 'click', function(e) {
+				e.preventDefault();
+				
+				jQuery.post( 'http://markjaquith.wordpress.com/wp-admin/admin-ajax.php', { 
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_login_submit'
+				}, function() {
+					jQuery('#wpl-mustlogin form').submit();
+				} );
+			});			
+			
+			jQuery('#wpl-mustlogin a#wpl-signup-link').live( 'click', function(e) {
+				e.preventDefault();
+				
+				var link = jQuery(this).attr('href');
+				
+				jQuery.post( 'http://markjaquith.wordpress.com/wp-admin/admin-ajax.php', { 
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_signup_click'
+				}, function() {
+					location.href = link;
+				} );
+			});					
+			
+		});
+	/* ]]> */
+	</script>
+<script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {
+	my_hash: ""
+};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/wpgroho.js"></script>
+	<div style="display:none">
+	<div class="grofile-hash-map-317569856a87fb3a1f27d28cf40c0d93">
+	</div>
+	<div class="grofile-hash-map-2666073f86ab71d7579ed8f4cf78e194">
+	</div>
+	<div class="grofile-hash-map-c196bc4405ac6fda307f10f8a192e4ec">
+	</div>
+	<div class="grofile-hash-map-7b9fe224dd78d6c4a280a8471809a7ed">
+	</div>
+	<div class="grofile-hash-map-7da5bead8e47f9b9142a4bdd05975bac">
+	</div>
+	<div class="grofile-hash-map-3b7603cdac8c0d41d0550a2f75e3df4e">
+	</div>
+	<div class="grofile-hash-map-b56c0f69901591b1d517cd34e1d0cfb7">
+	</div>
+	<div class="grofile-hash-map-ee26df0a6ec96583c135e3c6c8ba4c60">
+	</div>
+	<div class="grofile-hash-map-98c06830eb1583902fa8840a4b704967">
+	</div>
+	<div class="grofile-hash-map-600ddb6f19c716ca0c80802dcd5781c1">
+	</div>
+	<div class="grofile-hash-map-33ae983c72db97d93df45a6290d3f436">
+	</div>
+	<div class="grofile-hash-map-1a526c8cd55ef6eca12a6fa7b29904cb">
+	</div>
+	<div class="grofile-hash-map-8fdd1c4a03682246e45b8b15cd08b854">
+	</div>
+	<div class="grofile-hash-map-b2b945013bba4ff68dafc8ebf8a0de7b">
+	</div>
+	<div class="grofile-hash-map-3567eed7942846eda1f6ddac8d08aa27">
+	</div>
+	<div class="grofile-hash-map-992d92327763cdd47f8223cfab508744">
+	</div>
+	<div class="grofile-hash-map-90a40c56156243c84613c892939e8672">
+	</div>
+	<div class="grofile-hash-map-007e831cf15b0387f74b8d462ede34c0">
+	</div>
+	<div class="grofile-hash-map-849728b99fba132fcc9252e267d8d573">
+	</div>
+	<div class="grofile-hash-map-31c1f0d32bfca6e7990dacc423dd9197">
+	</div>
+	<div class="grofile-hash-map-716cac45f5e3df8f1eb9b83e4dc6bc2a">
+	</div>
+	<div class="grofile-hash-map-18101b67c4928171549ea781ad556909">
+	</div>
+	<div class="grofile-hash-map-0c0b19278c8c452613f1de8d58fe1ea0">
+	</div>
+	<div class="grofile-hash-map-e70d4086e89c2e1e081870865be68485">
+	</div>
+	<div class="grofile-hash-map-c81be3ebcd5cdb5836f62d632118c122">
+	</div>
+	<div class="grofile-hash-map-f27b79eb04eb414c4c1fc98375fe7404">
+	</div>
+	<div class="grofile-hash-map-a545222f17244065a227cfbce0a1ca4c">
+	</div>
+	<div class="grofile-hash-map-a084125c824d274ff40cb834cf9f544a">
+	</div>
+	<div class="grofile-hash-map-edd2d8ff3fec16bf43cb96ab14821304">
+	</div>
+	<div class="grofile-hash-map-da096d7ac0c6e79ead969d6cad49224b">
+	</div>
+	<div class="grofile-hash-map-a084125c824d274ff40cb834cf9f544a">
+	</div>
+	<div class="grofile-hash-map-f5b5c7e6857c92270ba5945df3f85e4f">
+	</div>
+	<div class="grofile-hash-map-2f5128d507a0bb314f6b065a39049c42">
+	</div>
+	<div class="grofile-hash-map-ed0e9a4a2df227180d1a8306babd83b2">
+	</div>
+	<div class="grofile-hash-map-1ba130790d60dfeee39d39dd845944d4">
+	</div>
+	<div class="grofile-hash-map-4edce34d2cb754277d4732f735809ee7">
+	</div>
+	<div class="grofile-hash-map-b8eae28030271ec04f4fa6313c602ca0">
+	</div>
+	<div class="grofile-hash-map-9c15eaf270a4233fd2853e002008d26e">
+	</div>
+	<div class="grofile-hash-map-57358f0a790162b323f1b71d02b145d6">
+	</div>
+	<div class="grofile-hash-map-aa1b37492270fd1044db2dc519b69346">
+	</div>
+	<div class="grofile-hash-map-ec9175730429ed9c950a1a4cbef320e2">
+	</div>
+	<div class="grofile-hash-map-bedddfa47fbaa716c04803e11a0b9d8c">
+	</div>
+	<div class="grofile-hash-map-34d2b12c9cf737e6ea8d44774f9582c3">
+	</div>
+	</div>
+<script type="text/javascript">
+/* <![CDATA[ */
+var HighlanderComments = {
+	loggingInText: "Logging In&hellip;",
+	submittingText: "Posting Comment&hellip;",
+	postCommentText: "Post Comment",
+	connectingToText: "Connecting to %s",
+	commentingAsText: "%1$s: You are commenting using your %2$s account.",
+	logoutText: "Log Out",
+	loginText: "Log In",
+	connectURL: "http://markjaquith.wordpress.com/public.api/connect/?action=request",
+	homeURL: "http://markjaquith.wordpress.com/",
+	postID: "343",
+	gravDefault: "identicon",
+	enterACommentError: "Please enter a comment",
+	enterEmailError: "Email address required",
+	invalidEmailError: "Invalid email address",
+	enterAuthorError: "Name required"
+};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/script.js"></script>
+<script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/sharing.js"></script>
+<script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/beacon.js"></script><script type="text/javascript">try{COMSCORE.beacon({c1:2,c2:7518284});}catch(e){}</script><noscript>&lt;p class="robots-nocontent"&gt;&lt;img src="http://b.scorecardresearch.com/p?cj=1c1=2&amp;#038;c2=7518284" alt="" style="display:none" width="1" height="1" /&gt;&lt;/p&gt;</noscript><script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/shCore.js"></script>
+<script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/shBrushPhp.js"></script>
+<script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/shBrushXml.js"></script>
+<script type="text/javascript" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/shBrushPlain.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var themecssurl = "http://s0.wp.com/wp-content/plugins/syntaxhighlighter-wpcom/shThemeDefault.css?m=1308978489g&amp;ver=2.1.364b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.getElementsByTagName("head")[0].appendChild(themecss);
+	})();
+	SyntaxHighlighter.config.clipboardSwf = 'http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1308978490g';
+	SyntaxHighlighter.config.strings.expandSource = 'show source';
+	SyntaxHighlighter.config.strings.viewSource = 'view source';
+	SyntaxHighlighter.config.strings.copyToClipboard = 'copy to clipboard';
+	SyntaxHighlighter.config.strings.copyToClipboardConfirmation = 'The code is in your clipboard now';
+	SyntaxHighlighter.config.strings.print = 'print';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.all();
+</script>
+<script src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/w.js" type="text/javascript"></script>
+<script type="text/javascript">
+st_go({'blog':'316','v':'wpcom','user_id':'0','post':'343','subd':'markjaquith'});
+ex_go({'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGRVYVNrSFguN3FwSls/WlBpT35obVtdY3UuS29zWCZHV35OWnlzL2ZwTTBwLS5oZDNtaEVKX1krLXEtdlB8dmUsOXRJJTB8T3YvelBSVEd5VUFtQV0zOHVqcWJVUitTW2I9SzVbalQxellEd2FWZHU1K0EvTCtJVFJTS2JkRiZVbVo9Nzg5TTVyJV8mR34wMjNOLE89bzclVmkySzQ/V08rWVlJY2VrZW5YRlRRcU1qUlMvcDFUY3NJaDRtJSVMQUFxQzMxUXg2eERQQ0hYd3BFc3M='});
+addLoadEvent(function(){linktracker_init('316',343);});
+	</script><img id="wpstats" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/g.gif" alt=""><img id="wpstats2" src="./PHP $_SERVER variables are not safe for use in forms, links « Mark on WordPress_files/g(1).gif" alt="" style="display:none">
+
+
+</body></html>

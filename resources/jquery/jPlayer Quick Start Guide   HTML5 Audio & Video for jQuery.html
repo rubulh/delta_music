@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+
+<!-- Website Design By: www.happyworm.com -->
+<title>jPlayer Quick Start Guide : HTML5 Audio & Video for jQuery</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="description" content="The CSS styleable jQuery media player plugin with HTML5 support!" />
+<meta name="keywords" content="jPlayer, jQuery, jQuery plugin, media, video, audio, media player, video player, audio player, mp3, mp4, m4a, m4v, aac, h264, ogg, oga, ogv, wav, webm" />
+<meta name="company" content="Happyworm" />
+<link href="/css/jPlayer.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="/graphics/jplayer.ico" type="image/x-icon" />
+<!--[if IE]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!--[if IE 6]>
+<link href="/css/ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<script type="text/javascript">
+(function() {
+	var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+	s.type = 'text/javascript';
+	s.async = true;
+	s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+	t.parentNode.insertBefore(s, t);
+})();
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-3557377-9']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+<body class="guide">
+<div id="container">
+
+	<header>
+	<a href="/"><img src="/graphics/jplayer_logo.gif" alt="jPlayer" /><h1>HTML5 Audio & Video for jQuery</h1></a>
+
+		<p><a href="http://www.happyworm.com" title="a project by happyworm">a project by happyworm</a></p>
+		<nav class="main">
+			<ul>
+				<li id="home"><a href="/">home</a></li>
+				<li id="demos"><a href="/latest/demos/">demos</a></li>
+				<li id="download"><a href="/download/">download</a></li>
+				<li id="dev_guide"><a href="/latest/developer-guide/">dev guide</a></li>
+				<li id="support"><a href="/support/">support</a></li>
+				<li id="sites"><a href="/sites/">sites</a></li>
+				<li id="about"><a href="/about/">about</a></li>
+				<!-- <li id="skins"><a href="/skins/">skins</a></li> -->
+			</ul>
+		</nav>
+
+	</header>
+		<div id="content_main">
+		<section>
+			<h2>jPlayer 2.0.0 Quick Start Guide</h2>
+			<h3>The basics</h3>
+			<p>
+				1. <a href="step-1/">Upload the jPlayer plugin</a><br />
+				2. <a href="step-2/">Include jQuery</a><br />
+				3. <a href="step-3/">Include jPlayer</a><br />
+			</p>
+		</section>
+
+		<section>
+			<h3>Using a jPlayer skin</h3>
+			<p>
+				4. <a href="step-4/">Upload the jPlayer skin</a><br />
+				5. <a href="step-5/">Include the jPlayer skin</a><br />
+			</p>
+		</section>
+
+		<section>
+			<h3>Creating an audio player:</h3>
+			<a href="step-8-audio/"><img class="demo" src="/graphics/jplayer_demo_01.jpg" alt="Creating an audio player" /></a>
+			<p>
+				6. <a href="step-6-audio/">Add the jPlayer audio interface HTML</a><br />
+				7. <a href="step-7-audio/">Add the JavaScript to instance jPlayer for audio</a><br />
+				8. <a href="step-8-audio/">Summary for an audio player</a><br />
+			</p>
+		</section>
+
+		<section>
+			<h3>Creating a video player</h3>
+			<a href="step-8-video/"><img class="demo" src="/graphics/jplayer_demo_01_video.jpg" alt="Creating a video player" /></a>
+			<p>
+				6. <a href="step-6-video/">Add the jPlayer video interface HTML</a><br />
+				7. <a href="step-7-video/">Add the JavaScript to instance jPlayer for video</a><br />
+				8. <a href="step-8-video/">Summary for a video player</a><br />
+			</p>
+		</section>
+
+		<section>
+			<h3>Using the jPlayer API:</h3>
+			<p>
+				<!-- <a href="api-setMedia/">setMedia : Changing the media</a><br /> -->
+				<a href="api-cssSelector/">cssSelector : Using your own interface</a><br />
+			</p>
+		</section>
+
+		<section>
+			<h3>Using jPlayer Events</h3>
+			<p>
+				<!-- <a href="event-ready/">ready : To auto-play the media</a><br /> -->
+				<a href="event-ended/">ended : To auto-repeat or loop the media</a><br />
+			</p>
+		</section>
+		<section>
+			<h3>Bare bones examples</h3>
+			<p>
+				<a href="example-audio-soundtrack/">audio : As a soundtrack to your page</a><br />
+				<!-- <a href="example-video-presentation/">video : As an auto-playing presentation with auto-repeat</a><br /> -->
+			</p>
+		</section>
+	</div>
+	<aside>
+
+			<div class="section highlight">
+			<h2><a href="https://groups.google.com/forum/#!forum/jplayer">jPlayer Community</a></h2>
+				<p> members and counting!</p>
+				<form action="http://groups.google.com/group/jplayer/boxsubscribe">
+					<input type="text" name="email" value="your email" class="placeholder" onfocus="javascript:if(this.value==='your email'){this.value='';this.style.color='#333';}" onblur="javascript:if(this.value===''){this.value='your email';this.style.color='#999';}"/>
+					<input type="submit" value="join" class="btn" />
+				</form>
+		</div>
+
+		<div class="section highlight">
+			<h2>Hire Us!</h2>
+			<p>Need a media based solution realized or just need some help. Hire <a href="http://www.happyworm.com">Happyworm</a>!<br />
+			Contact: <a href="mailto:hire.us@happyworm.com" alt="Hire Happyworm" title="Hire Happyworm">hire.us@happyworm.com</a>.</p>
+		</div>
+
+				<div class="section highlight">
+			<h2>Help us improve jPlayer</h2>
+			<p>Developing and supporting jPlayer is almost a full-time job and we are really just beginning. Help us continue to help you.</p>
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input type="hidden" name="cmd" value="_s-xclick" /><input type="hidden" name="hosted_button_id" value="5356703" /><input type="image" src="http://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online." /><img alt="" border="0" src="https://www.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1" /><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://www.jplayer.org"></a></form>
+		</div>
+
+		<!--<div class="section highlight">
+			<h2><a href="http://jplayer.it">jPlayer.it</a></h2>
+			<p>Customize your player!</p>
+		</div>-->
+
+		<div class="section  highlight">
+			<h2>Plugin corner</h2>
+			<ul>
+				<li><a href="http://wordpress.org/extend/plugins/mp3-jplayer/">Wordpress</a></li>
+				<li><a href="http://drupal.org/project/jplayer">Drupal</a></li>
+				<li><a href="/sites/#jPlayer-plugin-sites">more...</a></li>
+			</ul>
+		</div>
+		<div class="section ralign">
+		<a href='https://developer.mozilla.org/en/JavaScript/Reference/' title='JavaScript Reference'><img src='/graphics/betterJS.gif' alt='JavaScript Reference'/></a>
+		</div>
+		<div class="section transbgr">
+			<h3>Also by <a href="http://www.happyworm.com">Happyworm</a>:</h3>
+			<h2><a href="http://www.happyworm.com/projects/Qwiiz/qwiiz-massively-multiplayer-quiz-game.htm">Qwiiz</a></h2>
+			<p>Massively multiplayer real-time quiz game. Cross platform and tuned for the iPad. <a href="http://www.happyworm.com/projects/Qwiiz/qwiiz-massively-multiplayer-quiz-game.htm">Try it!</a></p>
+		</div>
+
+	</aside>
+	<footer>
+		<p>
+			<a href="http://www.happyworm.com"><img src="/graphics/worm.jpg" />&copy; 2009 - 2011 Happyworm Ltd</a> - Last update: 4th January 2011		</p>
+		<a href="http://www.w3.org/html/logo/"><img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-semantics.png" width="165" height="64" alt="HTML5 Powered with CSS3 / Styling, and Semantics" title="HTML5 Powered with CSS3 / Styling, and Semantics"></a>
+		<a id="twitter" href="http://twitter.com/happyworm"><img alt="twitter" src="/graphics/twitter_small.png"/> follow us on twitter </a>
+	</footer>
+</div>
+</body>
+</html>

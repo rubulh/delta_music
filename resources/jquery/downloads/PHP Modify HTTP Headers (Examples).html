@@ -1,0 +1,354 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>PHP Modify HTTP Headers (Examples)</title>
+            
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Language" content="en" />
+    
+                
+                
+        <meta name="robots" content="index,follow" /> 
+        <meta name="language" id="meta_lang" content="en" /> 
+            
+        <link rel="Shortcut Icon" href="/snippets/favicon.ico" type="image/x-icon" />
+            
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/codedump-rss" />
+	<link rel="stylesheet" href="/snippets/main.css" type="text/css" />
+	<link rel="stylesheet" href="/snippets/form.css" type="text/css" />
+	<link rel="stylesheet" href="/snippets/comments.css" type="text/css" />
+
+</head>
+
+<body>
+
+<div id="page">
+
+    <form id="searchbox_006697430475083733645:bvje-zndkw4" action="http://google.com/cse">
+    
+    <div id="logo">
+                <a href="/snippets/">A few selected code snippets</a>
+        <br class="clear" />
+    </div>
+    
+    <div id="menu">
+        <ul>
+            <li class="menu_item" id="menu_home"><a href="/snippets/" rel="start"><span>Home</span></a></li><li class="sep"></li>            
+            <li class="menu_item" id="menu_browse"><a href="/snippets/browse.htm" rel="directory"><span>Browse</span></a></li><li class="sep"></li>
+            <li class="menu_item" id="menu_about"><a href="/snippets/about.htm" rel="contact"><span>About</span></a></li>
+        </ul>
+        
+        <div id="SearchForm">        
+            <!-- Google CSE Search Box Begins -->          
+                <input type="hidden" name="cx" value="006697430475083733645:bvje-zndkw4" />
+                <input type="hidden" name="cof" value="FORID:0" />
+                <input name="q" type="text" class="SearchField" />
+                <input type="submit" name="sa" value="Search" class="SearchButton" />
+                <img src="http://google.com/coop/images/google_custom_search_smwidb.gif" alt="Google Custom Search" width="119" height="16" />
+            <!-- Google CSE Search Box Ends -->           
+        
+                    </div>
+        
+        <br class="clear" />
+    </div>
+    </form>
+    
+    <div id="geen_line"><img src="/snippets/images/pixel.gif" width="5" height="5" alt="" /></div>
+    
+    <div id="content">
+    
+        <div id="inner_content">
+            <h1>Modify HTTP Headers (Examples)</h1>
+
+            <p class="snippet_info">
+            Many examples that show how to use the <a href="http://www.php.net/header">header()</a> function of PHP            
+            <br/><br/>
+            <b>Hint:</b><br/>
+            If you want to check your headers, you can use web based tools like: 
+            <a href="http://web-sniffer.net/">web-sniffer.net</a>, <br/>
+            web-browser extensions (e.g. <a href="http://livehttpheaders.mozdev.org/">LiveHTTPHeaders</a>, 
+            <a href="http://www.blunck.se/iehttpheaders/iehttpheaders.html">ieHTTPHeaders</a>) or
+            another third-party software tool.          
+            </p>
+
+            <div id="code_area">
+                <div class="box code">
+                    <div id="source_code" class="box_content" title="Tip: Double click to copy the code">
+                    <pre class="php"><span style="color: #808080; font-style: italic;">// See related links for more status codes</span>
+&nbsp;
+<span style="color: #808080; font-style: italic;">// Use this header instruction to fix 404 headers</span>
+<span style="color: #808080; font-style: italic;">// produced by url rewriting...</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'HTTP/1.1 200 OK'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">// Page was not found:</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'HTTP/1.1 404 Not Found'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">// Access forbidden:</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'HTTP/1.1 403 Forbidden'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">// The page moved permanently should be used for</span>
+<span style="color: #808080; font-style: italic;">// all redrictions, because search engines know</span>
+<span style="color: #808080; font-style: italic;">// what's going on and can easily update their urls.</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'HTTP/1.1 301 Moved Permanently'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">// Server error</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'HTTP/1.1 500 Internal Server Error'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">// Redirect to a new location:</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Location: http://www.example.org/'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">// Redriect with a delay:</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Refresh: 10; url=http://www.example.org/'</span><span style="color: #66cc66;">&#41;</span>;
+<a href="http://www.php.net/print"><span style="color: #000066;">print</span></a> <span style="color: #ff0000;">'You will be redirected in 10 seconds'</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">// you can also use the HTML syntax:</span>
+<span style="color: #808080; font-style: italic;">// &lt;meta http-equiv=&quot;refresh&quot; content=&quot;10;http://www.example.org/ /&gt;</span>
+&nbsp;
+<span style="color: #808080; font-style: italic;">// override X-Powered-By value</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'X-Powered-By: PHP/4.4.0'</span><span style="color: #66cc66;">&#41;</span>;
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'X-Powered-By: Brain/0.6b'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">// content language (en = English)</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Content-language: en'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">// last modified (good for caching)</span>
+<span style="color: #0000ff;">$time</span> = <a href="http://www.php.net/time"><span style="color: #000066;">time</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span> - <span style="color: #cc66cc;">60</span>; <span style="color: #808080; font-style: italic;">// or filemtime($fn), etc</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Last-Modified: '</span>.<a href="http://www.php.net/gmdate"><span style="color: #000066;">gmdate</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'D, d M Y H:i:s'</span>, <span style="color: #0000ff;">$time</span><span style="color: #66cc66;">&#41;</span>.<span style="color: #ff0000;">' GMT'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">// header for telling the browser that the content</span>
+<span style="color: #808080; font-style: italic;">// did not get changed</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'HTTP/1.1 304 Not Modified'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">// set content length (good for caching):</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Content-Length: 1234'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">// Headers for an download:</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Content-Type: application/octet-stream'</span><span style="color: #66cc66;">&#41;</span>;
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Content-Disposition: attachment; filename=&quot;example.zip&quot;'</span><span style="color: #66cc66;">&#41;</span>; 
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Content-Transfer-Encoding: binary'</span><span style="color: #66cc66;">&#41;</span>;
+<span style="color: #808080; font-style: italic;">// load the file to send:</span>
+<a href="http://www.php.net/readfile"><span style="color: #000066;">readfile</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'example.zip'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">// Disable caching of the current document:</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Cache-Control: no-cache, no-store, max-age=0, must-revalidate'</span><span style="color: #66cc66;">&#41;</span>;
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Expires: Mon, 26 Jul 1997 05:00:00 GMT'</span><span style="color: #66cc66;">&#41;</span>; <span style="color: #808080; font-style: italic;">// Date in the past</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Pragma: no-cache'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">// set content type:</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Content-Type: text/html; charset=iso-8859-1'</span><span style="color: #66cc66;">&#41;</span>;
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Content-Type: text/html; charset=utf-8'</span><span style="color: #66cc66;">&#41;</span>;
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Content-Type: text/plain'</span><span style="color: #66cc66;">&#41;</span>; <span style="color: #808080; font-style: italic;">// plain text file</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Content-Type: image/jpeg'</span><span style="color: #66cc66;">&#41;</span>; <span style="color: #808080; font-style: italic;">// JPG picture</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Content-Type: application/zip'</span><span style="color: #66cc66;">&#41;</span>; <span style="color: #808080; font-style: italic;">// ZIP file</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Content-Type: application/pdf'</span><span style="color: #66cc66;">&#41;</span>; <span style="color: #808080; font-style: italic;">// PDF file</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Content-Type: audio/mpeg'</span><span style="color: #66cc66;">&#41;</span>; <span style="color: #808080; font-style: italic;">// Audio MPEG (MP3,...) file</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'Content-Type: application/x-shockwave-flash'</span><span style="color: #66cc66;">&#41;</span>; <span style="color: #808080; font-style: italic;">// Flash animation</span>
+&nbsp;
+<span style="color: #808080; font-style: italic;">// show sign in box</span>
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'HTTP/1.1 401 Unauthorized'</span><span style="color: #66cc66;">&#41;</span>;
+<a href="http://www.php.net/header"><span style="color: #000066;">header</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'WWW-Authenticate: Basic realm=&quot;Top Secret&quot;'</span><span style="color: #66cc66;">&#41;</span>;
+<a href="http://www.php.net/print"><span style="color: #000066;">print</span></a> <span style="color: #ff0000;">'Text that will be displayed if the user hits cancel or '</span>;
+<a href="http://www.php.net/print"><span style="color: #000066;">print</span></a> <span style="color: #ff0000;">'enters wrong login data'</span>;</pre>                    </div>
+                </div>
+
+                <div class="code_info">
+                    <div class="box">
+                        <div class="boxheader">Snippet information</div>
+                        <p>
+                            <strong>Author:</strong><br />
+                            Jonas John                            <br />
+                            <br />
+                            <strong>License:</strong><br />
+                            <a href="http://en.wikipedia.org/wiki/Public_domain" rel="license">Public Domain</a>                            <br />
+                            <br />
+                            <strong>Language:</strong><br />
+                            <a href="/snippets/php/" rel="directory">PHP</a>
+                            <br />
+                            <br />
+                            <strong>Created:</strong><br />
+                            04/03/2006                            <br />
+                            <br />
+                            <strong>Updated:</strong><br />
+                            09/14/2007                            <br />
+                            <br />
+                            <strong>Tags:</strong><br />
+                            <a href="/snippets/tags/tutorials.htm" title="Find related snippets for the tag &quot;tutorials&quot;" rel="tag">tutorials</a>, <a href="/snippets/tags/http.htm" title="Find related snippets for the tag &quot;http&quot;" rel="tag">http</a>, <a href="/snippets/tags/examples.htm" title="Find related snippets for the tag &quot;examples&quot;" rel="tag">examples</a>
+                                            <br /><br /><strong>Related links:</strong><br /><span id="related_links">- <a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes">List of HTTP status codes</a><br />
+            - <a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes">List of HTTP status codes</a><br />
+            - <a href="http://www.expertsrt.com/tutorials/Matt/HTTP_headers.html">More detailed tutorial</a><br />
+            - <a href="http://www.web-caching.com/mnot_tutorial/">Caching Tutorial</a><br />
+            - <a href="http://reeg.junetz.de/DSP/node16.html">Detailed tutorial (German)</a><br /></span><br />
+                        </p>
+                    </div>
+
+                                    </div>
+
+                <br class="clear" />
+            </div>
+
+            <br class="clear" />
+
+            
+
+            <div class="box Comments">
+
+                <div class="box_content">
+                    Found a bug? Or do you have a better solution for this?
+                    <br />
+                    Feel free to leave a message:
+                    <br />
+                    <br />
+                    
+                    <div id="AddComment">
+                        <form action="/snippets/" method="POST">
+
+                            <input type="hidden" name="Id" value="2251:36435512929896:jdedj" />
+                            <input type="hidden" name="Tg" value="c" />
+
+                            <fieldset>
+                                <legend>Leave a comment</legend>
+
+                                <br />
+
+                                <div class="Field AlignLeft">
+                                    <label for="Author">Your name:</label>
+                                    <div class="Control">
+                                        <input type="text" name="Author" id="Author" value="" class="" title="Your name" />
+                                    </div>
+                                </div>
+
+                                <!--
+                                <div class="Field AlignRight">
+                                    <label for="Url">Url:</label>
+                                    <div class="Control">
+                                        <input type="text" name="Url" id="Url" value="" class="Optional" title="Your homepage url (optional)" />
+                                    </div>
+                                </div>
+
+                                <div class="Field FullWidth">
+                                    <label for="Email">
+                                        Send replies to this email adress:<br />
+                                        <small>
+                                            (if provided, email will not be displayed or shared)
+                                        </small>
+                                    </label>
+                                    <div class="Control">
+                                        <input type="text" name="Email" id="Email" value="" class="Optional" title="Your E-Mail adress (optional)" />
+                                    </div>
+                                </div>
+                                -->
+
+                                <div class="Field FullWidth Special">
+                                    <label for="Entry">Comment:</label>
+                                    <div class="Control">
+                                        <textarea name="Entry" id="Entry" rows="3" cols="20" class="" title="Your comment"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="Field FullWidth">
+                                    <label for="Comment">Comment:</label>
+                                    <div class="Control">
+                                        <textarea name="Comment" id="Comment" rows="3" cols="20" class="" title="Your comment"></textarea><br />
+                                        <small class="decent">(Posts containing any form of advertising will be deleted immediately &mdash; so please don't waste mine and your time)</small>
+                                    </div>
+                                </div>
+
+                                <div class="Field FullWidth Special">
+                                    <label for="Homepage">Homepage:</label>
+                                    <div class="Control">
+                                        <input type="text" name="Homepage" id="Homepage" title="Your homepage" value="http://" />
+                                    </div>
+                                </div>
+
+                                <div class="SubmitFields">
+                                    <input type="hidden" name="Website" id="Website" value="" />
+                                    <input type="hidden" name="Check" value="205323948042664404xdeej" />
+                                    <input type="hidden" name="Email" value="" />
+                                    <input type="hidden" name="Url" value="" />
+                                    <input type="submit" name="btnSubmit" id="btnSubmit" value="Submit comment" title="Click here to submit your comment (please only once)" />
+                                    <input type="button" name="btnCancel" id="btnCancel" value="Cancel" title="Click here if you want to cancel" />
+                                </div>
+
+                            </fieldset>
+
+                        </form>
+                    </div>
+
+                    <br />
+
+<div id="Comments">
+<div class="Comment"><div class="CommentSpace"><div class="Author"><b>shlaing</b> <abbr class="date" title="2011-06-21T06:27:17Z">June 21, 2011 at 06:27</abbr></div><div class="Entry">Oh! Extremely helpful for me and others, thanks &quot;Jonas John<br />
+&quot;</div></div></div><div class="Comment"><div class="CommentSpace"><div class="Author"><b>archana</b> <abbr class="date" title="2011-05-09T07:13:36Z">May 09, 2011 at 07:13</abbr></div><div class="Entry">yufkdgjf</div></div></div><div class="Comment"><div class="CommentSpace"><div class="Author"><b>Mahesh</b> <abbr class="date" title="2011-04-25T17:57:50Z">April 25, 2011 at 17:57</abbr></div><div class="Entry">Information is very useful...</div></div></div><div class="Comment"><div class="CommentSpace"><div class="Author"><b>none</b> <abbr class="date" title="2011-03-28T05:59:45Z">March 28, 2011 at 05:59</abbr></div><div class="Entry">I'm creating my first site as my project,and i have a hardtime in making a comment,'cause everytime I refresh the page,the previous comment will also resend,eventhough i did not write anything on the comment box.</div></div></div><div class="Comment"><div class="CommentSpace"><div class="Author"><b>noe</b> <abbr class="date" title="2010-11-24T19:26:41Z">November 24, 2010 at 19:26</abbr></div><div class="Entry">How to change value of header(&quot;Server:&quot;) ???<br />
+It's value is Apache how to change it to a custom Server Name?? like: Banana or Google</div></div></div><div class="Comment"><div class="CommentSpace"><div class="Author"><b>Charnold</b> <abbr class="date" title="2010-10-18T19:01:02Z">October 18, 2010 at 19:01</abbr></div><div class="Entry">&lt;?php<br />
+header(&quot;HTTP/1.0 410 Gone&quot;);<br />
+?&gt;<br />
+The requested page has been removed.</div></div></div><div class="Comment"><div class="CommentSpace"><div class="Author"><b>Alexander</b> <abbr class="date" title="2010-09-23T21:36:47Z">September 23, 2010 at 21:36</abbr></div><div class="Entry">Thanks for all the great examples in one place!</div></div></div><div class="Comment"><div class="CommentSpace"><div class="Author"><b>Simranjit singh</b> <abbr class="date" title="2010-04-22T09:02:02Z">April 22, 2010 at 09:02</abbr></div><div class="Entry">Hello i really appriciate you. Thanks for providing such a great informtion!!</div></div></div><div class="Comment"><div class="CommentSpace"><div class="Author"><b>Danko - LogoFoo.com</b> <abbr class="date" title="2010-04-10T15:15:40Z">April 10, 2010 at 15:15</abbr></div><div class="Entry">Great list! Thanks<br />
+However, can you explain where could I see these header statement? I used Firebug with Google PageSpeed, but nothing appears whether cache expiration or pragma</div></div></div><div class="Comment"><div class="CommentSpace"><div class="Author"><b>tresloukadu</b> <abbr class="date" title="2008-12-07T14:45:45Z">December 07, 2008 at 14:45</abbr></div><div class="Entry">Sometimes depending on the situation i use to put some html code too. Here is an example in php.<br />
+<br />
+function showForbidden()<br />
+{<br />
+	header('HTTP/1.1 403 Forbidden');<br />
+	<br />
+	echo(&quot;&lt;html&gt;<br />
+	&lt;head&gt;<br />
+	&lt;title&gt;403 Forbidden&lt;/title&gt;<br />
+	&lt;/head&gt;<br />
+	&lt;body&gt;<br />
+	&lt;p&gt;Directory access is forbidden.&lt;/p&gt;<br />
+	&lt;/body&gt;<br />
+	&lt;/html&gt;&quot;);<br />
+}</div></div></div><div class="Comment"><div class="CommentSpace"><div class="Author"><b>ดูคลิป</b> <abbr class="date" title="2008-11-02T04:01:06Z">November 02, 2008 at 04:01</abbr></div><div class="Entry">thank for code<br />
+<br />
+// Headers for an download:<br />
+header('Content-Type: application/octet-stream');<br />
+header('Content-Disposition: attachment; filename=&quot;example.zip&quot;'); <br />
+header('Content-Transfer-Encoding: binary');<br />
+// load the file to send:<br />
+readfile('example.zip');</div></div></div><div class="Comment"><div class="CommentSpace"><div class="Author"><b>Miroslav Asenov</b> <abbr class="date" title="2008-10-28T18:31:48Z">October 28, 2008 at 18:31</abbr></div><div class="Entry">Mac xie - Some times header not work. See your error logs it is server error.</div></div></div><div class="Comment"><div class="CommentSpace"><div class="Author"><b>mac xie</b> <abbr class="date" title="2008-10-22T05:22:53Z">October 22, 2008 at 05:22</abbr></div><div class="Entry">sometimes header not work ,but don't show any error message<br />
+code follow:<br />
+header( &quot;HTTP/1.1 301 Moved Permanently&quot; );<br />
+	header( &quot;Location:{$url}&quot; );<br />
+	exit();</div></div></div><div class="Comment"><div class="CommentSpace"><div class="Author"><b>alfred</b> <abbr class="date" title="2008-03-01T03:42:17Z">March 01, 2008 at 03:42</abbr></div><div class="Entry">To see headers I would really recommmend to use firebug which is the most awesome firefox extension for webdevelopers. This list is nice BTW.</div></div></div><div class="Comment"><div class="CommentSpace"><div class="Author"><b>ernest</b> <abbr class="date" title="2008-02-14T07:25:29Z">February 14, 2008 at 07:25</abbr></div><div class="Entry">The headers for download section you have is really nice. If you want the window to give an estimated download time you can use Content-Length: filesize(file_name)</div></div></div></div>
+
+                <br />
+                <br />
+
+            </div>
+
+        </div>
+
+        </div>
+        <!--/inner_content-->
+                
+    </div>
+    <!--/content-->
+    
+    <div id="footer">
+        <p>        
+            &copy; 2006-2011 
+            <a href="http://www.jonasjohn.de/" rel="me">Jonas John</a>. All rights reserved.
+        </p>
+    </div>
+    <br class="clear" />
+
+</div>
+<!--/page-->
+
+	<script type="text/javascript" src="/snippets/jquery-1.1.3.1.js"></script>
+	<script type="text/javascript" src="/snippets/snippets.js"></script>
+	<script type="text/javascript" src="/snippets/copyable_textbox.js"></script>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10705416-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</body>
+</html>

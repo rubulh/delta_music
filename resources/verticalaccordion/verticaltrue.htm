@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<!-- 
+	Flowplayer JavaScript, website, forums & jQuery Tools by Tero Piirainen 
+	
+	Prefer web standards over Flash. Video is the only exception (for now).
+-->
+<html lang="en"><head>
+					
+	
+	
+	
+
+		
+	
+		<title>A vertical scrollable</title>
+		<meta name="Description" content="Scroll your HTML with eye candy">	
+		<meta name="Keywords" content="jquery scrolling,jquery scrollable,javascript scrolling,javascript scrolling plugin,jquery scrolling plugin,jquery scrollable plugin,scrolling html elements">
+			
+	
+	
+	
+
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="Distribution" content="Global">
+	<meta name="Author" content="Tero Piirainen">
+	<meta name="Robots" content="index,follow"> 
+ 
+	<link rel="shortcut icon" href="http://static.flowplayer.org/tools/img/favicon.ico" type="image/png">
+	<link rel="stylesheet" type="text/css" href="verticaltrue_files/global-0.css">	
+
+
+	
+	
+		
+			<script src="verticaltrue_files/jquery.js"></script> 
+		
+		 
+	
+	
+	
+	
+	<!-- site specific scripts -->
+	
+	<script type="text/javascript" src="verticaltrue_files/global-0.js"></script> 	
+	
+	<script type="text/javascript">			 
+		var account = {admin: false }, v = {
+			ver: "3.2.7",
+			core: "/swf/flowplayer-3.2.7.swf", 
+			
+			controls: "flowplayer.controls-3.2.5.swf",
+			air:  "flowplayer.controls-air-3.2.5.swf",
+			tube:  "flowplayer.controls-tube-3.2.5.swf",
+			
+			content: "flowplayer.content-3.2.0.swf",
+			rtmp: "flowplayer.rtmp-3.2.3.swf",
+			slowmotion: "flowplayer.slowmotion-3.2.1.swf",
+			pseudostreaming: "flowplayer.pseudostreaming-3.2.7.swf"
+		};
+	</script>	
+	
+	
+	
+
+	<!--[if lt IE 7]>
+		<style>
+			@import "http://static.flowplayer.org/css/ie6.css?v=0.2";
+		</style>
+	<![endif]-->
+	
+	<!--[if lt IE 8]>
+		<style>
+			html { overflow-x:hidden; }
+			#content ol, #content ul  {margin-left: 50px; }
+		</style>
+	<![endif]-->	
+
+</head>
+
+<body id="tools_demos_scrollable_vertical" class="webkit tools">
+
+	<div id="global">
+	
+		<div class="wrap">
+			<ul>
+				<li><a id="global_fp" href="http://flowplayer.org/index.html">Flowplayer</a></li>
+				<li><a class="active" id="global_jt" href="http://flowplayer.org/tools/index.html">jQuery Tools</a></li>
+			</ul>
+			
+			
+				<ul id="acc" class="acc">				
+					<li><a href="#">Log In</a></li>
+					<li><a href="#">Sign Up</a></li>
+				</ul>					
+			
+				
+			
+			
+			
+			<form id="gsearch" action="/tools/search.html">
+				<input name="q" type="text">
+				<button type="submit">Search</button>
+			</form>
+		</div>
+		
+	</div>
+	
+	
+	
+		<div>
+		
+		<div id="loginscroll">
+		
+			<div>
+			
+				<!-- login -->
+				<form id="login" name="login" class="account">
+					
+					<p>
+						<input name="login" value="username or email" type="text"><br>
+					</p>
+					
+					<p>
+						<input name="password" value="password" type="text">
+					</p>
+					
+					<label>
+						<input name="remember" value="true" id="remember" type="checkbox"> 
+						Stay signed in
+					</label>
+					
+					<p>
+						<button type="submit">Login</button>
+					</p>
+					
+					<p>
+						<a id="anext" href="#">Forgot your password?</a>
+					</p>
+					
+				</form>
+		
+				<!-- forgot password -->
+				<form id="forgot" name="forgot" class="account">
+					
+					<p>
+						<input name="login" value="your email" type="text"><br>
+					</p>
+					
+					<p>
+						<button type="submit">Request password</button>
+					</p>
+					
+					<p>
+						<a class="disabled" id="aprev" href="#">« Back to login</a>
+					</p>
+					
+				</form>
+				
+			</div>
+			
+		</div>
+		
+		</div>
+		
+		<!-- signup -->
+		<form id="signup" class="account">
+			
+			<p>
+				<input name="email" value="email" type="text"><br>		
+			</p>
+			
+			<p>
+				You will recieve your password to this address. Address is not made public.
+			</p>
+			
+			<p>
+				<input name="username" value="username" type="text">		
+			</p>
+			
+			<p>
+				Your preferred username that is used when logging in.
+			</p>
+			
+			<p>
+				<button type="submit">Sign Up</button>
+			</p> 
+		
+		</form>
+		
+	
+	
+	<div id="wrap">	
+			
+
+		 
+		
+
+		
+		 
+			<div class="globalnav" id="nav2"> 
+				
+					<a id="jqt1" href="http://flowplayer.org/tools/index.html">Home</a>
+					<a id="jqt2" href="http://flowplayer.org/tools/download/index.html">Download</a>
+					<a class="active" id="jqt3" href="http://flowplayer.org/tools/demos/index.html">Demos</a>
+					<a id="jqt4" href="http://flowplayer.org/tools/documentation/index.html">Documentation</a>
+					<a id="jqt5" href="http://flowplayer.org/tools/forum/">Forums</a>					
+				
+				
+					 
+			</div>					
+		
+
+		
+		
+		
+		
+		<div id="content"> 
+		
+		
+
+
+
+
+
+<script>
+$(function() {	
+	$("#jqt3").addClass("active");
+	$("<div/>", { id: 'footercrumb' }).appendTo($("#content")).html($("#breadcrumb").html());
+});
+</script>
+
+
+
+	
+	
+	
+	
+	<style>	
+	ul.css-tabs li {
+		list-style-image:none !important;
+		list-style-type:none !important;
+		margin:0 !important;
+	}
+	
+	div.css-panes h2 {
+		margin-top:0px;		
+	}
+	
+	#credits {
+		color:#555;
+		font-size:11px;
+		text-decoration:none;
+	}
+	
+	h1 {
+		background-position:0 15px;		
+	} 
+	</style>
+	
+	
+	<h1 style="background-image:url(/tools/img/hero/scrollable.jpg)">
+		A vertical scrollable
+	</h1>	
+	
+	<div id="breadcrumb">
+		
+		
+		
+			<div style="width:260px;float:left">
+				<a href="http://flowplayer.org/tools/demos/scrollable/index.html">« Minimal setup for scrollable</a>
+			</div>
+		
+		
+		
+		<div style="width:220px;float:left">
+			[ 
+				<a href="http://flowplayer.org/tools/demos/index.html">demo index</a>
+				 |
+					
+						<a href="http://flowplayer.org/tools/scrollable/index.html">scrollable docs</a>
+					
+					
+				
+			]
+		</div>	
+	
+		
+		
+		
+			<div style="float:right;text-align:right">
+				<a href="http://flowplayer.org/tools/demos/scrollable/gallery.html">A simple scrollable image gallery »</a>
+			</div>
+				
+		
+	</div>
+
+	<br clear="all">
+	
+	<h2 style="margin:0 0 20px 0">
+		<em> 
+			Scrollable demo 2 / 11 
+		</em>:
+		
+		<strong>A vertical scrollable</strong>
+	</h2>
+	
+
+
+
+
+<p>
+	Here we show you a vertical setup for a scrollable. There is a minor change compared to the <a href="http://flowplayer.org/tools/demos/scrollable/index.html">minimal setup</a>
+ and it's recommended that you study that first before continuing. This 
+scrollable has 4 elements in total and each element has 3 rows that are 
+shown at a time. You can scroll these elements by:
+</p>
+
+<ol>
+	<li>Clicking on the "more pictures" link.</li>
+	<li>Using the up and down arrow keys.</li>
+	<li>Using your mousewheel.</li>
+</ol>
+
+
+
+	
+
+
+	<!-- styling -->
+	<link rel="stylesheet" type="text/css" href="verticaltrue_files/scrollable-vertical.css">
+
+
+
+
+
+
+<!-- HTML structures -->
+<div id="actions">
+	<a class="prev disabled">« Back</a>
+	<a class="next">More pictures »</a>
+</div>
+
+<!-- root element for scrollable -->
+<div class="scrollable vertical">
+	 
+	<!-- root element for the items -->
+	<div class="items">
+	
+		<div>
+		
+		
+			<div class="item">
+				<img src="verticaltrue_files/3323058611_d35c894fab_m.jpg">
+				
+				<h3>1. Barcelona Pavilion</h3>
+				
+				<strong>
+					The German Pavilion in Barcelona, designed by Ludwig Mies van der Rohe 
+					and built for the International Exposition in 1929.
+				</strong>
+				
+				<p>
+					The Pavilion was not only a pioneer for construction forms with a fresh, disciplined
+					understanding of space, but also for modeling new opportunities for an exciting 
+					association of free art and architecture. 
+				</p>
+				
+				<p>
+					<a href="#">Read more</a> &nbsp; <a href="#">Show in map</a>
+				</p>
+				
+			</div>
+		
+		
+			<div class="item">
+				<img src="verticaltrue_files/3323893254_3183671257_m.jpg">
+				
+				<h3>2. Barcelona Pavilion</h3>
+				
+				<strong>
+					The German Pavilion in Barcelona, designed by Ludwig Mies van der Rohe 
+					and built for the International Exposition in 1929.
+				</strong>
+				
+				<p>
+					The Pavilion was not only a pioneer for construction forms with a fresh, disciplined
+					understanding of space, but also for modeling new opportunities for an exciting 
+					association of free art and architecture. 
+				</p>
+				
+				<p>
+					<a href="#">Read more</a> &nbsp; <a href="#">Show in map</a>
+				</p>
+				
+			</div>
+		
+		
+			<div class="item">
+				<img src="verticaltrue_files/3323893148_8318838fbd_m.jpg">
+				
+				<h3>3. Barcelona Pavilion</h3>
+				
+				<strong>
+					The German Pavilion in Barcelona, designed by Ludwig Mies van der Rohe 
+					and built for the International Exposition in 1929.
+				</strong>
+				
+				<p>
+					The Pavilion was not only a pioneer for construction forms with a fresh, disciplined
+					understanding of space, but also for modeling new opportunities for an exciting 
+					association of free art and architecture. 
+				</p>
+				
+				<p>
+					<a href="#">Read more</a> &nbsp; <a href="#">Show in map</a>
+				</p>
+				
+			</div>
+		
+		
+		</div>
+		
+		<!-- next page -->
+		<div>
+			<div class="item">
+				<img src="verticaltrue_files/66523124_b468cf4978_m.jpg">
+				
+				<h3>4. Barcelona Pavilion</h3>
+				
+				<strong>
+					The German Pavilion in Barcelona, designed by Ludwig Mies van der Rohe 
+					and built for the International Exposition in 1929.
+				</strong>
+				
+				<p>
+					The Pavilion was not only a pioneer for construction forms with a fresh, disciplined
+					understanding of space, but also for modeling new opportunities for an exciting 
+					association of free art and architecture. 
+				</p>
+				
+				<p>
+					<a href="#">Read more</a> &nbsp; <a href="#">Show in map</a>
+				</p>
+				
+			</div>
+		
+		
+			<div class="item">
+				<img src="verticaltrue_files/399223606_b875ddf797_m.jpg">
+				
+				<h3>5. Barcelona Pavilion</h3>
+				
+				<strong>
+					The German Pavilion in Barcelona, designed by Ludwig Mies van der Rohe 
+					and built for the International Exposition in 1929.
+				</strong>
+				
+				<p>
+					The Pavilion was not only a pioneer for construction forms with a fresh, disciplined
+					understanding of space, but also for modeling new opportunities for an exciting 
+					association of free art and architecture. 
+				</p>
+				
+				<p>
+					<a href="#">Read more</a> &nbsp; <a href="#">Show in map</a>
+				</p>
+				
+			</div>
+		
+		
+			<div class="item">
+				<img src="verticaltrue_files/399223609_db47d35b7c_m.jpg">
+				
+				<h3>6. Barcelona Pavilion</h3>
+				
+				<strong>
+					The German Pavilion in Barcelona, designed by Ludwig Mies van der Rohe 
+					and built for the International Exposition in 1929.
+				</strong>
+				
+				<p>
+					The Pavilion was not only a pioneer for construction forms with a fresh, disciplined
+					understanding of space, but also for modeling new opportunities for an exciting 
+					association of free art and architecture. 
+				</p>
+				
+				<p>
+					<a href="#">Read more</a> &nbsp; <a href="#">Show in map</a>
+				</p>
+				
+			</div>
+		
+		
+		</div>
+		
+		<!-- next page -->
+		<div>
+			<div class="item">
+				<img src="verticaltrue_files/321464104_c010dbf34c_m.jpg">
+				
+				<h3>7. Barcelona Pavilion</h3>
+				
+				<strong>
+					The German Pavilion in Barcelona, designed by Ludwig Mies van der Rohe 
+					and built for the International Exposition in 1929.
+				</strong>
+				
+				<p>
+					The Pavilion was not only a pioneer for construction forms with a fresh, disciplined
+					understanding of space, but also for modeling new opportunities for an exciting 
+					association of free art and architecture. 
+				</p>
+				
+				<p>
+					<a href="#">Read more</a> &nbsp; <a href="#">Show in map</a>
+				</p>
+				
+			</div>
+		
+		
+			<div class="item">
+				<img src="verticaltrue_files/117346184_9760f3aabc_m.jpg">
+				
+				<h3>8. Barcelona Pavilion</h3>
+				
+				<strong>
+					The German Pavilion in Barcelona, designed by Ludwig Mies van der Rohe 
+					and built for the International Exposition in 1929.
+				</strong>
+				
+				<p>
+					The Pavilion was not only a pioneer for construction forms with a fresh, disciplined
+					understanding of space, but also for modeling new opportunities for an exciting 
+					association of free art and architecture. 
+				</p>
+				
+				<p>
+					<a href="#">Read more</a> &nbsp; <a href="#">Show in map</a>
+				</p>
+				
+			</div>
+		
+		
+			<div class="item">
+				<img src="verticaltrue_files/399232237_6928a527c1_m.jpg">
+				
+				<h3>9. Barcelona Pavilion</h3>
+				
+				<strong>
+					The German Pavilion in Barcelona, designed by Ludwig Mies van der Rohe 
+					and built for the International Exposition in 1929.
+				</strong>
+				
+				<p>
+					The Pavilion was not only a pioneer for construction forms with a fresh, disciplined
+					understanding of space, but also for modeling new opportunities for an exciting 
+					association of free art and architecture. 
+				</p>
+				
+				<p>
+					<a href="#">Read more</a> &nbsp; <a href="#">Show in map</a>
+				</p>
+				
+			</div>
+		
+		
+		</div>
+		
+		<!-- next page -->
+		<div>
+			<div class="item">
+				<img src="verticaltrue_files/117346182_1fded507fa_m.jpg">
+				
+				<h3>10. Barcelona Pavilion</h3>
+				
+				<strong>
+					The German Pavilion in Barcelona, designed by Ludwig Mies van der Rohe 
+					and built for the International Exposition in 1929.
+				</strong>
+				
+				<p>
+					The Pavilion was not only a pioneer for construction forms with a fresh, disciplined
+					understanding of space, but also for modeling new opportunities for an exciting 
+					association of free art and architecture. 
+				</p>
+				
+				<p>
+					<a href="#">Read more</a> &nbsp; <a href="#">Show in map</a>
+				</p>
+				
+			</div>
+		
+		
+			<div class="item">
+				<img src="verticaltrue_files/3323896446_3b87a8bf75_m.jpg">
+				
+				<h3>11. Barcelona Pavilion</h3>
+				
+				<strong>
+					The German Pavilion in Barcelona, designed by Ludwig Mies van der Rohe 
+					and built for the International Exposition in 1929.
+				</strong>
+				
+				<p>
+					The Pavilion was not only a pioneer for construction forms with a fresh, disciplined
+					understanding of space, but also for modeling new opportunities for an exciting 
+					association of free art and architecture. 
+				</p>
+				
+				<p>
+					<a href="#">Read more</a> &nbsp; <a href="#">Show in map</a>
+				</p>
+				
+			</div>
+		
+		
+			<div class="item">
+				<img src="verticaltrue_files/3323897466_e61624f6de_m.jpg">
+				
+				<h3>12. Barcelona Pavilion</h3>
+				
+				<strong>
+					The German Pavilion in Barcelona, designed by Ludwig Mies van der Rohe 
+					and built for the International Exposition in 1929.
+				</strong>
+				
+				<p>
+					The Pavilion was not only a pioneer for construction forms with a fresh, disciplined
+					understanding of space, but also for modeling new opportunities for an exciting 
+					association of free art and architecture. 
+				</p>
+				
+				<p>
+					<a href="#">Read more</a> &nbsp; <a href="#">Show in map</a>
+				</p>
+				
+			</div>
+		
+ 		</div>
+	</div>
+	
+</div>
+
+
+<!-- javascript coding -->
+
+
+<script>
+// execute your scripts when DOM is ready. this is a good habit
+$(function() {		
+		
+	// initialize scrollable with mousewheel support
+	$(".scrollable").scrollable({ vertical: true, mousewheel: true });	
+	
+});
+</script>
+
+
+<h3>HTML code</h3>
+
+<p>
+	Our HTML structure is identical to the one presented in the "minimal 
+setup" except that the items that are scrolled are more complex than 
+just a single image. Also, the navigational buttons have been placed 
+inside a wrapping <samp>DIV</samp>.
+</p>
+
+<div class="box code">
+<pre><code class="html DlHighlight"><span class="paren xml-tagangle">&lt;</span><span class="keyword xml-tag xml-tag-open">div</span> <span class="builtin xml-attribute">id</span><span class="undefined"></span><span class="operator">=</span><span class="string"><span class="before">"</span>actions<span class="after">"</span></span><span class="paren xml-tagangle">&gt;</span>
+   <span class="paren xml-tagangle">&lt;</span><span class="keyword xml-tag xml-tag-open">a</span> <span class="builtin xml-attribute">class</span><span class="undefined"></span><span class="operator">=</span><span class="string"><span class="before">"</span>prev<span class="after">"</span></span><span class="paren xml-tagangle">&gt;</span><span class="builtin xml-entity"><span class="before">&amp;</span>laquo<span class="after">;</span></span> Back<span class="paren xml-tagangle">&lt;/</span><span class="keyword xml-tag xml-tag-close">a</span><span class="paren xml-tagangle">&gt;</span>
+   <span class="paren xml-tagangle">&lt;</span><span class="keyword xml-tag xml-tag-open">a</span> <span class="builtin xml-attribute">class</span><span class="undefined"></span><span class="operator">=</span><span class="string"><span class="before">"</span>next<span class="after">"</span></span><span class="paren xml-tagangle">&gt;</span>More pictures <span class="builtin xml-entity"><span class="before">&amp;</span>raquo<span class="after">;</span></span><span class="paren xml-tagangle">&lt;/</span><span class="keyword xml-tag xml-tag-close">a</span><span class="paren xml-tagangle">&gt;</span>
+<span class="paren xml-tagangle">&lt;/</span><span class="keyword xml-tag xml-tag-close">div</span><span class="paren xml-tagangle">&gt;</span>
+
+<span class="comment"><span class="before">&lt;!--</span> root element for scrollable <span class="after">--&gt;</span></span>
+<span class="paren xml-tagangle">&lt;</span><span class="keyword xml-tag xml-tag-open">div</span> <span class="builtin xml-attribute">class</span><span class="undefined"></span><span class="operator">=</span><span class="string"><span class="before">"</span>scrollable vertical<span class="after">"</span></span><span class="paren xml-tagangle">&gt;</span>
+
+   <span class="comment"><span class="before">&lt;!--</span> root element for the scrollable elements <span class="after">--&gt;</span></span>
+   <span class="paren xml-tagangle">&lt;</span><span class="keyword xml-tag xml-tag-open">div</span> <span class="builtin xml-attribute">class</span><span class="undefined"></span><span class="operator">=</span><span class="string"><span class="before">"</span>items<span class="after">"</span></span><span class="paren xml-tagangle">&gt;</span>
+
+      <span class="comment"><span class="before">&lt;!--</span> first element. contains three rows <span class="after">--&gt;</span></span>
+      <span class="paren xml-tagangle">&lt;</span><span class="keyword xml-tag xml-tag-open">div</span><span class="paren xml-tagangle">&gt;</span>
+
+         <span class="comment"><span class="before">&lt;!--</span> first row <span class="after">--&gt;</span></span>
+         <span class="paren xml-tagangle">&lt;</span><span class="keyword xml-tag xml-tag-open">div</span> <span class="builtin xml-attribute">class</span><span class="undefined"></span><span class="operator">=</span><span class="string"><span class="before">"</span>item<span class="after">"</span></span><span class="paren xml-tagangle">&gt;</span>
+
+            <span class="comment"><span class="before">&lt;!--</span> image <span class="after">--&gt;</span></span>
+            <span class="paren xml-tagangle">&lt;</span><span class="keyword xml-tag xml-tag-open">img</span> <span class="builtin xml-attribute">src</span><span class="undefined"></span><span class="operator">=</span><span class="string"><span class="before">"</span>http://farm1.static.flickr.com/_m.jpg<span class="after">"</span></span> <span class="paren xml-tagangle">/&gt;</span>
+
+            <span class="comment"><span class="before">&lt;!--</span> title <span class="after">--&gt;</span></span>
+            <span class="paren xml-tagangle">&lt;</span><span class="keyword xml-tag xml-tag-open">h3</span><span class="paren xml-tagangle">&gt;</span>1. Barcelona Pavilion<span class="paren xml-tagangle">&lt;/</span><span class="keyword xml-tag xml-tag-close">h3</span><span class="paren xml-tagangle">&gt;</span>
+
+            <span class="comment"><span class="before">&lt;!--</span> content <span class="after">--&gt;</span></span>
+            <span class="paren xml-tagangle">&lt;</span><span class="keyword xml-tag xml-tag-open">p</span><span class="paren xml-tagangle">&gt;</span>
+               The Pavilion was not only a pioneer ...
+            <span class="paren xml-tagangle">&lt;/</span><span class="keyword xml-tag xml-tag-close">p</span><span class="paren xml-tagangle">&gt;</span>
+
+         <span class="paren xml-tagangle">&lt;/</span><span class="keyword xml-tag xml-tag-close">div</span><span class="paren xml-tagangle">&gt;</span>
+
+         <span class="comment"><span class="before">&lt;!--</span> 2:nd and 3:rd rows <span class="after">--&gt;</span></span>
+         <span class="paren xml-tagangle">&lt;</span><span class="keyword xml-tag xml-tag-open">div</span> <span class="builtin xml-attribute">class</span><span class="undefined"></span><span class="operator">=</span><span class="string"><span class="before">"</span>item<span class="after">"</span></span><span class="paren xml-tagangle">&gt;</span> ... <span class="paren xml-tagangle">&lt;/</span><span class="keyword xml-tag xml-tag-close">div</span><span class="paren xml-tagangle">&gt;</span>
+         <span class="paren xml-tagangle">&lt;</span><span class="keyword xml-tag xml-tag-open">div</span> <span class="builtin xml-attribute">class</span><span class="undefined"></span><span class="operator">=</span><span class="string"><span class="before">"</span>item<span class="after">"</span></span><span class="paren xml-tagangle">&gt;</span> ... <span class="paren xml-tagangle">&lt;/</span><span class="keyword xml-tag xml-tag-close">div</span><span class="paren xml-tagangle">&gt;</span>
+
+      <span class="paren xml-tagangle">&lt;/</span><span class="keyword xml-tag xml-tag-close">div</span><span class="paren xml-tagangle">&gt;</span>
+
+      <span class="comment"><span class="before">&lt;!--</span> second element with another three rows (and so on) <span class="after">--&gt;</span></span>
+      <span class="paren xml-tagangle">&lt;</span><span class="keyword xml-tag xml-tag-open">div</span><span class="paren xml-tagangle">&gt;</span>
+         ...
+      <span class="paren xml-tagangle">&lt;/</span><span class="keyword xml-tag xml-tag-close">div</span><span class="paren xml-tagangle">&gt;</span>
+
+   <span class="paren xml-tagangle">&lt;/</span><span class="keyword xml-tag xml-tag-close">div</span><span class="paren xml-tagangle">&gt;</span>
+
+<span class="paren xml-tagangle">&lt;/</span><span class="keyword xml-tag xml-tag-close">div</span><span class="paren xml-tagangle">&gt;</span></code></pre>
+</div>
+
+
+<h3>CSS code</h3>
+
+<p>
+	We have used the following <a href="http://flowplayer.org/tools/css/scrollable-vertical.css">CSS file</a> for the above setup. Here are the crucial parts from the CSS file that are required for a vertical scrollable:
+</p>
+
+<div class="box code">
+<pre><code class="css DlHighlight"><span class="comment comment-multiline"><span class="before">/*</span> root element for scrollable <span class="after">*/</span></span>
+<span class="css-class"><span class="before">.</span>scrollable</span> <span class="paren css-block-open">{</span>
+
+	<span class="comment comment-multiline"><span class="before">/*</span> required settings <span class="after">*/</span></span>
+	<span class="builtin css-declaration-kw">position<span class="after">:</span></span>relative;
+	<span class="builtin css-declaration-kw">overflow<span class="after">:</span></span>hidden;
+
+	<span class="comment comment-multiline"><span class="before">/*</span> vertical scrollables have typically larger height than width but not now <span class="after">*/</span></span>
+	<span class="builtin css-declaration-kw">height<span class="after">:</span></span> <span class="css-length">665<span class="after">px</span></span>;
+	<span class="builtin css-declaration-kw">width<span class="after">:</span></span> <span class="css-length">700<span class="after">px</span></span>;
+<span class="paren css-block-close">}</span>
+
+<span class="comment comment-multiline"><span class="before">/*</span> root element for scrollable items <span class="after">*/</span></span>
+<span class="css-class"><span class="before">.</span>scrollable</span> <span class="css-class"><span class="before">.</span>items</span> <span class="paren css-block-open">{</span>
+	<span class="builtin css-declaration-kw">position<span class="after">:</span></span>absolute;
+
+	<span class="comment comment-multiline"><span class="before">/*</span> this time we have very large space for the height <span class="after">*/</span></span>
+	<span class="builtin css-declaration-kw">height<span class="after">:</span></span><span class="css-length">20000<span class="after">em</span></span>;
+<span class="paren css-block-close">}</span></code></pre>
+</div>
+
+
+<p>
+	<strong>Note:</strong> in a horizontal scrollable the items are floating side by side by using the <samp>float: left</samp> property. In vertical scrollables this is not necessary.
+</p>
+
+<h3>JavaScript code</h3>
+
+<p>
+	The scrollable is good at guessing whether its vertical or horizontal 
+by investigating it's width and height. If the height is larger than 
+width then the scrollable is vertical. This can also be manually 
+configured with the <samp>vertical</samp> property which overrides the automatic determination.
+</p>
+
+<p>
+	We use the <samp>mousewheel</samp> configuration to enable scrolling with the mousewheel. You need to make sure that <a href="http://flowplayer.org/tools/toolbox/mousewheel.html">mousewheel tool</a> is included on your page.
+</p>
+
+<div class="box code">
+<pre><code class="javascript DlHighlight"><span class="operator">&lt;</span><span class="operand">script</span><span class="operator">&gt;</span>
+<span class="comment comment-line"><span class="before">//</span> execute your scripts when DOM is ready. this is a good habit</span>
+$<span class="paren">(</span><span class="operand keyword">function</span><span class="paren">(</span><span class="paren">)</span> <span class="paren">{</span>		
+		
+	<span class="comment comment-line"><span class="before">//</span> initialize scrollable with mousewheel support</span>
+	$<span class="paren">(</span><span class="string"><span class="before">"</span>.scrollable<span class="after">"</span></span><span class="paren">)</span>.<span class="operand">scrollable</span><span class="paren">(</span><span class="paren">{</span> <span class="operand hashkey">vertical</span><span class="hasharrow">:</span> <span class="operand keyword">true</span><span class="comma">,</span> <span class="operand hashkey">mousewheel</span><span class="hasharrow">:</span> <span class="operand keyword">true</span> <span class="paren">}</span><span class="paren">)</span>;	
+	
+<span class="paren">}</span><span class="paren">)</span>;
+<span class="operator">&lt;/</span><span class="operand">script</span><span class="operator">&gt;</span></code></pre>
+</div>
+
+
+<p>
+	<strong>Note:</strong> this mousewheel tool is not included in the standard jQuery Tools distribution. You must download a <a href="http://flowplayer.org/tools/download/index.html#combine">custom combination</a> that includes this tool.
+</p>
+
+
+<div class="box petrol">
+	Here is the <a href="http://flowplayer.org/tools/demos/scrollable/vertical.htm">standalone version</a> of this demo. You can freely study and copy its source code.
+</div>
+
+<p>
+	<a href="http://flowplayer.org/tools/credits.html" id="credits">Photo credits »</a>
+</p>
+		
+		
+
+		
+		<div id="footercrumb">
+		
+		
+		
+			<div style="width:260px;float:left">
+				<a href="http://flowplayer.org/tools/demos/scrollable/index.html">« Minimal setup for scrollable</a>
+			</div>
+		
+		
+		
+		<div style="width:220px;float:left">
+			[ 
+				<a href="http://flowplayer.org/tools/demos/index.html">demo index</a>
+				 |
+					
+						<a href="http://flowplayer.org/tools/scrollable/index.html">scrollable docs</a>
+					
+					
+				
+			]
+		</div>	
+	
+		
+		
+		
+			<div style="float:right;text-align:right">
+				<a href="http://flowplayer.org/tools/demos/scrollable/gallery.html">A simple scrollable image gallery »</a>
+			</div>
+				
+		
+	</div></div>  
+			
+		
+		<div id="right">
+			
+
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	<style>
+		#right h2 {
+			cursor:pointer;				
+		}
+	</style>
+	
+	
+
+		<div class="box">
+			<h2>1. Tabs</h2>
+
+			<ul style="display:none">
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tabs/index.html">Minimal setup for Tabs</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tabs/anchors.html#second">Naming the tabs</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tabs/skins.html">4 different skins with CSS</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tabs/mouseover.html">Using mouseover to switch tabs</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tabs/wizard.html">Making Wizards with the Tabs</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tabs/accordion.html">Making Accordions with the Tabs</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tabs/accordion-custom.html">Customizing the Accordion effect</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tabs/accordion-horizontal.html">Horizontal Accordion using the Tabs</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tabs/multiple.html">Multiple Tabs and Accordion instances</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tabs/history.html">Handling browsers back button</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tabs/ajax.html">Loading tab contents with AJAX</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tabs/ajax-history.html">AJAX:ed tabs with History support</a> </li>
+				
+					<li> <a style="border-bottom: 0px none;" href="http://flowplayer.org/tools/demos/tabs/slideshow.html">Slideshow plugin for the Tabs</a> </li>
+				
+			</ul>
+
+			<div class="clear"></div>
+			 
+		</div>	
+	
+
+		<div class="box">
+			<h2>2. Tooltips</h2>
+
+			<ul style="display:none">
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tooltip/index.html">Basics of using the tooltip</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tooltip/any-html.html">Using any HTML inside the tooltip</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tooltip/imitate.html">Imitating browsers default tooltip</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tooltip/form.html">Using tooltips in form fields</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tooltip/table.html">Using tooltips in tables or lists</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/tooltip/custom-effect.html">Custom tooltip effect</a> </li>
+				
+					<li> <a style="border-bottom: 0px none;" href="http://flowplayer.org/tools/demos/tooltip/dynamic.html">Dynamic positioning of the tooltip</a> </li>
+				
+			</ul>
+
+			<div class="clear"></div>
+			 
+		</div>	
+	
+
+		<div class="box">
+			<h2>3. Overlay</h2>
+
+			<ul style="display:none">
+				
+					<li> <a href="http://flowplayer.org/tools/demos/overlay/index.html">Minimal setup for overlay</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/overlay/apple.html">The Apple effect for overlay</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/overlay/modal-dialog.html">Creating modal dialogs with overlay</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/overlay/trigger.html">Opening overlays programmatically</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/overlay/styling.html">Overlays with different styles</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/overlay/external.html">Loading external pages into overlay</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/overlay/multiple.html">Multiple overlays on a same page</a> </li>
+				
+					<li> <a style="border-bottom: 0px none;" href="http://flowplayer.org/tools/demos/overlay/custom-effect.html">Creating a customized Overlay effect</a> </li>
+				
+			</ul>
+
+			<div class="clear"></div>
+			 
+		</div>	
+	
+
+		<div class="box">
+			<h2 class="current active">4. Scrollable</h2>
+
+			<ul style="display: block;">
+				
+					<li> <a href="http://flowplayer.org/tools/demos/scrollable/index.html">Minimal setup for scrollable</a> </li>
+				
+					<li> <a class="selected active" href="http://flowplayer.org/tools/demos/scrollable/vertical.html">A vertical scrollable</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/scrollable/gallery.html">A simple scrollable image gallery</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/scrollable/multiple-scrollables.html">Another gallery with many scrollables</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/scrollable/wizard.html">A scrollable registration wizard</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/scrollable/plugins/index.html">Scrollable plugins in action</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/scrollable/one-sized.html">Navigation with browser's back button</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/scrollable/home.html">jQuery Tools home page setup</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/scrollable/site-navigation.html">A complete scrollable navigational system</a> </li>
+				
+					<li> <a href="http://flowplayer.org/tools/demos/scrollable/edit.html">Add and remove items from scrollable</a> </li>
+				
+					<li> <a style="border-bottom: 0px none;" href="http://flowplayer.org/tools/demos/scrollable/easing.html">Customizing the scrolling animation</a> </li>
+				
+			</ul>
+
+			<div class="clear"></div>
+			 
+		</div>	
+		
+	
+	<a id="biglink" href="http://flowplayer.org/tools/demos/index.html">
+		« Demo Index
+	</a>
+	
+	<!-- accordion setup -->
+	<script>
+		$("#right").tabs("#right ul", {tabs: 'h2', initialIndex: 3});
+		$("#right h2").eq(3).addClass("active");
+		$("#right a[href=" + location.pathname + "]").addClass("selected");
+	</script>
+	
+	
+
+
+
+	
+
+
+
+
+
+
+
+
+
+<script>
+$("#right a[href=/tools/demos/scrollable/vertical.html]").addClass("active"); 
+</script>
+
+	
+<p style="text-align:center;margin:30px 40px 30px 0">
+	<a style="font-size: 10px; color: rgb(102, 102, 102);" href="https://github.com/jquerytools/jquerytools/issues">report a bug »</a>
+</p>
+
+<a href="http://flowplayer.org/tools/release-notes/index.html">
+	<img src="verticaltrue_files/banner-small.htm" style="margin-left: 10px;" alt="Introducing jQuery Tools 1.2"></a>
+		
+ 
+<p style="margin:15px 0 0 22px">
+	<a style="font-size: 11px; color: rgb(51, 51, 51);" href="http://flowplayer.org/tools/release-notes/version-1.2.x.html">What's new in v1.2.5 »</a>
+</p>
+
+
+				
+			
+		</div>
+		
+		<div class="clear"></div> 
+		
+		
+		
+		
+			<div id="bull">&#8226;</div>
+			
+			<div id="footer">
+				 
+				<h2>jQuery Tools Twitter feed</h2>
+				
+				<div id="twitter">  
+					<div id="tweets"><div class="tweet"><p>The future of jQuery Tools: <a href="http://t.co/vhXy1dH">http://t.co/vhXy1dH</a></p><span class="time">5 weeks ago</span></div><div class="tweet"><p>Technologies to master. Crap to ignore. <a href="http://cloudpanic.com/">http://cloudpanic.com</a></p><span class="time">35 weeks ago</span></div><div class="tweet"><p>@stefanpenner waiting for your contributions. Interested on "live widget support." let's have a quick talk before you begin.</p><span class="time">37 weeks ago</span></div><div class="tweet"><p>jQuery Tools 1.2.5: Scroll with your finger, correct iPad positioning &amp; more. <a href="http://bit.ly/jqt125">http://bit.ly/jqt125</a></p><span class="time">44 weeks ago</span></div></div> 
+		
+					<a id="follow" href="http://twitter.com/jquerytools" title="Follow jQuery Tools on Twitter">
+						jQuery Tools Twitter feed</a>
+				</div> 
+				
+				<br clear="all">
+				
+				<div id="footerlinks"> 
+					<a href="https://github.com/jquerytools/jquerytools">github repository</a>
+					<a href="https://github.com/jquerytools/jquerytools/issues">report a bug</a>
+					<a href="http://flowplayer.org/tools-1.1/index.html">version 1.1</a>
+					<a href="http://cloudpanic.com/">my blog: <strong>cloudpanic.com</strong></a>
+				</div>
+				
+			</div> 	
+		
+		
+		
+		
+		
+		
+		
+	</div>
+
+
+	
+	
+	
+	
+		<script type="text/javascript">
+			var _tracker = _gat._getTracker("UA-5877901-1");
+			_tracker._trackPageview();			
+		</script>		
+		
+	 
+	
+	
+
+
+
+</body></html>

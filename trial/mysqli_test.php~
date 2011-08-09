@@ -1,0 +1,10 @@
+
+<?php
+
+$cn1=mysqli_connect('localhost','root','maa');
+var_dump($cn);
+echo "<br><br><br><br><br>";
+header("Location:http://localhost/take/files/d_m.php");
+$var=mysqli_query($cn1,"insert into FKJLDS values(1,'root','mee')");
+?>
+

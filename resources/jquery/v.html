@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+
+<!-- Website Design By: www.happyworm.com -->
+<title>jPlayer Developer Guide : HTML5 Audio & Video for jQuery</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="description" content="The CSS styleable jQuery media player plugin with HTML5 support!" />
+<meta name="keywords" content="jPlayer, jQuery, jQuery plugin, media, video, audio, media player, video player, audio player, mp3, mp4, m4a, m4v, aac, h264, ogg, oga, ogv, wav, webm" />
+<meta name="company" content="Happyworm" />
+<link href="/css/jPlayer.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="/graphics/jplayer.ico" type="image/x-icon" />
+<!--[if IE]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!--[if IE 6]>
+<link href="/css/ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<script type="text/javascript">
+(function() {
+	var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+	s.type = 'text/javascript';
+	s.async = true;
+	s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+	t.parentNode.insertBefore(s, t);
+})();
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-3557377-9']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+<body class="dev_guide">
+<div id="container">
+
+	<header>
+	<a href="/"><img src="/graphics/jplayer_logo.gif" alt="jPlayer" /><h1>HTML5 Audio & Video for jQuery</h1></a>
+
+		<p><a href="http://www.happyworm.com" title="a project by happyworm">a project by happyworm</a></p>
+		<nav class="main">
+			<ul>
+				<li id="home"><a href="/">home</a></li>
+				<li id="demos"><a href="/latest/demos/">demos</a></li>
+				<li id="download"><a href="/download/">download</a></li>
+				<li id="dev_guide"><a href="/latest/developer-guide/">dev guide</a></li>
+				<li id="support"><a href="/support/">support</a></li>
+				<li id="sites"><a href="/sites/">sites</a></li>
+				<li id="about"><a href="/about/">about</a></li>
+				<!-- <li id="skins"><a href="/skins/">skins</a></li> -->
+			</ul>
+		</nav>
+
+	</header>
+		<div id="content_main">
+		<section>
+			<h2>jPlayer 2.0.0 Developer Guide</h2>
+			<p>If you are new to jPlayer, check out the <a href="../quick-start-guide/">Quick Start Guide</a>.</p>
+			<h3>Contents</h3>
+			<nav>
+			<ul>
+				<li><a href="#jPlayer-fundamentals">jPlayer Fundamentals</a>
+					<ul>
+						<li><a href="#jPlayer-essential-formats">Essential jPlayer Media Formats</a></li>
+						<li><a href="#jPlayer-size">Setting the size of jPlayer</a></li>
+						<li><a href="#jPlayer-flash-security">Flash Security Rules</a></li>
+						<li><a href="#jPlayer-media-encoding">Media Encoding</a></li>
+						<li><a href="#jPlayer-server-response">Server Response</a></li>
+						<li><a href="#jPlayer-killed-by-css">How to kill jPlayer with CSS or jQuery</a></li>
+					</ul>
+				</li>
+				<li><a href="#jPlayer-files">jPlayer Files</a>
+					<ul>
+						<li><a href="#jPlayer-files-plugin">Plugin Files</a></li>
+						<li><a href="#jPlayer-files-source">Source Files</a></li>
+					</ul>
+				</li>
+				<li><a href="#jPlayer-constructor">jPlayer Constructor</a>
+					<ul>
+						<li><a href="#jPlayer-constructor">$(id).jPlayer( Object: options ) : jQuery</a>
+							<ul>
+								<li><a href="#jPlayer-option-ready">ready</a></li>
+								<li><a href="#jPlayer-option-swfPath">swfPath</a></li>
+								<li><a href="#jPlayer-option-solution">solution</a></li>
+								<li><a href="#jPlayer-option-supplied">supplied</a></li>
+								<li><a href="#jPlayer-option-preload">preload</a></li>
+								<li><a href="#jPlayer-option-volume">volume</a></li>
+								<li><a href="#jPlayer-option-muted">muted</a></li>
+								<li><a href="#jPlayer-option-backgroundColor">backgroundColor</a></li>
+								<li><a href="#jPlayer-option-cssSelectorAncestor">cssSelectorAncestor</a></li>
+								<li><a href="#jPlayer-option-cssSelector">cssSelector</a></li>
+								<li><a href="#jPlayer-option-idPrefix">idPrefix</a></li>
+								<li><a href="#jPlayer-option-errorAlerts">errorAlerts</a></li>
+								<li><a href="#jPlayer-option-warningAlerts">warningAlerts</a></li>
+								<li><a href="#jPlayer-option-eventType">eventType</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><a href="#jPlayer-methods">jPlayer Methods</a>
+					<ul>
+						<li><a href="#jPlayer-setMedia">$(id).jPlayer( &quot;setMedia&quot;, Object: media ) : jQuery</a></li>
+						<li><a href="#jPlayer-clearMedia">$(id).jPlayer( &quot;clearMedia&quot; ) : jQuery</a></li>
+						<li><a href="#jPlayer-load">$(id).jPlayer( &quot;load&quot; ) : jQuery</a></li>
+						<li><a href="#jPlayer-play">$(id).jPlayer( &quot;play&quot;, [Number: time] ) : jQuery</a></li>
+						<li><a href="#jPlayer-pause">$(id).jPlayer( &quot;pause&quot; ) : jQuery</a></li>
+						<li><a href="#jPlayer-pauseOthers">$(id).jPlayer( &quot;pauseOthers&quot; ) : jQuery</a></li>
+						<li><a href="#jPlayer-stop">$(id).jPlayer( &quot;stop&quot; ) : jQuery</a></li>
+						<li><a href="#jPlayer-playHead">$(id).jPlayer( &quot;playHead&quot;, Number: percentOfSeekable ) : jQuery</a></li>
+						<li><a href="#jPlayer-volume">$(id).jPlayer( &quot;volume&quot;, Number: ratio ) : jQuery</a></li>
+						<li><a href="#jPlayer-mute">$(id).jPlayer( &quot;mute&quot; ) : jQuery</a></li>
+						<li><a href="#jPlayer-unmute">$(id).jPlayer( &quot;unmute&quot; ) : jQuery</a></li>
+						<li><a href="#jPlayer-option">$(id).jPlayer( &quot;option&quot;, [String: key, [Variable: value]] ) : jQuery</a></li>
+						<li><a href="#jPlayer-destroy">$(id).jPlayer( &quot;destroy&quot; ) : jQuery</a></li>
+					</ul>
+				</li>
+				<li><a href="#jPlayer-options">jPlayer Options</a>
+					<ul>
+						<li><a href="#jPlayer-option-set-cssSelector">$(id).jPlayer( &quot;cssSelector&quot;, String: method, String: selector ) : jQuery</a></li>
+						<li><a href="#jPlayer-option-set-cssSelectorAncestor">$(id).jPlayer( &quot;cssSelectorAncestor&quot;, String: selector ) : jQuery</a></li>
+					</ul>
+				</li>
+				<li><a href="#jPlayer-events">jPlayer Events</a>
+					<ul>
+						<li><a href="#jPlayer-event-type">jPlayer Event Types</a></li>
+						<li><a href="#jPlayer-event-object">jPlayer Event Object</a></li>
+						<li><a href="#jPlayer-event-error-codes">jPlayer Error Event Codes</a></li>
+						<li><a href="#jPlayer-event-warning-codes">jPlayer Warning Event Codes</a></li>
+						<li><a href="#jPlayer-event-use">Using jPlayer Events</a></li>
+					</ul>
+				</li>
+				<li><a href="#jPlayer-functions">jPlayer Functions</a>
+					<ul>
+						<li><a href="#jPlayer-function-pause">$.jPlayer.pause() : Void</a></li>
+						<li><a href="#jPlayer-convertTime">$.jPlayer.convertTime( Number: seconds ) : String</a></li>
+					</ul>
+				</li>
+				<li><a href="#jPlayer-objects">jPlayer Objects</a>
+					<ul>
+						<!-- <li><a href="#jPlayer-defaults">$.jPlayer.defaults : Object</a></li> -->
+						<li><a href="#jPlayer-timeFormat">$.jPlayer.timeFormat : Object</a></li>
+					</ul>
+				</li>
+				<li><a href="#jPlayer-predefined-css-selectors">jPlayer's Predefined CSS Selectors</a></li>
+				<li><a href="#jPlayer-skins">jPlayer Graphical Skins</a>
+					<ul>
+						<li><a href="#jPlayer-skins-audio-single">Standard skin structure: Video Single</a></li>
+						<li><a href="#jPlayer-skins-audio-single">Standard skin structure: Audio Single</a></li>
+						<li><a href="#jPlayer-skins-media-playlist">Standard skin structure: Video and Audio Playlist</a></li>
+						<li><a href="#jPlayer-skins-example">Example Skin: Blue Monday</a></li>
+						<li><a href="#jPlayer-skins-accessibility">Accessibility</a></li>
+					</ul>
+				</li>
+				<li><a href="#jPlayer-compatibility">jPlayer Compatibility</a>
+					<ul>
+						<li><a href="#jPlayer-compatibility-jquery">jQuery</a></li>
+						<li><a href="#jPlayer-compatibility-browser">Browser</a></li>
+					</ul>
+				</li>
+				<li><a href="#jPlayer-known-issues">jPlayer Known Issues</a>
+					<ul>
+						<li><a href="#jPlayer-known-issues-browsers">Incompatible Browsers</a></li>
+						<li><a href="#jPlayer-known-issues-event-driven">Event Driven Mobile Browsers</a></li>
+						<li><a href="#jPlayer-known-issues-firebug">The Firebug Bug</a></li>
+					</ul>
+				</li>
+				<li><a href="#reference-html5-media">Reference: HTML5 Browser Audio and Video Support</a>
+					<ul>
+						<li><a href="#reference-html5-audio-format">HTML5 Audio Format</a></li>
+						<li><a href="#reference-html5-video-format">HTML5 Video Format</a></li>
+						<li><a href="#reference-html5-audio-streams">HTML5 Audio Streams</a></li>
+						<li><a href="#reference-html5-audio-resources">External Resources</a></li>
+					</ul>
+				</li>
+			</ul>
+			</nav>
+
+			<h3>Related Links</h3>
+			<ul>
+				<li><a href="../release-notes/">Release Notes</a></li>
+				<!-- <li><a href="http://groups.google.com/group/jplayer/web/jplayer-faq">Frequently Asked Questions</a></li> -->
+				<li><a href="https://groups.google.com/forum/#!forum/jplayer">jPlayer Google Group</a> (Ask for support and discuss issues here.)</li>
+				<li><a href="http://plugins.jquery.com/project/jPlayer">jPlayer on jQuery website</a></li>
+				<li><a href="http://github.com/happyworm/jPlayer">jPlayer on GitHub</a></li>
+				<li><a href="/HTML5.Media.Event.Inspector/">HTML5 Media Event Inspector</a></li>
+				<li><a href="/HTML5.Audio.Support/">HTML5 &lt;audio&gt; and Audio() Support Tester</a></li>
+				<!-- <li><a href="../jPlayer-QUnit/">jPlayer's QUnit Test Suite</a></li> -->
+			</ul>
+			</section>
+
+			<section>
+				<h3><a name="jPlayer-fundamentals" class="anchor"></a>jPlayer Fundamentals</h3>
+
+				<section>
+					<h4><a name="jPlayer-essential-formats" class="anchor"></a>Essential jPlayer Media Formats</h4>
+					<p>
+						The media formats that are essential to jPlayer are those that are supported by both the HTML5 and Flash solutions.
+						It is important that one of these formats is supplied to jPlayer so that popular browsers will be able to play your media.
+						After an essential format has been supplied, additional counterpart formats may be supplied to increase cross-browser support of the HTML5 solution.
+						See the <code>jPlayer({"<a href="#jPlayer-option-supplied">supplied</a>": "formats"})</code> option for more details.
+					</p>
+					<dl>
+						<dt>Audio</dt>
+						<dd>
+							<p>One of the following audio formats must be supplied:</p>
+							<ul>
+								<li>MP3</li>
+								<li>M4A</li>
+							</ul>
+							<p class="note">
+								Note that, there is little to no benefit in providing both, due to the way support pans out with HTML5 browsers supporting either both or neither.
+							</p>
+						</dd>
+					</dl>
+					<dl>
+						<dt>Video</dt>
+						<dd>
+							<p>The following video format must be supplied:</p>
+							<ul>
+								<li>M4V</li>
+							</ul>
+						</dd>
+					</dl>
+				</section>
+
+				<section>
+					<h4><a name="jPlayer-size" class="anchor"></a>Setting the size of jPlayer</h4>
+					<p>
+						jPlayer uses the width and height css definitions from the div element it is instanced on.
+						This allows you to define the window size through standard CSS rules.
+						Note that the background-color may be set using the constructor option <code>jPlayer ({"<a href="#jPlayer-option-backgroundColor">backgroundColor</a>":"#RRGGBB"})</code>
+					</p>
+					<p class="note">
+						Note that a feature change affects the next release.
+						This system will have to change to enable viewing features, since there is an issue with jQuery returning the CSS definitions in pixels even when defined as percent.
+						jPlayer development patch 2.0.3 <a href="https://groups.google.com/d/msg/jplayer/rdWPvU4GpB8/adKGdI5qJJ4J">notes</a> and <a href="https://groups.google.com/d/msg/jplayer/rdWPvU4GpB8/VqDgW10OJ0IJ">details</a>.
+					</p>
+				</section>
+
+				<section>
+					<h4><a name="jPlayer-flash-security" class="anchor"></a>Flash Security Rules</h4>
+					<p>The security rules for jPlayer's SWF file have been relaxed using <code>System.security.allowDomain('*')</code> and may be called from any domain.</p>
+					<p>Generally, you will upload the SWF file with the JavaScript file to a directory called &quot;js&quot; on your domain. Use the constructor option <code>jPlayer({"<a href="#jPlayer-option-swfPath">swfPath</a>":path})</code> to change the path.</p>
+
+					<p>
+						Technically, the plugin files may be linked to remotely at jplayer.org.
+						However, we request that you don't link to the files on jplayer.com, since we do not have sufficient resources to become a CDN just now.
+						Additionally, the Flash fallback on the remote server would require the use of absolute URLs for all <code>jPlayer("<a href="#jPlayer-setMedia">setMedia</a>", media)</code> URLs.
+					</p>
+					<p>
+						Attempting to run jPlayer locally on your computer will generate Flash security violations and you would need to enable the local file access using the
+						<a href="http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager.html">Flash Settings Manager</a>.
+						See the <a href="http://www.macromedia.com/support/documentation/en/flashplayer/help/index.html">Flash Player Help</a> for more information.
+					</p>
+					<p>To develop locally, install a server on your system, such as Apache, to enable a localhost on your computer.
+				</section>
+				<section>
+					<h4><a name="jPlayer-media-encoding" class="anchor"></a>Media Encoding</h4>
+					<p>
+						The media supplied must conform with the codecs supported by HTML5 browsers.
+						The <a href="#jPlayer-essential-formats">essential jPlayer formats</a> (MP3 or M4A for audio and M4V for video) must also conform with the codecs supported by the Adobe Flash plugin.
+					</p>
+					<dl>
+						<dt>MP3</dt>
+						<dd>
+							<p>Since some browsers use the Flash element of jPlayer, the MP3 files used must be encoded according to the browser's Adobe Flash Plugin limitations:</p>
+							<ul>
+								<li>Constant Bitrate Encoded.</li>
+								<li>Sample Rate a multiple of 11,025Hz. ie., 22,050Hz and 44,100Hz are valid sample rates.</li>
+							</ul>
+						</dd>
+					</dl>
+					<dl>
+						<dt>M4A / M4V</dt>
+						<dd>
+							<p>
+								The MP4 file is a container that supports both audio and video. The M4A format is an audio MP4, and the M4V format is a video MP4.
+								The recommended encoding options for standard and mobile browsers are:
+							</p>
+							<ul>
+								<li>H.264 Baseline Profile Level 3.0 video, up to 640 x 480 at 30 fps. Note that B frames are not supported in the Baseline profile.</li>
+								<li>AAC-LC audio, up to 48 kHz.</li>
+							</ul>
+						</dd>
+					</dl>
+					<dl>
+						<dt>OGA / OGV</dt>
+						<dd>
+							<p>
+								The OGG file is a container that supports both audio and video. The OGA format is an audio OGG, and the OGV format is a video OGG.
+								The Vorbis and Theora codecs appear to have full support.
+							</p>
+						</dd>
+					</dl>
+					<dl>
+						<dt>WEBMA / WEBMV</dt>
+						<dd>
+							<p>
+								The WebM file is a container that supports both audio and video. The WEBMA format is an audio WebM, and the WEBMV format is a video WebM.
+								The Vorbis and VP8 codecs appear to have full support.
+							</p>
+						</dd>
+					</dl>
+					<dl>
+						<dt>WAV</dt>
+						<dd>
+							<p>
+								The WAV format is supported by many HTML5 browsers. We recommend that you avoid it though as a counterpart format.
+								The recommended encoding options are:
+							</p>
+							<ul>
+								<li>8-bit and 16-bit linear PCM</li>
+								<li>Only codec "1" (PCM) is supported.</li>
+							</ul>
+						</dd>
+					</dl>
+					<h5>Encoders:</h5>
+					<ul>
+						<li><a href="http://audacity.sourceforge.net">Audacity</a></li>
+						<li><a href="http://www.getmiro.com">Miro</a></li>
+						<li><a href="http://firefogg.org">Firefogg</a></li>
+						<li><a href="http://v2v.cc/~j/ffmpeg2theora/">FFmpeg2theora</a></li>
+						<li><a href="http://handbrake.fr/">Handbrake</a></li>
+						<li><a href="http://vid.ly">Vid.ly</a></li>
+						<li><a href="http://archive.org ">Archive.org</a></li>
+					</ul>
+					<h5>References:</h5>
+					<ul>
+						<li><a href="http://developer.apple.com/library/safari/#documentation/appleapplications/reference/safariwebcontent/CreatingVideoforSafarioniPhone/CreatingVideoforSafarioniPhone.html#//apple_ref/doc/uid/TP40006514-SW1">Safari: Creating Video</a></li>
+						<li><a href="http://developer.android.com/guide/appendix/media-formats.html">Android Supported Media Formats</a></li>
+						<li><a href="http://my.opera.com/core/blog/2010/03/03/everything-you-need-to-know-about-html5-video-and-audio-2">Opera: Everything you need to know about HTML5 video and audio</a></li>
+						<li><a href="https://developer.mozilla.org/En/Media_formats_supported_by_the_audio_and_video_elements">Firefox: Media formats supported by the audio and video elements</a></li>
+					</ul>
+				</section>
+
+
+
+				<section>
+					<h4><a name="jPlayer-server-response" class="anchor"></a>Server Response</h4>
+					<h5>MIME Type</h5>
+					<p>Your domain's server must give the correct MIME type (content type) for all media URLs.</p>
+					<p>
+						Failure to give the correct MIME type will stop the media from working on some HTML5 browsers.
+						This is a common cause of problems that only affect Firefox and Opera.
+						Other browsers are less strict, but the MIME type should always be checked that it is correct if you having problems getting media to play on any browser.
+					</p>
+					<dl>
+						<dt>Media MIME Types</dt>
+						<dd>
+							<ul>
+								<li>MP3: audio/mpeg</li>
+								<li>MP4: audio/mp4 video/mp4</li>
+								<li>OGG: audio/ogg video/ogg</li>
+								<li>WebM: audio/webm video/webm</li>
+								<li>WAV: audio/wav</li>
+							</ul>
+						</dd>
+					</dl>
+					<p>
+						If you use a common extension for both audio and video media, for example audio.mp4 and video.mp4, then simply use the video version of the MIME type for both of them. ie., video/mp4
+					</p>
+					<p>On Apache servers, you can use the .htaccess file to set the MIME type based on the file extension:</p>
+<pre>
+# AddType TYPE/SUBTYPE EXTENSION
+
+AddType audio/mpeg mp3
+AddType audio/mp4 m4a
+AddType audio/ogg ogg
+AddType audio/ogg oga
+AddType audio/webm webma
+AddType audio/wav wav
+
+AddType video/mp4 mp4
+AddType video/mp4 m4v
+AddType video/ogg ogv
+AddType video/webm webm
+AddType video/webm webmv
+</pre>
+
+
+					<h5>Do Not GZIP the Media</h5>
+					<p>Disable GZIP encoding of all the media files. Media files are already compressed and the GZIP will just waste CPU on your server.</p>
+					<p>The Adobe Flash Plugin will experience issues if you GZIP the media.</p>
+					<p>Do not GZIP the Jplayer.swf file either. Feel free to GZIP the JavaScript.</p>
+
+					<h5>Byte-Range Requests</h5>
+					<p>
+						Your server must enable <code>Range</code> requests.
+						This is easy to check for by seeing if your server's resonse includes the <code>Accept-Ranges</code> in its header.
+						Most HTML5 browsers enable seeking to new file positions during a download, so the server must allow the new <code>Range</code> to be requested.
+					</p>
+					<p>
+						Failure to accept byte <code>Range</code> requests will cause problems on some HTML5 browsers.
+						Often the duration cannot be read from the file as some formats require that the start and end of the file is read to know its duration.
+						Chrome tends to be the browser that has most problems if the <code>Range</code> request is not enabled on the server,
+						but all browsers will have some issue even if it is only that you have to wait for all the media to load before jumping close to the end.
+					</p>
+					<p>
+						This problem is known to affect Jetty 6 servers with their default configuration.
+					</p>
+
+					<h5>Protecting Your Media</h5>
+					<p>
+						Be careful when trying to restrict access to your media files.
+						The media URL must be accessible over the internet by the user and its response must be in the format expected.
+					</p>
+					<p>
+						Using the server response to disable the local cache of media can cause problems with some HTML5 browsers.
+						This can cause the duration of the media to be unknown, which will show as a NaN in the duration of jPlayer.
+					</p>
+					<p>
+						If you do some magic on the backend to make it more secure, them make sure you are accepting the byte <code>Range</code> requests described above.
+					</p>
+				</section>
+
+				<section>
+					<h4><a name="jPlayer-killed-by-css" class="anchor"></a>How to kill jPlayer with CSS or jQuery</h4>
+					<p>
+						Since jPlayer uses Flash on some browsers, the jPlayer &lt;div&gt; must not be hidden.
+						Mobile browsers do not appear to like their HTML5 media being hidden either.
+					<p>
+					</p>
+						You can change the size of the jPlayer &lt;div&gt; to zero if you want to make it invisible.
+						You should also be careful that any jQuery animations, such as fadeIn() or fadeOut(), are not acting on the jPlayer &lt;div&gt; or any of its parents.
+					</p>
+					<p>For example, do <strong>not</strong> do the following:</p>
+<pre>
+&lt;head&gt;
+   &lt;style&gt;
+      #jquery_jplayer {
+         display:none; /* Kills jPlayer when using Flash */
+      }
+   &lt;/style&gt;
+   &lt;script type="text/javascript"&gt;
+     $("#jquery_jplayer").hide(); /* Kills jPlayer when using Flash */
+   &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+   &lt;div id=&quot;jquery_jplayer&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</pre>
+			</section>
+		</section>
+		<section>
+			<h3><a name="jPlayer-files" class="anchor"></a>jPlayer Files</h3>
+			<p>jPlayer requires that two files are uploaded to your server.<br />
+			<code>jquery.jplayer.min.js</code><br />
+			<code>Jplayer.swf</code></p>
+			<p>When updating jPlayer, ensure that both files are uploaded from the plugin ZIP, since both files are subject to change.</p>
+
+			<section>
+			<h4><a name="jPlayer-files-plugin" class="anchor"></a>Plugin Files</h4>
+			<dl>
+				<dt>jquery.jplayer.min.js</dt>
+				<dd><p class="explanation">32.5KB (Gzip: 8.1KB)</p>
+				<p>The plugin's JavaScript file, compiled using <a href="http://closure-compiler.appspot.com">closure-compiler.appspot.com</a> with "Simple" optimization.</p>
+				<p>The jquery.jplayer.min.js file should be added to the <code>&lt;head&gt;</code> of the HTML file after the jQuery JavaScript file.
+				Below is how to include the JavaScript file using an absolute path, relative to the server root.</p>
+<pre>
+&lt;head&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js&quot;&gt;
+  &lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;/jPlayer/js/jquery.jplayer.min.js&quot;&gt;
+  &lt;/script&gt;
+&lt;/head&gt;
+</pre>
+				</dd>
+				<dt>Jplayer.swf</dt>
+				<dd><p class="explanation">7.5KB</p>
+				<p>The plugin's Flash 10 file, compiled using Adobe Flash CS4 Professional.</p>
+				<p>This file is used in browsers that do not support HTML5 <code>&lt;video&gt;</code> and <code>&lt;audio&gt;</code>.</p>
+				<p>The Jplayer.swf file must be uploaded to your server. The default location is relative to your current page in a folder named "js".
+				To modify the location of the Flash file, use the <code>swfPath</code> constructor option.
+				Below is how to set the <code>swfPath</code> to an absolute path, relative to the server root.
+				See <a href="#jPlayer-constructor">jPlayer Constructor</a> for more information.</p>
+
+<pre>
+$(&quot;#jpId&quot;).jPlayer( {
+  swfPath: &quot;/jPlayer/js&quot;
+});
+</pre>
+				</dd>
+<!--
+				<dd>The SWF file version can be seen by accessing the Jplayer.swf URL directly in the browser.
+					The JavaScript and SWF versions may not always be identical and you should use both files from the plugin ZIP file to be sure they are compatible.
+					Alternatively, you may double check using the constructor options <code>{errorAlerts:true,nativeSuport:false}</code>, which will give an alert if there is a mismatch, or use <a href="#jPlayer-getData">$(id).jPlayer("getData","swfVersionRequired")</a> to return the SWF version required for the JavaScript.</a>
+				</dd>
+-->
+			</dl>
+			</section>
+			<section>
+			<h4><a name="jPlayer-files-source" class="anchor"></a>Source Files</h4>
+			<dl>
+				<dt>jquery.jplayer.js</dt>
+				<dd><p>jPlayer's JavaScript source file. This file may be switched with the jquery.jplayer.min.js file. The operation is identical, but the file size is larger.</p>
+				<p>This file is readable by humans, assuming they understand JavaScript and jQuery.</p></dd>
+				<dt>Jplayer.fla</dt>
+				<dd><p>jPlayer's Adobe Flash CS4 Professional editor file.
+					This file is compiled using Adobe Flash CS4 Professional into the Jplayer.swf file used in the jPlayer plugin.
+					The Jplayer.fla file is not required for jPlayer, and does nothing unless compiled.</p>
+				<p>This file is empty, except for setting its class to Jplayer.as.</p></dd>
+				<dt>Jplayer.as</dt>
+				<dd><p>jPlayer's ActionScript 3 source file.
+					The Jplayer.as file is not required for jPlayer, and does nothing unless compiled.</p>
+				<p>This file is readable by humans, assuming they understand Flash's ActionScript 3.</p></dd>
+				<dt>happyworm.jPlayer AS3 package</dt>
+				<dd><p>Contains jPlayer's ActionScript 3 source files for classes used in Jplayer.as.
+					These files are not required for jPlayer, and do nothing unless compiled.</p>
+				<p>These files are readable by humans, assuming they understand Flash's ActionScript 3.</p></dd>
+			</dl>
+			</section>
+		</section>
+
+		<section>
+			<h3><a name="jPlayer-constructor" class="anchor"></a>jPlayer Constructor</h3>
+
+			<h4>$(id).jPlayer( Object: options ) : jQuery</h4>
+			<h5>Description</h5>
+			<p>The jPlayer constructor is applied to the given cssSelector (normally an id selector) and uses the options, if provided.
+				The &lt;div&gt; used by jPlayer should be empty and not used for anything else.</p>
+			<p>In some cases, the jPlayer div can be placed at the top level of the &lt;body&gt; to help avoid <a href="#jPlayer-killed-by-css">effects on the page corrupting jPlayer's operation</a>. This applies to an audio player that does not use the poster feature of jPlayer.</p>
+			<p>Note that the most important option is the <code>ready</code> event handler, which is a function defining the actions to perform once jPlayer is ready for use.
+				Attempting to issue commands to jPlayer before the <code>ready</code> event occurs will result in jPlayer raising error events if the Flash fallback is used and commands will be ignored.</p>
+			<p>The next most important option is the <code>swfPath</code> element, which defines the path of jPlayer's SWF file. Remember to upload the SWF file to your server!</p>
+			<h5>Parameters</h5>
+				<h6>options</h6>
+				<p>Object defining any changes to the default configuration of jPlayer.</p>
+					<dl>
+					<dt><a name="jPlayer-option-ready" class="anchor"></a>ready :</dt>
+					<dd><p>Function : (Default: undefined) : Defines an event handler function that is bound to the $.jPlayer.event.ready event.
+						To reference the current instance, use <code>$(this)</code>.
+						Generally, it is recommended to use a function here to at least <code>$(this).jPlayer("<a href="#jPlayer-setMedia">setMedia</a>",media)</code> the instance to a valid url ready for use.</p>
+					<p class="explanation">
+						The ready event handler is defined at creation to eliminate a race condition between the JavaScript code and Flash code.
+						Thus ensuring the Flash function definitions exist when the JavaScript code is executed.<br />
+						The handler is bound with the <code>.jPlayer</code> namespace.
+					</p>
+					<p class="note">
+						Note that a bug has been found in jPlayer 2.0.0 with the ready event when used with the Flash fallback, where the ready event may trigger twice.
+						jPlayer development patch 2.0.2 <a href="https://groups.google.com/d/msg/jplayer/rdWPvU4GpB8/ZIEIRwSmoO4J">notes</a>.
+					</p>
+					</dd>
+
+					<dt><a name="jPlayer-option-swfPath" class="anchor"></a>swfPath</dt>
+					<dd><p>
+						String : (Default: &quot;js&quot;) : Defines the path of jPlayer's Jplayer.swf file.
+						This allows the developer to place the SWF file wherever they choose by using an alternative relative path, absolute path or server root relative path.
+					</p>
+					<p>
+						You can test that your swfPath is correct on an HTML5 browser that supports flash, by using the constructor option <code>jPlayer({<a href="#jPlayer-option-solution">solution</a>:"flash, html")</code>.</p>
+					<p>
+						An incorrect swfPath will generate <code>$.jPlayer.event.<a href="#jPlayer-events">error</a></code> events with error type <code>$.jPlayer.error.FLASH</code> when you issue commands like <code>jPlayer("<a href="#jPlayer-setMedia">setMedia</a>", media)</code></p>
+
+					<p class="explanation">Independent of trailing slash, ie., &quot;myPath/&quot; is the same as &quot;myPath&quot;.<br />
+					The URL given must conform to standard URL Encoding Rules.</p></dd>
+
+					<dt><a name="jPlayer-option-solution" class="anchor"></a>solution</dt>
+					<dd><p>String : (Default: &quot;html, flash&quot;) : Defines the priority of the html and flash solutions. The default is to use HTML first, with a Flash fallback. Swapping the order to <code>"flash, html"</code> causes the Flash to be used first, with an HTML fallback.</p>
+					<p>Depending on the <code>supplied</code> formats, jPlayer may even use both solutions. For example, using jPlayer as a media player with <code>{supplied:"mp3,oga,m4v"}</code> would on browsers like Firefox require the Flash solution to play the video media format, while the audio media can be played in the HTML solution.</p>
+					<p>While you could specify only one solution, we do not recommend that you do it!</p>
+					<p class="explanation">The solution picked by jPlayer depends on your brower and the formats in the supplied option.</p></dd>
+
+					<dt><a name="jPlayer-option-supplied" class="anchor"></a>supplied</dt>
+					<dd><p>String : (Default: &quot;mp3&quot;) : Defines the formats supplied to jPlayer. The order defines the priority, with the left most format being highest. Formats to the right are lower priority.</p>
+					<p>Valid formats: mp3, m4a, m4v, oga, ogv, wav, webma, webmv.</p>
+					<p>Manditory Audio format: mp3 or m4a.</p>
+					<p>Manditory Video format: m4v.</p>
+					<p>Counterpart formats: oga, ogv, wav, webma, webmv.</p>
+					<p>
+						All formats in the supplied option must be given in every <code>jPlayer("<a href="#jPlayer-setMedia">setMedia</a>",media)</code> command.
+						However, you can supply both video and audio formats if you want and then only use the video or audio media when using <code>jPlayer("<a href="#jPlayer-setMedia">setMedia</a>",media)</code> command.
+						(You must give all the audio formats or all the video formats in the supplied option.)
+					</p>
+					<p>The <code>solution</code> priority dominates the priority of the <code>supplied</code> formats. jPlayer works by finding the first working format in a given solution. So in Chrome with <code>{solution:"html,flash"}</code> and <code>{supplied:"mp3,oga"}</code> the mp3 file would play in native HTML, even though Chrome could play either.</p>
+					<p class="explanation">The format picked by jPlayer depends on your brower and the solution option.<br />
+					Manditory formats are those supported by Flash and (luckily) by browsers that do not allow Flash. ie., iPad/iPhone<br />
+					Counterpart formats are supplied to improve x-browser HTML5 media support.<br />
+					Rumors based on jPlayer 1.2.0 suggest that for Android to work, the mp3 format should be higher priority than oga.</p></dd>
+
+					<dt><a name="jPlayer-option-preload" class="anchor"></a>preload</dt>
+					<dd><p>String : (Default: &quot;metadata&quot;) : Valid values are "none", "metadata" and "auto", which matches the HTML5 draft standard. Use "auto" to preload the file.</p>
+					<p class="explanation">Preload is a hint to the user agent, not a command. Some browsers ignore this option.</p></dd>
+
+					<dt><a name="jPlayer-option-volume" class="anchor"></a>volume</dt>
+					<dd><p>Number : (Default: 0.8) : Defines the initial volume as a value from 0 to 1.</p>
+					<p class="note">
+						Note that a feature change affects the next release. The volume is an option and will be maintained as an option correctly, rather than copying to the status and maintaining it there.
+						jPlayer development patch 2.0.5 <a href="https://groups.google.com/d/msg/jplayer/rdWPvU4GpB8/G-3hRMtyTrQJ">notes</a>.
+					</p>
+					</dd>
+
+					<dt><a name="jPlayer-option-muted" class="anchor"></a>muted</dt>
+					<dd><p>Boolean : (Default: false) : Defines the initial muted state.</p>
+					<p class="note">
+						Note that a feature change affects the next release. The volume is an option and will be maintained as an option correctly, rather than copying to the status and maintaining it there.
+						jPlayer development patch 2.0.5 <a href="https://groups.google.com/d/msg/jplayer/rdWPvU4GpB8/G-3hRMtyTrQJ">notes</a>.
+					</p>
+					</dd>
+
+					<dt><a name="jPlayer-option-backgroundColor" class="anchor"></a>backgroundColor</dt>
+					<dd><p>String : (Default: &quot;#000000&quot;) : Defines the background color of the jPlayer &lt;div&gt; and the Flash. The string is an RGB hash of the form "#RRGGBB".</p></dd>
+
+					<dt><a name="jPlayer-option-cssSelectorAncestor" class="anchor"></a>cssSelectorAncestor</dt>
+					<dd><p>String : (Default: &quot;#jp_interface_1&quot;) : Defines the cssSelector of an ancestor of all cssSelectors. Usually an id.</p>
+					<p class="note">
+						Note that a feature change affects the next release.
+						The default value will be changing to (Default: "#jp_container_1").
+						jPlayer development patch 2.0.3 <a href="https://groups.google.com/d/msg/jplayer/rdWPvU4GpB8/adKGdI5qJJ4J">notes</a> and <a href="https://groups.google.com/d/msg/jplayer/rdWPvU4GpB8/VqDgW10OJ0IJ">details</a>.
+					</p>
+					</dd>
+
+					<dt><a name="jPlayer-option-cssSelector" class="anchor"></a>cssSelector</dt>
+					<dd><p>Object : (Default: {<a href="#jPlayer-predefined-css-selectors">cssSelectors</a>}) : This object defines all the selectors used to associate jPlayer's controls and feedback with the HTML in the page.
+					By default, jPlayer uses a <a href="#jPlayer-predefined-css-selectors">predefined set of cssSelectors</a>.</p></dd>
+
+					<dt><a name="jPlayer-option-idPrefix" class="anchor"></a>idPrefix</dt>
+					<dd><p>String : (Default: &quot;jp&quot;) : Defines the Id prefix for jPlayer's internally generated HTML code.</p>
+					<p class="explanation">Useful if you have a naming conflict, but it is unlikely that the developer will need to change this setting.</p></dd>
+
+					<dt><a name="jPlayer-option-errorAlerts" class="anchor"></a>errorAlerts</dt>
+					<dd><p>Boolean : (Default: false) : Enables error reporting through alerts.</p>
+					<pclass="explanation">Enable this option to help debug your jPlayer application.</p>
+					<p class="note">
+						Note that a bug has been found in jPlayer 2.0.0 with the errorAlerts option, where any alerts will interfere with the Flash fallback's ready event.
+						jPlayer development patch 2.0.1 <a href="https://groups.google.com/d/msg/jplayer/rdWPvU4GpB8/bt5ITwBAS5QJ">notes</a>.
+					</p>
+					</dd>
+
+					<dt><a name="jPlayer-option-warningAlerts" class="anchor"></a>warningAlerts</dt>
+					<dd><p>Boolean : (Default: false) : Enables warning reporting through alerts.</p>
+					<p class="explanation">Enable this option to help debug your jPlayer application.</p>
+					<p class="note">
+						Note that a bug has been found in jPlayer 2.0.0 with the warningAlerts option, where the errorAlerts option was actually being used to enable the warnings.
+						jPlayer development patch 2.0.1 <a href="https://groups.google.com/d/msg/jplayer/rdWPvU4GpB8/bt5ITwBAS5QJ">notes</a>.
+					</p>
+					</dd>
+
+					<dt><a name="jPlayer-option-eventType" class="anchor"></a>eventType</dt>
+					<dd><p>Function : (Default: undefined) : Just like the jPlayer ready event, you can bind a handler to any of the <a href="#jPlayer-event-type">jPlayer Events Types</a>. The events include of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/video.html#mediaevents">HTML5 media events</a>.</p>
+					<p>You can bind handlers to events like <code>timeupdate</code> to perform an action when it occurs. See <a href="#jPlayer-event-use">Using jPlayer Events</a> for more information and examples.</p>
+					<p class="explanation">
+						Note that <strong>eventType</strong> itself is not a constructor option. Eg., The <code>ready</code> constructor option is an eventType.<br />
+						Warning: The flash fallback does not emulate all events.<br />
+						Warning: HTML5 media events vary x-browser.</p>
+					</dd>
+					</dl>
+				</dd>
+				</dl>
+			</dd>
+			</dl>
+
+<p>HTML entry, with an example id for jPlayer:</p>
+
+<pre>
+&lt;head&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js&quot;&gt;
+  &lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery.jplayer.min.js&quot;&gt;
+  &lt;/script&gt;
+  &lt;script&gt;
+    $(document).ready(function() { /* Your Code */ });
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id=&quot;jpId&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</pre>
+
+<p>Code Example #1:</p>
+<pre>
+$(document).ready(function() {
+  $(&quot;#jpId&quot;).jPlayer( {
+    ready: function () {
+      $(this).jPlayer(&quot;setMedia&quot;, {
+        mp3: &quot;../mp3/elvis.mp3&quot; // Defines the mp3 url
+      });
+    }
+  });
+});
+</pre>
+
+<p>Code Example #2:</p>
+<pre>
+$(document).ready(function() {
+  $(&quot;#jpId&quot;).jPlayer( {
+    ready: function () {
+      $(this).jPlayer(&quot;setMedia&quot;, {
+        m4a: &quot;mp3/elvis.m4a&quot;, // Defines the m4a (AAC) url
+        oga: &quot;ogg/elvis.ogg&quot; // Defines the counterpart oga url
+      });
+    },
+    supplied: "m4a, oga",
+    swfPath: &quot;/jPlayer/js&quot;
+  });
+});
+</pre>
+
+<p>Code Example #3:</p>
+<pre>
+$(function() { // executed when $(document).ready()
+  $(&quot;#jpId&quot;).jPlayer( {
+    ready: function () {
+      $(this).jPlayer(&quot;setMedia&quot;, {
+        m4v: &quot;http://www.myDomain.com/myVideo.m4v&quot; // Defines the m4v url
+      }).jPlayer(&quot;play&quot;); // Attempts to Auto-Play the media
+    },
+    supplied: "m4v",
+    swfPath: &quot;jPlayer/js&quot;
+  });
+});
+</pre>
+
+<p>Code Example #4:</p>
+<pre>
+$(function() { // executed when $(document).ready()
+  $("#jpId").jPlayer( {
+    ready: function () {
+      $(this).jPlayer("setMedia", {
+        m4v: "/media/myVideo.m4v", // Defines the m4v url
+        ogv: "/media/myVideo.ogv" // Defines the counterpart ogv url
+      }).jPlayer("play"); // Attempts to Auto-Play the media
+    },
+    solution: "flash, html", // Flash with an HTML5 fallback.
+    supplied: "m4v, ogv",
+    swfPath: "/scripts"
+  });
+});
+</pre>
+
+
+<p>Code Example #5: <strong>Bad Code!</strong></p>
+<pre>
+$(document).ready(function() {
+  $(&quot;#jpId&quot;).jPlayer( {
+    ready: function () {
+      $(this).jPlayer(&quot;setMedia&quot;, {
+        mp3: &quot;elvis.mp3&quot;
+      });
+    }
+  });
+  $(&quot;#jpId&quot;).jPlayer(&quot;play&quot;); // BAD: The plugin is not ready yet
+});
+</pre>
+
+		</section>
+
+		<section>
+			<h3><a name="jPlayer-methods" class="anchor"></a>jPlayer Methods</h3>
+			<p>jPlayer is controlled by sending the method name through the <code>$(id).jPlayer()</code> plugin method.</p>
+
+ 			<h4><a name="jPlayer-setMedia" class="anchor"></a>$(id).jPlayer( &quot;setMedia&quot;, Object: media ) : jQuery</h4>
+
+				<h5>Description</h5>
+				<p>This method is used to define the media to play. The media parameter is an object that has properties defining the different encoding formats and a poster image.</p>
+				<p>The <code>jPlayer(&quot;setMedia&quot;, media)</code> method must be used to define the media before jPlayer will be able perform other methods like <code>jPlayer("<a href="#jPlayer-play">play</a>")</code>.</p>
+				<p>
+					All formats defined in the constructor option <code>jPlayer({<a href="#jPlayer-option-supplied">supplied</a>: "f1, f2, fN")</code> must be given a valid url to the media encoded in that format.
+					The exception is when using both video and audio media types in a single jPlayer.
+					Then either all the <code>supplied</code> <strong>audio </strong>formats or all the <code>supplied</code> <strong>video</strong> formats must be defined.
+				</p>
+				<p>The constructor option <code>jPlayer({<a href="#jPlayer-option-solution">solution</a>: "s1, s2")</code> can be used to define the priority of the HTML and Flash solutions used by jPlayer.</p>
+				<p class="explanation">
+					jPlayer distinguishes between the media types, and using both together in a single <code>setMedia</code> command makes it difficult to determine what actually plays. The decision is based on the priority of <code>solution</code> and <code>supplied</code> and the browser being used.
+					ie., The 1st one that can work in the <code>supplied</code> priority, will work, be that video or audio.
+				</p>
+				<p>
+					jPlayer does not begin downloading the new media defined by the <code>setMedia</code> method, unless the constructor option <code>jPlayer({<a href="#jPlayer-option-preload">preload</a>: "auto")</code> is used.
+					Even then, the media may not download as it depends on the browser you are using.
+					Mobile browser such as Mobile Safari on iOS 4.2 require a gesture before any media is downloaded or played. ie., The user must press a button to initiate the load or play operations the 1st time.
+				</p>
+				<p>Any media playing when the command is issued will be paused and the download cancelled.</p>
+				<p class="explanation">
+					However, if you are switching between media types, for example video to audio, and jPlayer is using the HTML solution, then the previous media type is paused and if it was video, hidden.
+					Otherwise the iPhone's built in video player hangs when the src is cleared to cancel the download.
+				</p>
+
+				<p>
+					Do not use relative URLs for the media. The media URLs must be absolute or relative to the server root.
+					For example, "http:www.jplayer.org/media/video.m4v" or "/media/video.m4v".
+				</p>
+				<p class="note">
+					Relative URLs will have problems with the Flash fallback with M4A and M4V formats.
+					If your Jplayer.swf file is on another domain, (for some reason that makes sense to you,) then absolute URLs must be used.
+				</p>
+
+				<h5>Parameters</h5>
+						<h6>media</h6><p>Object : Defines the media format URLs and poster</p>
+							<dl>
+								<dt>mp3</dt><dd>String : Defines the URL of the mp3 audio format</dd>
+								<dt>m4a</dt><dd>String : Defines the URL of the m4a audio format (AAC/MP4)</dd>
+								<dt>m4v</dt><dd>String : Defines the URL of the m4v video format (H.264)</dd>
+								<dt>oga</dt><dd>String : Defines the URL of the oga audio format (OGG)</dd>
+								<dt>ogv</dt><dd>String : Defines the URL of the ogv video format (OGG)</dd>
+								<dt>webma</dt><dd>String : Defines the URL of the webm audio format</dd>
+								<dt>webmv</dt><dd>String : Defines the URL of the webm video format</dd>
+								<dt>wav</dt><dd>String : Defines the URL of the wav audio format</dd>
+								<dt>poster</dt><dd>String : Defines the URL of the poster image</dd>
+								<!-- <dt>stream</dt><dd>Boolean : Reserved property.</dd> -->
+							</dl>
+				<p class="explanation">The URLs given must conform to standard URL Encoding Rules.</p>
+				<p class="explanation">
+							Note that only the properties listed are used by jPlayer, so you could store all kinds of other info in the same object if your project works better that way.
+							For example, the title and album names of an audio track.
+							However, we do plan to expand the media object properties in the future
+							Properties may one day include: stream, chapters, subtitles.
+				</p>
+
+
+<p>Code Examples:</p>
+<pre>
+$("#jpId").jPlayer( {
+  ready: function() {
+    $(this).jPlayer( "setMedia", {
+      m4a: "m4a/elvis.m4a",
+      oga: "oga/elvis.oga",
+      webma: "webm/elvis.webm"
+    });
+  },
+  supplied: "webma, m4a, oga"
+);
+</pre>
+
+ 			<h4><a name="jPlayer-clearMedia" class="anchor"></a>$(id).jPlayer( &quot;clearMedia&quot; ) : jQuery</h4>
+				<h5>Description</h5>
+				<p>This method is used to clear the media and stop playback. If a media file is downloading at the time, the download will be cancelled.</dd>
+				<p>After this command is issued, playback commands such as <code>jPlayer("<a href="#jPlayer-play">play</a>")</code> will be ignored and raise error events until after new media has been specified using the <code>jPlayer("<a href="#jPlayer-setMedia">setMedia</a>",media)</code> method.</p>
+				<p>There are very few circumstances when it is appropriate to use this method. In general when you are changing media, this action is automatically performed.</p>
+				<p class="explanation">
+					Using this clearMedia by itself on the iOS iPhone or iPod Touch will corrupt the built n video pllayer if it is open at the time the command executes.<br />
+					IE9 Beta is buggy and the attempt to cancel the download is not performed inside jPlayer when IE9 is detected.
+				</p>
+				<h5>Parameters</h5>
+				<p>This method has no parameters.</p>
+
+<p>Code Examples:</p>
+<pre>
+$(&quot;#jpId&quot;).jPlayer( &quot;clearMedia&quot; );
+</pre>
+
+			<h4><a name="jPlayer-load" class="anchor"></a>$(id).jPlayer( &quot;load&quot; ) : jQuery</h4>
+			<h5>Description</h5>
+				<p>
+					This method is used to preload the media before the play command is given.
+					There is no point using <code>load</code> if you are going to <code>jPlayer("<a href="#jPlayer-play">play</a>", [time])</code> immediately afterwards, just <code>play</code> it.
+					Likewise, with <code>jPlayer("<a href="#jPlayer-pause">pause</a>", [time])</code>, if a time greater than zero is given.
+				</p>
+				<p>This method allows you to selectively preload the files you choose after changing the file using setMedia. If you want all files to preload by default, use the jPlayer constructor option <code>{preload:"auto"}</code>.</p>
+				<p class="explanation">This command is affected by browser and some ignore the command, or require a gesture to initiate it the 1st time.</p>
+
+				<h5>Parameters</h5>
+				<p>This method has no parameters.</p>
+
+<p>Code Examples:</p>
+<pre>
+$(&quot;#jpId&quot;).jPlayer(&quot;load&quot;);
+</pre>
+
+			<h4><a name="jPlayer-play" class="anchor"></a>$(id).jPlayer( &quot;play&quot;, [Number: time] ) : jQuery</h4>
+				<h5>Description</h5>
+				<p>This method is used to play the media specified using <code>jPlayer("<a href="#jPlayer-setMedia">setMedia</a>", media)</code>.</p>
+				<p>If necessary, the file will begin downloading.</p>
+				<p>
+					Without the <code>time</code> parameter, new media will play from the start.
+					Open media will play from where the play-head was when previously paused using <code>jPlayer("<a href="#jPlayer-pause">pause</a>", [time])</code>.
+				</p>
+				<p>
+					The optional <code>time</code> paramater will move the play-head position to the time given in seconds.
+					<code>jPlayer("play", 0)</code> is useful for forcing play from the start of the track, but is redundant for new media, which always starts from the beginning.
+					This can be used to jump immediately to a play time afer changing media.
+					jPlayer will seek to the time given and play when able to.
+				</p>
+
+				<p class="explanation">If issued immediately after a <code>setMedia</code> command, with the <code>time</code> parameter, and when the browser is using the HTML5 solution, this command will initially fail and an internal timeout is setup to retry the command every 100ms until it succeeds.</p>
+
+				<h5>Parameters</h5>
+					<dl>
+						<dt>time</dt>
+						<dd><p>[Optional] Number : Defines the new play-head position in seconds.</p>
+						<p class="explanation">If used while downloading, play will begin once the media is seekable to that point.</p></dd>
+					</dl>
+				<p class="explanation">To make media playback loop, add <code>jPlayer("play")</code> to the ended event. jPlayer deals with reseting the media to the start in the ended event, so the <code>time</code> equals zero is not required.</p>
+
+<p>Code Examples:</p>
+<pre>
+$("#jpId").jPlayer( {
+  ready: function() { // The $.jPlayer.event.ready event
+    $(this).jPlayer("setMedia", { // Set the media
+      m4v: "m4v/presentation.m4v"
+    }).jPlayer("play"); // Attempt to auto play the media
+  },
+  ended: function() { // The $.jPlayer.event.ended event
+    $(this).jPlayer("play"); // Repeat the media
+  },
+  supplied: "m4v"
+);
+
+$("#jumpToTime").click( function() {
+  $("#jpId").jPlayer("play", 42); // Begins playing 42 seconds into the media.
+});
+</pre>
+
+			<h4><a name="jPlayer-pause" class="anchor"></a>$(id).jPlayer( &quot;pause&quot;, [Number: time] ) : jQuery</h4>
+				<h5>Description</h5>
+				<p>This method is used to pause the media.</p>
+				<p>
+					The <code>jPlayer("pause", time)</code> can be used to jump immediately to a play-head time afer changing media.
+					The media will begin downloading, and cue the media ready when able to.
+				</p>
+				<p>
+					Without the <code>time</code> parameter, new media that has not been loaded or played will ignore this command.
+					This avoids downloading the new media when the redundant command is given.
+					Open media will pause if it was playing, otherwise there will be no effect.
+				</p>
+				<p>
+					The optional <code>time</code> paramater will move the play-head position to the time given in seconds and if necessary, the file will begin downloading.
+					<code>jPlayer("pause", 0)</code> is the same as <code>jPlayer("<a href="#jPlayer-stop">stop</a>")</code>.
+					New media will ignore the <code>jPlayer("pause", 0)</code> commmand until after the media has started loading.
+					This avoids downloading the new media when the redundant command is given.
+				</p>
+				<p class="explanation">If issued immediately after a <code>setMedia</code> command, with the <code>time</code> parameter, and when the browser is using the HTML5 solution, this command will initially fail and an internal timeout is setup to retry the command every 100ms until it succeeds.</p>
+
+				<h5>Parameters</h5>
+					<dl>
+						<dt>time</dt>
+						<dd><p>[Optional] Number : Defines the new play-head position in seconds.</p>
+						<p class="explanation">If used while downloading, the play-head will cue once the media is seekable to that point.</p></dd>
+					</dl>
+					<p class="explanation">
+					Using a <code>jPlayer("pause", 0)</code> in the <code>ended</code> event is redundant and should not be used.<br />
+					This avoids a fatal bug on Chrome (Win/OSX), where the browser crashes if you were to follow the <code>jPlayer("pause", 0)</code> with a <code>jPlayer("setMedia")</code> in the <code>ended</code> event.
+				</p>
+
+<p>Code Examples:</p>
+<pre>
+$(&quot;#jpId&quot;).jPlayer(&quot;pause&quot;, 10); // Pauses and moves the play-head 10 seconds into the song.
+</pre>
+
+			<h4><a name="jPlayer-pauseOthers" class="anchor"></a>$(id).jPlayer( &quot;pauseOthers&quot; ) : jQuery</h4>
+				<h5>Description</h5>
+				<p>This method pauses all instances except the instance that invoked the command. This is useful in events such as the play event to pause all the other players on the page when an instance starts playng.</p>
+
+				<p class="explanation">The play event handler can be defined in the constructor options.</p>
+
+				<h5>Parameters</h5>
+				<p>This method has no parameters.</p>
+
+<p>Code Examples:</p>
+<pre>
+$(id).bind($.jPlayer.event.play, function() { // Bind an event handler to the instance's play event.
+  $(this).jPlayer("pauseOthers"); // pause all players except this one.
+});
+</pre>
+
+			<h4><a name="jPlayer-stop" class="anchor"></a>$(id).jPlayer( &quot;stop&quot; ) : jQuery</h4>
+				<h5>Description</h5>
+				<p>This method is used to stop the media and reset the play-head to the start of the media.</p>
+				<p>
+					This command is the same as <code>jPlayer("<a href="#jPlayer-pause">pause</a>", 0)</code>.
+					The method is available so that a stop button can be used in your interface, if you want one.
+				</p>
+				<p class="explanation">If issued immediately after a <code>setMedia</code> command, this command is ignored.</p>
+
+				<h5>Parameters</h5>
+				<p>This method has no parameters.</p>
+				<p class="explanation">
+					Using a <code>jPlayer("stop")</code> in the <code>ended</code> event is redundant and should not be used.<br />
+					This avoids a fatal bug on Chrome (Win/OSX), where the browser crashes if you were to follow the <code>jPlayer("stop")</code> with a <code>jPlayer("setMedia")</code> in the <code>ended</code> event.
+				</p>
+
+<p>Code Examples:</p>
+<pre>
+$(&quot;#jpId&quot;).jPlayer(&quot;stop&quot;);
+</pre>
+
+			<h4><a name="jPlayer-playHead" class="anchor"></a>$(id).jPlayer( &quot;playHead&quot;, Number: percentOfSeekable ) : jQuery</h4>
+				<h5>Description</h5>
+				<p>This method moves the play-head to a new position. The primary use is internal to the plugin to handle clicks on the seekBar and move the play-head to the new position.</p>
+				<p>Note that this only moves the play-head. Whether the media plays from that point depends on its current state. ie., If it was playing, play continues from the new play-head. If it was paused, the media is cued to the new play-head position.</p>
+				<p class="explanation">If issued immediately after a <code>setMedia</code> command, the effect is the same as <code>jPlayer("<a href="#jPlayer-pause">pause</a>", 0)</code>, which is ignored.</p>
+
+				<h5>Parameters</h5>
+					<dl>
+						<dt>percentOfSeekable</dt><dd><p>Number (0 to 100) defining the percentage played when compared to the current percentage seekable.</p>
+						<p class="explanation">Only when completely seekable does the percentage relate to the total length of the media.<br />
+							Most HTML5 browsers have seeking enabled, so the seekable value jumps to 100% when the media starts downloading.</p></dd>
+					</dl>
+
+<p>Code Examples:</p>
+<pre>
+$(&quot;#jpId&quot;).jPlayer(&quot;playHead&quot;, 0); // Move play-head to start.
+$(&quot;#jpId&quot;).jPlayer(&quot;playHead&quot;, 10); // Move play-head to 10% of the seekable length.
+</pre>
+
+			<h4><a name="jPlayer-volume" class="anchor"></a>$(id).jPlayer( &quot;volume&quot;, Number: ratio ) : jQuery</h4>
+				<h5>Description</h5>
+				<p>This method is used to control the volume of the media being played. Note that the initial volume is set through the constructor option: <code>jPlayer({<a href="#jPlayer-option-volume">volume</a>:0.4})</code></p>
+				<p class="explanation">While muted you can change this value, but the media will remain muted.<br />
+				Setting the volume to zero is not the same as using <code>mute</code>. The two systems are independent.</p>
+
+				<h5>Parameters</h5>
+					<dl>
+						<dt>ratio</dt>
+						<dd><p>Number (0 to 1) defining the ratio of maximum volume.</p>
+						<p class="explanation">Silence: 0<br />
+						Half: 0.5<br />
+						Maximum: 1</p></dd>
+					</dl>
+
+<p>Code Examples:</p>
+<pre>
+$(&quot;#jpId&quot;).jPlayer(&quot;volume&quot;, 0.75);
+</pre>
+
+			<h4><a name="jPlayer-mute" class="anchor"></a>$(id).jPlayer( &quot;mute&quot; ) : jQuery</h4>
+				<h5>Description</h5>
+				<p>This method mutes the media's sounds. Note that the initial muted state is set through the constructor option: <code>jPlayer({<a href="#jPlayer-option-muted">muted</a>:true})</code></p>
+
+				<h5>Parameters</h5>
+					<p>This method has no parameters.</p>
+
+<p>Code Examples:</p>
+<pre>
+$(&quot;#jpId&quot;).jPlayer(&quot;mute&quot;);
+</pre>
+
+			<h4><a name="jPlayer-unmute" class="anchor"></a>$(id).jPlayer( &quot;unmute&quot; ) : jQuery</h4>
+				<h5>Description</h5>
+				<p>This method unmutes the media's sounds. Note that the initial muted state is set through the constructor option: <code>jPlayer({<a href="#jPlayer-option-muted">muted</a>:false})</code></p>
+
+				<h5>Parameters</h5>
+				<p>This method has no parameters.</p>
+
+<p>Code Examples:</p>
+<pre>
+$(&quot;#jpId&quot;).jPlayer(&quot;unmute&quot;);
+</pre>
+
+			<h4><a name="jPlayer-option" class="anchor"></a>$(id).jPlayer( "option", [String: key, [Variable: value]] ) : Variable</h4>
+			<h5>Description</h5>
+				<p>This method is used to access configuration information inside jPlayer.</p>
+				<p>The jPlayer object itself may also be accessed through <code>$(id).data(&quot;jPlayer&quot;)</code>.
+				However, since this gives full read/write access to all data and access to all the methods, even the internal methods, this is only recommended for advanced developers.</p>
+
+				<p>The options are defined in the constructor. Full get access is enabled, where a copy of the option is returned. However you may currently only set a limited number of options after instancing jPlayer. See the <a href="#jPlayer-options">jPlayer Options</a>.</p>
+
+				<p class="explanation">This section will be updated early 2011.</p>
+
+				<h5>Parameters</h5>
+					<dl>
+						<dt>key</dt>
+						<dd><p>String defining the option property name. Supports dot notation.</p>
+						<p class="explanation">
+							The returned value can is either a Boolean, Number, String, or an Object, depending on the data requested.<br />
+							Event handlers defined in the constructor are not included, since they can be removed using the ".jPlayer" namepspace.</p>
+						</dd>
+						<dt>value</dt>
+						<dd><p>The new value of the option.</p></dd>
+					</dl>
+
+				<h5>Events</h5>
+					<dl>
+						<dt>$.jPlayer.event.<a href="#jPlayer-events">warning</a></dt>
+						<dd><dl>
+								<dt>Event Codes</dt>
+								<dd>
+									$.jPlayer.warning.<a href="#jPlayer-event-warning-codes">OPTION_KEY</a>
+								</dd>
+							</dl>
+						</dd>
+					</dl>
+<p>Code Examples:</p>
+<pre>
+var solution = $("#jpId").jPlayer("option", "solution"); // Get the solution string, "html, flash" by default.
+var cssSelector = $("#jpId").jPlayer("option", "cssSelector"); // Get the cssSelector object.
+
+var playSelector = $("#jpId").jPlayer("option", "cssSelector.play"); // Get the cssSelector for the play method.
+var playSelector = $("#jpId").jPlayer("option", "cssSelector").play; // Get the cssSelector for the play method.
+
+$("#jpId").jPlayer("option", "cssSelector.play", ".my-new-class"); // Set the cssSelector for the play method.
+$("#jpId").jPlayer("option", "cssSelector", {play:".my-new-class"}); // Set the cssSelector for the play method. (Can set multiple selectors in the object.)
+
+$("#jpId").jPlayer("option", "cssSelectorAncestor", "#my-new-interface"); // Set the cssSelectorAncestor and refresh all associations.
+</pre>
+
+			<h4><a name="jPlayer-destroy" class="anchor"></a>$(id).jPlayer( &quot;destroy&quot; ) : jQuery</h4>
+				<h5>Description</h5>
+				<p>This method removes jPlayer. All event and interface bindings created by jPlayer are removed. After destroying the instance, a new jPlayer can be instanced on the node.</p>
+				<p class="explanation">
+					All event handlers with the <code>.jPlayer</code> namespace are removed by this method.
+				</p>
+				<p class="note">
+					Note that a bug has been found in jPlayer 2.0.0 with the destroy method, where any empty or unfound cssSelector properties throw a JavaScript exception.
+					jPlayer development patch 2.0.11 <a href="https://groups.google.com/d/msg/jplayer/rdWPvU4GpB8/S7HvgZvbvG8J">notes</a>.
+				</p>
+
+				<h5>Parameters</h5>
+				<p>This method has no parameters.</p>
+
+<p>Code Examples:</p>
+<pre>
+$(&quot;#jpId&quot;).jPlayer(&quot;destroy&quot;);
+</pre>
+
+		</section>
+
+		<section>
+			<h3><a name="jPlayer-options" class="anchor"></a>jPlayer Options</h3>
+			<p>jPlayer allows you to change the following options after instancing. All other options must be defined at creation through the constructor options.</p>
+
+			<h4><a name="jPlayer-option-set-cssSelector" class="anchor"></a>$(id).jPlayer( "option", "cssSelector", String: method, String: selector ) : jQuery</h4>
+				<h5>Description</h5>
+				<p>This option allows developers to change the cssSelector associations after jPlayer has been instanced on the page.</p>
+				<p>The <code>cssSelector</code> method is used with the jPlayer constructor option <code>cssSelectorAncestor</code> to create associations between jPlayer methods and CSS entities on the webpage.
+					For example, this enables a play button graphic on the webpage to be associated with the method that executes the play command.
+				</p>
+				<p>By default, jPlayer uses a <a href="#jPlayer-predefined-css-selectors">predefined set of cssSelectors</a>, where all the css selectors are class selectors.
+					The strings are added to the end of the <code>cssSelectorAncestor</code> string, with a space in between. The default <code>cssSelectorAncestor</code> is an id selector.
+					By using a single id and a common class structure, multiple instances of jPlayer are easy to add to the page.
+					The idea is that jPlayer is associated with a unique interface, hence the id, and then the rest of the structure is common, hence the classes.
+				</p>
+
+				<p>The <code>method</code> may only have one <code>selector</code> associated with it through jPlayer. An existing association will be removed if a new association is given. An empty string clears exisiting associations.</p>
+				<p class="explanation">jPlayer uses the <code>".jPlayer"</code> event namespace for binding and unbinding methods to CSS entities.</p>
+				<h5>Parameters</h5>
+					<dl>
+						<dt>method</dt>
+						<dd><p>String containing the name of the method to associate with the <code>selector</code>.<br />
+							See the <a href="#jPlayer-predefined-css-selectors">predefined cssSelectors</a> for the list of valid method names.
+						</p></dd>
+						<dt>selector</dt>
+						<dd><p>String containing the CSS Selector to associate with the <code>method</code>.<br />
+							Usually a class selector. Eg., ".jp-play"</p></dd>
+					</dl>
+
+				<h5>Events</h5>
+					<dl>
+						<dt>$.jPlayer.event.<a href="#jPlayer-events">warning</a></dt>
+						<dd>
+							<dl>
+								<dt>Event Codes</dt>
+								<dd>
+									$.jPlayer.warning.<a href="#jPlayer-event-warning-codes">CSS_SELECTOR_COUNT</a><br />
+									$.jPlayer.warning.<a href="#jPlayer-event-warning-codes">CSS_SELECTOR_METHOD</a><br />
+									$.jPlayer.warning.<a href="#jPlayer-event-warning-codes">CSS_SELECTOR_STRING</a>
+								</dd>
+							</dl>
+						</dd>
+					</dl>
+
+<p>Code Examples:</p>
+<pre>
+$(document).ready(function() {
+  $(&quot;#jpId&quot;).jPlayer( {
+    ready: function () {
+      $(this).jPlayer(&quot;setMedia&quot;, {mp3: &quot;mp3/elvis.mp3&quot;});
+    },
+    cssSelectorAncestor: "", // Remove the ancestor css selector clause
+    cssSelector: {
+      play:"#myOldPlayButton" // Set a custom css selector for the play button
+      // The other defaults remain unchanged
+    }
+  })
+
+  // ... Some time later, otherwise you'd just set it in the constructor ...
+
+  $(&quot;#jpId&quot;).jPlayer( "option", &quot;cssSelector&quot;, &quot;play&quot;, &quot;#myNewPlayButton&quot; );
+});
+</pre>
+
+			<h4><a name="jPlayer-option-set-cssSelectorAncestor" class="anchor"></a>$(id).jPlayer( "option", "cssSelectorAncestor", String: selector ) : jQuery</h4>
+				<h5>Description</h5>
+				<p>This option allows the developers to change the associations after jPlayer has been instanced on the page.</p>
+				<p>Setting this option causes all the cssSelector associations to be refreshed with the new ancestor. Allowing you to switch between interfaces easily. I am not sure why you would want to do that, but it's here if you need it.</p>
+
+				<h5>Parameters</h5>
+					<dl>
+						<dt>selector</dt>
+						<dd><p>String containing the CSS Selector to associate with the <code>cssSelector</code><br />
+							Usually an id selector. Eg., "#jp_interface_1"</p></dd>
+					</dl>
+
+<p>Code Examples:</p>
+<pre>
+$(document).ready(function() {
+  $(&quot;#jpId&quot;).jPlayer( {
+    ready: function () {
+      $(this).jPlayer(&quot;setMedia&quot;, {mp3: &quot;mp3/elvis.mp3&quot;});
+    },
+    cssSelectorAncestor: "#interface-on-the-left" // Define the ancestor css selector
+  })
+
+  // ... Some time later, otherwise you'd just set it in the constructor ...
+
+  $(&quot;#jpId&quot;).jPlayer( "option", &quot;cssSelectorAncestor&quot;, "#interface-on-the-right" );
+});
+</pre>
+
+		</section>
+
+		<section>
+			<h3><a name="jPlayer-events" class="anchor"></a>jPlayer Events</h3>
+			<p>jPlayer communicates with your code via events.</p>
+			<p>
+				All jPlayer events can have a handler defined using the constructor option of the same name:<br />
+				<code>jPlayer({<a href="#jPlayer-constructor">eventName</a>:function(e){...}})</code><br />
+				Event handlers created by constructor options have the <code>".jPlayer"</code> namespace.
+			</p>
+
+				<h4><a name="jPlayer-event-type" class="anchor"></a>jPlayer Event Types</h4>
+					<ol>
+						<li>$.jPlayer.event.<a href="#jPlayer-option-ready">ready</a> * &#134;</li>
+						<li>$.jPlayer.event.resize * &#134;</li>
+						<li>$.jPlayer.event.error * &#135;</li>
+						<li>$.jPlayer.event.warning * &#134;</li>
+						<li>$.jPlayer.event.loadstart *</li>
+						<li>$.jPlayer.event.progress *</li>
+						<li>$.jPlayer.event.suspend</li>
+						<li>$.jPlayer.event.abort</li>
+						<li>$.jPlayer.event.emptied</li>
+						<li>$.jPlayer.event.stalled</li>
+						<li>$.jPlayer.event.play *</li>
+						<li>$.jPlayer.event.pause *</li>
+						<li>$.jPlayer.event.loadedmetadata</li>
+						<li>$.jPlayer.event.loadeddata</li>
+						<li>$.jPlayer.event.waiting</li>
+						<li>$.jPlayer.event.playing</li>
+						<li>$.jPlayer.event.canplay</li>
+						<li>$.jPlayer.event.canplaythrough</li>
+						<li>$.jPlayer.event.seeking *</li>
+						<li>$.jPlayer.event.seeked *</li>
+						<li>$.jPlayer.event.timeupdate *</li>
+						<li>$.jPlayer.event.ended *</li>
+						<li>$.jPlayer.event.ratechange</li>
+						<li>$.jPlayer.event.durationchange</li>
+						<li>$.jPlayer.event.volumechange *</li>
+					</ol>
+
+
+				<p>
+					* A robust jPlayer event supported by Flash and HTML5 browsers</p>
+					<dl>
+					<dt>&#134;</dt><dd>jPlayer event that is not part of the HTML5 Spec</dd>
+					<dt>&#135;</dt><dd>jPlayer event that differs from the html Spec. ie., There is more than 1 type of error.</dd>
+				</dl>
+				<p class="explanation">We plan to expand the emulation of HTML5 Media events in the Flash.</p>
+
+				<h4><a name="jPlayer-event-object" class="anchor"></a>jPlayer Event Object</h4>
+					<h5>eventHandler(event)</h5>
+						<dl>
+							<dt>event</dt><dd>Object: Standard jQuery $.Event() properties.</dd>
+							<dt>event.jPlayer</dt><dd>Object : The jPlayer information object.</dd>
+							<dt>event.jPlayer.error</dt><dd>Object</dd>
+							<dt>event.jPlayer.error.type</dt><dd>String : The <a href="#jPlayer-event-error-codes">error event code</a></dd>
+							<dt>event.jPlayer.error.context</dt><dd>String : The cause of the error</dd>
+							<dt>event.jPlayer.error.message</dt><dd>String : Message describing the error</dd>
+							<dt>event.jPlayer.error.hint</dt><dd>String : A suggestion on how to fix the error</dd>
+							<dt>event.jPlayer.flash</dt><dd>Object : Info about the Flash solution</dd>
+							<dt>event.jPlayer.html</dt><dd>Object : Info about the HTML solution</dd>
+							<dt>event.jPlayer.status</dt><dd>Object</dd>
+							<dt>event.jPlayer.status.src</dt><dd>String : The URL being used by jPlayer.</dd>
+							<dt>event.jPlayer.status.file</dt><dd>Object : Pointer to the media object used in setMedia.</dd>
+							<dt>event.jPlayer.status.seekPercent</dt><dd>Number : Percent seekable</dd>
+							<dt>event.jPlayer.status.currentPercentRelative</dt><dd>Number : Current time as a percent of seekPercent</dd>
+							<dt>event.jPlayer.status.currentPercentAbsolute</dt><dd>Number : Current time as a percent of duration</dd>
+							<dt>event.jPlayer.status.currentTime</dt><dd>Number : The current time in seconds</dd>
+							<dt>event.jPlayer.status.duration</dt><dd>Number : The duration of the media</dd>
+							<dt>event.jPlayer.status.volume</dt><dd>Number</dd>
+							<dt>event.jPlayer.status.muted</dt><dd>Boolean</dd>
+							<dt>event.jPlayer.status.srcSet</dt><dd>Boolean</dd>
+							<dt>event.jPlayer.status.paused</dt><dd>Boolean</dd>
+							<dt>event.jPlayer.status.waitForPlay</dt><dd>Boolean</dd>
+							<dt>event.jPlayer.status.waitForLoad</dt><dd>Boolean</dd>
+							<dt>event.jPlayer.status.video</dt><dd>Boolean</dd>
+							<dt>event.jPlayer.status.width</dt><dd>String : The CSS style width of jPlayer.</dd>
+							<dt>event.jPlayer.status.height</dt><dd>String : The CSS style height of jPlayer.</dd>
+							<dt>event.jPlayer.version</dt><dd>Object</dd>
+							<dt>event.jPlayer.version.script</dt><dd>String : jPlayer's JavaScript version</dd>
+							<dt>event.jPlayer.version.flash</dt><dd>String : jPlayer's Flash version, or "unknown" if Flash is not being used</dd>
+							<dt>event.jPlayer.version.needFlash</dt><dd>String : The Flash version compatiable with the JavaScript</dd>
+							<dt>event.jPlayer.warning</dt><dd>Objec</dd>
+							<dt>event.jPlayer.warning.type</dt><dd>String : The <a href="#jPlayer-event-warning-codes">warning event code</a></dd>
+							<dt>event.jPlayer.warning.context</dt><dd>String : The cause of the warning</dd>
+							<dt>event.jPlayer.warning.message</dt><dd>String : Message describing the warning</dd>
+							<dt>event.jPlayer.warning.hint</dt><dd>String : A suggestion on how to fix the warning</dd>
+						</dl>
+						<p class="explanation">This list will be updated early 2011.</p>
+
+				<h4><a name="jPlayer-event-error-codes" class="anchor"></a>jPlayer Error Event Codes</h4>
+					<h5>event.jPlayer.error.type</h5>
+						<dl>
+							<dt>$.jPlayer.error.FLASH</dt><dd>A problem with the Flash insertion on the page.</dd>
+							<dt>$.jPlayer.error.NO_SOLUTION</dt><dd>No media playback solution is available.</dd>
+							<dt>$.jPlayer.error.NO_SUPPORT</dt><dd>Not possible to play any media format provided in <code>setMedia</code>.</dd>
+							<dt>$.jPlayer.error.URL</dt><dd>Error with media URL. &#134;</dd>
+							<dt>$.jPlayer.error.URL_NOT_SET</dt><dd>Media playback command not possible as no media is set.</dd>
+							<dt>$.jPlayer.error.VERSION</dt><dd>Mismatch in versions of JavaScript and Flash of jPlayer.</dd>
+						</dl>
+						<p>
+							&#134; Equivilent to the HTML5 Media error event.
+						</p>
+						<p class="explanation">jPlayer constructor option <code>jPlayer({<a href="#jPlayer-option-errorAlerts">errorAlerts</a>:true})</code> will create alerts when an error event occurs.</p>
+
+				<h4><a name="jPlayer-event-warning-codes" class="anchor"></a>jPlayer Warning Event Codes</h4>
+					<h5>event.jPlayer.warning.type</h5>
+						<dl>
+							<dt>$.jPlayer.warning.CSS_SELECTOR_COUNT</dt><dd>The jPlayer('<a href="#jPlayer-cssSelector">cssSelector</a>')s found did not equal one.</dd>
+							<dt>$.jPlayer.warning.CSS_SELECTOR_METHOD</dt><dd>The jPlayer('<a href="#jPlayer-cssSelector">cssSelector</a>') method is not valid.</dd>
+							<dt>$.jPlayer.warning.CSS_SELECTOR_STRING</dt><dd>The jPlayer('<a href="#jPlayer-cssSelector">cssSelector</a>') was not a valid string.</dd>																	<dt>$.jPlayer.warning.OPTION_KEY</dt><dd>The option requested in jPlayer('<a href="#jPlayer-option">option</a>') is undefined.</dd>
+						</dl>
+						<p class="explanation">jPlayer constructor option <code>jPlayer({<a href="#jPlayer-option-warningAlerts">warningAlerts</a>:true})</code> will create alerts when a warning event occurs.</p>
+				<h4><a name="jPlayer-event-use" class="anchor"></a>Using jPlayer Events</h4>
+				<p>
+					Just like any other event in jQuery, jPlayer events are bound to handler functions using <code>jQuery.<a href="http://api.jquery.com/bind/">bind</a>()</code>.
+					To remove an event use <code>jQuery.<a href="http://api.jquery.com/unbind/">unbind</a>()</code>.
+				</p>
+				<p>
+					Use the <a href="#jPlayer-event-type">$.jPlayer.event</a> object to access event type strings.
+					All events have a <a href="#jPlayer-event-object">jPlayer Event Object</a> with easy access to information at the time the event occured.
+				</p>
+				<p>
+					All jPlayer events can have a handler defined using the constructor option of the same name.<br />
+					<code>jPlayer({<a href="#jPlayer-option-eventType">eventType</a>:handler})</code>
+				</p>
+				<p>
+					Note that, the event type used in the constructor is the property name of the event, not the event string code.
+					For example, the event type <code>$.jPlayer.event.ready</code> has the constructor option <code>jPlayer({<a href="#jPlayer-option-ready">ready</a>:handler})</code>:<br />
+				</p>
+				<p class="explanation">Event handlers created by constructor options have the <code>".jPlayer"</code> namespace.</p>
+
+<p>Code Examples:</p>
+<pre>
+$("#repeat-on").click( function() {
+  $("#jpId").bind($.jPlayer.event.ended + ".jp-repeat", function(event) { // Using ".jp-repeat" namespace so we can easily remove this event
+    $(this).jPlayer("play"); // Add a repeat behaviour so media replays when it ends. (Loops)
+  });
+  return false;
+ });
+
+$("#repeat-off").click( function() {
+  $("#jpId").unbind($.jPlayer.event.ended + ".jp-repeat"); // Remove the ended events with the ".jp-repeat" namespace
+  return false;
+ });
+
+$("#jpId").bind($.jPlayer.event.play, function(event) { // Add a listener to report the time play began
+  $("#playBeganAtTime").text("Play began at time = " + event.jPlayer.status.currentTime);
+});
+
+$("#jpId").unbind($.jPlayer.event.play); // Remove all play event listeners
+
+
+$("#jpId").bind($.jPlayer.event.error + ".myProject", function(event) { // Using ".myProject" namespace
+  alert("Error Event: type = " + event.jPlayer.error.type); // The actual error code string. Eg., "e_url" for $.jPlayer.error.URL error.
+  switch(event.jPlayer.error.type) {
+    case $.jPlayer.error.URL:
+      reportBrokenMedia(event.jPlayer.error); // A function you might create to report the broken link to a server log.
+      getNextMedia(); // A function you might create to move on to the next media item when an error occurs.
+      break;
+    case $.jPlayer.error.NO_SOLUTION:
+      // Do something
+      break;
+  }
+});
+
+$("#jpId").unbind(".myProject"); { // Remove ".myProject" namespace event listeners using standard jQuery method
+
+</pre>
+
+		</section>
+
+		<section>
+			<h3><a name="jPlayer-functions" class="anchor"></a>jPlayer Functions</h3>
+
+			<h4><a name="jPlayer-function-pause" class="anchor"></a>$.jPlayer.pause() : Void</h4>
+				<h5>Description</h5>
+				<p>Pauses all instances of jPlayer on the current page. If using frames, then only the the frame the command is issued in is affected.</p>
+
+				<h5>Parameters</h5>
+					<p>This method has no parameters.</p>
+<p>Code Examples:</p>
+<pre>
+$.jPlayer.pause(); // Pause all instances of jPlayer on the page
+</pre>
+
+			<h4><a name="jPlayer-convertTime" class="anchor"></a>$.jPlayer.convertTime( Number: seconds ) : String</h4>
+				<h5>Description</h5>
+				<p>This function is used to convert a time, in seconds, to a string formatted in hours, minutes and seconds. The format of the conversion is defined using the object <a href="#jPlayer-timeFormat">$.jPlayer.timeFormat</a>.</p>
+				<p class="explanation">This function is used to format the text jPlayer writes to the css selectors for currentTime and duration.</p>
+
+				<h5>Parameters</h5>
+					<dl>
+						<dt>seconds</dt>
+						<dd>Number : The number of seconds to convert.</dd>
+					</dl>
+				<h5>Returns</h5>
+					<p>String : The formatted time.</p>
+	<p>Code Examples:</p>
+<pre>
+$(&quot;#myTime&quot;).text($.jPlayer.convertTime(60)); // One minute
+</pre>
+		</section>
+
+		<section>
+			<h3><a name="jPlayer-objects" class="anchor"></a>jPlayer Objects</h3>
+
+
+<!--
+			<h4><a name="jPlayer-defaults" class="anchor"></a>$.jPlayer.defaults : Object</h4>
+			<dl>
+				<dt>Description</dt>
+				<dd>
+					This object holds the defaults for jPlayer instances.
+					As an alternative to defining the options object through the jPlayer constructor, developers may modify the $.jPlayer.defaults object (in their code, not the jPlayer code) to configure all subsequent instances of jPlayer.
+					Changing the defaults after instancing jPlayer will have no effect on the existing instances. This technique is only really of any benefit, if you plan to use multiple instances of jPlayer on your page.
+					A single instance probably requires more bytes to write the code, so just use the constructor object.
+				</dd>
+				<dd>
+					This object's properties match those listed for the jPlayer constructor options <code>jPlayer(<a href="#jPlayer-constructor">options</a>)</code> object.
+					However, we do not recommend doing this for the event handler functions, such as <code>jPlayer({<a href="#jPlayer-option-ready">ready</a>:handler})</code>, otherwise the different instances would use identical handlers.
+				</dd>
+			</dl>
+<p>Code Example:</p>
+<pre>
+$(document).ready(function() {
+  $.jPlayer.defaults.supplied = "mp3, oga";
+  $(&quot;#jpId&quot;).jPlayer( {
+    ready: function () {
+      $(this).jPlayer(&quot;setMedia&quot;, {
+        mp3: &quot;mp3/elvis.mp3&quot;,
+        oga: &quot;ogg/elvis.ogg&quot;
+      });
+    }
+  });
+});
+</pre>
+-->
+			<h4><a name="jPlayer-timeFormat" class="anchor"></a>$.jPlayer.timeFormat : Object</h4>
+				<h5>Description</h5>
+				<p>This object is used to format the time returned by the function:<br />
+					<a href="#jPlayer-convertTime">$.jPlayer.convertTime( Number: seconds )</a>
+				</p>
+
+				<h5>Properties</h5>
+					<dl>
+						<dt>showHour</dt>
+						<dd>Boolean : (Default: false) : Displays the hours.</dd>
+						<dt>showMin</dt>
+						<dd>Boolean : (Default: true) : Displays the minutes.</dd>
+						<dt>showSec</dt>
+						<dd>Boolean : (Default: true) : Displays the seconds.</dd>
+						<dt>padHour</dt>
+						<dd>Boolean : (Default: false) : Zero pads the hour if less than 10.</dd>
+						<dt>padMin</dt>
+						<dd>Boolean : (Default: true) : Zero pads the hour if less than 10.</dd>
+						<dt>padMin</dt>
+						<dd>Boolean : (Default: true) : Zero pads the hour if less than 10.</dd>
+						<dt>sepHour</dt>
+						<dd>String : (Default: &quot;:&quot;) : Zero pads the hour if less than 10.</dd>
+						<dt>sepMin</dt>
+						<dd>String : (Default: &quot;:&quot;) : Zero pads the hour if less than 10.</dd>
+						<dt>sepSec</dt>
+						<dd>String : (Default: &quot;&quot;) : Zero pads the hour if less than 10.</dd>
+					</dl>
+<p>Code Example:</p>
+<pre>
+$.jPlayer.timeFormat.showHour = true;
+$.jPlayer.timeFormat.sepHour = &quot; hours &quot;;
+$.jPlayer.timeFormat.sepMin = &quot; minutes &quot;;
+$.jPlayer.timeFormat.sepSec = &quot; seconds&quot;;
+</pre>
+		</section>
+
+		<section>
+			<h3><a name="jPlayer-predefined-css-selectors" class="anchor"></a>jPlayer's Predefined CSS Selectors</h3>
+			<p>jPlayer has a predefined set of CSS selectors built in. Below are the default associations between the jPlayer method and the CSS selector.</p>
+			<p>
+				To define custom CSS selectors use the constructor options:<br />
+				<code>jPlayer({<a href="#jPlayer-option-cssSelectorAncestor">cssSelectorAncestor</a>: "#my-unique-id", <a href="#jPlayer-option-cssSelector">cssSelector</a>: {...}})</code>
+			</p>
+			<p>
+				To change CSS selectors after instancing, use <code>jPlayer("<a href="#jPlayer-option">option</a>", key, value)</code>:<br />
+				<code>jPlayer("option", "<a href="#jPlayer-option-set-cssSelector">cssSelector</a>", method, selector)</code><br />
+				<code>jPlayer("option", "<a href="#jPlayer-option-set-cssSelectorAncestor">cssSelectorAncestor</a>", selector)</code>
+			</p>
+
+			<h4>Default cssSelectorAncestor</h4>
+				<h5>cssSelectorAncestor : "#jp_interface_1"</h5>
+					<h6>Default cssSelector</h6>
+						<p>method : selector</p>
+						<dl>
+								<dt>"play"</dt><dd>".jp-play"</dd>
+								<dt>"pause"</dt><dd>".jp-pause"</dd>
+								<dt>"stop"</dt><dd>".jp-stop"</dd>
+								<dt>"videoPlay"</dt><dd>".jp-video-play"</dd>
+								<dt>"seekBar"</dt><dd>".jp-seek-bar"</dd>
+								<dt>"playBar"</dt><dd>".jp-play-bar"</dd>
+								<dt>"mute"</dt><dd>".jp-mute"</dd>
+								<dt>"unmute"</dt><dd>".jp-unmute"</dd>
+								<dt>"volumeBar"</dt><dd>".jp-volume-bar"</dd>
+								<dt>"volumeBarValue"</dt><dd>".jp-volume-bar-value"</dd>
+								<dt>"currentTime"</dt><dd>".jp-current-time"</dd>
+								<dt>"duration"</dt><dd>".jp-duration"</dd>
+							</dl>
+
+				<h6>Actual CSS Selector String Coding</h6>
+						<p><code>selector = cssSelectorAncestor + " " + cssSelector[method];</code></p>
+						<p>For example, the play method's default actual selector is: <code>"#jp_interface_1 .jp-play"</code><br />
+						In English, this means select the entity with class <code>jp-play</code> who has an ancestor with the id <code>jp_interface_1</code>.</p>
+						<p class="explanation">Remember that ids are unique, while classes are common. An id is only ever used once. </p>
+		</section>
+
+		<section>
+			<h3><a name="jPlayer-skins" class="anchor"></a>jPlayer Graphical Skins</h3>
+
+			<p class="note">This section will be updated early 2011.</p>
+
+			<p>In an attempt to promote a standard approach to skin development, we are proposing the following standard <strong>HTML structure</strong> and <strong>CSS class naming</strong> conventions. The Ids used match the <a href="#jPlayer-predefined-css-selectors">predefined cssSelectors</a> used by jPlayer, and should not be used for CSS definitions. The skin's CSS should be defined using the <strong>standard class names</strong> shown below.</p>
+			<p>A skin should be written to work with both HTML structures, the single and playlist variants, so that a single CSS file is required for a skin. Likewise, all artwork should be included in a single image file. Links to an example skin is given further down.</p>
+			<p>The skin structure has been designed for accessibility and conforms with the <a href="http://www.w3.org/TR/REC-html40/">HTML 4.01 Spec</a>. The <a href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">tabindex</a> attribute is used to control the tabbing order and may be modified to suit the user's needs.</p>
+			<p>Note that, the pause control artwork can be hidden in the CSS. jPlayer takes the default display type for the pause button from the play button's CSS styling. This avoids the pause button showing briefly at page load.</p>
+
+				<h4><a name="jPlayer-skins-video-single" class="anchor"></a>Standard skin structure: Video Single</h4>
+				<p>As used by <a href="../demo-01-video/">this demo</a>.</p>
+				<p class="explanation">View the demo source... Will update this doc early 2011.</p>
+
+				<h4><a name="jPlayer-skins-audio-single" class="anchor"></a>Standard skin structure: Audio Single</h4>
+				<p>As used by <a href="../demo-01/">this demo</a>.</p>
+				<p class="explanation">View the demo source... Will update this doc early 2011.</p>
+
+<!--
+<pre>
+&lt;div class="jp-single-player"&gt;
+  &lt;div class="jp-interface"&gt;
+    &lt;ul class="jp-controls"&gt;
+      &lt;li&gt;&lt;a href="#" id="jplayer_play" class="jp-play" tabindex="1"&gt;play&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#" id="jplayer_pause" class="jp-pause" tabindex="1"&gt;pause&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#" id="jplayer_stop" class="jp-stop" tabindex="1"&gt;stop&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#" id="jplayer_volume_min" class="jp-volume-min" tabindex="1"&gt;min volume&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#" id="jplayer_volume_max" class="jp-volume-max" tabindex="1"&gt;max volume&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class="jp-progress"&gt;
+      &lt;div id="jplayer_load_bar" class="jp-load-bar"&gt;
+        &lt;div id="jplayer_play_bar" class="jp-play-bar"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id="jplayer_volume_bar" class="jp-volume-bar"&gt;
+      &lt;div id="jplayer_volume_bar_value" class="jp-volume-bar-value"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id="jplayer_play_time" class="jp-play-time"&gt;&lt;/div&gt;
+    &lt;div id="jplayer_total_time" class="jp-total-time"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div id="jplayer_playlist" class="jp-playlist"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Track title&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+-->
+
+				<h4><a name="jPlayer-skins-media-playlist" class="anchor"></a>Standard skin structure: Video and Audio Playlist</h4>
+				<p>As used by <a href="../demo-02/">this demo</a>.</p>
+				<p class="explanation">View the demo source... Will update this doc early 2011.</p>
+<!--
+<pre>
+&lt;div class="jp-playlist-player"&gt;
+  &lt;div class="jp-interface"&gt;
+    &lt;ul class="jp-controls"&gt;
+      &lt;li&gt;&lt;a href="#" id="jplayer_play" class="jp-play" tabindex="1"&gt;play&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#" id="jplayer_pause" class="jp-pause" tabindex="1"&gt;pause&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#" id="jplayer_stop" class="jp-stop" tabindex="1"&gt;stop&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#" id="jplayer_volume_min" class="jp-volume-min" tabindex="1"&gt;min volume&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#" id="jplayer_volume_max" class="jp-volume-max" tabindex="1"&gt;max volume&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#" id="jplayer_previous" class="jp-previous" tabindex="1"&gt;previous&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#" id="jplayer_next" class="jp-next" tabindex="1"&gt;next&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class="jp-progress"&gt;
+      &lt;div id="jplayer_load_bar" class="jp-load-bar"&gt;
+        &lt;div id="jplayer_play_bar" class="jp-play-bar"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id="jplayer_volume_bar" class="jp-volume-bar"&gt;
+      &lt;div id="jplayer_volume_bar_value" class="jp-volume-bar-value"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id="jplayer_play_time" class="jp-play-time"&gt;&lt;/div&gt;
+    &lt;div id="jplayer_total_time" class="jp-total-time"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div id="jplayer_playlist" class="jp-playlist"&gt;
+    &lt;ul&gt;
+      &lt;!-- The function displayPlayList() uses this unordered list --&gt;
+      &lt;li&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+-->
+				<h4>Additional Standard CSS classes</h4>
+				<p>jplayer_playlist_current</p>
+
+				<h4><a name="jPlayer-skins-example" class="anchor"></a>Example Skin: Blue Monday</h4>
+					<ul>
+						<li>The <a href="../skin/jplayer.blue.monday.css">CSS File</a> of the Blue Monday skin.</li>
+						<li>The <a href="../skin/jplayer.blue.monday.jpg">Image File</a> of the Blue Monday skin.</li>
+						<li>The Adobe Photoshop <a href="../skin/jPlayer Blue Monday PSD.zip">PSD Files</a> for the Blue Monday skin.</li>
+					</ul>
+				<p class="explanation">There is an anim GIF and a PNG file too in the <a href="../skin">skin folder</a> for the latest Blue Monday skin.</p>
+
+				<h4><a name="jPlayer-skins-accessibility" class="anchor"></a>Accessibility</h4>
+						<p>While the skin conforms with the <a href="http://www.w3.org/TR/REC-html40/">HTML 4.01 Spec</a>, unfortunately some browsers do not adhere to the spec.
+						For example, Safari does not include <code>&lt;a&gt;</code> elements in the tab order.
+						If you wish to correct this, the <code>&lt;a&gt;</code> can be replaced with <code>&lt;input&gt;</code> or <code>&lt;button&gt;</code> elements.
+						Using these form elements requires an empty transparent GIF file to be specified for each element, which complicates use when used in dynamic web apps such as WordPress.
+						The <code>&lt;input&gt;</code> and <code>&lt;button&gt;</code> elements also behave differently cross-browser, in particular where Internet Explorer moves the artwork down and to the right when it is clicked on.
+						For these reason, our standard skin uses the <code>&lt;a&gt;</code> element.</p>
+						<p>The <code>accesskey</code> attribute may be added to each <code>&lt;a&gt;</code> element to provide access key support.
+						The use of access keys depends on your target users.
+						Most users do not even know how to <a href="http://en.wikipedia.org/wiki/Access_key">initiate an access key</a> and it varies from browser to browser.
+						The key itself also needs to be conveyed to the user in some manner.
+						Since access keys can interfere with the operation of some browsers we have not used the attribute in the default skin.
+						After invesigation, a clearly labled link is prefered by the majority of screen reader users.
+						ie., Our play button has the word "play" in the link, even though the text is not visible when using a standard browser.</p>
+		</section>
+
+		<section>
+			<h3><a name="jPlayer-compatibility" class="anchor"></a>jPlayer Compatibility</h3>
+			<h4><a name="jPlayer-compatibility-jquery" class="anchor"></a>jQuery</h4>
+
+			<p>Compatibility verified with:</p>
+			<ul>
+				<li>jQuery 1.4.x</li>
+				<li>jQuery 1.3.2</li>
+			</ul>
+
+			<h4><a name="jPlayer-compatibility-browser" class="anchor"></a>Browser</h4>
+
+			<p>Compatibility verified with:</p>
+			<ul>
+				<li>Firefox 3.6 (Win, OSX) &#134;</li>
+				<li>Firefox 4 Beta (Win)</li>
+				<li>Safari 5 (Win, OSX) &#134;</li>
+				<li>Mobile Safari (iOS 4.2: iPad / iPhone / iPod Touch) &#134;
+					<ul>
+						<li>iPhone / iPod Touch: Video plays in the QuickTime plugin.</li>
+						<li>Play and load bar progress do not work well when using multiple instances of jPlayer. This browser enables one media element at a time, so playing 2 instances together is not possible.</li>
+					</ul>
+				</li>
+				<li>Chrome 8 (Win, OSX) &#134;</li>
+				<li>Opera 10.63 (Win, OSX) &#134;</li>
+				<li>Internet Explorer 9 Beta (Win)
+					<ul>
+						<li>The Flash is disabled in jPlayer by default due to bugs with Flash's ExternalInterface in this browser.</li>
+						<li>
+							The <code>jPlayer("<a href="#jPlayer-clearMedia">clearMedia</a>")</code> method resets the instance, but does not cancel the download due to a bug in media.load() throwing an exception on broken links...
+							 And then some time later raising an error event.
+							The reset uses src="", which is a broken link, but IE9 seems to treat the impossible src="" as a possible url and tries to load the corrent into the media element, rather than rasing an error event immediately like every other browser does.
+							The late error event would corrupt jPlayer, hence the media.load() is disabled when this browser is detected.
+						</li>
+					</ul>
+				</li>
+				<li>Internet Explorer 8 (Win)</li>
+				<li>Internet Explorer 7 (Win)</li>
+				<li>Internet Explorer 6 (Win)</li>
+			</ul>
+			<p>&#134; Tested using the latest browser release as of 17th December 2010.<!-- <br />
+			&#135; --></p>
+
+		</section>
+
+		<section>
+			<h3><a name="jPlayer-known-issues" class="anchor"></a>jPlayer Known Issues</h3>
+
+			<h4><a name="jPlayer-known-issues-browsers" class="anchor"></a>Incompatible Browsers</h4>
+			<p>jPlayer does not work on the following browsers:</p>
+			<ul>
+				<li>Wii Opera</li>
+				<li>Playstation 3 Browser</li>
+			</ul>
+
+			<h4><a name="jPlayer-known-issues-event-driven" class="anchor"></a>Event Driven Mobile Browsers</h4>
+			<p>The following Mobile browsers require user gestures to trigger commands that effect media playback.</p>
+			<ul>
+				<li>Mobile Safari
+					<ul>
+						<li>
+							The first time a media element is played must be initiated by a user gester. ie., The user must click the play button.
+							This affects the operation of a <code>jPlayer("<a href="#jPlayer-play">play</a>")</code> in the ready event handler.
+							The browser will ignore the command. jPlayer will simply wait until the user presses the play button.
+							<br />
+							Once the first gesture has been received, JavaScript code is then allowed to do whatever you want with the media element.
+							Note that a jPlayer media player instance uses a audio and a video element. Each require their own gesture.
+							<br />
+							Also affect: <code>jPlayer("<a href="#jPlayer-load">load</a>")</code> and <code>jPlayer("<a href="#jPlayer-pause">pause</a>", time)</code>
+						</li>
+					</ul>
+				</li>
+			</ul>
+
+			<h4><a name="jPlayer-known-issues-firebug" class="anchor"></a>The Firebug Bug</h4>
+			<p>The Firebug add-on for Firefox can occasionally cause problems with jPlayer. This only happens if the Firebug window is open when the page loads/reloads and when jPlayer is using the Flash component. ie., When only using MP3 files. Even then, the problem is intermittent and usually jPlayer works fine. The problem appears to be that Firebug interferes with the registration of the Flash's external interface functions.</p>
+			<p>This problem is listed here since developers commonly use Firebug while developing their projects.</p>
+			<p class="note">This problem does not appear to affect jPlayer 2.0.0. We believe that the Firebug add-on has been fixed as this no longer affects Firefox 4 with the up to date Firebug add-on.</p>
+		</section>
+
+		<section>
+			<h3><a name="reference-html5-media" class="anchor"></a>Reference: HTML5 Browser Audio and Video Support</h3>
+			<p>Here are details on the supported formats by HTML5 browsers. All browser versions are their latest official release.</p>
+
+			<p class="note">
+				Format names relate to the <a href="#jPlayer-option-supplied">supplied</a> and <a href="#jPlayer-setMedia">setMedia</a> format property names used by jPlayer.
+				For example: WEBMA is an audio WebM, OGV is a video OGG, and M4A is an audio MP4.
+				For more details on the formats, see <a href="#jPlayer-media-encoding">Media Encoding</a>.
+			</p>
+
+			<h4><a name="reference-html5-audio-format" class="anchor"></a>HTML5 Audio Format</h4>
+			<p class="note">
+				An audio WebM file uses the same Vorbis codec as an OGG file.
+			</p>
+			<p>HTML5 browsers and their supported audio file formats:</p>
+			<ul>
+				<li>Firefox (OSX, Win): WEBMA, OGA</li>
+				<li>Safari (OSX, Win): MP3, M4A</li>
+				<li>Mobile Safari iOS4 (iPad, iPhone, iPod): MP3, M4A</li>
+				<li>Opera (OSX, Win): WEBMA, OGA</li>
+				<li>Chrome (OSX, Win): WEBMA, OGA, MP3, M4A</li>
+				<li>IE9 (Win): MP3, M4A <span class="note">(Can install the WebM codec.)</span></li>
+			</ul>
+
+			<h4><a name="reference-html5-video-format" class="anchor"></a>HTML5 Video Format</h4>
+			<p class="note">
+				The video WebM (VP8) codec is superior to the video OGG (Theora) codec.
+			</p>
+			<p>HTML5 browsers and their supported video file formats:</p>
+			<ul>
+				<li>Firefox (OSX, Win): WEBMV, OGV</li>
+				<li>Safari (OSX, Win): M4V</li>
+				<li>Mobile Safari iOS4 (iPad, iPhone, iPod): M4V</li>
+				<li>Opera (OSX, Win): WEBMA, OGV</li>
+				<li>Chrome (OSX, Win): WEBMV, OGV, M4V. <span class="note">(Will drop support for M4V soon.)</span></li>
+				<li>IE9 (Win): M4V <span class="note">(Can install the WebM codec.)</span></li>
+			</ul>
+
+			<h4><a name="reference-html5-audio-streams" class="anchor"></a>HTML5 Audio Streams</h4>
+			<p>HTML5 browsers and their support for audio streams. (Note that, jPlayer's Flash fall-back for non-HTML5 browsers works with MP3 streams.)</p>
+			<p>Audio streams work on:</p>
+			<ul>
+				<li>Firefox (OSX, Win): OGA</li>
+				<li>Safari (OSX): MP3</li>
+				<li>Mobile Safari (iOS4 iPad/iPhone/iPod): MP3</li>
+				<li>Opera (OSX, Win): OGA</li>
+				<li>Chrome (OSX, Win): MP3, OGA</li>
+				<li>IE9 (Win): MP3</li>
+			</ul>
+			<p><br />Audio streams fail on:</p>
+			<ul>
+				<li>Safari (Win): MP3</li>
+			</ul>
+
+			<h4><a name="reference-html5-audio-resources" class="anchor"></a>External Resources</h4>
+			<p>Some links to resources about HTML5 video and audio support:</p>
+			<ul>
+				<li><a target="_blank" href="http://diveintohtml5.org/video.html">diveintohtml5.org</a> : Video on the Web.</li>
+				<li><a target="_blank" href="http://html5test.com/">html5test.com</a> : HTML5 Test - Where you can test your browser's HTML5 support.</li>
+				<li><a target="_blank" href="http://www.trygve-lie.com/blog/entry/html_5_audio_element_and">www.trygve-lie.com</a> : HTML5 audio element and streaming</li>
+			</ul>
+		</section>
+
+	</div>
+	<aside>
+
+			<div class="section highlight">
+			<h2><a href="https://groups.google.com/forum/#!forum/jplayer">jPlayer Community</a></h2>
+				<p> members and counting!</p>
+				<form action="http://groups.google.com/group/jplayer/boxsubscribe">
+					<input type="text" name="email" value="your email" class="placeholder" onfocus="javascript:if(this.value==='your email'){this.value='';this.style.color='#333';}" onblur="javascript:if(this.value===''){this.value='your email';this.style.color='#999';}"/>
+					<input type="submit" value="join" class="btn" />
+				</form>
+		</div>
+
+		<div class="section highlight">
+			<h2>Hire Us!</h2>
+			<p>Need a media based solution realized or just need some help. Hire <a href="http://www.happyworm.com">Happyworm</a>!<br />
+			Contact: <a href="mailto:hire.us@happyworm.com" alt="Hire Happyworm" title="Hire Happyworm">hire.us@happyworm.com</a>.</p>
+		</div>
+
+				<div class="section highlight">
+			<h2>Help us improve jPlayer</h2>
+			<p>Developing and supporting jPlayer is almost a full-time job and we are really just beginning. Help us continue to help you.</p>
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input type="hidden" name="cmd" value="_s-xclick" /><input type="hidden" name="hosted_button_id" value="5356703" /><input type="image" src="http://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online." /><img alt="" border="0" src="https://www.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1" /><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://www.jplayer.org"></a></form>
+		</div>
+
+		<!--<div class="section highlight">
+			<h2><a href="http://jplayer.it">jPlayer.it</a></h2>
+			<p>Customize your player!</p>
+		</div>-->
+
+		<div class="section  highlight">
+			<h2>Plugin corner</h2>
+			<ul>
+				<li><a href="http://wordpress.org/extend/plugins/mp3-jplayer/">Wordpress</a></li>
+				<li><a href="http://drupal.org/project/jplayer">Drupal</a></li>
+				<li><a href="/sites/#jPlayer-plugin-sites">more...</a></li>
+			</ul>
+		</div>
+		<div class="section ralign">
+		<a href='https://developer.mozilla.org/en/JavaScript/Reference/' title='JavaScript Reference'><img src='/graphics/betterJS.gif' alt='JavaScript Reference'/></a>
+		</div>
+		<div class="section transbgr">
+			<h3>Also by <a href="http://www.happyworm.com">Happyworm</a>:</h3>
+			<h2><a href="http://www.happyworm.com/projects/Qwiiz/qwiiz-massively-multiplayer-quiz-game.htm">Qwiiz</a></h2>
+			<p>Massively multiplayer real-time quiz game. Cross platform and tuned for the iPad. <a href="http://www.happyworm.com/projects/Qwiiz/qwiiz-massively-multiplayer-quiz-game.htm">Try it!</a></p>
+		</div>
+
+	</aside>
+	<footer>
+		<p>
+			<a href="http://www.happyworm.com"><img src="/graphics/worm.jpg" />&copy; 2009 - 2011 Happyworm Ltd</a> - Last update: 28th June 2011		</p>
+		<a href="http://www.w3.org/html/logo/"><img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-semantics.png" width="165" height="64" alt="HTML5 Powered with CSS3 / Styling, and Semantics" title="HTML5 Powered with CSS3 / Styling, and Semantics"></a>
+		<a id="twitter" href="http://twitter.com/happyworm"><img alt="twitter" src="/graphics/twitter_small.png"/> follow us on twitter </a>
+	</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,2277 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <script type="text/javascript">(function(h,a){h[a]=h[a].replace(/\bno-js\b/,'js')})(document.documentElement,'className')</script>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+    <title>Ben Alman &raquo; jQuery outside events: Why trigger an event on something, when you can trigger it on everything else?</title>
+
+
+
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+
+
+<link rel="start" href="http://benalman.com/" title="Home">
+
+
+  <link rel="stylesheet" type="text/css" href="/code/php/multi_file.php?m=benalman_css">
+
+
+
+
+
+
+  <script type="text/javascript" src="/js/mt.js"></script>
+
+
+
+
+  <script type="text/javascript">
+    
+  
+    
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4146012-1']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+
+  
+
+  </script>
+
+
+
+  <link rel="alternate" type="application/rss+xml" title="Ben Alman &raquo; News" href="/feed/news/">
+
+  <link rel="alternate" type="application/rss+xml" title="Ben Alman &raquo; Photo" href="/feed/photo/">
+
+
+
+  
+  <link rel="openid.server" href="http://www.myopenid.com/server">
+  <link rel="openid.delegate" href="http://benalman.myopenid.com/">
+  <link rel="openid2.local_id" href="http://benalman.myopenid.com">
+  <link rel="openid2.provider" href="http://www.myopenid.com/server">
+  <meta http-equiv="X-XRDS-Location" content="http://www.myopenid.com/xrds?username=benalman.myopenid.com">
+
+
+  <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://benalman.com/projects/jquery-outside-events-plugin/index.php"
+    trackback:ping="http://benalman.com/mt/mt-tb.cgi/287"
+    dc:title="jQuery outside events: Why trigger an event on something, when you can trigger it on everything else?"
+    dc:identifier="http://benalman.com/projects/jquery-outside-events-plugin/index.php"
+    dc:subject="Projects"
+    dc:description="With jQuery outside events you can bind to an event that will be triggered only when a specific &#8220;originating&#8221; event occurs outside the element in question. For example, you can click outside, double-click outside, mouse-over outside, focus outside (and over..."
+    dc:creator="&quot;Cowboy&quot; Ben Alman"
+    dc:date="2010-02-27T15:52:16-04:00" />
+</rdf:RDF>
+-->
+
+
+  
+      <link rel="prev" href="http://benalman.com/projects/finder-copy-open-window-paths/" title="Finder Copy Open Window Paths">
+    
+
+  
+      <link rel="next" href="http://benalman.com/projects/jquery-throttle-debounce-plugin/" title="jQuery throttle / debounce: Sometimes, less is more!">
+    
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://benalman.com/projects/jquery-outside-events-plugin/">
+<dc:title>jQuery outside events: Why trigger an event on something, when you can trigger it on everything else?</dc:title>
+<dc:description>With jQuery outside events you can bind to an event that will be triggered only when a specific &#8220;originating&#8221; event occurs outside the element in question. For example, you can click outside, double-click outside, mouse-over outside, focus outside (and over...</dc:description>
+<dc:creator>&quot;Cowboy&quot; Ben Alman</dc:creator>
+<dc:date>2010-02-27T15:52:16-04:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc-nd/3.0/us/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc-nd/3.0/us/">
+</License>
+</rdf:RDF>
+-->
+
+  
+</head>
+
+  <body id="mt_ba"  class="benalman-com blog-9 type-entry archive-individual entry-363 category-82">
+  <div id="page" class="benalman-com blog-9 type-entry archive-individual entry-363 category-82">
+    <div id="page-inner" class="benalman-com blog-9 type-entry archive-individual entry-363 category-82">
+      
+      
+        
+        
+        
+        
+        
+          <div id="header" class="header">
+            <div id="header-inner" class="header-inner">
+              
+          
+          
+          
+            
+            
+            
+            
+            <div id="header_body0" class="header_body0">
+              <div id="header_body0-inner" class="header_body0-inner">
+                
+              
+  
+  <div id="header-logo">
+    <a href="/" class="bgfx">
+      Ben <span class="normal">Alman</span> 
+      <span class="bgfx1">&nbsp;</span>
+    </a>
+  </div>
+
+            
+                <div id="header_body0-shim"></div>
+              </div>
+            </div>
+            
+            
+          
+            
+            
+            
+            
+            <div id="header_body1" class="header_body1">
+              <div id="header_body1-inner" class="header_body1-inner">
+                
+              
+  
+    
+<div class="nav nav-inline topnav">
+  <ul class="tier-0">
+    <li class="home first">
+      <a href="http://benalman.com/" title="Ben Alman home page">Home</a> 
+      <span class="divider"> | </span>
+    </li>
+    <li class="category-57">
+      <a href="http://benalman.com/news/" title="">News</a> 
+      <span class="divider"> | </span>
+    </li>
+    <li class="category-100">
+      <a href="http://benalman.com/music/" title="">Music</a> 
+      <span class="divider"> | </span>
+    </li>
+    <li class="folder-96">
+      <a href="http://benalman.com/photo/" title="">Photo</a> 
+      <span class="divider"> | </span>
+    </li>
+    <li class="folder-67">
+      <a href="http://benalman.com/portfolio/" title="">Portfolio</a> 
+      <span class="divider"> | </span>
+    </li>
+    <li class="category-82">
+      <a href="http://benalman.com/projects/" title="">Projects</a> 
+      <span class="divider"> | </span>
+    </li>
+    <li class="folder-63 last">
+      <a href="http://benalman.com/about/" title="">About</a> 
+    </li>
+  </ul>
+</div>
+    
+<div class="nav nav-inline subnav">
+  <ul class="tier-0">
+    <li class="category-95 first">
+      <a href="http://benalman.com/projects/all/" title="">All</a> 
+      <span class="divider"> | </span>
+    </li>
+    <li class="category-105">
+      <a href="http://benalman.com/projects/applescript/" title="">AppleScript</a> 
+      <span class="divider"> | </span>
+    </li>
+    <li class="category-83">
+      <a href="http://benalman.com/projects/javascript/" title="">JavaScript</a> 
+      <span class="divider"> | </span>
+    </li>
+    <li class="category-98">
+      <a href="http://benalman.com/projects/jquery/" title="">jQuery</a> 
+      <span class="divider"> | </span>
+    </li>
+    <li class="category-99">
+      <a href="http://benalman.com/projects/misc/" title="">Misc</a> 
+      <span class="divider"> | </span>
+    </li>
+    <li class="category-104 last">
+      <a href="http://benalman.com/projects/php/" title="">PHP</a> 
+    </li>
+  </ul>
+</div>
+  
+
+            
+                <div id="header_body1-shim"></div>
+              </div>
+            </div>
+            
+            
+          
+        
+              <div id="header-shim"></div>
+            </div>
+          </div>
+        
+        
+      
+        
+        
+        
+        
+        
+          <div id="content" class="content">
+            <div id="content-inner" class="content-inner">
+              
+          
+          
+          
+            
+            
+            
+            
+            <div id="content_body0" class="content_body0">
+              <div id="content_body0-inner" class="content_body0-inner">
+                
+              
+    
+  
+    
+                
+    
+    
+      <h1>jQuery outside events: Why trigger an event on something, when you can trigger it on everything else?</h1>
+    
+    
+    
+      
+    
+    
+    
+  
+  <div id="entry-363" class="asset-entry asset">
+    <div class="asset-inner">
+      
+      
+      
+        
+  <div class="meta asset-meta">
+    <span class="byline">
+      
+        By <span class="vcard author"><a class="fn url" href="http://benalman.com/">&quot;Cowboy&quot; Ben Alman</a></span> on <abbr class="published" title="2010-02-27T15:52:16-04:00">February 27, 2010  3:52 PM</abbr>
+      
+    </span>
+    
+      
+        <span class="divider">|</span>
+        
+  
+  <a class="icon icon-right icon-comments" href="http://benalman.com/projects/jquery-outside-events-plugin/#disqus_thread"></a>
+
+      
+      
+    
+  </div>
+
+      
+      
+        <div class="asset-body">
+          <p>With jQuery outside events you can bind to an event that will be triggered only when a specific &#8220;originating&#8221; event occurs <em>outside</em> the element in question. For example, you can click outside, double-click outside, mouse-over outside, focus outside (and over ten more default &#8220;outside&#8221; events). Also, if an outside event hasn&#8217;t been provided by default, you can easily define your own.</p>
+
+<p>Note that this was previously known as the &#8220;jQuery clickoutside&#8221; plugin.. but, hey&#8212;it&#8217;s pretty amazing what a an <a href="http://blog.petersendidit.com/post/jquery-focusoutside-event/">awesome idea</a> and few more lines of code can do!</p>
+
+          
+            
+              <ul>
+<li>Release v1.1</li>
+<li>Tested with jQuery 1.4.2 in Internet Explorer 6-8, Firefox 2-3.6, Safari 3-4, Chrome 4-5, Opera 9.6-10.1.</li>
+<li>Download <a href="http://github.com/cowboy/jquery-outside-events/raw/v1.1/jquery.ba-outside-events.js">Source</a>, <a href="http://github.com/cowboy/jquery-outside-events/raw/v1.1/jquery.ba-outside-events.min.js">Minified</a> (0.9kb)</li>
+<li>Follow the project on <a href="http://github.com/cowboy/jquery-outside-events">GitHub project page</a> or <a href="http://github.com/cowboy/jquery-outside-events/issues">report a bug!</a></li>
+<li>View <a href="http://benalman.com/code/projects/jquery-outside-events/docs/">Full Documentation</a></li>
+<li>View <a href="http://benalman.com/code/projects/jquery-outside-events/unit/">Unit Tests</a></li>
+<li>Examples: <a href="http://benalman.com/code/projects/jquery-outside-events/examples/clickoutside/">click outside</a>, <a href="http://benalman.com/code/projects/jquery-outside-events/examples/dblclickoutside/">double-click outside</a>, <a href="http://benalman.com/code/projects/jquery-outside-events/examples/mouseoveroutside/">mouse-over outside</a>, <a href="http://benalman.com/code/projects/jquery-outside-events/examples/focusoutside/">focus outside</a></li>
+</ul>
+
+<h2>Supported &#8220;outside&#8221; events</h2>
+
+<p>By default, these &#8220;outside&#8221; events are supported: <code>clickoutside</code>, <code>dblclickoutside</code>, <code>focusoutside</code>, <code>bluroutside</code>, <code>mousemoveoutside</code>, <code>mousedownoutside</code>, <code>mouseupoutside</code>, <code>mouseoveroutside</code>, <code>mouseoutoutside</code>, <code>keydownoutside</code>, <code>keypressoutside</code>, <code>keyupoutside</code>, <code>changeoutside</code>, <code>selectoutside</code>, <code>submitoutside</code>.</p>
+
+<p>Note that each &#8220;outside&#8221; event is powered by an &#8220;originating&#8221; event (see <a href="http://benalman.com/code/projects/jquery-outside-events/docs/files/jquery-ba-outside-events-js.html#Defaultoutsideevents">the complete list</a>). Only when the originating event is triggered on an element outside the element to which that outside event is bound will the bound event be triggered.</p>
+
+<h2>A basic usage example</h2>
+
+<p>Let&#8217;s say you have a modal dialog. In addition to a standard &#8220;close dialog&#8221; button, you want the user to be able to click anywhere outside the dialog to close it. Instead of creating a background overlay that the user must click on, you can just use this plugin!</p>
+
+<pre class="brush:js">
+// Hide the modal dialog when someone clicks outside of it.
+$("#modal").bind( "clickoutside", function(event){
+  $(this).hide();
+});
+</pre>
+
+<p>Note that you can also utilize the <code>event.target</code> property, which references the actual element clicked, in your event handler logic. This may be useful if you want to constrain the &#8216;outside-ness&#8217; of the click to certain elements or containers.</p>
+
+<p>And of course, this same approach works for all &#8220;outside&#8221; events. See the working examples for more information.</p>
+
+<h2>How it works</h2>
+
+<p>jQuery outside events are made possible by <a href="http://www.nczonline.net/blog/2009/06/30/event-delegation-in-javascript/">event delegation</a>. Because events in jQuery bubble up the DOM tree, a catch-all event handler bound on document can be used to see when and where a specific event has been triggered.</p>
+
+<p>When an &#8220;outside&#8221; event is bound on one or more elements, those elements are added into an internal array and an event handler for the corresponding &#8220;originating&#8221; event is bound on document. For example, when a &#8220;clickoutside&#8221; event handler is bound on some divs, the plugin binds a &#8220;click&#8221; event handler to document.</p>
+
+<p>After that point, whenever an element on the page is clicked, the event will propagate up the DOM tree to document, where the document click event handler will execute. Since that handler can use <code>event.target</code> to know on which element the event was triggered, it can then iterate over all elements in the aforementioned internal array, triggering the custom &#8220;outside&#8221; event on all elements that aren&#8217;t equal to, or a parent of, the triggering element.</p>
+
+<p>Now, whenever an event is triggered on an element, that event&#8217;s <code>.target</code> property refers to the element on which the event was triggered. Normally, since events bubble, a bound event handler might not be on the triggering element, but instead might be on one of its ancestor elements, so this makes sense for most events. Of course, in a situation like this, where the custom &#8220;outside&#8221; event is triggered directly on the element to which it is bound, <code>event.target</code> and <code>this</code> will be the same value inside the event handler.</p>
+
+<p>Now, because the originating event is, by definition, being triggered on an element that is <em>outside</em> the element on which the custom &#8220;outside&#8221; event is triggered, it seems most useful to set <code>event.target</code> to be the element on which the originating event was triggered, which, if you remember, was available in the document-bound originating event handler.</p>
+
+<p>Fortunately, the special events API in jQuery 1.4.2+ makes this very easy, and it&#8217;s just a few lines of code (see <a href="http://github.com/cowboy/jquery-outside-events/blob/v1.1/jquery.ba-outside-events.js#L193-209">here</a> and <a href="http://github.com/cowboy/jquery-outside-events/blob/v1.1/jquery.ba-outside-events.js#L228">here</a>) to override any <code>event</code> object properties for a custom event.</p>
+
+<p>While this explanation might have been a little long-winded, this really is a fairly simple example of a jQuery &#8220;special event&#8221; plugin, so if you want to write one of your own, feel free to take a look at the <a href="http://github.com/cowboy/jquery-outside-events/blob/v1.1/jquery.ba-outside-events.js">fully commented source code</a>.</p>
+
+<h2>Ok, back to usage</h2>
+
+<p>Well, there&#8217;s little else to say. Technical explanation on event bubbling aside, this plugin is really quite straightforward. Be sure to check out the <a href="http://benalman.com/code/projects/jquery-outside-events/examples/clickoutside/">click outside</a>, <a href="http://benalman.com/code/projects/jquery-outside-events/examples/dblclickoutside/">double-click outside</a>, <a href="http://benalman.com/code/projects/jquery-outside-events/examples/mouseoveroutside/">mouse-over outside</a> and <a href="http://benalman.com/code/projects/jquery-outside-events/examples/focusoutside/">focus outside</a> working examples to see it in action, and work from there!</p>
+
+<p>If you have any non-bug-related feedback or suggestions, please let me know below in the comments, and if you have any bug reports, please report them in the <a href="http://github.com/cowboy/jquery-outside-events/issues">issues tracker</a>, thanks!</p>
+
+<p><em>Special thanks to <a href="http://www.lullabot.com/">Jeff Robbins</a> for the original &#8220;clickoutside&#8221; plugin idea, and <a href="http://blog.petersendidit.com/post/jquery-focusoutside-event/">David Petersen</a> for the &#8220;focusoutside&#8221; idea that got me thinking about converting this into a more general &#8220;outside events&#8221; plugin!</em></p>
+
+            
+          
+        </div>
+      
+      
+        <div class="asset-footer">
+          
+            <div class="asset-share">
+              
+  <!-- AddThis Button BEGIN -->
+  <a href="http://www.addthis.com/bookmark.php?v=250" onmouseover='return addthis_open(this, "", "http://benalman.com/projects/jquery-outside-events-plugin/", "jQuery outside events: Why trigger an event on something, when you can trigger it on everything else?")' onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s7.addthis.com/static/btn/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <!-- AddThis Button END -->
+  
+  
+
+            </div>
+          
+          
+            
+              <div class="asset-tags">
+                <dl class="inline">
+                  <dt>Tags<span class="divider">:</span></dt>
+                  <dd>
+                    
+  
+  
+    
+      
+      
+      
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+    
+      
+      
+      
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+    
+      
+      
+      
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+    
+      
+      
+      
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+    
+      
+      
+      
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+    
+      
+      
+      
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+    
+      
+      
+      
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+    
+      
+      
+      
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+    
+      
+      
+      
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+    
+      
+      
+      
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+    
+      
+      
+      
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+  
+  
+  
+    
+    <ul class="nav nav-inline inline">
+      
+    
+      
+      
+      
+      
+      <li class="first">
+        
+        
+          
+          
+            
+            <a href="/tag/blur/" rel="nofollow">blur</a>
+          
+          
+        
+        
+          
+            <span class="divider">|</span>
+          
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li >
+        
+        
+          
+          
+            
+            <a href="/tag/click/" rel="nofollow">click</a>
+          
+          
+        
+        
+          
+            <span class="divider">|</span>
+          
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li >
+        
+        
+          
+          
+            
+            <a href="/tag/dblclick/" rel="nofollow">dblclick</a>
+          
+          
+        
+        
+          
+            <span class="divider">|</span>
+          
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li >
+        
+        
+          
+          
+            
+            <a href="/tag/event/" rel="nofollow">event</a>
+          
+          
+        
+        
+          
+            <span class="divider">|</span>
+          
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li >
+        
+        
+          
+          
+            
+            <a href="/tag/focus/" rel="nofollow">focus</a>
+          
+          
+        
+        
+          
+            <span class="divider">|</span>
+          
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li >
+        
+        
+          
+          
+            
+            <a href="/tag/jquery/" rel="nofollow">jquery</a>
+          
+          
+        
+        
+          
+            <span class="divider">|</span>
+          
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li >
+        
+        
+          
+          
+            
+            <a href="/tag/mousemove/" rel="nofollow">mousemove</a>
+          
+          
+        
+        
+          
+            <span class="divider">|</span>
+          
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li >
+        
+        
+          
+          
+            
+            <a href="/tag/mouseout/" rel="nofollow">mouseout</a>
+          
+          
+        
+        
+          
+            <span class="divider">|</span>
+          
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li >
+        
+        
+          
+          
+            
+            <a href="/tag/mouseover/" rel="nofollow">mouseover</a>
+          
+          
+        
+        
+          
+            <span class="divider">|</span>
+          
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li >
+        
+        
+          
+          
+            
+            <a href="/tag/outside/" rel="nofollow">outside</a>
+          
+          
+        
+        
+          
+            <span class="divider">|</span>
+          
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li class="last">
+        
+        
+          
+          
+            
+            <a href="/tag/plugin/" rel="nofollow">plugin</a>
+          
+          
+        
+        
+          
+        
+        
+      </li>
+    
+  
+    </ul>
+  
+  
+    
+    
+    
+    
+    
+    
+  
+
+  
+
+                  </dd>
+                </dl>
+              </div>
+            
+          
+          
+            
+              <div class="asset-categories">
+                <dl class="inline">
+                  <dt>Categories<span class="divider">:</span></dt>
+                  <dd>
+                    
+  
+  
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+    
+    <ul class="nav nav-inline inline">
+      
+    
+      
+      
+      
+      
+      <li class="first">
+        
+        
+          
+          
+            
+            <a href="http://benalman.com/projects/">Projects</a>
+          
+          
+        
+        
+          
+            <span class="divider">|</span>
+          
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li class="last">
+        
+        
+          
+          
+            
+            <a href="http://benalman.com/projects/jquery/">jQuery</a>
+          
+          
+        
+        
+          
+        
+        
+      </li>
+    
+  
+    </ul>
+  
+  
+    
+    
+    
+    
+    
+    
+  
+
+  
+
+                  </dd>
+                </dl>
+              </div>
+            
+          
+        </div>
+      
+    </div>
+    <div class="shim"></div>
+  </div>
+  
+  
+  
+  
+
+
+    
+    
+      <div class="nav nav-inline nav-prev_next">
+        
+  
+  
+    
+    <ul>
+      
+    
+      
+      
+      
+      
+      <li class="first">
+        
+        
+          
+          
+            
+            <a href="http://benalman.com/projects/finder-copy-open-window-paths/" title="Finder Copy Open Window Paths">&laquo; Previous</a>
+          
+          
+        
+        
+          
+            <span class="divider">|</span>
+          
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li >
+        
+        
+          
+          
+            
+            <a href="http://benalman.com/projects/">Recent Projects</a>
+          
+          
+        
+        
+          
+            <span class="divider">|</span>
+          
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li >
+        
+        
+          
+          
+            
+            <a href="/archives/projects/">All Projects</a>
+          
+          
+        
+        
+          
+            <span class="divider">|</span>
+          
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li class="last">
+        
+        
+          
+          
+            
+            <a href="http://benalman.com/projects/jquery-throttle-debounce-plugin/" title="jQuery throttle / debounce: Sometimes, less is more!">Next &raquo;</a>
+          
+          
+        
+        
+          
+        
+        
+      </li>
+    
+  
+    </ul>
+  
+  
+    
+    
+    
+    
+    
+    
+  
+
+      </div>
+    
+    
+    
+      
+
+
+      
+  
+    
+  <h2>Post <span class="normal">A Comment</span></h2>
+  <ul class="comment-instructions">
+    <li>Any of these HTML tags may be used for style: <code>a</code>, <code>b</code>, <code>i</code>, <code>br</code>, <code>p</code>, <code>strong</code>, <code>em</code>, <code>pre</code>, <code>code</code>.</li>
+    <li>Multi-line JavaScript code should be wrapped in <code>&lt;pre class="brush:js"&gt;&lt;/pre&gt;</code>
+    <br>
+    <small>(supported syntax highlighting brushes: <code>js</code>, <code>css</code>, <code>php</code>, <code>plain</code>, <code>bash</code>, <code>ruby</code>, <code>html</code>, <code>xml</code>)</small></li>
+    <li>Use <code>&amp;lt;</code> instead of <code>&lt;</code> and <code>&amp;gt;</code> instead of <code>&gt;</code> in the examples themselves.</li>
+  </ul>
+
+                <div id="comments"></div><div id="disqus_thread"></div>
+            <div style="display:none;" id="disqus_post_title">jQuery outside events: Why trigger an event on something, when you can trigger it on everything else?</div>
+            <div style="display:none;" id="disqus_post_message">With jQuery outside events you can bind to an event that will be triggered only when a specific \"originating\" event occurs *outside* the element in question. For example, you can click outside, double-click outside, mouse-over outside, focus outside (and over ten more default \"outside\" events). Also, if an outside event hasn't been provided by default, you can easily define your own.\n\nNote that this was previously known as the \"jQuery clickoutside\" plugin.. but, hey--it's pretty amazing what a an [awesome idea](http://blog.petersendidit.com/post/jquery-focusoutside-event/) and few more lines of code can do!</div>
+            <script type="text/javascript">
+                var disqus_url = window.disqus_url || 'http://benalman.com/projects/jquery-outside-events-plugin/';
+                var disqus_title = document.getElementById('disqus_post_title').innerHTML;
+                var disqus_message = document.getElementById('disqus_post_message').innerHTML;
+            </script>
+            <script type="text/javascript" src="http://disqus.com/forums/benalman/embed.js"></script>
+            <noscript><a href="http://benalman.disqus.com/?url=http://benalman.com/projects/jquery-outside-events-plugin/">View the entire comment thread.</a></noscript>
+
+  
+
+
+    
+  
+
+            
+                <div id="content_body0-shim"></div>
+              </div>
+            </div>
+            
+            
+          
+            
+            
+            
+            
+            <div id="content_body1" class="content_body1">
+              <div id="content_body1-inner" class="content_body1-inner">
+                
+              
+  <div class="sidebar_body">
+    
+      
+  
+  
+    
+  
+  
+  
+  <div class="widget widget-search">
+    
+    <div class="widget-body">
+      
+    <form method="get" action="http://benalman.com/search/">
+      
+        <input class="text search ti" id="search" type="text" name="search" value="">
+      
+      
+        <input type="hidden" name="IncludeBlogs" value="9">
+      
+      <input type="hidden" name="limit" value="20">
+      <button class="button-search" type="submit" accesskey="4">Search</button>
+      <div class="clear"></div>
+    </form>
+  
+    </div>
+    
+    <div class="widget-shim"></div>
+  </div>
+  
+  
+  
+  
+
+
+        
+  
+  
+  <div class="widget widget-donate">
+    
+      <div class="widget-title">
+        <h3>
+          Please <span class="normal">Donate!</span>
+        </h3>
+      </div>
+    
+    <div class="widget-body">
+      
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="hosted_button_id" value="5791421">
+    <input type="image" class="donate-submit" src="http://benalman.com/shell/images/donate.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p>Your generous donation allows me to continue developing and updating my code!</p>
+  
+    </div>
+    
+    <div class="widget-shim"></div>
+  </div>
+  
+  
+  
+  
+
+  
+  
+  
+  
+  <div class="widget widget-projects">
+    
+      <div class="widget-title">
+        <h3>
+          <span class="more"><a href="/projects/">All</a></span> Featured <span class="normal">Projects</span>
+        </h3>
+      </div>
+    
+    <div class="widget-body">
+      
+    <p>
+      jQuery: 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-bbq-plugin/" title="jQuery BBQ leverages the HTML5 hashchange event to allow simple, yet powerful bookmarkable #hash history. In addition, jQuery BBQ provides a full .deparam() method, along with both hash state...">BBQ</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/run-jquery-code-bookmarklet/" title="This would probably actually be better called &#8220;Run some arbitrary code that requires jQuery, loading a minimum required version of jQuery first (but only if necessary), affecting the host page...">Bookmarklet Generator</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-cond-plugin/" title="Like my iff plugin, this small jQuery plugin gives you the ability to perform conditional logic without breaking the chain, but in addition to if, allows for any number of else if tests and...">cond</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-dotimeout-plugin/" title="jQuery doTimeout takes the work out of delayed code execution, including interval and timeout management, polling loops and debouncing. In addition, it&#8217;s fully jQuery chainable!">doTimeout</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-equalizebottoms-plugin/" title="With jQuery equalizeBottoms you can &#8220;equalize&#8221; the bottoms of multiple elements, making columns heights even, even when CSS refuses to help.Great news! This plugin won day eight of Media...">equalizeBottoms</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-getobject-plugin/" title="jQuery getObject allows you to get and set properties of an object via dot-delimited name string. Inspired by the Dojo methods of the same names.">getObject</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-hashchange-plugin/" title="This jQuery plugin enables very basic bookmarkable #hash history via a cross-browser HTML5 window.onhashchange event.While this functionality was initially tied to the jQuery BBQ plugin, the...">hashchange event</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-iff-plugin/" title="This relatively simple and very small jQuery plugin gives you the functionality and power of a standard JavaScript "if" statement, without breaking the chain. In one way, iff operates like .filter...">iff</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-longurl-plugin/" title="jQuery Long Url uses the longurlplease.com short URL lengthening API to expand short URLs from at least 80 services, including bit.ly, is.gd, tinyurl.com and more!">longUrl</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-message-queuing-plugin/" title="With jQuery Message Queuing, you can process and manage operations on large queues of items or elements. You can throttle, giving each operation a little breathing room (firing tracking pixels...">Message Queuing</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-misc-plugins/" title="This page contains a collection of minor jQuery plugins which are too small, too simple, or just not exciting enough to require individual pages. More will be added as I find the time&#8230; and the...">Misc plugins</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-outside-events-plugin/" title="With jQuery outside events you can bind to an event that will be triggered only when a specific &#8220;originating&#8221; event occurs outside the element in question. For example, you can click...">outside events</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-postmessage-plugin/" title="jQuery postMessage enables simple and easy window.postMessage communication in browsers that support it (FF3, Safari 4, IE8), while falling back to a document.location.hash communication method for...">postMessage</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-replacetext-plugin/" title="jQuery replaceText will replace text in specified elements. Note that only text content will be modified, leaving all tags and attributes untouched.">replaceText</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-resize-plugin/" title="With jQuery resize event, you can now bind resize event handlers to elements other than window, for super-awesome-resizing-greatness!">resize event</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-starwipe-plugin/" title="With jQuery Star Wipe you can enable the single best transition ever created, the star wipe, in any recent WebKit browser!">Star Wipe</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-throttle-debounce-plugin/" title="jQuery throttle / debounce allows you to rate-limit your functions in multiple useful ways. Passing a delay and callback to $.throttle returns a new function that will execute no more than once every...">throttle / debounce</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-untils-plugin/" title="jQuery Untils provides three very simple, but very useful methods: nextUntil, prevUntil, and parentsUntil. These methods are based on their nextAll, prevAll, and parents counterparts, except that...">Untils</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-unwrap-plugin/" title="This very basic jQuery plugin does exactly what you&#8217;d think: the selected elements are unwrapped, removing their parent element, which effectively &#8220;promotes&#8221; them (and their...">unwrap</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-url-utils-plugin/" title="This plugin has been superseded by both the jQuery BBQ plugin and the jQuery urlInternal plugins. Be sure to check those out, because they&#8217;re newer and way cooler! And also because this plugin...">URL Utils</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/jquery-urlinternal-plugin/" title="jQuery urlInternal allows you to easily test internal-, external-, or fragment-ness for any relative or absolute URL. Includes element filtering methods and pseudo-selectors.This plugin and the...">urlInternal</a>
+      
+    </p>
+    <p>
+      JavaScript: 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/bookmarklets/" title="I&#8217;m a hard-core bookmarklet junkie. I love adding non-standard functionality to my browsers, so I&#8217;ve created a few bookmarklets, which are posted here. I&#8217;ve also created a jQuery...">Bookmarklets</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/javascript-debug-console-log/" title="This code provides a simple wrapper for the console's logging methods, and was created to allow a very easy-to-use, cross-browser logging solution, without requiring excessive or unwieldy object...">Debug</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/javascript-emotify/" title="JavaScript Emotify helps make the web a better place, one tiny image at a time&#8230; (the original title was &#8220;this is what it sounds like when HTML cries&#8221; but Prince&#8217;s lawyers sent...">Emotify</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/javascript-library-boilerplate/" title="Why go through the tedium of creating both a closure AND a .noConflict method when all you want to do is create your own JavaScript Library? With JavaScript Library Boilerplate, you can hit the...">Library Boilerplate</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/javascript-linkify/" title="This project is a work in progress!Project details coming soon, for now check out the GitHub page!">Linkify</a>
+      
+    </p>
+    <p>
+      Other: 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/finder-copy-open-window-paths/" title="This AppleScript allows you to very easy copy the path of any open Finder window to the clipboard. Also, in any application&#8217;s Open or Save dialog, you can open a &#8220;Go to the folder&#8221...">Finder Copy Open Window Paths</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/multi-firefox-launcher/" title="While many articles have been written explaining how multiple versions of Firefox can run concurrently by launching Firefox with version-specific profiles via command-line argument, this very simple...">Multi-Firefox Launcher</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/safari-view-source-in-textmate/" title="This AppleScript does exactly what it says, which is allow you to view source from Safari in TextMate. Since it uses a temporary file to store the page source, TextMate won&#8217;t ask if you&#8217;d...">Safari View Source in TextMate</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/php-simple-proxy/" title="With Simple PHP Proxy, your JavaScript can access content in remote webpages, without cross-domain security limitations, even if it&#8217;s not available in JSONP format. Of course, you&#8217;ll need...">Simple PHP Proxy</a>, 
+      
+        
+        
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+        <a href="http://benalman.com/projects/simplified-style/" title="Simplified is a WebKit message style for the popular OS X Linkinus IRC application. While developed independently of the Linkinus app, great effort was spent working with the app development team to...">Simplified</a>
+      
+    </p>
+  
+    </div>
+    
+    <div class="widget-shim"></div>
+  </div>
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+    
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+    
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+    
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+    
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  <div class="widget widget-entries">
+    
+      <div class="widget-title">
+        <h3>
+          <span class="more"><a href="/news/">All</a></span> Recent <span class="normal">News</span>
+        </h3>
+      </div>
+    
+    <div class="widget-body">
+      
+  
+  
+    
+    <ul class="entries">
+      
+    
+      
+      
+      
+      
+      <li class="first">
+        
+        
+          
+          
+            
+            <a href="http://benalman.com/news/2011/04/jquery-bay-area-conference-2011/" title="I recently attended the jQuery Bay Area Conference, which was held at the Microsoft Silicon Valley Campus Conference Center in Mountain View, California. I decided to go not only from a personal...">jQuery Bay Area Conference 2011</a>
+          
+          
+        
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li >
+        
+        
+          
+          
+            
+            <a href="http://benalman.com/news/2011/02/gig-february-17-w-pollotronik/" title="Tomorrow night, February 17, the Pollotronik All*Stars are playing some killer funk at Toad in Porter Square, Cambridge.And since Steve Giannaros just sent an email out to his mailing list promoting...">Gig: February 17 w/ Pollotronik All*Stars @ Toad in Cambridge, MA</a>
+          
+          
+        
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li >
+        
+        
+          
+          
+            
+            <a href="http://benalman.com/news/2011/01/jquery-bbq-now-in-over-20k-sit/" title="Just over a year ago, I blogged that jQuery BBQ was going into version 7 of the popular open source Drupal CMS, as a crucial part of the overlay module.The overlay module allows the Drupal admin...">jQuery BBQ now in over 20k sites!</a>
+          
+          
+        
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li >
+        
+        
+          
+          
+            
+            <a href="http://benalman.com/news/2010/12/the-catch-with-trycatch/" title="In some of my recent work on a much-needed update to JavaScript Debug, I noticed a few &#8220;interesting quirks&#8221; with try&#8230;catch in Internet Explorer 6-8, so I decided to write an article...">The "catch" with try...catch</a>
+          
+          
+        
+        
+        
+      </li>
+    
+      
+      
+      
+      
+      <li class="last">
+        
+        
+          
+          
+            
+            <a href="http://benalman.com/news/2010/12/yes-dear/" title="This is great. I just discovered the amazing sense of freedom from responsibility and the resulting serenity that only the act of blindly agreeing with whatever your spouse says can bring. All this...">Yes, dear.</a>
+          
+          
+        
+        
+        
+      </li>
+    
+  
+    </ul>
+  
+  
+    
+    
+    
+    
+    
+    
+  
+
+    </div>
+    
+    <div class="widget-shim"></div>
+  </div>
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  <div class="widget widget-syndication">
+    
+      <div class="widget-title">
+        <h3>
+          Stay <span class="normal">Updated</span>
+        </h3>
+      </div>
+    
+    <div class="widget-body">
+      
+    <ul class="feeds">
+      <li class="icon icon-feed_add"><a href="http://feeds.benalman.com/benalman" title="Subscribe to my news RSS feed">Subscribe to my news</a>
+        (<a href="http://www.feedburner.com/fb/a/emailverifySubmit?feedId=2047493&amp;loc=en_US" title="Subscribe to my news RSS feed via email">email</a>)</li>
+      <li class="icon icon-feed_add"><a href="http://feeds.benalman.com/benalman/photo" title="Subscribe to my photos RSS feed">Subscribe to my photos</a>
+        (<a href="http://www.feedburner.com/fb/a/emailverifySubmit?feedId=2047559&amp;loc=en_US" title="Subscribe to my photos RSS feed via email">email</a>)</li>
+      <li class="icon icon-twitter"><a href="http://twitter.com/cowboy">Follow @cowboy on Twitter</a></li>
+      <li class="icon icon-github"><a href="http://github.com/cowboy">Follow cowboy on GitHub</a></li>
+    </ul>
+  
+    </div>
+    
+    <div class="widget-shim"></div>
+  </div>
+  
+  
+  
+  
+
+  
+      
+    <div id="sidebar-shim"></div>
+  </div>
+
+            
+                <div id="content_body1-shim"></div>
+              </div>
+            </div>
+            
+            
+          
+        
+              <div id="content-shim"></div>
+            </div>
+          </div>
+        
+        
+      
+        
+        
+        
+        
+        
+          <div id="footer" class="footer">
+            <div id="footer-inner" class="footer-inner">
+              
+          
+          
+          
+            
+            
+            
+            
+            <div id="footer_body0" class="footer_body0">
+              <div id="footer_body0-inner" class="footer_body0-inner">
+                
+              
+  
+      <p>
+    This website makes heavy use of PHP, JavaScript, <a href="/portfolio/xslt-portfolio-source/">XML and XSLT</a>, and relies greatly on the services and tools provided by <a href="http://www.movabletype.com/">Movable Type Open Source</a>, <a href="http://jquery.com/">JQuery</a>, <a href="http://pipes.yahoo.com/benalman">Yahoo Pipes</a>, <a href="http://www.feedburner.com/">FeedBurner</a> and <a href="http://www.flickr.com/rj3/">Flickr</a>. Syntax highlighting is handled by <a href="http://alexgorbatchev.com/">SyntaxHighlighter</a> and the icons are <a href="http://www.famfamfam.com/lab/icons/silk/">Fam Fam Fam Silk</a>.
+  </p>
+  <p>
+    All original photography and text on this website are Copyright &copy; 2010 <a href="http://benalman.com/" rel="cc:attributionURL">"Cowboy" Ben Alman</a> and are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 United States License</a>. All original code is Copyright &copy; 2010 "Cowboy" Ben Alman and dual licensed under the MIT and GPL licenses (except where the transition is not yet complete, and the code is still just MIT licensed). View the <a href="/about/license/">license page</a> for more details.
+  </p>  
+
+            
+                <div id="footer_body0-shim"></div>
+              </div>
+            </div>
+            
+            
+          
+        
+              <div id="footer-shim"></div>
+            </div>
+          </div>
+        
+        
+      
+      
+    </div>
+  </div>
+  
+  
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.1/swfobject.js"></script>
+  
+    <script type="text/javascript" src="/code/php/multi_file.php?m=benalman_js"></script>
+  
+  
+  
+  
+  
+  
+  
+  
+</body>
+
+</html>

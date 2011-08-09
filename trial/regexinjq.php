@@ -1,0 +1,16 @@
+<html>
+<head>
+<script src="http://localhost/take/jquery/jquery.tools.min.js"></script>
+</head>
+<body>
+<div class="thediv" style="width:50%;height:50%;border-style:groove;border-color:green;"></div>
+<script>
+$(document).ready(function(){var ab="the";var std="/^([a-z]{3})$/";
+if(ab.search(std)==-1)
+{$(".thediv").css("background-color","red");}
+else if(ab.search(std)==1)
+{$(".thediv").css("background-color","yellow");}
+});
+</script>
+</body>
+</html>

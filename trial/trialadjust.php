@@ -1,0 +1,412 @@
+<?php 
+
+?>
+<?php
+//only for users
+//code_to extract the registration timestamp of the 
+?>
+<?php
+
+	
+	
+
+
+
+//construct the function which shall get the array out of a databse fetch array command and thereby construct the firt div which has a part of the message sender'reciever time and date 
+//and whether read or not
+//it shall have a view button which shall lead to opening of a div showing the entire message and the reply textfield
+//make sure that the clicking of the button first triggers the closing of all such  divs already open and thereby then open the specific div
+//trick class name and id name
+/*
+function construct_the_message_div($the_message_array)
+{
+global $THEPATHTOEACHUSER;//from thekey.php
+
+	{
+	 //extract the entire array
+	$the_message_array_sender=$the_message_array['sender'];
+	$the_message_array_reciever=$the_message_array['reciever'];
+	$the_message_array_message=$the_message_array['message'];
+	$the_message_array_time_24=$the_message_array['time_24'];
+	$the_message_array_date_sent=$the_message_array['date_message'];
+	$the_message_array_read=$the_message_array['checked'];
+	$email_id_different_1=$the_message_array['reciever_email_id'];//stores the sender or user email id '''whatevre is differenet from that in the session
+	$email_id_different_2=$the_message_array['sender_email_id'];//stores the sender or user email id '''whatevre is differenet from that in the session
+	if($email_id_different_1==$_SESSION['email_id']){$email_id_different=$email_id_different_2;}
+	if($email_id_different_2==$_SESSION['email_id']){$email_id_different=$email_id_different_1;}
+	$the_profile_string_sender=$the_message_array['sender_profile_string'];
+	$the_profile_string_reciever=$the_message_array['reciever_profile_string'];
+	}
+$thelink_tosender=$THEPATHTOEACHUSER.'?profile='.$the_profile_string_sender;
+
+$thelink_toreciever=$THEPATHTOEACHUSER.'?profile='.$the_profile_string_reciever;
+var_dump($the_profile_string_reciever);
+$themessage_div=<<<messagediv
+<b><a href="$thelink_tosender">$the_message_array_sender</a>----------><a href="$thelink_toreciever">$the_message_array_reciever</a></b>
+<br>
+<b>$the_message_array_date_sent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$the_message_array_time_24</b>
+<p>
+$the_message_array_message
+</p>
+<p class="sendmessage">
+<form>
+<textarea name="reply" cols=20 rows=5 id="$email_id_different"></textarea>
+<button class="replybutton"id="$email_id_different">reply</button>
+</form>
+</p>
+messagediv;
+echo $themessage_div;
+}
+*/
+?>
+
+<html>
+<head>
+<script src="http://localhost/take/jquery/jquery.tools.min.js"></script>
+<script>
+$(document).ready(function(){$(".replybutton").click(function(){
+					var theotheremail=$(this).attr('id');
+					var themessage=$('textarea#'+theotheremail).val();
+					
+					var themessagestring='sendto'+theotheremail+'&message'+themessage;
+					$.ajax({
+					type:'POST',url:'<?=$FILE?>/downhandler.php',
+					data:themessagestring,
+					success:function(){$("div#messagesuccessfullysent").show();$("div#messagesuccessfullysent").mouseenter(function(){$("div#messagesuccessfullysent").hide();});}});
+					
+					return false;
+					//	POSTION THE MESSAGE SUCCESFULLY SNET DIV ABSOLUTELY
+					//i might need to clear up the fom fields
+					});
+					$("#sendnewmessage").click(function(){
+					//var theotheremail=$(this).attr('id');
+					var themessage=$('textarea').val();
+					var recipient=$('select').val();
+					var themessagestring='sendto='+recipient+'&message='+themessage;
+
+					$.ajax({
+					type:'POST',url:'<?=$FILE?>/message_handler.php',
+					data:themessagestring,
+					success:function(){$("div#messagesentconfirmation").show();$("div#messagesentconfirmation").mouseenter(function(){$("div#messagesentconfirmation").hide();});$("div#messagesuccessfullysent").show();$("div#messagesuccessfullysent").mouseenter(function(){$("div#messagesuccessfullysent").hide();});}});
+					
+					return false;
+					
+					});
+					
+					
+					
+					});
+</script>
+<style>
+body{background-image:url(<?=$IMAGE?>/basic.png);}
+#complete{float:right;
+          
+          width:83%;
+          height:100%;
+          overflow:hidden;
+          border-style:groove;
+	       }
+#container{float:center;
+           overflow:hidden;
+           width:100%;
+           height:82%;
+          
+           margin-top:0px;
+           margin-bottom:1px;
+           margin-left:0px;
+           margin-right:0px;
+           }	       
+#headbar{width:100%;
+			float:center;
+			height:7%;
+			border-style:groove;
+			background-color:#666699;
+			opacity:0.7;}  
+#panelbar{width:100%;
+			height:10%;
+			border-style:groove;
+			border-bottom:0;
+			
+			}
+
+.panel{width:60%;
+		height:94%;
+		
+		border:0;
+		
+		
+		}
+.paneltabs{width:20%;
+				height:76%;
+				border-style:ridge;
+				float:left;
+				background-color:#666699;
+				opacity:0.7;
+				border-left-color:gray;
+				border-right-color:gray;
+				border-bottom:0;
+				//border-left:none;
+				text-align:center;
+				padding-top:14px;
+				//border-bottom-color:#666699;
+			}
+div.paneltabs.current{background-color:#666699;opacity:1.0;border-bottom:0;height:77%;border-style:inset;}				
+.panes{
+		width:100%;
+		height:99%;
+		//border-style:ridge;
+		//border-color:#6666CC;
+		
+		}
+.panes div{display:none;
+				}
+.panecontents{width:100%;
+					height:60%;
+					border-style:dotted;
+					border-color:silver;
+					border-left:none;
+					border-right:none;
+					border-top:none;
+					background-color:#666699;
+					text-align:left;
+					display:block;
+					
+					border-top:groove;
+					
+					}
+.anchoraccordionlinksnavigation{text-decoration:none;}
+.accordionlinksnavigation{width:20%;height:40%;margin-left:2px;margin-right:3px;float:left;border-style:dotted;}							         
+#accordion{
+	
+	width:2000px;
+	margin-top:2px;
+	margin-bottom:5px;
+	padding-right:7px;
+	height:18%;
+	float:left;
+	border-top-style:groove;
+	border-top-color:silver;
+	overflow:hidden;
+	}
+#accordion img {
+	float:left;
+	margin-right:-1px;
+	margin-left:5px;
+	margin-top: 2px;
+	cursor:pointer;
+	opacity:0.5;
+	filter: alpha(opacity=50);
+	}
+	
+	
+#accordion img.current {
+	cursor:default;
+	opacity:1;
+	filter: alpha(opacity=100);
+}
+
+.insideaccordion{
+	width:0px;
+	float:left;	
+	display:none;		
+	margin-right:10px;
+}
+#messagesuccessfullysent{width:200px;height:200px;position:absolute;left:70px;top:90px;display:none;}
+
+.paginate{
+		position:absolute;
+		overflow:hidden;
+		width:100%;
+		height:80%;
+		border-top:groove;
+		display:block;
+	   }
+.pagiitemss{position:absolute;
+		height:9999999em;
+		margin:0px;
+		display:block;
+		}
+.rollupdiv{
+		padding:4px;
+		margin-top:2px;
+		height:180px;
+		font-size:0.6em;
+		display:block;
+	     }
+
+</style>
+</head>
+<body>
+<div id="messagesuccessfullysent"></div>
+<div id="complete">
+	<div id="container">
+		<div id="headbar">
+		<pre><b>  MESSAGES</b>											you are logged in as<?="$username_message"?></pre> 
+		</div>
+		<div id="panelbar">
+			<div class="panel">
+					<div class="paneltabs" id="allpaneltab">all</div>
+					<div class="paneltabs" id="sentpaneltab">sent</div>
+               			<div class="paneltabs" id="recievedpaneltab">recieved</div>
+               			<div class="paneltabs" id="recievedpaneltab">create a new message</div>
+               			
+			</div>
+		</div>
+<script>
+
+</script>
+<?php
+
+
+
+
+		
+		
+?>		
+		<div class="panes">
+			<div class="panecontents">
+			<div>
+			<div class='paginate'>
+			<div class='pagiitems'>
+				<div>
+					<div class='oneitem'>abc </div>
+					<div class='oneitem'>def </div>
+					<div class='oneitem'> ghi</div>
+				</div>
+				<div>
+					<div class='oneitem'>abc 0</div>
+					<div class='oneitem'>def 0</div>
+					<div class='oneitem'> ghi0</div>
+				</div>
+				<div>
+					<div class='oneitem'>abc 1</div>
+					<div class='oneitem'>def 1</div>
+					<div class='oneitem'> ghi 1</div>
+				</div>
+			</div>
+			</div><!--panecontents-->
+			</div>
+			</div>
+			<div class="panecontents">
+				
+			
+		
+			
+			</div><!--panecontents-->
+			
+			
+			<div class="panecontents">
+				
+		
+			 
+			</div><!--panecontents-->
+			<div class="panecontents">
+			<br>
+			<form>
+			to <select name="sendtonew" id="messsagesentto">
+				<option value="def" >select_friend</option>
+				
+			
+			</select>			<br>
+			the message		<br>
+			<textarea rows="8" cols="50" name="message">
+			
+			
+			</textarea>		<br>
+			<button name="submit" id="sendnewmessage">send message</button>
+			</form>		
+			<p id="messagesentconfirmation"><h2>the message has been sent</h2></p>	
+			</div>
+
+		</div>
+		
+		<script>
+
+
+$(function() {
+	// setup ul.tabs to work as tabs for each div directly under div.panes
+	$("div.panel").tabs("div.panes > div");
+
+});
+</script>		
+ 
+	</div>
+	<div id="accordion">
+   	<img src="<?=$IMAGE?>/menavigation.png" class="tabes" alt="me" >  
+      <div class="insideaccordion" style="width:410px;height:107px;margin-top:3px;background-color:#666699;">
+       <p style="font-size:10px;">
+       <pre>
+       <a href="" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation" style="margin-left:19px;">me</div></a>     
+      <a href="" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation">profile</div></a>
+	<a href="" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation">songrequests</div></a>           
+	</pre>       
+       </p>      
+      </div>
+   
+    <img src="<?=$IMAGE?>/musiclibrarynavigation.png" class="tabes" alt="musiclibrary" >  
+      <div class="insideaccordion" style="width:410px;height:107px;margin-top:3px;background-color:#666699;">
+       <p style="font-size:10px;">
+         <pre>
+		 <a href="" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation" style="margin-left:19px;">library</div></a>     
+     		 <a href="" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation">favourates</div></a>
+		<a href="" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation" style="height:35%;">myplaylists</div></a>   
+        </pre>                   
+       </p>      
+      </div>
+
+	<img src="<?=$IMAGE?>/messagesnavigation.png" class="tabes" alt="messages" >  
+      <div class="insideaccordion" style="width:410px;height:107px;margin-top:3px;background-color:#666699;">
+       <p style="font-size:10px;">
+         <pre>
+		 <a href="" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation" style="margin-left:19px;">all</div></a>     
+     		 <a href="" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation">sent</div></a>
+		<a href="" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation" style="height:35%;">recieved</div></a>   
+        </pre>                   
+       </p>      
+      </div>
+      
+     <img src="<?=$IMAGE?>/accountnavigation.png" class="tabes" alt="account" >  
+      <div class="insideaccordion" style="width:410px;height:107px;margin-top:3px;background-color:#666699;">
+       <p>
+       	<pre>
+		 <a href="" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation" style="margin-left:19px;">settings</div></a>     
+     		 <a href="" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation">contacts</div></a>
+		<a href="" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation" style="height:35%;">change<br>password</div></a>   
+        </pre>  
+                    
+       </p>      
+      </div>
+	<img src="<?=$IMAGE?>/logoutnavigation.png" class="tabes" alt="logout" >  
+      <div class="insideaccordion" style="width:410px;height:100px;margin-top:5px;background-color:#666699;">
+       <p>
+       	<pre>
+		<a href="">logout</a> 
+     	   </pre>  
+                    
+       </p>      
+      </div>
+</div>
+           <script> 
+                $(function() {
+ 
+                       $("#accordion").tabs(".insideaccordion", {
+	                   tabs: '.tabes', 
+	                    effect: 'horizontal'
+                        });
+                });
+           </script>
+<script> 
+// execute your scripts when DOM is ready. this is a good habit
+$(function() {		
+		
+	// initialize scrollable with mousewheel support
+	$(".paginate").scrollable({ vertical: true, mousewheel: true });	
+	
+});
+</script>
+</div>
+
+</div>
+
+</body>
+</html>

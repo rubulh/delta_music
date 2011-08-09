@@ -1,0 +1,672 @@
+/* ************************************************************************* *\
+ * COLOR SECTION                                                             *
+\* ************************************************************************* */
+
+/*
+#333;
+#933;
+#99ABB5;
+#DFE0E5;
+*/
+
+html,
+body {
+	background-color: #DFE0E5;
+	color: #333;
+}
+
+div#header div#flaghead,
+div#header ul#navigation,
+div#primaryContent div.blogEntry,
+div#primaryContent div.trackbacks,
+div#primaryContent div.comments,
+div#primaryContent div.writeComment,
+div#secondaryContent div#search,
+div#secondaryContent div#copyright,
+div#secondaryContent div#relevantPages,
+div#secondaryContent div#mostCommented,
+div#secondaryContent div#aboutSite,
+div#secondaryContent div#bestOf,
+div#footer,
+div#homepage div#colOne div#aboutSite,
+div#homepage div#colOne div#tableFree,
+div#homepage div#colOne div#blogEntry,
+div#homepage div#colOne div#otherEntries,
+div#homepage div#colTwo div#article {
+	background-color: white;
+	color: #333;
+}
+
+div#header div#flaghead {
+	background-image: url(http://www.workingwith.me.uk/images/default/header-border.gif);
+	background-position: 0 100%;
+}
+
+div#header div#flaghead a {
+	background-image: url(http://www.workingwith.me.uk/images/default/workingwithme.png);
+	background-position: 0 0;
+}
+
+div#header ul#navigation {
+	background-image: url(http://www.workingwith.me.uk/images/default/navigation.gif);
+	background-position: 0 100%;
+	background-repeat: no-repeat;
+}
+
+div#primaryContent div.blogEntry h1 {
+	background-image: url(http://www.workingwith.me.uk/images/default/primary-content-border.gif);
+	background-position: 0 0;
+}
+
+div#primaryContent div.blogEntry {
+	background-image: url(http://www.workingwith.me.uk/images/default/primary-content-border-body.gif);
+	background-position: 0 0;
+}
+
+div#primaryContent div.blogEntry p.blogEntryFooter {
+	background-image: url(http://www.workingwith.me.uk/images/default/primary-content-border.gif);
+	background-position: 0 100%;
+}
+
+
+/* older blog entries */
+div#primaryContent div.older h1 {
+	background-image: url(http://www.workingwith.me.uk/images/default/primary-content-older-border.gif);
+	background-position: 0 0;
+	border-color: #333;
+}
+
+div#primaryContent div.older {
+	background-image: url(http://www.workingwith.me.uk/images/default/primary-content-older-border-body.gif);
+	background-position: 0 0;
+}
+
+div#primaryContent div.older p.blogEntryFooter {
+	background-image: url(http://www.workingwith.me.uk/images/default/primary-content-older-border.gif);
+	background-position: 0 100%;
+}
+
+div#secondaryContent div#copyright,
+div#secondaryContent div#search,
+div#secondaryContent div#relevantPages,
+div#secondaryContent div#mostCommented,
+div#secondaryContent div#aboutSite,
+div#secondaryContent div#bestOf {
+	background-image: url(http://www.workingwith.me.uk/images/default/secondary-content-border.gif);
+	background-position: 0 100%;
+}
+
+div#secondaryContent div#copyright h1,
+div#secondaryContent div#search h1,
+div#secondaryContent div#relevantPages h1,
+div#secondaryContent div#mostCommented h1,
+div#secondaryContent div#aboutSite h1,
+div#secondaryContent div#bestOf h1 {
+	background-image: url(http://www.workingwith.me.uk/images/default/secondary-content-border.gif);
+	background-position: 0 0;
+	background-color: #99ABB5;
+	color: #333;
+	border-color: #333;
+}
+
+div#primaryContent div.blogEntry h1,
+div#primaryContent div.blogEntry h1 a,
+div#primaryContent div.blogEntry p.blogEntryFooter,
+div#primaryContent div.blogEntry p.blogEntryFooter a,
+div#homepage div#colTwo div#article h1 a, 
+div#homepage div#colTwo div#article p.blogEntryFooter a {
+	background-color: #933;
+	color: #DFE0E5;
+}
+
+div#primaryContent div.older h1,
+div#primaryContent div.older h1 a,
+div#primaryContent div.older p.blogEntryFooter,
+div#primaryContent div.older p.blogEntryFooter a {
+	background-color: #99ABB5;
+	color: #333;
+}
+
+div#primaryContent div.trackbacks,
+div#primaryContent div.comments {
+	background-image: url(http://www.workingwith.me.uk/images/default/comment-border.gif);
+	background-position: 0 0;
+}
+
+div#primaryContent div.trackbacks h2,
+div#primaryContent div.comments h2,
+div#primaryContent div.writeComment h2 {
+	background-color: #99ABB5;
+}
+
+div#primaryContent div.writeComment {
+	background-image: url(http://www.workingwith.me.uk/images/default/write-comment.gif);
+	background-position: 0 100%;
+}
+
+
+div#footer {
+	background-image: url(http://www.workingwith.me.uk/images/default/footer-border.gif);
+	background-position: 0 0;
+	background-color: white;
+	color: #333;
+}
+
+
+div.adUnit468x15 {
+	background-image: url(http://www.workingwith.me.uk/images/default/ad-unit-468x15.gif);
+}
+
+div.adUnit468x60 {
+	background-image: url(http://www.workingwith.me.uk/images/default/ad-unit-468x60.gif);
+}
+div.adUnit200x90 {
+	background-image: url(http://www.workingwith.me.uk/images/default/ad-unit-200x90.gif);
+}
+
+blockquote {
+	background-image: url(http://www.workingwith.me.uk/images/default/quotation-mark.png);
+	background-repeat: no-repeat;
+}
+
+div#homepage div#colOne div#aboutSite h1,
+div#homepage div#colOne div#tableFree h1,
+div#homepage div#colOne div#blogEntry h1,
+div#homepage div#colOne div#blogEntry p.blogEntryFooter,
+div#homepage div#colOne div#otherEntries h1,
+div#homepage div#colOne div#aboutSite h1 a,
+div#homepage div#colOne div#tableFree h1 a,
+div#homepage div#colOne div#blogEntry h1 a,
+div#homepage div#colOne div#blogEntry p.blogEntryFooter a,
+div#homepage div#colOne div#otherEntries h1 a {
+	background-color: #99ABB5;
+	color: #333;
+}
+
+div#homepage div#colTwo div#article h1 {
+	background-image: url(http://www.workingwith.me.uk/images/default/homepage-article-border.gif);
+	background-position: 0 0;
+	background-color: #933;
+	color: #333;
+	border-color: #333;
+}
+
+div#homepage div#colTwo div#article p.blogEntryFooter {
+	background-image: url(http://www.workingwith.me.uk/images/default/homepage-article-border.gif);
+	background-position: 0 100%;
+	background-color: #933;
+	color: #333;
+	border-color: #333;
+}
+
+div#homepage div#colTwo div#article {
+	background-image: url(http://www.workingwith.me.uk/images/default/homepage-article-border-body.gif);
+	background-position: 0 0;
+}
+
+div#homepage div#colOne div#tableFree h1,
+div#homepage div#colOne div#aboutSite h1 {
+	background-image: url(http://www.workingwith.me.uk/images/default/homepage-narrow-border.gif);
+	background-position: 0 0;
+	background-color: #99ABB5;
+	color: #333;
+	border-color: #333;
+}
+
+div#homepage div#colOne div#tableFree,
+div#homepage div#colOne div#aboutSite {
+	background-image: url(http://www.workingwith.me.uk/images/default/homepage-narrow-border-body.gif);
+	background-position: 0 100%;
+}
+
+div#homepage div#colOne div#blogEntry h1,
+div#homepage div#colOne div#otherEntries h1 {
+	background-image: url(http://www.workingwith.me.uk/images/default/homepage-blogentry-border.gif);
+	background-position: 0 0;
+	background-color: #99ABB5;
+	color: #333;
+	border-color: #333;
+}
+
+div#homepage div#colOne div#blogEntry p.blogEntryFooter {
+	background-image: url(http://www.workingwith.me.uk/images/default/homepage-blogentry-border.gif);
+	background-position: 0 100%;
+	background-color: #99ABB5;
+	color: #333;
+	border-color: #333;
+}
+
+div#homepage div#colOne div#blogEntry {
+	background-image: url(http://www.workingwith.me.uk/images/default/homepage-blogentry-border-body.gif);
+	background-position: 0 0;
+}
+
+div#homepage div#colOne div#otherEntries {
+	background-image: url(http://www.workingwith.me.uk/images/default/homepage-otherentries-border-body.gif);
+	background-position: 0 100%;
+}
+
+
+.comment_neil_crosby {
+    background-color: #DFE0E5;
+}
+.bordered {
+   border-width: 1px;
+   border-style: solid;
+   padding: 0.25em !important;
+}
+
+.bordered textarea,
+.bordered input {
+   width: 100%;
+   border-width: 0;
+   margin: 0;
+   padding: 0;
+}
+table {
+	width: 80%;
+	margin: 1em auto;
+	border-collapse: collapse;
+}
+
+thead th,
+tfoot th {
+	padding: 0.5em;
+	text-align: left;
+	border: 1px solid black;
+	background-color: #AAF;
+}
+
+tfoot td {
+	border-top: 1px solid black;
+}
+
+tbody td {
+	padding: 0.5em;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}
+
+tbody tr.odd {
+	background-color: #DDF;
+}
+
+td.numeric,
+th.numeric {
+	text-align: right;
+}
+
+body {
+	font: 80%/150% "Lucida Grande", "Lucida Sans Unicode", "Lucida", "Verdana", sans-serif;
+}
+
+h1,
+h2 {
+	font-size: 120%;
+}
+
+h3 {
+   font-size: 100%;
+}
+
+p {
+   margin: 1em 0;
+}
+
+dt {
+font-weight: bold;
+margin-top: 1em;
+margin-bottom: 1em;
+}
+
+code {
+font-size: 100%;
+}
+
+pre {
+   width: 100%;
+   overflow: auto;
+   margin-top: 1em;
+   margin-bottom: 1em;
+}
+#navigation {
+	margin: 0;
+	padding: 0;
+}
+
+#navigation li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 10px;
+}
+/* ************************************************************************* *\
+ * LAYOUT SECTION                                                            *
+\* ************************************************************************* */
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+div#container {
+	margin: 0 auto;
+	padding: 0;
+	width: 720px;
+}
+
+div#header {
+	margin: 0 0 10px 0;
+	padding: 0;
+	position: relative;
+}
+
+div#header div#flaghead {
+	margin: 0 0 -12px 0;
+
+	padding: 4px 7px 21px 7px;
+	font-size: 200%;
+}
+
+div#header div#flaghead a {
+	display: block;
+	width: 472px;
+	height: 47px;
+	text-indent: -9000px;
+}
+
+div#header div#tagline {
+	position: absolute;
+	top: 36px;
+	left: 195px;
+}
+
+div#header div#skipToContent {
+	display: none;
+}
+
+div#header ul#navigation {
+	margin: 0;
+	padding: 4px 7px;
+	width: 488px; /* 488 + 7 + 7 = 502 */
+}
+
+div#content {
+	margin-bottom: 10px;
+}
+
+div#content div#primaryContent {
+	margin: 0 0 10px 0;
+	padding: 0;
+	width: 502px;
+	float: left;
+}
+
+div#content div#primaryContent div.blogEntry {
+	margin: 0 0 1em 0;
+	padding: 4px 7px 4px 7px;
+}
+
+div#content div#primaryContent div.blogEntry h1 {
+	margin: -4px -7px -4px -7px;
+	padding: 4px 7px 6px 7px;
+}
+
+div#primaryContent div.blogEntry p.blogEntryFooter {
+	margin: 7px -7px -4px -7px;
+	padding: 4px 7px 4px 7px;
+}
+
+div#content div#primaryContent div.trackbacks {
+	margin: -1em 20px 0 20px;
+	padding: 4px 7px;
+}
+
+div#content div#primaryContent div.comments,
+div#content div#primaryContent div.writeComment {
+	margin: 0 20px 0 20px;
+	padding: 4px 7px;
+}
+
+div#content div#primaryContent div.trackbacks h2,
+div#content div#primaryContent div.comments h2,
+div#content div#primaryContent div.writeComment h2 {
+	margin: 0 -5px;
+	padding: 4px 5px;
+}
+
+div#content div#primaryContent div.comments h3 {
+	font-size: 100%;
+}
+
+div#content div#primaryContent div.blogEntry div.advertising {
+	margin: 4px;
+	padding: 4px;
+	border-width: 1px;
+	border-style: dashed;
+}
+
+div#content div#primaryContent div.blogEntry div.advertising p {
+	margin: 0;
+	padding: 0;
+}
+
+div#content div#secondaryContent {
+	margin: 0;
+
+	padding: 0;
+	width: 208px;
+	float: right;
+	z-index: 5;
+}
+
+div#content div#secondaryContent div#copyright,
+div#content div#secondaryContent div#search,
+div#content div#secondaryContent div#relevantPages,
+div#content div#secondaryContent div#mostCommented,
+div#content div#secondaryContent div#aboutSite,
+div#content div#secondaryContent div#bestOf {
+	margin: 0 0 10px 0;
+	padding: 4px;
+}
+
+div#content div#secondaryContent div#copyright h1,
+div#content div#secondaryContent div#search h1,
+div#content div#secondaryContent div#relevantPages h1,
+div#content div#secondaryContent div#mostCommented h1,
+div#content div#secondaryContent div#aboutSite h1,
+div#content div#secondaryContent div#bestOf h1 {
+	margin: -4px;
+	padding: 4px 7px;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+}
+
+div#content div#secondaryContent p, 
+div#content div#secondaryContent ul {
+	margin: 1em 6px;
+
+	padding: 0;
+	list-style: none;
+	font-size: 90%;
+	line-height: 130%;
+	
+}
+
+div#content div#secondaryContent ul li {
+	margin: 0.5em 0;
+}
+
+/*div#footer {
+        clear: both;
+	margin: 0;
+	padding: 7px;
+}
+
+div#footer h1,
+div#footer p {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+
+	float: left;
+	font-size: 80%;
+	line-height: 100%;
+}
+
+div#footer h1 {
+	width: 10%;
+}
+
+div#footer p {
+	width: 90%;
+}*/
+
+div.adUnit468x15 {
+	width: 468px;
+	height: 15px;
+}
+
+div.adUnit468x60 {
+	width: 468px;
+	height: 60px;
+}
+div.adUnit200x90 {
+	width: 200px;
+	height: 90px;
+}
+
+div#homepage div#colOne {
+	float: left;
+	width: 355px;
+}
+
+div#homepage div#colOne div#aboutSite {
+	float: left;
+	width: 158px;
+	margin-bottom: 10px;
+}
+
+div#homepage div#colOne div#tableFree {
+	float: right;
+	width: 158px;
+}
+
+div#homepage div#colOne div#blogEntry {
+}
+
+div#homepage div#colOne div#otherEntries {
+	clear: both;
+}
+
+div#homepage div#colTwo {
+	float: right;
+	width: 355px;
+}
+
+div#homepage div#colOne div#aboutSite,
+div#homepage div#colOne div#tableFree,
+div#homepage div#colOne div#blogEntry,
+div#homepage div#colOne div#otherEntries,
+div#homepage div#colTwo div#article {
+	margin: 0 0 1em 0;
+	padding: 4px 7px 4px 7px;
+}
+
+div#homepage div#colOne div#aboutSite h1,
+div#homepage div#colOne div#tableFree h1,
+div#homepage div#colOne div#blogEntry h1,
+div#homepage div#colOne div#otherEntries h1,
+div#homepage div#colTwo div#article h1 {
+	margin: -4px -7px -4px -7px;
+	padding: 4px 7px 6px 7px;
+}
+
+div#homepage div#colOne div#blogEntry p.blogEntryFooter,
+div#homepage div#colOne div#otherEntries p.blogEntryFooter,
+div#homepage div#colTwo div#article p.blogEntryFooter {
+	margin: 7px -7px -4px -7px;
+	padding: 4px 7px 4px 7px;
+}
+
+div#homepage div#colOne div#otherEntries ul {
+   margin: 1em 0;
+   padding: 0;
+   list-style: none;
+}
+
+div#homepage div#colOne div#otherEntries li {
+   margin: 0.5em 0;
+}
+
+/* ************************************************************************** *\
+ * NORMAL ELEMENTS                                                            *
+\* ************************************************************************** */
+
+h1 a {
+	text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	margin: 0;
+	padding: 0;
+}
+
+p {
+	margin: 1em 0;
+	padding: 0;
+}
+
+blockquote {
+	margin: 0;
+	padding: 0 55px 0 55px;
+}
+
+.float_right {
+	float: right;
+	padding-left: 1em;
+	padding-bottom: 1em;
+}
+
+.float_left {
+	float: left;
+	padding-right: 1em;
+	padding-bottom: 1em;
+}
+
+hr {
+	margin: 10px 0 0 0;
+	padding: 0;
+	border-width: 0;
+}
+
+p.align_right {
+   text-align: right;
+}
+
+p.align_right * {
+   text-align: auto;
+}
+
+a img {
+    border-width: 0;
+}
+
+/* FROM http://www.positioniseverything.net/easyclearing.html */
+.clearfix:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+.clearfix {display: inline-table;}
+
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */

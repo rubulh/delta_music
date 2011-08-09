@@ -1,0 +1,16 @@
+<?php
+session_start();
+$_SESSION['email_id']="tiasha@tiasha.com";
+$_SESSION['clue']="users";
+
+?>
+
+<html>
+
+
+<form method="POST" action="http://localhost/take/files/acceptfriendrequest.php">
+<input type="text" name="friendaccfrom">
+
+<input type="submit" name="submit" value="submit">
+</form>
+</html>

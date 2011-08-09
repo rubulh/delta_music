@@ -1,0 +1,12 @@
+<?php
+$connection=mysqli_connect('localhost','root','maa',calendar)or die('connection');
+$query="select * from vision";
+$result=mysqli_query($connection,$query)or die('query');
+$object1=mysqli_fetch_object($result)or die('fetch');
+var_dump($object);
+echo"<br>----------------<br>------------------------------<br>---------------------------------------------------<br><br>";
+$object2=mysqli_fetch_object($result)or die('fetch');
+var_dump($object2);
+
+
+?>

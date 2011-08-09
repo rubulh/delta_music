@@ -1,0 +1,32 @@
+<html>
+<?php
+function kick() {
+session_regenerate_id(true);
+$_SESSION['username']=$_COOKIE['username'];
+$_SESSION['stamp']=time().$_SESSION['HTTP_USER_AGENT'];
+}
+?>
+
+<body>
+<?php
+if(!((isset($_COOKIE['email'])) && isset($_COOKIE['username'])))
+{header("Location:http://localhost/take/trial/loginscript.php");}
+else if((isset($_COOKIE['email'])) && isset($_COOKIE['username']))
+{
+session_start();
+if(isset($_SESSION['username']) && isset($_SESSION['stamp']))
+{
+kick();
+}
+?>
+<a href="http://localhost/take/trial/echoserver.php?link=link1"> link1</a>
+<a href="http://localhost/take/trial/echoserver.php?link=link2"> link2</a>
+<a href="http://localhost/take/trial/echoserver.php?link=link3"> link3</a>
+<a href="http://localhost/take/trial/echoserver.php?link=link4"> link4</a>
+<a href="http://localhost/take/trial/echoserver.php?link=link5"> link5</a>
+
+<?php
+}
+?>
+</body>
+</html>

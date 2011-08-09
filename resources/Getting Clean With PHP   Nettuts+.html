@@ -1,0 +1,1543 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0061)http://net.tutsplus.com/tutorials/php/getting-clean-with-php/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Getting Clean With PHP | Nettuts+</title>
+
+<!-- Styles -->
+<link href="./Getting Clean With PHP   Nettuts+_files/style.css" rel="stylesheet" type="text/css" media="screen">
+<link href="./Getting Clean With PHP   Nettuts+_files/theme.css" rel="stylesheet" type="text/css" media="screen">
+ 
+<link href="./Getting Clean With PHP   Nettuts+_files/print.css" rel="stylesheet" type="text/css" media="print">
+<link href="./Getting Clean With PHP   Nettuts+_files/widget.css" rel="stylesheet" type="text/css" media="screen">
+
+<link rel="shortcut icon" href="http://net.tutsplus.com/wp-content/themes/tuts/images/theme/nettuts/favicon.ico">
+<link rel="apple-touch-icon" href="http://net.tutsplus.com/wp-content/themes/tuts/images/theme/nettuts/apple-touch-icon.png">
+
+<!-- Page Size CSS -->
+<link href="./Getting Clean With PHP   Nettuts+_files/large.css" rel="stylesheet" type="text/css" media="screen">
+
+<!-- Scripts -->
+<script type="text/javascript" async="" src="./Getting Clean With PHP   Nettuts+_files/rum.js"></script><script>var NREUMQ=[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);(function(){var d=document;var e=d.createElement("script");e.type="text/javascript";e.async=true;e.src="https://d1ros97qkrwjf5.cloudfront.net/14/eum/rum.js	";var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(e,s);})();</script><link rel="alternate" type="application/rss+xml" title="Nettuts+ » Getting Clean With PHP Comments Feed" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/feed/">
+<link rel="stylesheet" id="ratings-css" href="./Getting Clean With PHP   Nettuts+_files/wp-post-ratings.css" type="text/css" media="all">
+<link rel="stylesheet" id="site-switcher-css-css" href="./Getting Clean With PHP   Nettuts+_files/style(1).css" type="text/css" media="all">
+<script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/l10n.js"></script>
+<script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/jquery.min.js"></script>
+<script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/wp-post-ratings.js"></script>
+<script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/switcher.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://net.tutsplus.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://net.tutsplus.com/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="Nettuts+" href="http://net.tutsplus.com/">
+<link rel="start" title="Launch!" href="http://net.tutsplus.com/articles/news/launch/">
+<link rel="prev" title="Free Copies of Magento 1.3 Theme Design!" href="http://net.tutsplus.com/articles/news/free-copies-of-magento-1-3-theme-design/">
+<link rel="next" title="Shopping Cart and Email Marketing Software From Interspire: Winners Announced" href="http://net.tutsplus.com/competitions/contests/shopping-cart-and-email-marketing-software-from-interspire-winners-announced/">
+<link rel="shortlink" href="http://net.tutsplus.com/?p=6732">
+
+<!-- All in One SEO Pack - Pro Version 1.72 by Michael Torbert of Semper Fi Web Design[231,271] -->
+<meta name="description" content="Data security is important and often undervalued by designers, developers, and clients alike. Since PHP 5.2.0, data sanitization and validation has been made">
+<meta name="keywords" content="clean php,php,sanitizing">
+<link rel="canonical" href="./Getting Clean With PHP   Nettuts+_files/Getting Clean With PHP   Nettuts+.html">
+<!-- /all in one seo pack Pro Version-->
+<script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/audio-player.js"></script>
+<script type="text/javascript">AudioPlayer.setup("http://net.tutsplus.com/wp-content/plugins/audio-player/assets/player.swf?ver=2.0.4.1", {width:"290",animation:"yes",encode:"no",initialvolume:"60",remaining:"no",noinfo:"yes",buffer:"5",checkpolicy:"no",rtl:"no",bg:"468175",text:"ffffff",leftbg:"468175",lefticon:"ffffff",volslider:"b2d1cb",voltrack:"FFFFFF",rightbg:"468175",rightbghover:"75ada2",righticon:"ffffff",righticonhover:"FFFFFF",track:"468175",loader:"75ada2",border:"468175",tracker:"75ada2",skip:"ffffff",pagebg:"FFFFFF",transparentpagebg:"yes"});</script><style type="text/css" media="screen">p.audioplayer_container span {visibility:hidden;height:24px;overflow:hidden;padding:0;border:none;}</style>
+<script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/swfobject.js"></script><link rel="stylesheet" href="./Getting Clean With PHP   Nettuts+_files/orgSeries.css" type="text/css" media="screen">
+<script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/jquery.ui.tabs.js"></script>
+<script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/jobs.main.js"></script>
+<script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/marketplace-url-rewriter.js"></script>
+<script type="text/javascript"> $(function() { MarketplaceUrlRewriter.rewrite_urls({host: window.location.host, target: document}) }) </script>
+<script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/tutsResize.js"></script>
+<script type="text/javascript">
+  var ipad = function () {
+    return navigator.userAgent.match('iPad') != null
+  }
+  if (!ipad()) {
+    document.write('<script type="text/javascript" src="http://net.tutsplus.com/wp-content/themes/tuts/js/lazyload.js">')
+    document.write("<\/script>")
+  }
+  
+  var plus_member_logged_in = function() {
+    return (document.cookie.match('amember_logged_in') != null && document.cookie.match('PHPSESSID') != null)
+  }
+  
+  // fix flash z-index
+  $("embed").attr("wmode", "opaque");
+  
+    // Tutsplus Resize
+  $("#sidebar").tutsResize({
+    small_css_path: "http://net.tutsplus.com/wp-content/themes/tuts/css/small.css",
+    large_css_path: "http://net.tutsplus.com/wp-content/themes/tuts/css/large.css",
+    small_sessions_path: "",
+    large_sessions_path: "",
+    facebook_url: "http://facebook.com/nettutsplus"
+  });
+    
+  $(function() {
+    
+    // Extra Posts Div 
+    var left = 15;
+  	$('.extra_posts li div').each(function() {
+  		$(this).css('left', left);
+  		left += 114;
+  	});
+  	
+    // Subnavigation
+    $(".navigation li:has(ul)").addClass("parent");
+        // Lazy Loading
+    $(".tutorial_image img").lazyload({
+      placeholder : "http://net.tutsplus.com/wp-content/themes/tuts/images/global/box.gif",
+      threshold : 200
+    });
+    $(".post_image img").lazyload({
+      placeholder : "http://net.tutsplus.com/wp-content/themes/tuts/images/global/box.gif",
+      threshold : 200
+    });
+    $(".comment_author img").lazyload({
+      placeholder : "http://net.tutsplus.com/wp-content/themes/tuts/images/global/box.gif",
+      threshold : 200
+    });
+        
+  });
+  
+  //External links 
+  $(function() {
+    $('a[rel~=external]').attr('target', 'blank');
+  });
+</script><script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/lazyload.js"></script>
+
+
+<link rel="alternate" type="application/rss+xml" title="Nettuts+ RSS Feed" href="http://net.tutsplus.com/feed/">
+<link rel="pingback" href="http://net.tutsplus.com/xmlrpc.php">
+<meta name="google-site-verification" content="SOPYMpXvuXhm5P8TUlyZBN7Jj8MZhi5a6QS34iJ7OLo">
+<script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/single.js"></script>
+
+<script src="./Getting Clean With PHP   Nettuts+_files/ga.js" async="true"></script><script type="text/javascript" async="" src="./Getting Clean With PHP   Nettuts+_files/bsa.js"></script><script type="text/javascript" async="" src="./Getting Clean With PHP   Nettuts+_files/all.js"></script><script type="text/javascript" id="_bsap_js_d754f1e9ba63a736ba8ff5ece958f7dd" src="./Getting Clean With PHP   Nettuts+_files/s_d754f1e9ba63a736ba8ff5ece958f7dd.js" async="async"></script><script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/country.php"></script><script type="text/javascript" src="http://freelanceswitch.com/jobswidget/jobscache/jobs.all.js"></script><style type="text/css" id="bsa_css">div.bsap_1245834{width:100%;display:block}div.bsap_1245834 a{width:728px}div.bsap_1245834 a img{padding:0}div.bsap_1245834 a em{font-style:normal}div.bsap_1245834 a{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0 4px 10px 0;text-align:center;text-decoration:none;overflow:hidden;float:left;}div.bsap_1245834 img{border:0;clear:right;}div.bsap_1245834 a.adhere{color:#666;font-weight:bold;font-size:12px;border:1px solid #ccc;background:#e7e7e7;text-align:center;}div.bsap_1245834 a.adhere:hover{border:1px solid #999;background:#ddd;color:#333;}div.bsap_1245834 a{line-height:100%}div.bsap_1245834 a.adhere{width:728px;height:90px;line-height:720%}html>body div.bsap_1245834 a.adhere{width:726px;height:88px}div.bsap_1245834 img.s{height:0;width:0}div.bsap_1245834{line-height:9px}div.bsap_1245834 .bsap_adhere2,div.bsap_1245834 iframe{float:left}div.bsap_1245834 .bsap_adhere2 a{height:90px;width:20px;background:url(http://s3.buysellads.com/ac/ah20x90_1.gif) no-repeat 0 0;text-indent:-9999px}div.bsap_1260864{width:100%;display:block}div.bsap_1260864 a{width:300px}div.bsap_1260864 a img{padding:0}div.bsap_1260864 a em{font-style:normal}div.bsap_1260864 a{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0;text-align:center;text-decoration:none;overflow:hidden;float:left;}div.bsap_1260864 img{border:0;clear:right;}div.bsap_1260864 a.adhere{color:#666;font-weight:bold;font-size:12px;border:1px solid #ccc;background:#e7e7e7;text-align:center;}div.bsap_1260864 a.adhere:hover{border:1px solid #999;background:#ddd;color:#333;}div.bsap_1260864 a{line-height:100%}div.bsap_1260864 a.adhere{width:300px;height:250px;line-height:2000%}html>body div.bsap_1260864 a.adhere{width:298px;height:248px}div.bsap_1260864 img.s{height:0;width:0}div.bsap_1260864{line-height:9px}div.bsap_1260864 .bsap_adhere a{height:19px;width:298px;font-size:10px;background:#f1f1f1;border:1px solid #e1e1e1;border-top:none;border-bottom-left-radius:4px;-moz-border-radius-bottomleft:4px;-webkit-border-bottom-left-radius:4px;border-bottom-right-radius:4px;-moz-border-radius-bottomright:4px;-webkit-border-bottom-right-radius:4px;text-shadow:1px 1px 0 #fff;line-height:16px}.bsap_backfillframe{border:0}div.bsap_1616{width:100%;display:block}div.bsap_1616 a{width:200px}div.bsap_1616 a img{padding:0}div.bsap_1616 a em{font-style:normal}div.bsap_1616 a{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0 4px 10px 0;text-align:center;text-decoration:none;overflow:hidden;}div.bsap_1616 img{border:0;clear:right;}div.bsap_1616 a.adhere{color:#666;font-weight:bold;font-size:12px;border:1px solid #ccc;background:#e7e7e7;text-align:center;}div.bsap_1616 a.adhere:hover{border:1px solid #999;background:#ddd;color:#333;}div.bsap_1616 a{line-height:100%}div.bsap_1616 a.adhere{width:200px;height:125px;line-height:1000%}html>body div.bsap_1616 a.adhere{width:198px;height:123px}div.bsap_1616 img.s{height:0;width:0}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}
+.fb_reset{background:none;border-spacing:0;border:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size: 11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
+.fb_link img{border:none}
+.fb_dialog{position:absolute;top:-10000px;z-index:10001}
+.fb_dialog_advanced{background:rgba(82, 82, 82, .7);padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px}
+.fb_dialog_advanced.fb_mobile{background:rgba(82, 82, 82, .7);padding:3px;-moz-border-radius:2px;-webkit-border-radius:2px}
+.fb_dialog_content{background:#fff;color:#333}
+.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
+.fb_mobile .fb_dialog_close_icon{top:11px
+}
+.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/s816eWC-2sl.gif)}
+.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size: 24px;padding:20px}
+.fb_dialog_top_left,
+.fb_dialog_top_right,
+.fb_dialog_bottom_left,
+.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
+.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/ze/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
+.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/ze/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
+.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/ze/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/ze/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right,
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right{width:10px;height:100%}
+.fb_dialog_vert_left{margin-left:-10px}
+.fb_dialog_vert_right{right:0;margin-right:-10px}
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{width:100%;height:10px}
+.fb_dialog_horiz_top{margin-top:-10px}
+.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
+.fb_dialog_iframe{line-height:0}
+.fb_dialog.loading.fb_mobile .fb_dialog_iframe{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zQ/r/pQebR9nCkAT.gif) no-repeat 50% 50%}
+.fb_dialog.loading.fb_mobile iframe{visibility:hidden}
+.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size: 14px;font-weight:bold;margin:0}
+.fb_dialog_content .dialog_title > span{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
+.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/z9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
+.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
+#fb_dialog_loader_close{float:right}
+.fb_iframe_widget{position:relative;display:-moz-inline-block;display:inline-block}
+.fb_iframe_widget iframe{position:relative;vertical-align:text-bottom}
+.fb_iframe_widget span{position:relative}
+.fb_hide_iframes iframe{position:relative;left:-10000px}
+.fb_iframe_widget_loader{position:relative;display:inline-block}
+.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
+.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/z9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_button_simple,
+.fb_button_simple_rtl{background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zH/r/eIpbnVKI9lR.png);background-repeat:no-repeat;cursor:pointer;outline:none;text-decoration:none}
+.fb_button_simple_rtl{background-position:right 0}
+.fb_button_simple .fb_button_text{margin:0 0 0 20px;padding-bottom:1px}
+.fb_button_simple_rtl .fb_button_text{margin:0 10px 0 0}
+a.fb_button_simple:hover .fb_button_text,
+a.fb_button_simple_rtl:hover .fb_button_text,
+.fb_button_simple:hover .fb_button_text,
+.fb_button_simple_rtl:hover .fb_button_text{text-decoration:underline}
+.fb_button,
+.fb_button_rtl{background:#29447e url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/FGFbc80dUKj.png);background-repeat:no-repeat;cursor:pointer;display:inline-block;padding:0 0 0 1px;text-decoration:none;outline:none}
+.fb_button .fb_button_text,
+.fb_button_rtl .fb_button_text{background:#5f78ab url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/FGFbc80dUKj.png);border-top:solid 1px #879ac0;border-bottom:solid 1px #1a356e;color:#fff;display:block;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;font-weight:bold;padding:2px 6px 3px 6px;margin:1px 1px 0 21px;text-shadow:none}
+a.fb_button,
+a.fb_button_rtl,
+.fb_button,
+.fb_button_rtl{text-decoration:none}
+a.fb_button:active .fb_button_text,
+a.fb_button_rtl:active .fb_button_text,
+.fb_button:active .fb_button_text,
+.fb_button_rtl:active .fb_button_text{border-bottom:solid 1px #29447e;border-top:solid 1px #45619d;background:#4f6aa3;text-shadow:none}
+.fb_button_xlarge,
+.fb_button_xlarge_rtl{background-position:left -60px;font-size: 24px;line-height:30px}
+.fb_button_xlarge .fb_button_text{padding:3px 8px 3px 12px;margin-left:38px}
+a.fb_button_xlarge:active{background-position:left -99px}
+.fb_button_xlarge_rtl{background-position:right -268px}
+.fb_button_xlarge_rtl .fb_button_text{padding:3px 8px 3px 12px;margin-right:39px}
+a.fb_button_xlarge_rtl:active{background-position:right -307px}
+.fb_button_large,
+.fb_button_large_rtl{background-position:left -138px;font-size: 13px;line-height:16px}
+.fb_button_large .fb_button_text{margin-left:24px;padding:2px 6px 4px 6px}
+a.fb_button_large:active{background-position:left -163px}
+.fb_button_large_rtl{background-position:right -346px}
+.fb_button_large_rtl .fb_button_text{margin-right:25px}
+a.fb_button_large_rtl:active{background-position:right -371px}
+.fb_button_medium,
+.fb_button_medium_rtl{background-position:left -188px;font-size: 11px;line-height:14px}
+a.fb_button_medium:active{background-position:left -210px}
+.fb_button_medium_rtl{background-position:right -396px}
+.fb_button_text_rtl,
+.fb_button_medium_rtl .fb_button_text{padding:2px 6px 3px 6px;margin-right:22px}
+a.fb_button_medium_rtl:active{background-position:right -418px}
+.fb_button_small,
+.fb_button_small_rtl{background-position:left -232px;font-size: 10px;line-height:10px}
+.fb_button_small .fb_button_text{padding:2px 6px 3px;margin-left:17px}
+a.fb_button_small:active,
+.fb_button_small:active{background-position:left -250px}
+.fb_button_small_rtl{background-position:right -440px}
+.fb_button_small_rtl .fb_button_text{padding:2px 6px;margin-right:18px}
+a.fb_button_small_rtl:active{background-position:right -458px}
+.fb_share_count_wrapper{position:relative;float:left}
+.fb_share_count{background:#b0b9ec none repeat scroll 0 0;color:#333;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;text-align:center}
+.fb_share_count_inner{background:#e8ebf2;display:block}
+.fb_share_count_right{margin-left:-1px;display:inline-block}
+.fb_share_count_right .fb_share_count_inner{border-top:solid 1px #e8ebf2;border-bottom:solid 1px #b0b9ec;margin:1px 1px 0 1px;font-size: 10px;line-height:10px;padding:2px 6px 3px;font-weight:bold}
+.fb_share_count_top{display:block;letter-spacing:-1px;line-height:34px;margin-bottom:7px;font-size: 22px;border:solid 1px #b0b9ec}
+.fb_share_count_nub_top{border:none;display:block;position:absolute;left:7px;top:35px;margin:0;padding:0;width:6px;height:7px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zU/r/bSOHtKbCGYI.png)}
+.fb_share_count_nub_right{border:none;display:inline-block;padding:0;width:5px;height:10px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zX/r/i_oIVTKMYsL.png);vertical-align:top;background-position:right 5px;z-index:10;left:2px;margin:0 2px 0 0;position:relative}
+.fb_share_no_count{display:none}
+.fb_share_size_Small .fb_share_count_right .fb_share_count_inner{font-size: 10px}
+.fb_share_size_Medium .fb_share_count_right .fb_share_count_inner{font-size: 11px;padding:2px 6px 3px;letter-spacing:-1px;line-height:14px}
+.fb_share_size_Large .fb_share_count_right .fb_share_count_inner{font-size: 13px;line-height:16px;padding:2px 6px 4px;font-weight:normal;letter-spacing:-1px}
+.fb_share_count_hidden .fb_share_count_nub_top,
+.fb_share_count_hidden .fb_share_count_top,
+.fb_share_count_hidden .fb_share_count_nub_right,
+.fb_share_count_hidden .fb_share_count_right{visibility:hidden}
+.fb_connect_bar_container div,
+.fb_connect_bar_container span,
+.fb_connect_bar_container a,
+.fb_connect_bar_container img,
+.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
+.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
+.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}
+.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size: 13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
+.fb_connect_bar a:hover{color:#fff}
+.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a{color:#bac6da;font-size: 11px;text-decoration:none}
+.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fb_edge_widget_with_comment{position:relative;*z-index:1000}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget{position:absolute}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_ltr{left:-4px}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_rtl{left:2px}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget{left:0;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader{left:0;top:1px;margin-top:6px;margin-left:0;background-position:50% 50%;background-color:#fff;height:150px;width:394px;border:1px #666 solid;border-bottom:2px solid #283e6c;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader{background-color:#000;border-bottom:2px solid #ccc}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender
+.FB_Loader{margin-top:0}
+#fb_social_bar_container{position:fixed;left:0;right:0;height:34px;padding:0 25px;z-index:999999999}
+.fb_social_bar_iframe{position:relative;float:right;opacity:0;-moz-opacity:0;filter:alpha(opacity=0)}
+.fb_social_bar_iframe_bottom_ie6{bottom:auto;top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)))}
+.fb_social_bar_iframe_top_ie6{bottom:auto;top:expression(eval(document.documentElement.scrollTop-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)))}
+</style></head>
+
+<body class="single single-post postid-6732 single-format-standard">
+
+<!-- Tracking Code -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(
+    ['_setAccount', 'UA-11792865-8'],
+    ['_trackPageview'],
+    ['b._setAccount', 'UA-11792865-19'],
+    ['b._trackPageview']
+  );
+
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 
+        'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+<!-- END Tracking Code -->
+
+<!-- BuySellAds.com Ad Code -->
+<script type="text/javascript">
+if (!plus_member_logged_in()) {
+  (function(){
+    var bsa = document.createElement('script');
+       bsa.type = 'text/javascript';
+       bsa.async = true;
+       bsa.src = '//s3.buysellads.com/ac/bsa.js';
+    (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+  })();
+}
+</script>
+<!-- END BuySellAds.com Ad Code -->
+
+<div id="fb-root"></div>
+<!-- Facebook Code -->
+<script type="text/javascript">
+(function(){
+  var fb = document.createElement('script');
+  fb.type = 'text/javascript';
+  fb.async = true;
+  fb.src = document.location.protocol + '//connect.facebook.net/en_US/all.js#xfbml=1';
+  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(fb);
+})();
+</script>
+<!-- END Facebook Code -->
+
+
+<!-- Header -->
+<div id="header_wrap">
+  <div id="header">
+	
+    <a href="http://net.tutsplus.com/" class="logo">Nettuts+</a>
+    
+    <ul class="top_navigation">
+      <li><a href="http://buysellads.com/buy/view/id/197">Advertise</a></li>
+      <li><a href="http://net.tutsplus.com/about/write-a-tutorial/">Write for Us</a></li>
+      <li><a href="http://net.tutsplus.com/about/">About</a></li>
+      <li><a href="http://net.tutsplus.com/about/terms">Usage</a></li>
+    </ul>
+    
+    <div id="navigation">
+    	<ul class="navigation">
+    	  <li><a href="http://net.tutsplus.com/">Home</a></li>
+    	  <li class="parent"><a href="http://net.tutsplus.com/category/tutorials/">Tutorials</a><ul class="child-nav">	<li class="cat-item cat-item-568"><a href="http://net.tutsplus.com/category/tutorials/asp-net/" title="ASP.NET programming tutorials.">ASP.NET</a>
+</li>
+	<li class="cat-item cat-item-464"><a href="http://net.tutsplus.com/category/tutorials/cmss/" title="Tutorials that details how to work with various CMSs.">CMSs</a>
+</li>
+	<li class="cat-item cat-item-547"><a href="http://net.tutsplus.com/category/tutorials/databases/" title="Learn how to work more efficiently with databases.">Databases</a>
+</li>
+	<li class="cat-item cat-item-286"><a href="http://net.tutsplus.com/category/tutorials/design-tutorials/" title="Learn the ins and outs of web design.">Design</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://net.tutsplus.com/category/tutorials/html-css-techniques/" title="Get up to speed with HTML and CSS.">HTML &amp; CSS</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://net.tutsplus.com/category/tutorials/javascript-ajax/" title="Learn about vanilla JavaScript, and the various popular libraries that are available, like jQuery.">JavaScript &amp; AJAX</a>
+</li>
+	<li class="cat-item cat-item-153"><a href="http://net.tutsplus.com/category/tutorials/other/" title="View all posts filed under Other">Other</a>
+</li>
+	<li class="cat-item cat-item-41"><a href="http://net.tutsplus.com/category/tutorials/php/" title="Learn how to use PHP.">PHP</a>
+</li>
+	<li class="cat-item cat-item-124"><a href="http://net.tutsplus.com/category/tutorials/ruby/" title="High quality Ruby and RoR tutorials and screencasts.">Ruby</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://net.tutsplus.com/category/tutorials/site-builds/" title="Learn how to convert a PSD to HTML from scratch.">Site Builds</a>
+</li>
+	<li class="cat-item cat-item-29"><a href="http://net.tutsplus.com/category/tutorials/tools-and-tips/" title="Details the most popular tools when building web applications.">Tools &amp; Tips</a>
+</li>
+	<li class="cat-item cat-item-35"><a href="http://net.tutsplus.com/category/tutorials/wordpress/" title="Become a WordPress master.">Wordpress</a>
+</li>
+</ul></li>
+    	  <li class="parent"><a href="http://net.tutsplus.com/category/articles/">Articles</a><ul class="child-nav">	<li class="cat-item cat-item-128"><a href="http://net.tutsplus.com/category/articles/general/" title="Generic articles on web development.">General</a>
+</li>
+	<li class="cat-item cat-item-127"><a href="http://net.tutsplus.com/category/articles/interviews/" title="Interviews with prominent developers in the web development industry.">Interviews</a>
+</li>
+	<li class="cat-item cat-item-1084"><a href="http://net.tutsplus.com/category/articles/lectures/" title="Featured talks from web development conferences around the world.">Lectures</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://net.tutsplus.com/category/articles/news/" title="Recent news in the web development industry.">News</a>
+</li>
+	<li class="cat-item cat-item-437"><a href="http://net.tutsplus.com/category/articles/reviews/" title="Reviews of new web apps, frameworks, and books.">Reviews</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="http://net.tutsplus.com/category/articles/web-roundups/" title="Compilations of popular articles from around the web.">Web Roundups</a>
+</li>
+</ul></li>
+    	  <li class="parent"><a href="http://net.tutsplus.com/tag/tips/">Tips</a><ul class="child-nav"><li><a href="http://net.tutsplus.com/category/tutorials/html-css-techniques/?tag=tips" title="HTML &amp; CSS">HTML &amp; CSS</a></li><li><a href="http://net.tutsplus.com/category/tutorials/php/?tag=tips" title="PHP">PHP</a></li><li><a href="http://net.tutsplus.com/category/tutorials/javascript-ajax/?tag=tips" title="JavaScript &amp; AJAX">JavaScript &amp; AJAX</a></li><li><a href="http://net.tutsplus.com/category/tutorials/other/?tag=tips" title="Other">Other</a></li><li><a href="http://net.tutsplus.com/category/tutorials/cmss/?tag=tips" title="CMSs">CMSs</a></li></ul></li>    	      	  <li><a href="http://net.tutsplus.com/sessions/">Sessions</a></li>    	  <li class="parent"><a href="http://net.tutsplus.com/tag/basix/">Basix</a><ul class="child-nav"><li><a href="http://net.tutsplus.com/category/quizzes/?tag=basix" title="Quizzes">Quizzes</a></li><li><a href="http://net.tutsplus.com/category/tutorials/html-css-techniques/?tag=basix" title="HTML &amp; CSS">HTML &amp; CSS</a></li><li><a href="http://net.tutsplus.com/category/articles/?tag=basix" title="Articles">Articles</a></li><li><a href="http://net.tutsplus.com/category/articles/general/?tag=basix" title="General">General</a></li><li><a href="http://net.tutsplus.com/category/tutorials/php/?tag=basix" title="PHP">PHP</a></li></ul></li>    	  <li class="parent"><a href="http://net.tutsplus.com/tag/videos/">Videos</a><ul class="child-nav"><li><a href="http://net.tutsplus.com/category/tutorials/html-css-techniques/?tag=videos" title="HTML &amp; CSS">HTML &amp; CSS</a></li><li><a href="http://net.tutsplus.com/category/tutorials/javascript-ajax/?tag=videos" title="JavaScript &amp; AJAX">JavaScript &amp; AJAX</a></li><li><a href="http://net.tutsplus.com/category/tutorials/php/?tag=videos" title="PHP">PHP</a></li></ul></li>    	  <li><a href="http://net.tutsplus.com/tag/premium/">Premium</a></li>
+    	</ul>
+    	<a href="http://net.tutsplus.com/tag/premium/" class="small_plus">Plus Premium</a>
+    	    </div>
+    
+    <div class="switcher_wrap"><div class="swither_header"><span class="switcher_arrow">Tuts+ Network</span></div><div id="links"><ul id="left_items"><li><a href="http://envato.com/">Envato</a></li>
+<li><a href="http://activeden.net/?ref=NetPremium">ActiveDen</a></li>
+<li><a href="http://audiojungle.net/?ref=NetPremium">AudioJungle</a></li>
+<li><a href="http://themeforest.net/?ref=NetPremium">ThemeForest</a></li>
+<li><a href="http://videohive.net/?ref=NetPremium">VideoHive</a></li>
+<li><a href="http://graphicriver.net/?ref=NetPremium">GraphicRiver</a></li>
+<li><a href="http://3docean.net/?ref=NetPremium">3DOcean</a></li>
+<li><a href="http://codecanyon.net/?ref=NetPremium">CodeCanyon</a></li>
+<li><a href="http://marketplace.tutsplus.com/?ref=NetPremium">Tuts+ Marketplace</a></li>
+<li><a href="http://creattica.com/">Creattica</a></li>
+<li><a href="http://appstorm.net/">AppStorm</a></li>
+<li><a href="http://mac.appstorm.net/">Mac.Appstorm</a></li>
+<li><a href="http://web.appstorm.net/">Web.Appstorm</a></li>
+<li><a href="http://iphone.appstorm.net/">iPhone.Appstorm</a></li>
+</ul>
+<ul id="right_items"><li><a href="http://tutsplus.com/">Plus</a></li>
+<li><a href="http://psd.tutsplus.com/">Psdtuts+</a></li>
+<li><a href="http://net.tutsplus.com/">Nettuts+</a></li>
+<li><a href="http://vector.tutsplus.com/">Vectortuts+</a></li>
+<li><a href="http://audio.tutsplus.com/">Audiotuts+</a></li>
+<li><a href="http://ae.tutsplus.com/">Aetuts+</a></li>
+<li><a href="http://active.tutsplus.com/">Activetuts+</a></li>
+<li><a href="http://cg.tutsplus.com/">Cgtuts+</a></li>
+<li><a href="http://photo.tutsplus.com/">Phototuts+</a></li>
+<li><a href="http://mobile.tutsplus.com/">Mobiletuts+</a></li>
+<li><a href="http://webdesign.tutsplus.com/">Webdesigntuts+</a></li>
+<li><a href="http://rockablepress.com/">Rockable Press</a></li>
+<li><a href="http://freelanceswitch.com/">FreelanceSwitch</a></li>
+<li><a href="http://sessions.tutsplus.com/creative/">Creative Sessions</a></li>
+</ul>
+</div></div>    
+    <ul class="rss_subscribe">
+      <li><a href="http://feeds.feedburner.com/nettuts" class="header_subscribe">Subscribe</a>
+        <ul>
+          <li><a href="http://feeds.feedburner.com/nettuts">Full Post RSS</a></li>
+          <li><a href="http://feedproxy.google.com/nettuts-summary">Summary RSS</a></li>
+          <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=nettuts">Subscribe via Email</a></li>
+        </ul>
+      </li>
+    </ul>
+    
+    <ul class="twitter_subscribe">
+      <li><a href="http://twitter.com/envatowebdev" class="header_twitter">Twitter Updates</a>
+        <ul>
+          <li><a href="http://twitter.com/envatowebdev">Nettuts+</a></li>
+          <li><a href="http://twitter.com/tutsplus">Plus Network</a></li>
+        </ul>
+      </li>
+    </ul>
+    
+    <div class="search_form">
+      <form method="get" action="http://net.tutsplus.com/">
+        <fieldset>
+          <input id="search_term" type="text" onclick="if(this.value == &#39;Search...&#39;) this.value=&#39;&#39;;" onblur="if(this.value.length == 0) this.value=&#39;Search...&#39;;" value="Search..." name="s">
+          <input class="submit_button" type="submit" value="Search">
+        </fieldset>
+      </form>
+    </div>
+
+  </div>
+</div>
+<!-- [END] Header -->
+
+<!-- Content Wrap -->
+<div id="content_wrap">
+  
+  <!-- Content -->
+  <div id="content" class="clearfix">
+
+    <!-- Page Wrap -->
+    <div class="page_wrap">
+      
+      <!-- Leader Board -->
+<div id="leader-board-wrap" style="">
+    <div class="leader_board">
+    <a href="http://buysellads.com/buy/view/id/197" class="LB_advert">Advertise Here</a>
+    <div class="lb_inner">
+      <div id="bsap_1245834" class="bsap_1245834 bsap"><a href="http://stats.buysellads.com/click.go?z=1245834&b=1073348&g=&s=&sw=1366&sh=768&br=chrome,11,linux&r=0.49144350131973624&link=http://themefuse.com/wp-themes-shop/?ad=bsa&type=728x90&site=nettutspluscom" onmouseover="window.status = &#39;http://themefuse.com/wp-themes-shop/?ad=bsa&amp;type=728x90&amp;site=nettutspluscom&#39;; return true;" onmouseout="window.status=&#39;&#39;; return true;" class="ad1 odd" title="Original WP Themes | ThemeFuse" id="bsa_1073348" target="_blank"><img src="http://s3.buysellads.com/1255531/57800-1303218658.png" width="728" height="90" alt="Original WP Themes | ThemeFuse"></a></div>    </div>
+  </div>
+  </div>
+<script type="text/javascript">
+  if (!plus_member_logged_in()) {
+    $('#leader-board-wrap').show()
+  }
+</script>
+<!-- [END] Leader Board -->
+
+      <!-- Page -->
+      <div id="page" class="single_post">
+      
+        <div class="page_inner">
+          
+                    
+            <div class="post post_inner" id="post-6732">
+  
+  <div class="tut_top">
+    
+    <!-- Post Image -->
+    <div class="post_image">
+      <a href="./Getting Clean With PHP   Nettuts+_files/Getting Clean With PHP   Nettuts+.html"><img src="http://nettuts.s3.amazonaws.com/437_gettingClean/images/preview.jpg" alt="Getting Clean With PHP" width="200" height="200" original="http://nettuts.s3.amazonaws.com/437_gettingClean/images/preview.jpg"></a>    </div>
+    
+    <div class="preview">
+    
+      <!-- Post Taxonomies -->
+      <div class="post_taxonomy">
+        <ul><li><a href="http://net.tutsplus.com/category/tutorials/">Tutorials</a><span>\</span></li><li><a href="http://net.tutsplus.com/category/tutorials/php/">PHP</a></li></ul><div id="tuts-rating" class=""><p><span> \</span>Rating:</p><ul id="">  <li><a href="javascript:void(0)" class="rate-this one">1</a></li>  <li><a href="javascript:void(0)" class="rate-this two">2</a></li>  <li><a href="javascript:void(0)" class="rate-this three">3</a></li>  <li><a href="javascript:void(0)" class="rate-this four">4</a></li>  <li><a href="javascript:void(0)" class="rate-this five">5</a></li></ul></div>      </div>
+      
+      <!-- Post Title -->
+      <h1 class="post_title">
+        Getting Clean With PHP      </h1>
+      
+      <!-- Post Meta -->
+      <div class="post_meta">
+        <a href="http://net.tutsplus.com/author/michaelowens/" title="Posts by Michael Owens">Michael Owens</a> on Sep 15th 2009 with <a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#comments" title="Comment on Getting Clean With PHP">80 comments</a>      </div>
+    
+    </div>
+  
+  </div>
+  
+</div>
+
+<div class="tut_bottom">
+
+    
+    
+  <!-- Social Media -->
+  <div class="article_social_media">
+    
+    <div class="tweetmeme_btn">
+      <iframe src="./Getting Clean With PHP   Nettuts+_files/tweet_button.html" allowtransparency="true" frameborder="0" scrolling="no" class="twitter-share-button twitter-count-none" style="width: 55px; height: 20px; " title="Twitter For Websites: Tweet Button"></iframe><script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/widgets.js"></script>
+    </div>
+    
+    <div class="facebook_send_btn">
+      <fb:send href="http%3A%2F%2Fnet.tutsplus.com%2Ftutorials%2Fphp%2Fgetting-clean-with-php%2F" class=" fb_edge_widget_with_comment fb_iframe_widget"><span><iframe id="f12045b98" name="f24dc667b8" scrolling="no" style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; height: 20px; width: 58px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " class="fb_ltr" src="./Getting Clean With PHP   Nettuts+_files/send.html"></iframe></span></fb:send>
+    </div>
+      
+    <div class="facebook_btn">
+      <fb:like layout="button_count" width="100" height="21" class=" fb_edge_widget_with_comment fb_iframe_widget"><span><iframe id="f309d07bd" name="fd76b17" scrolling="no" style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; height: 20px; width: 100px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " title="Like this content on Facebook." class="fb_ltr" src="./Getting Clean With PHP   Nettuts+_files/like(2).html"></iframe></span></fb:like>
+    </div>
+      
+  </div>
+  <!-- [END] Social Media -->
+  
+    
+</div>
+
+
+
+<div class="post post_inner_article">
+
+    
+  <script type="text/javascript">
+//<![CDATA[
+$(function() { WpPostRatings({context: $('#post-6732'), post_id: 6732, rpc: 'http://net.tutsplus.com/wp-admin/admin-ajax.php', base_url: 'http://net.tutsplus.com', allow_voting: true}).init() })
+//]]&gt;
+</script><p>Data security is important and often undervalued by designers, developers, and clients alike. Since PHP 5.2.0, data sanitization and validation has been made significantly easier with the introduction of data filtering. Today, we’re going to take a closer look at these filters, how to use them, and build a few custom functions.</p>
+<p><span id="more-6732"></span></p>
+<h3>Tutorial Details</h3>
+<ul>
+<li><b>Program</b>: PHP </li>
+<li><b>Version</b>: 5.2.0+</li>
+<li><b>Difficulty:</b> Beginner</li>
+<li><b>Estimated Completion Time:</b> 20 minutes</li>
+</ul>
+<div class="tutorial_image">
+<a href="http://d2o0t5hpnwv4c1.cloudfront.net/437_gettingClean/demo.zip" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;d2o0t5hpnwv4c1.cloudfront.net&#39;]);"><img src="./Getting Clean With PHP   Nettuts+_files/button_src_nm.jpg" original="http://net.tutsplus.com/wp-content/themes/nettuts/site_images/button_src_nm.jpg" style="display: inline; "></a>
+</div>
+<h3>Introduction</h3>
+<p>I have always felt that it’s easy to write code in PHP, and even easier to write bad code in PHP. The proliferation of PHP on the web has really been helped out by its use in popular open-source software packages like WordPress, Drupal, and Magento as well as major web applications like Facebook; with PHP being used in so many varied instances (dynamic websites, in-depth web applications, blogging platforms, content management systems, and e-commerce being only a subset of the many applications of PHP) the opportunities for <em>dirty</em> data and insecure systems are numerous. This tutorial will explain some methods of <strong>Getting Clean With PHP: Data Sanitization and Validation</strong> by focusing on several different forms of data inputs and how to use PHP filters and custom functions.</p>
+<div class="tutorial_image"><img src="./Getting Clean With PHP   Nettuts+_files/forms_to_clean.png" border="0" alt="Sanitization and Validation of Forms" original="http://d2o0t5hpnwv4c1.cloudfront.net/437_gettingClean/images/forms_to_clean.png" style="display: inline; "></div>
+<h3>Why Sanitize and Validate?</h3>
+<p>In this tutorial, we are really focused on data inputs that users or external sources may provide. This means that we do not control the data we are receiving. All we can do is control what is done with it after we receive it. There are all sorts of threats related to data security from user-inputs and third-party data.</p>
+<p>Some <em>un-</em>popular data security threats:</p>
+<ul>
+<li><strong>Cross-Site Scripting (XSS)</strong>: A form of code injection where a script is injected onto a website from a completely different website. This is by far the most common security vulnerability online. Two recent, very prominent examples of this technique are the <a href="http://bit.ly/TwitterXSS" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;bit.ly&#39;]);">Stalk Daily and Mikeyy Twitter Worms</a> from earlier this year that used poorly sanitized inputs to launch Javascript via an “infected” Twitter web interface.</li>
+<li><strong>SQL Injection</strong>: The second most common security vulnerability online, this is another form of code injection in which a script is used to participate in one of numerous exploitative behaviors including (but not limited to) exposing and/or gaining unauthorized access to data, altering data inside of a database, or simply injecting code to be rendered or executed within a website thereby breaking or altering the website.</li>
+<li><strong>Cross-Site Request Forgery (CSRF/XSRF)</strong>: A less common exploit that relies more on data sources like browser and session cookies than poorly sanitized and validated data inputs, CSRF (pronounced “sea-surf”) can be used to execute commands on a website without the user’s permission. One popular CSRF method is using an improperly formed image data URI or src value to execute a script instead of displaying an image.</li>
+<li><strong>Improper Data</strong>: Not really a “security vulnerability” <em>per se</em>, improper data can cause hosts of problems for a website owner or database administrator. Often, improper data can break poorly coded websites or cause automated systems to crash. An example of this was the ability to alter entire MySpace profile pages by posting using all sorts of HTML/CSS hackery (Note: this may still work; I’ve not used MySpace in a long time).</li>
+</ul>
+<div class="tutorial_image">
+	<img src="./Getting Clean With PHP   Nettuts+_files/exploits_of_a_mom.png" border="0" alt="Exploits of a Mom" title="Her daughter is named Help I&#39;m trapped in a driver&#39;s license factory." original="http://d2o0t5hpnwv4c1.cloudfront.net/437_gettingClean/images/exploits_of_a_mom.png" style="display: inline; "><p></p>
+<div><em>Image Source: <a href="http://xkcd.com/327/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;xkcd.com&#39;]);">XKCD</a></em></div>
+</div>
+<p>For our purposes, we are going to only focus on server-side methods of improving data security with PHP, so let’s see how the terms “sanitization” and “validation” are defined with relation to PHP. According to the <a href="http://www.php.net/manual/en/intro.filter.php" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;www.php.net&#39;]);">PHP manual</a>:</p>
+<blockquote><p>Validation is used to validate or check if the data meets certain qualifications. For example, passing in FILTER_VALIDATE_EMAIL will determine if the data is a valid email address, but will not change the data itself.</p>
+<p>Sanitization will sanitize the data, so it may alter it by removing undesired characters. For example, passing in FILTER_SANITIZE_EMAIL will remove characters that are inappropriate for an email address to contain. That said, it does not validate the data.</p></blockquote>
+<p>Essentially, if your website is the nightclub that everybody wants to get into, validation checks the guest list and IDs at the door while sanitization acts as the bouncer that throws out any undesirables that happen to squeak past. With this in mind, let’s take a look at PHP Filters Extension.</p>
+<h3>What Filters Do I Have?</h3>
+<p>All PHP installations are not created equal. While PHP 5.2.0 was the introduction of filters, not all installations have the same set of filters in their Filters Extension. Most installations will have all of the filters we’re going to go over, but to teach you a bit about the Filters Extension, we’re going to find out just what you have on your server. In the source download, I have included a file called <em>getfilters.php</em> that, once installed and run on your server, will display all of your filters (both data filters available through the <strong>filter_var</strong> function and stream filters available through <strong>stream_filter_append</strong>).</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="func">echo</span><span>&nbsp;</span><span class="string">"&lt;h1&gt;Data&nbsp;Filters&lt;/h1&gt;\n&lt;table&gt;\n&lt;tr&gt;\n"</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="func">echo</span><span>&nbsp;</span><span class="string">"&lt;td&gt;&lt;strong&gt;Filter&nbsp;ID&lt;/strong&gt;&lt;/td&gt;\n"</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="func">echo</span><span>&nbsp;</span><span class="string">"&lt;td&gt;&lt;strong&gt;Filter&nbsp;Name&lt;/strong&gt;&lt;/td&gt;\n&lt;/tr&gt;"</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">foreach</span><span>(filter_list()&nbsp;</span><span class="keyword">as</span><span>&nbsp;</span><span class="vars">$id</span><span>&nbsp;=&gt;</span><span class="vars">$filter</span><span>)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">"&lt;tr&gt;&lt;td&gt;$filter&lt;/td&gt;&lt;td&gt;"</span><span>.filter_id(</span><span class="vars">$filter</span><span>).</span><span class="string">"&lt;/td&gt;&lt;/tr&gt;\n"</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span><span class="func">echo</span><span>&nbsp;</span><span class="string">"&lt;/table&gt;\n"</span><span>;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="php" style="display: none; "> echo "&lt;h1&gt;Data Filters&lt;/h1&gt;\n&lt;table&gt;\n&lt;tr&gt;\n";
+ echo "&lt;td&gt;&lt;strong&gt;Filter ID&lt;/strong&gt;&lt;/td&gt;\n";
+ echo "&lt;td&gt;&lt;strong&gt;Filter Name&lt;/strong&gt;&lt;/td&gt;\n&lt;/tr&gt;";
+ foreach(filter_list() as $id =&gt;$filter) {
+	 echo "&lt;tr&gt;&lt;td&gt;$filter&lt;/td&gt;&lt;td&gt;".filter_id($filter)."&lt;/td&gt;&lt;/tr&gt;\n";
+ }
+ echo "&lt;/table&gt;\n";
+</pre>
+<p>First, we get the array containing the list of all available filters with <strong>filter_list</strong>, then we loop through the array and echo out the filter name, find out the filter’s assigned ID, and echo this ID as well.</p>
+<h3>How Do I Use A Filter?</h3>
+<p>PHP Filters for validation and sanitization are activated by passing at least two values to the PHP Filters Extension function <em>filter_var</em>. As an example, let’s use the Sanitize Filter for an Integer number like so:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value</span><span>&nbsp;=&nbsp;</span><span class="string">'123abc456def'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="func">echo</span><span>&nbsp;filter_var(</span><span class="vars">$value</span><span>,&nbsp;FILTER_SANITIZE_NUMBER_INT);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="php" style="display: none; ">$value = '123abc456def';
+echo filter_var($value, FILTER_SANITIZE_NUMBER_INT);
+</pre>
+<p>In the example, we have a variable <em>$value</em> that is passed through the Filters Extension function <em>filter_var</em> using the <em>FILTER_SANITIZE_NUMBER_INT</em> filter. This results in the following output:</p>
+<div class="dp-highlighter"><ol start="1" class="dp-xml"><li class="alt"><span><span>123456&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="html" style="display: none; ">123456
+</pre>
+<p>The Sanitize Filter for an Integer number removes all non-integer characters from the output and produces a clean integer. Within the <a href="http://d2o0t5hpnwv4c1.cloudfront.net/437_gettingClean/demo.zip" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;d2o0t5hpnwv4c1.cloudfront.net&#39;]);">download source code</a>, you can try out various inputs and it will apply a number of common filters to your input value. I have included a number of different example strings that you can test out as well.</p>
+<h3>What Do The Different Filters Do?</h3>
+<p>The list below is not complete, but it does contain the majority of the filters that come standard with 5.2.0+ installations. Custom filters and those added from custom extensions are not included here.</p>
+<p><strong>FILTER_VALIDATE_BOOLEAN:</strong> Checks whether or not the data passed to the filter is a boolean value of <em>TRUE</em> or <em>FALSE</em>. If the value is a non-boolean value, it will return <em>FALSE</em>. The script below would echo “TRUE” for the example data <em>$value01</em> but would echo “FALSE” for the example data <em>$value02</em>:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value01</span><span>&nbsp;=&nbsp;TRUE;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">if</span><span>(filter_var(</span><span class="vars">$value01</span><span>,FILTER_VALIDATE_BOOLEAN))&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'TRUE'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'FALSE'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span><span class="func">echo</span><span>&nbsp;</span><span class="string">'&lt;br&nbsp;/&gt;&lt;br&nbsp;/&gt;'</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="vars">$value02</span><span>&nbsp;=&nbsp;TRUE;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">if</span><span>(filter_var(</span><span class="vars">$value02</span><span>,FILTER_VALIDATE_BOOLEAN))&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'TRUE'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'FALSE'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="php" style="display: none; ">$value01 = TRUE;
+if(filter_var($value01,FILTER_VALIDATE_BOOLEAN)) {
+ echo 'TRUE';
+} else {
+ echo 'FALSE';
+}
+echo '&lt;br /&gt;&lt;br /&gt;'
+$value02 = TRUE;
+if(filter_var($value02,FILTER_VALIDATE_BOOLEAN)) {
+ echo 'TRUE';
+} else {
+ echo 'FALSE';
+}
+</pre>
+<p><strong>FILTER_VALIDATE_EMAIL:</strong> Checks whether or not the data passed to the filter is a potentially valid e-mail address. It does not check whether the e-mail address actually exists, just that the format of the e-mail address is valid. The Script below would echo “TRUE” for the example data <em>$value01</em> but would echo “FALSE” for the example data <em>$value02</em> (because the second lacks the required @domain.tld portion of the e-mail address):</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value01</span><span>&nbsp;=&nbsp;</span><span class="string">'test@example.com'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">if</span><span>(filter_var(</span><span class="vars">$value01</span><span>,FILTER_VALIDATE_EMAIL))&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'TRUE'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'FALSE'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span><span class="func">echo</span><span>&nbsp;</span><span class="string">'&lt;br&nbsp;/&gt;&lt;br&nbsp;/&gt;'</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="vars">$value02</span><span>&nbsp;=&nbsp;</span><span class="string">'nettuts'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">if</span><span>(filter_var(</span><span class="vars">$value02</span><span>,FILTER_VALIDATE_EMAIL))&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'TRUE'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'FALSE'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="php" style="display: none; ">$value01 = 'test@example.com';
+if(filter_var($value01,FILTER_VALIDATE_EMAIL)) {
+ echo 'TRUE';
+} else {
+ echo 'FALSE';
+}
+echo '&lt;br /&gt;&lt;br /&gt;'
+$value02 = 'nettuts';
+if(filter_var($value02,FILTER_VALIDATE_EMAIL)) {
+ echo 'TRUE';
+} else {
+ echo 'FALSE';
+}
+</pre>
+<p><strong>FILTER_VALIDATE_FLOAT:</strong> Checks whether or not the data passed to the filter is a valid float value. The Script below would echo “TRUE” for the example data <em>$value01</em> but would echo “FALSE” for the example data <em>$value02</em> (because comma separators are not allowed in float values):</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value01</span><span>&nbsp;=&nbsp;</span><span class="string">'1.234'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">if</span><span>(filter_var(</span><span class="vars">$value01</span><span>,FILTER_VALIDATE_FLOAT))&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'TRUE'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'FALSE'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span><span class="func">echo</span><span>&nbsp;</span><span class="string">'&lt;br&nbsp;/&gt;&lt;br&nbsp;/&gt;'</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="vars">$value02</span><span>&nbsp;=&nbsp;</span><span class="string">'1,234'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">if</span><span>(filter_var(</span><span class="vars">$value02</span><span>,FILTER_VALIDATE_FLOAT))&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'TRUE'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'FALSE'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="php" style="display: none; ">$value01 = '1.234';
+if(filter_var($value01,FILTER_VALIDATE_FLOAT)) {
+ echo 'TRUE';
+} else {
+ echo 'FALSE';
+}
+echo '&lt;br /&gt;&lt;br /&gt;'
+$value02 = '1,234';
+if(filter_var($value02,FILTER_VALIDATE_FLOAT)) {
+ echo 'TRUE';
+} else {
+ echo 'FALSE';
+}
+</pre>
+<p><strong>FILTER_VALIDATE_INT:</strong> Checks whether or not the data passed to the filter is a valid integer value. The Script below would echo “TRUE” for the example data <em>$value01</em> but would echo “FALSE” for the example data <em>$value02</em> (because fractions / decimal numbers are not integers):</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value01</span><span>&nbsp;=&nbsp;</span><span class="string">'123456'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">if</span><span>(filter_var(</span><span class="vars">$value01</span><span>,FILTER_VALIDATE_INT))&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'TRUE'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'FALSE'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span><span class="func">echo</span><span>&nbsp;</span><span class="string">'&lt;br&nbsp;/&gt;&lt;br&nbsp;/&gt;'</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="vars">$value02</span><span>&nbsp;=&nbsp;</span><span class="string">'123.456'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">if</span><span>(filter_var(</span><span class="vars">$value02</span><span>,FILTER_VALIDATE_INT))&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'TRUE'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'FALSE'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="php" style="display: none; ">$value01 = '123456';
+if(filter_var($value01,FILTER_VALIDATE_INT)) {
+ echo 'TRUE';
+} else {
+ echo 'FALSE';
+}
+echo '&lt;br /&gt;&lt;br /&gt;'
+$value02 = '123.456';
+if(filter_var($value02,FILTER_VALIDATE_INT)) {
+ echo 'TRUE';
+} else {
+ echo 'FALSE';
+}
+</pre>
+<p><strong>FILTER_VALIDATE_IP:</strong> Checks whether or not the data passed to the filter is a potentially valid IP address. It does not check if the IP address would resolve, just that it fits the required data structure for IP addresses. The Script below would echo “TRUE” for the example data <em>$value01</em> but would echo “FALSE” for the example data <em>$value02</em>:</p><div class="tutorial_image"><script type="text/javascript"><!--
+google_ad_client = "pub-9093712935949486";
+/* 300x250 nettuts middle tutsads */
+google_ad_slot = "1775681443";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px"><ins id="aswift_0_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px"><iframe allowtransparency="true" frameborder="0" height="250" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){i+=&#39;.call&#39;;setTimeout(h,0)}else if(h.match){i+=&#39;.nav&#39;;w.location.replace(h)}s.log&amp;&amp;s.log.push(i)}" scrolling="no" vspace="0" width="300" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;"></iframe></ins></ins></div>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value01</span><span>&nbsp;=&nbsp;</span><span class="string">'192.168.0.1'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">if</span><span>(filter_var(</span><span class="vars">$value01</span><span>,FILTER_VALIDATE_IP))&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'TRUE'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'FALSE'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span><span class="func">echo</span><span>&nbsp;</span><span class="string">'&lt;br&nbsp;/&gt;&lt;br&nbsp;/&gt;'</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="vars">$value02</span><span>&nbsp;=&nbsp;</span><span class="string">'1.2.3.4.5.6.7.8.9'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">if</span><span>(filter_var(</span><span class="vars">$value02</span><span>,FILTER_VALIDATE_IP))&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'TRUE'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'FALSE'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="php" style="display: none; ">$value01 = '192.168.0.1';
+if(filter_var($value01,FILTER_VALIDATE_IP)) {
+ echo 'TRUE';
+} else {
+ echo 'FALSE';
+}
+echo '&lt;br /&gt;&lt;br /&gt;'
+$value02 = '1.2.3.4.5.6.7.8.9';
+if(filter_var($value02,FILTER_VALIDATE_IP)) {
+ echo 'TRUE';
+} else {
+ echo 'FALSE';
+}
+</pre>
+<p><strong>FILTER_VALIDATE_URL:</strong> Checks whether or not the data passed to the filter is a potentially valid URL. It does not check if the URL would resolve, just that it fits the required data structure for URLs. The Script below would echo “TRUE” for the example data <em>$value01</em> but would echo “FALSE” for the example data <em>$value02</em>:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value01</span><span>&nbsp;=&nbsp;</span><span class="string">'http://net.tutsplus.com'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">if</span><span>(filter_var(</span><span class="vars">$value01</span><span>,FILTER_VALIDATE_URL))&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'TRUE'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'FALSE'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span><span class="func">echo</span><span>&nbsp;</span><span class="string">'&lt;br&nbsp;/&gt;&lt;br&nbsp;/&gt;'</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="vars">$value02</span><span>&nbsp;=&nbsp;</span><span class="string">'nettuts'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">if</span><span>(filter_var(</span><span class="vars">$value02</span><span>,FILTER_VALIDATE_URL))&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'TRUE'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;<span class="func">echo</span><span>&nbsp;</span><span class="string">'FALSE'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="php" style="display: none; ">$value01 = 'http://net.tutsplus.com';
+if(filter_var($value01,FILTER_VALIDATE_URL)) {
+ echo 'TRUE';
+} else {
+ echo 'FALSE';
+}
+echo '&lt;br /&gt;&lt;br /&gt;'
+$value02 = 'nettuts';
+if(filter_var($value02,FILTER_VALIDATE_URL)) {
+ echo 'TRUE';
+} else {
+ echo 'FALSE';
+}
+</pre>
+<p><strong>FILTER_SANITIZE_STRING:</strong> By default, this filter removes any data from a string that is invalid or not allowed in that string. For example, this will remove any HTML tags, like <em>&lt;script&gt;</em> or <em>&lt;strong&gt;</em> from an input string:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value</span><span>&nbsp;=&nbsp;</span><span class="string">'&lt;script&gt;alert('</span><span>TROUBLE&nbsp;HERE</span><span class="string">');&lt;/script&gt;'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="func">echo</span><span>&nbsp;filter_var(</span><span class="vars">$value</span><span>,&nbsp;FILTER_SANITIZE_STRING);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="php" style="display: none; ">$value = '&lt;script&gt;alert('TROUBLE HERE');&lt;/script&gt;';
+echo filter_var($value, FILTER_SANITIZE_STRING);
+</pre>
+<p>This script would remove the tags and return the following:</p>
+<div class="dp-highlighter"><ol start="1" class="dp-xml"><li class="alt"><span><span>alert('TROUBLE&nbsp;HERE');&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="html" style="display: none; ">alert('TROUBLE HERE');
+</pre>
+<p><strong>FILTER_SANITIZE_ENCODED:</strong> Many programmers use PHP’s <em>urlencode()</em> function to handle their URL Encoding. This filter essentially does the same thing. For example, this will encode any spaces and/or special characters from an input string:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value</span><span>&nbsp;=&nbsp;</span><span class="string">'&lt;script&gt;alert('</span><span>TROUBLE&nbsp;HERE</span><span class="string">');&lt;/script&gt;'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="func">echo</span><span>&nbsp;filter_var(</span><span class="vars">$value</span><span>,&nbsp;FILTER_SANITIZE_ENCODED);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="php" style="display: none; ">$value = '&lt;script&gt;alert('TROUBLE HERE');&lt;/script&gt;';
+echo filter_var($value, FILTER_SANITIZE_ENCODED);
+</pre>
+<p>This script would encode the punctuation, spaces, and brackets, then return the following:</p>
+<div class="dp-highlighter"><ol start="1" class="dp-xml"><li class="alt"><span><span>%3Cscript%3Ealert%28%27TROUBLE%20HERE%27%29%3B%3C%2Fscript%3E&nbsp;&nbsp;</span></span></li></ol></div><pre class="html" name="code" style="display: none; ">%3Cscript%3Ealert%28%27TROUBLE%20HERE%27%29%3B%3C%2Fscript%3E
+</pre>
+<p><strong>FILTER_SANITIZE_SPECIAL_CHARS:</strong> This filter will, by default, HTML-encode special characters like quotes, ampersands, and brackets (in addition to characters with ASCII value less than 32). While the demo page does not make it abundantly clear without viewing the source (because the HTML-encoded special characters will be interpreted and rendered out), if you take a look at the source code you’ll see the encoding at work:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value</span><span>&nbsp;=&nbsp;</span><span class="string">'&lt;script&gt;alert('</span><span>TROUBLE&nbsp;HERE</span><span class="string">');&lt;/script&gt;'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="func">echo</span><span>&nbsp;filter_var(</span><span class="vars">$value</span><span>,&nbsp;FILTER_SANITIZE_SPECIAL_CHARS);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="php" style="display: none; ">$value = '&lt;script&gt;alert('TROUBLE HERE');&lt;/script&gt;';
+echo filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+</pre>
+<p>It converts the special characters into their HTML-encoded selves:</p>
+<div class="dp-highlighter"><ol start="1" class="dp-xml"><li class="alt"><span><span>&amp;#60;script&amp;#62;alert(&amp;#39;TROUBLE&nbsp;HERE&amp;#39;);&amp;#60;/script&amp;#62;&nbsp;&nbsp;</span></span></li></ol></div><pre class="html" name="code" style="display: none; ">&amp;#60;script&amp;#62;alert(&amp;#39;TROUBLE HERE&amp;#39;);&amp;#60;/script&amp;#62;
+</pre>
+<p><strong>FILTER_SANITIZE_EMAIL:</strong> This filter does exactly what one would think it does. It removes any characters that are invalid in e-mail addresses (like parentheses, brackets, colons, etc). For example, let’s say you accidentally added parentheses around a letter of your e-mail address (don’t ask how, use your imagination):</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value</span><span>&nbsp;=&nbsp;</span><span class="string">'t(e)st@example.com'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="func">echo</span><span>&nbsp;filter_var(</span><span class="vars">$value</span><span>,&nbsp;FILTER_SANITIZE_EMAIL);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="php" style="display: none; ">$value = 't(e)st@example.com';
+echo filter_var($value, FILTER_SANITIZE_EMAIL);
+</pre>
+<p>It removes those parentheses and you get your beautiful e-mail address back:</p>
+<div class="dp-highlighter"><ol start="1" class="dp-xml"><li class="alt"><span><span>test@example.com&nbsp;&nbsp;</span></span></li></ol></div><pre class="html" name="code" style="display: none; ">test@example.com
+</pre>
+<p>This is a great filter to use on e-mail forms in concert with FILTER_VALIDATE_EMAIL to reduce user error or prevent XSS-related attacks (as some past XSS attacks involved the returning of the original data provided in a non-sanitized e-mail field directly to the browser).</p>
+<p><strong>FILTER_SANITIZE_URL:</strong> Similar to the e-mail address sanitize filter, this filter does exactly what one would think, as well. It removes any characters that are invalid in a URL (like certain UTF-8 characters, etc). For example, let’s say you accidentally added a “®” into your website’s URL (again, don’t ask how, pretend a velociraptor did it):</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value</span><span>&nbsp;=&nbsp;</span><span class="string">'http://net.tuts®plus.com'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="func">echo</span><span>&nbsp;filter_var(</span><span class="vars">$value</span><span>,&nbsp;FILTER_SANITIZE_URL);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="php" style="display: none; ">$value = 'http://net.tuts®plus.com';
+echo filter_var($value, FILTER_SANITIZE_URL);
+</pre>
+<p>It removes the unwanted “®” and you get your handsome URL back:</p>
+<div class="dp-highlighter"><ol start="1" class="dp-xml"><li class="alt"><span><span>http://net.tutsplus.com&nbsp;&nbsp;</span></span></li></ol></div><pre class="html" name="code" style="display: none; ">
+http://net.tutsplus.com
+</pre>
+<p><strong>FILTER_SANITIZE_NUMBER_INT:</strong> This filter is similar to the FILTER_VALIDATE_INT but instead of simply checking if it is an Integer or not, it actually removes everything non-integer from the value! Handy, indeed, for pesky spambots and tricksters in some input forms:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value01</span><span>&nbsp;=&nbsp;</span><span class="string">'123abc456def'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="func">echo</span><span>&nbsp;filter_var(</span><span class="vars">$value01</span><span>,&nbsp;FILTER_SANITIZE_NUMBER_INT);&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="func">echo</span><span>&nbsp;</span><span class="string">'&lt;br&nbsp;/&gt;'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="vars">$value02</span><span>&nbsp;=&nbsp;</span><span class="string">'1.2.3.4.5.6.7.8.9'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="func">echo</span><span>&nbsp;filter_var(</span><span class="vars">$value02</span><span>,&nbsp;FILTER_SANITIZE_NUMBER_INT);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="php" style="display: none; ">$value01 = '123abc456def';
+echo filter_var($value01, FILTER_SANITIZE_NUMBER_INT);
+echo '&lt;br /&gt;';
+$value02 = '1.2.3.4.5.6.7.8.9';
+echo filter_var($value02, FILTER_SANITIZE_NUMBER_INT);
+</pre>
+<p>Those silly letters and decimals get thrown right out:</p>
+<div class="dp-highlighter"><ol start="1" class="dp-xml"><li class="alt"><span><span>123456&nbsp;&nbsp;</span></span></li><li class=""><span>123456789&nbsp;&nbsp;</span></li></ol></div><pre class="html" name="code" style="display: none; ">123456
+123456789
+</pre>
+<p><strong>FILTER_SANITIZE_NUMBER_FLOAT:</strong> This filter is similar to the FILTER_VALIDATE_INT but instead of simply checking if it is an Integer or not, it actually removes everything non-integer from the value! Handy, indeed, for pesky spambots and tricksters in some input forms:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value01</span><span>&nbsp;=&nbsp;</span><span class="string">'123abc456def'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="func">echo</span><span>&nbsp;filter_var(</span><span class="vars">$value01</span><span>,&nbsp;FILTER_SANITIZE_NUMBER_FLOAT);&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="func">echo</span><span>&nbsp;</span><span class="string">'&lt;br&nbsp;/&gt;'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="vars">$value02</span><span>&nbsp;=&nbsp;</span><span class="string">'1.2.3.4.5.6.7.8.9'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="func">echo</span><span>&nbsp;filter_var(</span><span class="vars">$value02</span><span>,&nbsp;FILTER_SANITIZE_NUMBER_FLOAT);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="php" style="display: none; ">$value01 = '123abc456def';
+echo filter_var($value01, FILTER_SANITIZE_NUMBER_FLOAT);
+echo '&lt;br /&gt;';
+$value02 = '1.2.3.4.5.6.7.8.9';
+echo filter_var($value02, FILTER_SANITIZE_NUMBER_FLOAT);
+</pre>
+<p>Again, all those silly letters and decimals get thrown right out:</p>
+<div class="dp-highlighter"><ol start="1" class="dp-xml"><li class="alt"><span><span>123456&nbsp;&nbsp;</span></span></li><li class=""><span>123456789&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="html" style="display: none; ">123456
+123456789
+</pre>
+<p>But what if you wanted to keep a decimal like in the next example:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value</span><span>&nbsp;=&nbsp;</span><span class="string">'1.23'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="func">echo</span><span>&nbsp;filter_var(</span><span class="vars">$value</span><span>,&nbsp;FILTER_SANITIZE_NUMBER_FLOAT);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="php" style="display: none; ">$value = '1.23';
+echo filter_var($value, FILTER_SANITIZE_NUMBER_FLOAT);
+</pre>
+<p>It would still remove it and return:</p>
+<div class="dp-highlighter"><ol start="1" class="dp-xml"><li class="alt"><span><span>123&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="html" style="display: none; ">123
+</pre>
+<p>One of the main reasons why FILTER_SANITIZE_NUMBER_FLOAT and FILTER_SANITIZE_INT are separate filters is to allow for this via a special Flag “FILTER_FLAG_ALLOW_FRACTION” that is added as a third value passed to <em>filter_var</em>:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$value</span><span>&nbsp;=&nbsp;</span><span class="string">'1.23'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="func">echo</span><span>&nbsp;filter_var(</span><span class="vars">$value</span><span>,&nbsp;FILTER_SANITIZE_NUMBER_FLOAT,&nbsp;FILTER_FLAG_ALLOW_FRACTION);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="php" style="display: none; ">$value = '1.23';
+echo filter_var($value, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+</pre>
+<p>It would keep the decimal and return:</p>
+<div class="dp-highlighter"><ol start="1" class="dp-xml"><li class="alt"><span><span>1.23&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="html" style="display: none; ">1.23
+</pre>
+<h3>Options, Flags, and Array Controls, OH MY!</h3>
+<p>The flag in this last example is just one of many more options, flags, and array controls that allow you to have more granular control over what types of data gets sanitized, definitions of delimiters, how arrays are processed by the filters, and more. You can find more about these flags and other filter-related functions in the PHP manual’s <a href="http://www.php.net/manual/en/book.filter.php" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;www.php.net&#39;]);">Filters Extension section</a>.</p>
+<h3>Other Methods of Santizing Data with PHP</h3>
+<p>Now, we’ll go over a few key supplemental methods of sanitizing data with PHP to prevent “dirty data” from wreaking havoc on your systems. These are especially useful for applications still running PHP 4, as they were all available when it was released.</p>
+<p><strong>htmlspecialchars</strong>: This PHP function converts 5 special characters into their corresponding HTML entities:</p>
+<ul>
+<li>‘&amp;’ (ampersand) becomes ‘&amp;amp;’</li>
+<li>‘”‘ (double quote) becomes ‘&amp;quot;’ when ENT_NOQUOTES is not set.</li>
+<li>”’ (single quote) becomes ‘&amp;#039;’ only when ENT_QUOTES is set.</li>
+<li>‘&lt;’ (less than) becomes ‘&amp;lt;’</li>
+<li>‘&gt;’ (greater than) becomes ‘&amp;gt;’</li>
+</ul>
+<p>It is used like any other PHP string function:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="func">echo</span><span>&nbsp;htmlspecialchars(</span><span class="string">'$string'</span><span>);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="php" style="display: none; ">echo htmlspecialchars('$string');
+</pre>
+<p><strong>htmlentities</strong>: Like htmlspecialchars, this PHP function converts characters into their corresponding HTML entities. The big difference is that <strong>ALL</strong> characters that can be converted will be converted. This is a useful method of obfuscating e-mail addresses from some bots that collect e-mail addresses, as not of them are programmed to read htmlentities.</p>
+<p>It is used like any other PHP string function:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="func">echo</span><span>&nbsp;htmlentities(</span><span class="string">'$string'</span><span>);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="php" style="display: none; ">echo htmlentities('$string');
+</pre>
+<p><strong>mysql_real_escape_string</strong>: This MySQL function helps protect against SQL injection attacks. It is considered a best practice (or even a mandatory practice) to pass all data that is being sent to a MySQL query through this function. It escapes any special characters that could be problematic and would cause little Bobby Tables to destory yet another school students database.</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="vars">$query</span><span>&nbsp;=&nbsp;</span><span class="string">'SELECT&nbsp;*&nbsp;FROM&nbsp;table&nbsp;WHERE&nbsp;value='</span><span>.mysql_real_escape_string(</span><span class="string">'$string'</span><span>).</span><span class="string">'&nbsp;LIMIT&nbsp;1,1'</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="vars">$runQuery</span><span>&nbsp;=&nbsp;mysql_query(</span><span class="vars">$query</span><span>);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="php" style="display: none; ">$query = 'SELECT * FROM table WHERE value='.mysql_real_escape_string('$string').' LIMIT 1,1';
+$runQuery = mysql_query($query);
+</pre>
+<h3>Custom Functions</h3>
+<p>For many people, these built-in filters and functions are just not good enough. Data validation of some data like phone numbers, zip codes, or even e-mails often requires more strict validation and masking. To do this, many people create custom functions to validate and their data is real. An example of this may be as simple as using a MySQL query to look up the data in a database of known values like so:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="keyword">function</span><span>&nbsp;checkZipCode(</span><span class="vars">$value</span><span>)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="vars">$zipcheck</span><span>&nbsp;=&nbsp;</span><span class="string">'SELECT&nbsp;COUNT(*)&nbsp;FROM&nbsp;`database`.`zipcodes`&nbsp;WHERE&nbsp;value="'</span><span>.filter_var(mysql_real_escape_string(</span><span class="vars">$value</span><span>),FILTER_SANITIZE_NUMBER_INT).</span><span class="string">'"'</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="vars">$count</span><span>&nbsp;=&nbsp;mysql_query(</span><span class="vars">$zipcheck</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(</span><span class="vars">$count</span><span>==1)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;TRUE;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;FALSE;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="php" style="display: none; ">function checkZipCode($value) {
+	$zipcheck = 'SELECT COUNT(*) FROM `database`.`zipcodes` WHERE value="'.filter_var(mysql_real_escape_string($value),FILTER_SANITIZE_NUMBER_INT).'"';
+	$count = mysql_query($zipcheck);
+	if($count==1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+</pre>
+<p>Other custom functions can be made that do not rely on databases of known values, and can be created by checking magic-quotes, stripping slashes, and escaping for insert into a database:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy to clipboard</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="keyword">function</span><span>&nbsp;cleanString(</span><span class="vars">$string</span><span>)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="vars">$detagged</span><span>&nbsp;=&nbsp;</span><span class="func">strip_tags</span><span>(</span><span class="vars">$string</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(get_magic_quotes_gpc())&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="vars">$stripped</span><span>&nbsp;=&nbsp;</span><span class="func">stripslashes</span><span>(</span><span class="vars">$detagged</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="vars">$escaped</span><span>&nbsp;=&nbsp;mysql_real_escape_string(</span><span class="vars">$stripped</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="vars">$escaped</span><span>&nbsp;=&nbsp;mysql_real_escape_string(</span><span class="vars">$detagged</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="vars">$escaped</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="php" style="display: none; ">function cleanString($string) {
+	$detagged = strip_tags($string);
+	if(get_magic_quotes_gpc()) {
+		$stripped = stripslashes($detagged);
+		$escaped = mysql_real_escape_string($stripped);
+	} else {
+		$escaped = mysql_real_escape_string($detagged);
+	}
+	return $escaped;
+}
+</pre>
+<p>The possibilities are endless, especially if you integrate regular expressions, but for most occasions, the PHP Filters Extension should do the trick.</p>
+<ul class="webroundup">
+<li>Follow us on <a href="http://www.twitter.com/nettuts" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;www.twitter.com&#39;]);">Twitter</a>, or subscribe to the <a href="http://feeds.feedburner.com/nettuts" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;feeds.feedburner.com&#39;]);" title="Nettuts+ RSS Feed">Nettuts+ RSS Feed</a> for more daily web development tuts and articles.</li>
+</ul>
+<p>
+<script type="text/javascript"><!--digg_url = "post permalink (not digg url)"; // -->
+</script><br>
+<script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script></p>
+<div style="clear:both;padding-bottom:20px;"><fb:like layout="standard" width="450" height="30" class=" fb_edge_widget_with_comment fb_iframe_widget"><span><iframe id="f3dbc7def8" name="f374b24a0" scrolling="no" style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; width: 450px; height: 24px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " title="Like this content on Facebook." class="fb_ltr" src="./Getting Clean With PHP   Nettuts+_files/like.html"></iframe></span></fb:like></div>
+<p style="text-align: center;"><!-- BuySellAds.com Zone Code -->
+</p><div id="bsap_1260864" class="bsap_1260864 bsap"><iframe width="300" height="250" id="backfill_1260864_frame" src="http://s3.buysellads.com/1260864/backfill1.html" frameborder="0" class="bsap_backfillframe" scrolling="no"></iframe><div class="bsap_adhere"><a href="http://buysellads.com/buy/detail/197/zone/1260864?utm_source=site_197_zone_1260864&utm_medium=website&utm_campaign=cpmadhere">advertise here</a></div></div>
+<!-- End BuySellAds.com Zone Code --><p></p>  
+    
+</div>
+            
+            <div id="marketplace-author"><div><span>Find more web development tutorials on</span> <a href="http://marketplace.tutsplus.com/?ref=NetPremium" class="author-icon site-tutsmarketplace" rel="external nofollow" target="blank">Tutsmarketplace</a></div><ul><li><a href="http://marketplace.tutsplus.com/item/the-ins-and-outs-of-amazon-ec2/195567?ref=NetPremium" rel="external nofollow" target="blank"><img src="./Getting Clean With PHP   Nettuts+_files/thumb.jpg" alt="" title="The Ins and Outs of Amazon EC2 only $5.00" width="80" height="80"></a></li><li><a href="http://marketplace.tutsplus.com/item/the-11-javascript-mistakes-youre-making/267373?ref=NetPremium" rel="external nofollow" target="blank"><img src="./Getting Clean With PHP   Nettuts+_files/thumb(1).jpg" alt="" title="The 11 JavaScript Mistakes You&#39;re Making only $3.00" width="80" height="80"></a></li><li><a href="http://marketplace.tutsplus.com/item/create-a-media-player-and-playlist/310130?ref=NetPremium" rel="external nofollow" target="blank"><img src="./Getting Clean With PHP   Nettuts+_files/media_thumb.jpg" alt="" title="Create a Media Player and Playlist only $3.00" width="80" height="80"></a></li><li><a href="http://marketplace.tutsplus.com/item/diving-into-websockets/299931?ref=NetPremium" rel="external nofollow" target="blank"><img src="./Getting Clean With PHP   Nettuts+_files/websockets.jpg" alt="" title="Diving into WebSockets only $4.00" width="80" height="80"></a></li><li><a href="http://marketplace.tutsplus.com/item/build-your-own-javascript-library/159166?ref=NetPremium" rel="external nofollow" target="blank"><img src="./Getting Clean With PHP   Nettuts+_files/js-library-thumb.jpg" alt="" title="Build your Own JavaScript Library only $3.00" width="80" height="80"></a></li><li><a href="http://marketplace.tutsplus.com/item/roll-your-own-templating-system-in-php/159131?ref=NetPremium" rel="external nofollow" target="blank"><img src="./Getting Clean With PHP   Nettuts+_files/1a-thumb.jpg" alt="" title="Roll your Own Templating System in PHP only $4.00" width="80" height="80"></a></li><li class="last-item"><a href="http://marketplace.tutsplus.com/item/build-a-spiffy-quiz-engine/243456?ref=NetPremium" rel="external nofollow" target="blank"><img src="http://s3.envato.com/files/2484586/thumb.jpg" alt="" title="Build a Spiffy Quiz Engine only $3.00" width="80" height="80"></a></li></ul></div>            
+            <div id="tag-list">Tags: <a href="http://net.tutsplus.com/tag/clean-php/">clean php</a><a href="http://net.tutsplus.com/tag/php/">PHP</a><a href="http://net.tutsplus.com/tag/sanitizing/">sanitizing</a></div>            
+            <div class="post_footer" style="padding-bottom: 170px;">
+            
+              <div class="enjoyed_post">
+                <span class="thumb_icon">&nbsp;</span>
+                <h5>Enjoyed this Post?</h5>
+                <p>Subscribe to our <a href="http://feeds.feedburner.com/nettuts">RSS Feed</a>, <a href="http://twitter.com/envatowebdev">Follow us on Twitter</a> or simply recommend us to friends and colleagues!</p>
+                <!-- Social Media -->
+                <div class="article_social_media">
+                  <div class="tweetmeme_btn">
+                    <iframe src="./Getting Clean With PHP   Nettuts+_files/tweet_button(1).html" allowtransparency="true" frameborder="0" scrolling="no" class="twitter-share-button twitter-count-none" style="width: 55px; height: 20px; " title="Twitter For Websites: Tweet Button"></iframe><script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/widgets.js"></script>
+                  </div>
+                  <div class="facebook_send_btn left">
+                    <fb:send href="http%3A%2F%2Fnet.tutsplus.com%2Ftutorials%2Fphp%2Fgetting-clean-with-php%2F" class=" fb_edge_widget_with_comment fb_iframe_widget"><span><iframe id="fbb4ec488" name="f193031394" scrolling="no" style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; height: 20px; width: 58px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " class="fb_ltr" src="./Getting Clean With PHP   Nettuts+_files/send(1).html"></iframe></span></fb:send>
+                  </div>
+                  <div class="facebook_btn">
+                    <fb:like layout="button_count" width="100" height="21" class=" fb_edge_widget_with_comment fb_iframe_widget"><span><iframe id="f1763aa404" name="f320f54f8" scrolling="no" style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; height: 20px; width: 100px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " title="Like this content on Facebook." class="fb_ltr" src="./Getting Clean With PHP   Nettuts+_files/like(1).html"></iframe></span></fb:like>
+                  </div>
+                </div>
+                <!-- [END] Social Media -->
+              </div>
+              
+              <div class="the_author">
+                <img alt="" src="./Getting Clean With PHP   Nettuts+_files/fc2ded935930e069e51138c588cfad22" class="avatar avatar-40 photo" height="40" width="40">                <h5>By <a href="http://net.tutsplus.com/author/michaelowens/" title="Posts by Michael Owens">Michael Owens</a></h5>
+                <p class="the_author_p">Rollover to read this author's bio or click through to see a full list of posts by this author.</p>
+                <div class="autor_div">
+                  Hi! I'm Michael, and I'm a freelance web designer/developer who specializes in interaction design and front-end development. I write occasionally on my blog at <a href="http://mowens.com/?src=nettuts">http://mowens.com</a> but more often can be found tweeting at <a href="http://twitter.com/michaelowens">@michaelowens</a>.                  <span class="arrow">&nbsp;</span>
+                </div>
+              </div>
+              
+              <br class="clear">
+              
+                            <div class="plus_membership">
+                <div class="plus_membership_text">
+                  <a href="" class="plus_icon">Plus Premium</a>
+                  
+                  <div id="logged-in-plus-footer" style="display: none">
+
+                    <div class="plus_content wide">
+                      <h3>Hello!</h3>
+                      <p>You can grab source files and bonus tutorials from the <a href="http://tutsplus.com/plus-content/">members area</a>.</p>
+                                          </div>
+                    <div class="plus_form">
+            
+                    </div>
+                  </div>
+                  
+                  <div id="logged-out-plus-footer" style="">
+                  
+                    <div class="plus_content">
+                      <h3>Premium Members</h3>
+                      <p>Source Files, Bonus Tutorials &amp; More for all relevant Tuts+ sites in one subscription. <a href="http://tutsplus.com/amember/signup.php">Join Now</a></p>
+                    </div>
+                    <div class="plus_form">
+                      <form name="login" method="post" action="http://tutsplus.com/amember/login.php?amember_redirect_url=http://net.tutsplus.com/tutorials/php/getting-clean-with-php/" id="signIn">
+                        <fieldset>
+                        <input type="text" name="amember_login" id="username" class="input">
+                        <input type="password" name="amember_pass" id="password" class="input">
+                        <input type="submit" id="submit_plus" class="submit_plus" value="Sign In">
+                        </fieldset>
+                      </form>
+                    </div>
+
+                  </div>
+                  
+                </div>
+                <div class="left_corner">&nbsp;</div>
+                <div class="right_corner">&nbsp;</div>
+              </div>
+
+              
+              <script type="text/javascript">
+                if (plus_member_logged_in()) {
+                  $('#logged-in-plus-footer').show()
+                } else {
+                  $('#logged-out-plus-footer').show()
+                }
+              </script>
+              
+            </div>
+            
+            <div class="post extra_posts single">
+              <h3>Related Posts</h3>
+              <ul class="related_list"><li><a href="http://net.tutsplus.com/tutorials/javascript-ajax/building-a-sleek-ajax-signup-form/" rel="nofollow"><img src="http://nettuts.s3.amazonaws.com/760_ajaxEmailSignupForm/preview.png" height="100" width="100" alt="Building a Sleek AJAX Email Signup Form"></a> <div style="left: 15px; "><a href="http://net.tutsplus.com/tutorials/javascript-ajax/building-a-sleek-ajax-signup-form/" rel="nofollow"><span>Building a Sleek AJAX Email Signup Form</span> 80 Comments <span class="arrow"></span></a></div></li><li><a href="http://net.tutsplus.com/articles/news/diving-into-php-video-series/" rel="nofollow"><img src="http://themeforest.s3.amazonaws.com/39_DivingIntoPHP/diving-into-php.jpg" height="100" width="100" alt="Diving into PHP: Video Series"></a> <div style="left: 129px; "><a href="http://net.tutsplus.com/articles/news/diving-into-php-video-series/" rel="nofollow"><span>Diving into PHP: Video Series</span> 43 Comments <span class="arrow"></span></a></div></li><li><a href="http://net.tutsplus.com/articles/news/create-a-photo-admin-site-using-php-and-jquery/" rel="nofollow"><img src="./Getting Clean With PHP   Nettuts+_files/200x200.png" height="100" width="100" alt="Create a Photo Admin Site Using PHP and jQuery"></a> <div style="left: 243px; "><a href="http://net.tutsplus.com/articles/news/create-a-photo-admin-site-using-php-and-jquery/" rel="nofollow"><span>Create a Photo Admin Site Using PHP and jQuery</span> 263 Comments <span class="arrow"></span></a></div></li><li><a href="http://net.tutsplus.com/tutorials/php/how-to-create-a-layout-manager-with-codeigniter-new-premium-tutorial/" rel="nofollow"><img src="http://nettutsplus.s3.amazonaws.com/108_layoutManager/layouts_tut.png" height="100" width="100" alt="How to Create a Layout Manager with CodeIgniter: New Premium Tutorial"></a> <div style="left: 357px; "><a href="http://net.tutsplus.com/tutorials/php/how-to-create-a-layout-manager-with-codeigniter-new-premium-tutorial/" rel="nofollow"><span>How to Create a Layout Manager with CodeIgniter: New Premium Tutorial</span> 32 Comments <span class="arrow"></span></a></div></li><li><a href="http://net.tutsplus.com/articles/news/codeigniter-from-scratch-day-1/" rel="nofollow"><img src="./Getting Clean With PHP   Nettuts+_files/200x200.jpg" height="100" width="100" alt="CodeIgniter From Scratch: Day 1"></a> <div style="left: 471px; "><a href="http://net.tutsplus.com/articles/news/codeigniter-from-scratch-day-1/" rel="nofollow"><span>CodeIgniter From Scratch: Day 1</span> 453 Comments <span class="arrow"></span></a></div></li><li><a href="http://net.tutsplus.com/tutorials/php/magento-for-designers-part-i/" rel="nofollow"><img src="http://s3.amazonaws.com/nettuts/632_magento/images/200x200.jpg" height="100" width="100" alt="Magento for Designers: Part 1"></a> <div style="left: 585px; "><a href="http://net.tutsplus.com/tutorials/php/magento-for-designers-part-i/" rel="nofollow"><span>Magento for Designers: Part 1</span> 77 Comments <span class="arrow"></span></a></div></li></ul>            </div>
+            
+            <div class="comments">  
+              
+<!-- You can start editing here. -->
+<a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#respond" name="comments" class="add_comment_link">Add Comment</a>
+<h1 class="comments-header">Discussion <span>80 Comments</span></h1>
+
+  <div class="pagination-wrap"><div class="wp-pagenavi"><span class="pages">Comment Page 2 of 2</span><a class="prev page" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-1/#comments">«</a>
+<a class="page" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-1/#comments">1</a>
+<span class="current">2</span></div></div>  
+  <ol class="commentlist">
+  			<li class="comment even thread-even depth-1" id="comment-108309">
+				<div id="div-comment-108309" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Getting Clean With PHP   Nettuts+_files/33622f01151fc16f5e5bc511edc7764a" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">Steven Aiello</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-108309">
+			September 17, 2009 at 8:40 pm</a>		</div>
+
+		<p>This is a really good quality tutorial, very practical for every day use.  Great job.</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=108309#respond" onclick="return addComment.moveForm(&quot;div-comment-108309&quot;, &quot;108309&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-108397">
+				<div id="div-comment-108397" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/88c73abe2e6de0ba21b43a56e4d663e5?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.listeniz.net/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.listeniz.net&#39;]);" rel="external nofollow" class="url" target="blank">Pavlow Vinelli</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-108397">
+			September 18, 2009 at 1:44 am</a>		</div>
+
+		<p>Verry good tutorial thank for all</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=108397#respond" onclick="return addComment.moveForm(&quot;div-comment-108397&quot;, &quot;108397&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-even depth-1" id="comment-108857">
+				<div id="div-comment-108857" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/c25eab47527f8f8186fc00ecd850b35e?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.newarts.at/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.newarts.at&#39;]);" rel="external nofollow" class="url" target="blank">Drazen Mokic</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-108857">
+			September 19, 2009 at 9:22 am</a>		</div>
+
+		<p>Nice, i realy love the thumbnail “php super clean” image <img src="./Getting Clean With PHP   Nettuts+_files/icon_biggrin.gif" alt=":D" class="wp-smiley"> </p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=108857#respond" onclick="return addComment.moveForm(&quot;div-comment-108857&quot;, &quot;108857&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-109926">
+				<div id="div-comment-109926" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Getting Clean With PHP   Nettuts+_files/f855ceda97adad5798c29a7af358f64c" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">Vahid Hallaji</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-109926">
+			September 22, 2009 at 2:19 am</a>		</div>
+
+		<p>Perfect <img src="./Getting Clean With PHP   Nettuts+_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=109926#respond" onclick="return addComment.moveForm(&quot;div-comment-109926&quot;, &quot;109926&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-even depth-1" id="comment-110784">
+				<div id="div-comment-110784" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/ad41f47d3ef7d490527726eaf625c8a2?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://nikelin.livejournal.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;nikelin.livejournal.com&#39;]);" rel="external nofollow" class="url" target="blank">Cyril A. Karpenko</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-110784">
+			September 23, 2009 at 6:03 pm</a>		</div>
+
+		<p>*ROFL*</p>
+<p>How many letters…. I think validators ( as in Zend Framework, for example ) and OOP rescue poor people from inviders and in a future – from PHP.</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=110784#respond" onclick="return addComment.moveForm(&quot;div-comment-110784&quot;, &quot;110784&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-111070">
+				<div id="div-comment-111070" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/e8d6397c1b5913af986963d41d2046c7?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://bakirci.us/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;bakirci.us&#39;]);" rel="external nofollow" class="url" target="blank">Burak Bakırcı</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-111070">
+			September 24, 2009 at 8:49 am</a>		</div>
+
+		<p>Thanks Michael!</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=111070#respond" onclick="return addComment.moveForm(&quot;div-comment-111070&quot;, &quot;111070&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-even depth-1" id="comment-113458">
+				<div id="div-comment-113458" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Getting Clean With PHP   Nettuts+_files/973be2cf25da17f770801d1426618590" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">Ed Chan</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-113458">
+			September 30, 2009 at 5:48 am</a>		</div>
+
+		<p>Good call!</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=113458#respond" onclick="return addComment.moveForm(&quot;div-comment-113458&quot;, &quot;113458&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-114840">
+				<div id="div-comment-114840" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Getting Clean With PHP   Nettuts+_files/996d15b8222f8edb1e732c8b5c4536f2" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://wbturk.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;wbturk.com&#39;]);" rel="external nofollow" class="url" target="blank">orkun</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-114840">
+			October 3, 2009 at 9:34 am</a>		</div>
+
+		<p>very useful thanx for this..</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=114840#respond" onclick="return addComment.moveForm(&quot;div-comment-114840&quot;, &quot;114840&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-even depth-1" id="comment-115693">
+				<div id="div-comment-115693" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Getting Clean With PHP   Nettuts+_files/d6127700ce498547d1dac2a2e799f0fb" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">MEM</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-115693">
+			October 6, 2009 at 3:26 am</a>		</div>
+
+		<p>I’m trying to use the filter function on int.<br>
+The point is to accept only numbers on a input field.</p>
+<p>I have this:<br>
+if (!filter_var(filter_var($phone, FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT))<br>
+{<br>
+    $erros['phone'] = ‘Invalid Phone.’;<br>
+}</p>
+<p>But I’m getting this:<br>
+If I put on the field “aaaaasfa” o error shows.<br>
+If I put on the field “24525232″ o error doesn’t show.<br>
+If I put on the field “2323Aasda” the error DOES NOT show as well. When I was expecting him to show! </p>
+<p>I’ve also tried like this:<br>
+if (!(filter_var(filter_var($phone, FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT)))<br>
+{<br>
+  $error['phone'] = ‘Invalid Phone.’;<br>
+}</p>
+<p>No luck either.</p>
+<p>Anyone kind to elucidate this newbie that is not so clean?</p>
+<p>Kind regards.</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=115693#respond" onclick="return addComment.moveForm(&quot;div-comment-115693&quot;, &quot;115693&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-115704">
+				<div id="div-comment-115704" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Getting Clean With PHP   Nettuts+_files/d6127700ce498547d1dac2a2e799f0fb" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">MEM</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-115704">
+			October 6, 2009 at 3:59 am</a>		</div>
+
+		<p>Solved. We just need to validate first, and sanitize later. </p>
+<p>If we sanitize first, the validation will pass.</p>
+<p>A more proper newbie thankfull for this article,<br>
+MEM</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=115704#respond" onclick="return addComment.moveForm(&quot;div-comment-115704&quot;, &quot;115704&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-even depth-1" id="comment-132219">
+				<div id="div-comment-132219" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/41980da83dc122d0a2cfea1e1ee296c7?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">Jay</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-132219">
+			November 16, 2009 at 7:28 am</a>		</div>
+
+		<p>Very nice an inforamtive article.<br>
+Thanks for that!</p>
+<p>I’m just writing a new class for contact form validation using php5.2 and till know I haven’t used the filter functions of php 5.2 to sanitize input data, but I will give it a try.</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=132219#respond" onclick="return addComment.moveForm(&quot;div-comment-132219&quot;, &quot;132219&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-151778">
+				<div id="div-comment-151778" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/31a3738eec9816b1b744d74942b7b10d?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.comune.pompiano.brescia.it/Members/Caduet" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.comune.pompiano.brescia.it&#39;]);" rel="external nofollow" class="url" target="blank">Morrison</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-151778">
+			December 25, 2009 at 6:42 am</a>		</div>
+
+		<p>Hi guys. So little time and so little to do. Help me! Help to find sites on the: Puasa research is not excessive in performance and however like in group, caduet.. I found only this – [URL=http://www.comune.pompiano.brescia.it/Members/Caduet/cost-of-caduet-medication]cost of caduet medication[/URL]. Caduet, what contains a deferred rent and how can it come a fridge? Caduet, fielder told dependent absence directories and the payment men for marketing enzyme. Thank <img src="./Getting Clean With PHP   Nettuts+_files/icon_surprised.gif" alt=":o" class="wp-smiley">  Morrison from Burundi.</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=151778#respond" onclick="return addComment.moveForm(&quot;div-comment-151778&quot;, &quot;151778&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-even depth-1" id="comment-313389">
+				<div id="div-comment-313389" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://1.gravatar.com/avatar/5a69b89b225ca2e17f56dec2deb20768?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://www.lifestyleluxuryrentals.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;www.lifestyleluxuryrentals.com&#39;]);" rel="external nofollow" class="url" target="blank">car guy</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-313389">
+			July 26, 2010 at 1:45 pm</a>		</div>
+
+		<p>great tips. Was looking for something like this because i was having some issues with my php. files on my site. thanks!</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=313389#respond" onclick="return addComment.moveForm(&quot;div-comment-313389&quot;, &quot;313389&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-315972">
+				<div id="div-comment-315972" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="http://0.gravatar.com/avatar/8af94a1ee967add7ac383a2910d1d943?s=80&d=http%3A%2F%2Ftutsplus.s3.amazonaws.com%2Fgeneral%2Favatar.jpg%3Fs%3D80&r=PG" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">Sathish</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-315972">
+			August 18, 2010 at 11:41 pm</a>		</div>
+
+		<p>I need this article so much, thanks a bunch.</p>
+<p>You just saved me a bunch research <img src="./Getting Clean With PHP   Nettuts+_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=315972#respond" onclick="return addComment.moveForm(&quot;div-comment-315972&quot;, &quot;315972&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-even depth-1" id="comment-318333">
+				<div id="div-comment-318333" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Getting Clean With PHP   Nettuts+_files/a01b1cec20a8223fd10655efd11d0297" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://lavideo.eu/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;lavideo.eu&#39;]);" rel="external nofollow" class="url" target="blank">Naruto shippuden</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-318333">
+			September 9, 2010 at 2:22 pm</a>		</div>
+
+		<p>Very cool tuto</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=318333#respond" onclick="return addComment.moveForm(&quot;div-comment-318333&quot;, &quot;318333&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-322166">
+				<div id="div-comment-322166" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Getting Clean With PHP   Nettuts+_files/44f3e30d387b97ee81abf26b165cb7fa" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn"><a href="http://webincrediblez.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;webincrediblez.com&#39;]);" rel="external nofollow" class="url" target="blank">webincrediblez.com</a></cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-322166">
+			October 16, 2010 at 5:47 am</a>		</div>
+
+		<p>Nice Tuts…. more please…</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=322166#respond" onclick="return addComment.moveForm(&quot;div-comment-322166&quot;, &quot;322166&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment even thread-even depth-1" id="comment-323260">
+				<div id="div-comment-323260" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Getting Clean With PHP   Nettuts+_files/0a3d31b21958b14525e71997cdc1699e" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">Troy</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-323260">
+			October 26, 2010 at 5:56 pm</a>		</div>
+
+		<p>alert(‘XSS’)</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=323260#respond" onclick="return addComment.moveForm(&quot;div-comment-323260&quot;, &quot;323260&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-355065">
+				<div id="div-comment-355065" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Getting Clean With PHP   Nettuts+_files/a6e0879a845f14346ac7df71faf9a1a1" class="avatar avatar-80 photo" height="80" width="80">		<cite class="fn">Kriss</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-2/#comment-355065">
+			February 2, 2011 at 5:48 am</a>		</div>
+
+		<p>Thanks dude, just what I need. The custom function to prepare data for the entry to the database is just the sort of thing I was looking for. Keep up the hard work guys.</p>
+
+		<div class="reply">
+		<a class="comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/?replytocom=355065#respond" onclick="return addComment.moveForm(&quot;div-comment-355065&quot;, &quot;355065&quot;, &quot;respond&quot;, &quot;6732&quot;)">Reply</a>		</div>
+				</div>
+		</li>
+  </ol>
+  
+  <div class="pagination-wrap"><div class="wp-pagenavi"><span class="pages">Comment Page 2 of 2</span><a class="prev page" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-1/#comments">«</a>
+<a class="page" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/comment-page-1/#comments">1</a>
+<span class="current">2</span></div></div>	
+
+
+<div id="respond">
+  
+  <a name="respond"></a>
+	<h1>Add a Comment</h1>
+
+		
+		<form action="http://net.tutsplus.com/wp-comments-post.php" method="post" id="commentform">
+
+		
+			<p class="input_block">
+		    <label for="author">Name</label>
+				<input type="text" name="author" class="txt" id="author" value="" size="22" tabindex="1">
+			</p>
+
+			<p class="input_block">
+		    <label for="email">Email Address</label>
+				<input type="text" name="email" class="txt" id="email" value="" size="22" tabindex="2">
+			</p>
+
+			<p class="input_block">
+		    <label for="url">URL</label>
+				<input type="text" name="url" class="txt" id="url" value="" size="22" tabindex="3">
+			</p>
+
+		
+		<p class="textarea_block">
+		  <label for="comment">Your Comments</label>
+		  <textarea name="comment" id="comment" rows="15" cols="50" tabindex="4"></textarea>
+		</p>
+		
+				<p class="textarea_block">
+		  To add a code snippet to your comment, please wrap your code like so: &lt;pre name="code" class="html"&gt;YOUR CODE&lt;/pre&gt;. You can replace the class name with "js," "css," "sql," or "php." If there are any "&lt;" or "&gt;" within your code, please search and replace them with: &amp;lt; and &amp;gt; respectively. 
+		</p>
+				
+		<div class="cancel-comment-reply">
+		  <a rel="nofollow" id="cancel-comment-reply-link" href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#respond" style="display:none;">Click here to cancel reply.</a>    </div>
+
+		<input name="submit" type="submit" id="add_comment" tabindex="5" value="Add Comment">
+		<input type="hidden" name="comment_post_ID" value="6732">
+		
+		<input type="hidden" name="comment_post_ID" value="6732" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+		<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="c6f611d5c0"></p>
+		</form><!-- /#commentform -->
+
+	
+</div><!-- /#respond -->
+
+            </div>
+          
+            	
+            
+              		  
+        </div>
+        
+      </div>
+      <!-- [END] Page -->
+
+    </div>
+    <!-- [END] Page Wrap -->
+		
+    <!-- sidebar -->
+    <div id="sidebar">
+
+      <!-- Subscriptions -->
+<div class="sidebar_subscribe">
+
+  <ul class="get_updates">
+    <li class="sm_rss"><a href="http://feeds.feedburner.com/nettuts">RSS Updates</a></li>
+    <li class="sm_email"><a href="http://feedburner.google.com/fb/a/mailverify?uri=nettuts">Email Updates</a></li>
+    <li class="sm_twitter"><a href="http://twitter.com/envatowebdev">Twitter</a></li>
+    <li class="sm_facebook"><a href="http://facebook.com/nettutsplus">Facebook</a></li>
+  </ul>
+  
+    <div class="feedburner_count s_count">
+    <span class="side-link"><em>RSS Subscribers</em> 
+      <a href="http://feeds.feedburner.com/nettuts">
+        84,351      </a>
+    </span>
+  </div>
+    
+    <div class="twitter_count s_count">
+    <span class="side-link"><em>Twitter Followers</em> 
+      <a href="http://twitter.com/envatowebdev">
+        43,389      </a>
+    </span>
+  </div>
+    
+    <div class="facebook_count s_count">
+    <span class="side-link"><em>Facebook Fans</em> 
+      <a href="http://facebook.com/nettutsplus">
+        17,513      </a>
+    </span>
+  </div>
+    
+</div>
+<!-- [END] Subscriptions -->
+
+<!-- Sidebar Ad Zone -->
+<div id="ads" style="">
+  <div id="bsap_1616" class="bsap_1616 bsap"><a href="http://stats.buysellads.com/click.go?z=1616&b=888723&g=&s=&sw=1366&sh=768&br=chrome,11,linux&r=0.95064368378371&link=http://businesscatalyst.com/landing/webapps-snippets?sdid=IJVSF" onmouseover="window.status = &#39;http://businesscatalyst.com/landing/webapps-snippets?sdid=IJVSF&#39;; return true;" onmouseout="window.status=&#39;&#39;; return true;" class="ad1 odd" title="Who needs PHP? Learn more &gt;&gt; " id="bsa_888723" target="_blank"><img src="http://s3.buysellads.com/1616/54299-1300491271.png" width="200" height="125" alt="Who needs PHP? Learn more &gt;&gt; "></a><a href="http://stats.buysellads.com/click.go?z=1616&b=277924&g=&s=&sw=1366&sh=768&br=chrome,11,linux&r=0.17971799289807677&link=http://www.fusioncharts.com/javascript/?utm_medium=web&utm_source=bsa_nettuts&utm_campaign=FC_v3_2_Mktg&utm_content=interactive_charts_web_125x125_Internal" onmouseover="window.status = &#39;http://www.fusioncharts.com/javascript/?utm_medium=web&amp;utm_source=bsa_nettuts&amp;utm_campaign=FC_v3_2_Mktg&amp;utm_content=interactive_charts_web_125x125_Internal&#39;; return true;" onmouseout="window.status=&#39;&#39;; return true;" class="ad2 even" title="FusionCharts | Interactive charts for your dynamic apps" id="bsa_277924" target="_blank"><img src="http://s3.buysellads.com/1616/20344-1270041223.jpg" width="200" height="125" alt="FusionCharts | Interactive charts for your dynamic apps"></a><a href="http://stats.buysellads.com/click.go?z=1616&b=1216825&g=&s=&sw=1366&sh=768&br=chrome,11,linux&r=0.977178939152509&link=http://clk.atdmt.com/SHS/go/335245355/direct/01/" onmouseover="window.status = &#39;http://clk.atdmt.com/SHS/go/335245355/direct/01/ &#39;; return true;" onmouseout="window.status=&#39;&#39;; return true;" class="ad3 odd" title="stock photos" id="bsa_1216825" target="_blank"><img src="http://s3.buysellads.com/1238193/64764-1308258840.jpg" width="200" height="125" alt="stock photos"></a><a href="http://stats.buysellads.com/click.go?z=1616&b=1025310&g=&s=&sw=1366&sh=768&br=chrome,11,linux&r=0.7224594487342983&link=http://mediatemple.net/?utm_source=nettuts&utm_medium=banner&utm_content=200x125bug&utm_campaign=branding" onmouseover="window.status = &#39;http://mediatemple.net/?utm_source=nettuts&amp;utm_medium=banner&amp;utm_content=200x125bug&amp;utm_campaign=branding&#39;; return true;" onmouseout="window.status=&#39;&#39;; return true;" class="ad4 even" title="(mt) Media Temple Web Hosting Built to Scale" id="bsa_1025310" target="_blank"><img src="http://s3.buysellads.com/1616/57258-1302797867.png" width="200" height="125" alt="(mt) Media Temple Web Hosting Built to Scale"></a><a href="http://stats.buysellads.com/click.go?z=1616&b=505771&g=&s=&sw=1366&sh=768&br=chrome,11,linux&r=0.07179985521361232&link=http://www.xhtmlchop.com" onmouseover="window.status = &#39;http://www.xhtmlchop.com&#39;; return true;" onmouseout="window.status=&#39;&#39;; return true;" class="ad5 odd" title="PSD to Html" id="bsa_505771" target="_blank"><img src="http://s3.buysellads.com/1616/31840-1279649837.gif" width="200" height="125" alt="PSD to Html"></a><a href="http://stats.buysellads.com/click.go?z=1616&b=471590&g=&s=&sw=1366&sh=768&br=chrome,11,linux&r=0.472506056772545&link=http://www.sencha.com/signup/touch/?ls=Advertisement&ss=Nettuts-side-map-tn" onmouseover="window.status = &#39;http://www.sencha.com/signup/touch/?ls=Advertisement&amp;ss=Nettuts-side-map-tn&#39;; return true;" onmouseout="window.status=&#39;&#39;; return true;" class="ad6 even" title="Build amazing mobile apps with HTML5 &amp; CSS3" id="bsa_471590" target="_blank"><img src="http://s3.buysellads.com/1616/29535-1277364933.png" width="200" height="125" alt="Build amazing mobile apps with HTML5 &amp; CSS3"></a><a href="http://stats.buysellads.com/click.go?z=1616&b=993573&g=&s=&sw=1366&sh=768&br=chrome,11,linux&r=0.7739684744738042&link=http://www.squarespace.com/signup2/?source=nettuts2&campaign=createwebsites&utm_source=nettuts2&utm_medium=banner&utm_campaign=createwebsites" onmouseover="window.status = &#39;http://www.squarespace.com/signup2/?source=nettuts2&amp;campaign=createwebsites&amp;utm_source=nettuts2&amp;utm_medium=banner&amp;utm_campaign=createwebsites&#39;; return true;" onmouseout="window.status=&#39;&#39;; return true;" class="ad7 odd" title="Squarespace | Create beautiful websites." id="bsa_993573" target="_blank"><img src="http://s3.buysellads.com/1253288/55080-1301083376.png" width="200" height="125" alt="Squarespace | Create beautiful websites."></a><a href="http://stats.buysellads.com/click.go?z=1616&b=180337&g=&s=&sw=1366&sh=768&br=chrome,11,linux&r=0.8115110201761127&link=http://www.psd2html.com/order-now.html" onmouseover="window.status = &#39;http://www.psd2html.com/order-now.html&#39;; return true;" onmouseout="window.status=&#39;&#39;; return true;" class="ad8 even" title="PSD to HTML" id="bsa_180337" target="_blank"><img src="http://s3.buysellads.com/1616/45254-1292253003.jpg" width="200" height="125" alt="PSD to HTML"></a><a href="http://buysellads.com/buy/detail/197/zone/1616?utm_source=site_197_zone_1616&utm_medium=website&utm_campaign=adhere" title="Advertise Here" class="adhere ad9 odd" target="_blank">Advertise Here</a></div>  <a href="http://buysellads.com/buy/view/id/197" class="side_advert_here">Advertise Here</a>
+</div>
+<script type="text/javascript">
+  if (!plus_member_logged_in()) {
+    $('#ads').show()
+  }
+</script>
+<!-- [END] Sidebar Ad Zone -->
+
+
+<!-- Plus Members -->
+
+<div id="plus-sidebar-logged-out" style="">
+  <img src="http://net.tutsplus.com/wp-content/themes/tuts/images/global/access-premium.jpg" alt="Become a member for access to over 500 bonus tutorials and 1000 source files.">
+  <a href="http://tutsplus.com/amember/go.php?r=51841&i=l2" id="plus-big-button" rel="external" target="blank">Learn More...</a>
+  <p>Already a member? <a href="http://tutsplus.com/amember/login.php?amember_redirect_url=http://net.tutsplus.com/tutorials/php/getting-clean-with-php/">Sign In</a></p>
+</div>
+
+<div class="plus_member" id="plus-sidebar-logged-in" style="display: none">
+  <div class="plus_icon">
+    Plus Icon
+  </div>
+  <div class="plus_text">
+    <h3>Hello!</h3>
+    <p>Source Files, Bonus Tutorials &amp; More for all relevant Tuts+ sites in one subscription</p>
+    <ul>
+      <li><a href="http://tutsplus.com/plus-content/">Members Area</a></li>
+      <li><a id="sidebar_logout_link" href="http://tutsplus.com/amember/logout.php?amember_redirect_url=http://net.tutsplus.com/tutorials/php/getting-clean-with-php/">Logout</a></li>
+    </ul>
+  </div>
+</div>
+
+<script type="text/javascript">
+  if ( plus_member_logged_in() ) {
+    $('#plus-sidebar-logged-in').show()
+  } else {
+    $('#plus-sidebar-logged-out').show()
+  }
+</script>
+
+<!-- [END] Plus Members -->
+
+<!-- Rockable Book -->
+      <div class="rockable_book">
+        <div class="rockable_book_icon">
+          <a href="http://rockablepress.com/books/rockstar-wordpress-designer/" rel="external nofollow" target="blank"><img src="http://rockable.s3.amazonaws.com/covers/135_wordpress.png" alt="Rockstar WordPress Designer"></a>
+        </div>
+        <div class="rockable_book_text">
+      		<h3 class="side-link"><a href="http://rockablepress.com/books/rockstar-wordpress-designer/" rel="external nofollow" target="blank">Rockstar WordPress Designer</a></h3>
+          <p>You’ll build THREE WordPress themes before the end of the book. Each project teaches you different aspects of WordPress theming and all three are packaged in with the book so you’ll have Photoshop, HTML, CSS and WordPress PHP files to refer to.</p>
+          <ul>
+            <li><a href="http://rockablepress.com/books/rockstar-wordpress-designer/" rel="external nofollow" target="blank">Find Out More</a></li>
+          </ul>
+        </div>
+      </div>
+<!-- [END] Rockable Book -->
+
+<!-- Series/Session -->
+<!-- [END] Series/Session -->
+
+<!-- Snipplr -->
+<!-- [END] Snipplr -->
+
+<!-- Social Networking -->
+<div id="social_networking" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+
+  <ul class="tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#facebook_tab" class="tab_2">Facebook</a></li>
+		<li class="ui-state-default ui-corner-top"><a href="http://net.tutsplus.com/tutorials/php/getting-clean-with-php/#twitter_tab" class="tab_1">Twitter</a></li>			</ul>
+  
+  <!-- Facebook -->  
+  <div id="facebook_tab" class="tab_div ui-tabs-panel ui-widget-content ui-corner-bottom" style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(216, 216, 216); border-right-color: rgb(216, 216, 216); border-bottom-color: rgb(216, 216, 216); border-left-color: rgb(216, 216, 216); background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial; "><div class="facebook_wrap"><fb:like-box href="http://facebook.com/nettutsplus" width="296" height="300" stream="false" connections="10" class=" fb_iframe_widget_loader fb_iframe_widget fb_hide_iframes"><div class="FB_Loader"></div><span><iframe id="f1cdfc47d" name="f687aa1d4" scrolling="no" style="border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; height: 300px; width: 296px; " class="fb_ltr" src="http://www.facebook.com/plugins/likebox.php?channel=http%3A%2F%2Fstatic.ak.fbcdn.net%2Fconnect%2Fxd_proxy.php%3Fversion%3D3%23cb%3Df21406a25%26origin%3Dhttp%253A%252F%252Fnet.tutsplus.com%252Ff1ef0d4d5c%26relation%3Dparent.parent%26transport%3Dpostmessage&colorscheme=light&connections=10&header=true&height=300&href=http%3A%2F%2Ffacebook.com%2Fnettutsplus&locale=en_US&sdk=joey&show_faces=true&stream=false&width=296"></iframe></span></fb:like-box></div></div>
+  <!-- [END] Facebook -->
+  
+  <!-- Twitter -->
+    <div id="twitter_tab" class="tab_div ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
+    <h3>Follow <a href="http://twitter.com/envatowebdev">Nettuts+</a> and <a href="http://twitter.com/tutsplus">Tuts+</a> on Twitter</h3>
+    <ul><li><a href="http://www.twitter.com/Sitebase">@Sitebase</a> Press r</li><li>Brand new AudioJungle Podcast Out Now! If you like <a href="http://twitter.com/#search?q=%23Dubstep" rel="external" target="blank">#Dubstep</a>, you're in for a big treat! <a href="http://enva.to/traxpodcast">http://enva.to/traxpodcast</a></li><li><a href="http://www.twitter.com/GoGoGarrett">@GoGoGarrett</a> Disabled right now.</li><li>So this is the part where I go to competing social networks and say, "Let's be friends on Google+" - <a href="http://t.co/NACIwpv">http://t.co/NACIwpv</a></li></ul>  </div>
+    <!-- [END] Twitter -->
+  
+  <!-- Flickr -->
+    <!-- [END] Flickr -->
+
+</div>
+<!-- [END] Social Networking -->
+
+<!-- MailChimp -->
+<!-- [END] MailChimp -->
+
+<!-- Popular Marketplace Items --><div class="marketplace-wrap"><div class="marketplace-popular"><div class="site-codecanyon"><h3>Top Selling</h3> <span>on <a href="http://codecanyon.net/?ref=NetPremium" rel="external nofollow" target="blank">Codecanyon</a></span></div><ul><li><a href="http://codecanyon.net/item/css3-mega-drop-down-menu/126387?ref=NetPremium" rel="external nofollow" title="CSS3 Mega Drop Down Menu" target="blank"><img src="http://s3.envato.com/files/2399515/thumbnail.jpg" alt="" width="80" height="80">CSS3 Mega Drop Down Menu only $5.00 <span>by Keliah</span></a></li><li><a href="http://codecanyon.net/item/sticklr-sticky-side-panel-css3-jquery-plugin/302039?ref=NetPremium" rel="external nofollow" title="Sticklr - Sticky Side Panel CSS3 + jQuery Plugin" target="blank"><img src="http://s3.envato.com/files/3474037/sticklr-thumb.png" alt="" width="80" height="80">Sticklr - Sticky Side Panel  ... only $5.00 <span>by amatyr4n</span></a></li></ul></div></div><!-- [END] Popular Marketplace Items -->
+<div class="marketplace-popular"><div class="site-tutsmarketplace"><h3>New Tutorials</h3> <span>on <a href="http://marketplace.tutsplus.com/?ref=NetPremium" rel="external nofollow" target="blank">Tuts+ Marketplace</a></span></div><ul><li><a href="http://marketplace.tutsplus.com/item/create-a-media-player-and-playlist/310130?ref=NetPremium" rel="external nofollow" title="Create a Media Player and Playlist" target="blank"><img src="./Getting Clean With PHP   Nettuts+_files/media_thumb(1).jpg" alt="" width="80" height="80">Create a Media Player and Pl ... only $3.00 <span>by NetPremium</span></a></li><li><a href="http://marketplace.tutsplus.com/item/diving-into-websockets/299931?ref=NetPremium" rel="external nofollow" title="Diving into WebSockets" target="blank"><img src="./Getting Clean With PHP   Nettuts+_files/websockets(1).jpg" alt="" width="80" height="80">Diving into WebSockets only $4.00 <span>by NetPremium</span></a></li></ul></div>
+<!-- Sessions -->
+<!-- [END] Sessions -->
+
+<!-- Creattica Images -->
+<div class="creattica">
+  <a href="http://feedproxy.google.com/~r/creattica-css/~3/hzXaZgKPWtA/63137" rel="external nofollow" target="blank"><img src="./Getting Clean With PHP   Nettuts+_files/320x260.jpg" alt="" class="creattica_item"></a><p>Jad Limcaco - San Jose Web Designer - <a href="http://creattica.com/css/latest-designs" rel="external nofollow" target="blank">More</a></p><span class="creattica_img"></span></div>
+<!-- [END] Creattica Images -->
+
+<!-- Jobs -->
+<div id="fsjobs">
+   
+	<div id="fsjobs_header">
+		Freelance Jobs
+	</div>
+	<div id="fsjobs_body">
+    <ul id="fsjobs_list">
+    </ul>
+    <span class="side_job_number"> </span>
+    <a href="http://jobs.freelanceswitch.com/" class="more_jobs" title="Freelance Job Board">More Freelance Jobs...</a>
+  </div>
+</div>
+<!-- [END] Jobs -->
+
+<!-- Basix -->
+<div class="side_basix">
+
+  <div class="basix_logo">
+    Basix
+  </div>
+  
+  <div class="basix_text">
+    <h3 class="side-link"><a href="http://net.tutsplus.com/tag/basix/">
+    Web Basix</a></h3>
+    <p>Just getting started? Start with our basix tutorials on the fundamentals. <a href="http://net.tutsplus.com/tag/basix/">View All Basix Tutorials</a></p>
+  </div>
+  
+</div>
+<!-- [END] Basix -->
+
+<!-- Write For Us -->
+<div class="write_for_us">
+
+  <h3 class="side-link"><a href="http://net.tutsplus.com/about/write-a-tutorial/">Create a Tutorial, Get Paid!</a></h3>
+  <p>Have something to teach the world? Want to earn money doing it? Tutorials, screencasts, and articles published here on Nettuts+ are largely contributed by readers just like you! We'll pay you great money for good content. <a href="http://net.tutsplus.com/about/write-a-tutorial/">Find Out More</a></p>
+  
+</div>
+<!-- [END] Write For Us -->
+
+<!-- Other Networks -->
+<div class="other_networks">
+    <div class="network smashing">
+    <h3 class="side-link"><a href="http://www.smashingmagazine.com/the-smashing-network/" rel="external nofollow" title="Link to the Smashing Network" target="blank">Smashing</a></h3>
+    <p>This site is part of the Smashing network.</p>
+  </div>
+  </div>
+<!-- [END] Other Networks -->
+      
+    </div>
+    <!-- [END] Sidebar -->
+	
+  </div>
+  <!-- [END] Content -->
+  
+</div>
+<!-- [END] Content Wrap -->
+
+<!-- Footer -->
+<div id="footer_wrap">
+  <div id="footer">
+    <div class="footer_inner">
+    
+      <div class="power_up">
+        <a href="http://net.tutsplus.com/" class="footer_logo">Nettuts+</a>
+        <p class="plus_network">Part of the Plus education network</p>
+        <a href="http://envato.com/" class="powered_by">Powered by: Envato</a>
+      </div>
+      
+      <ul class="get_updates">
+        <li class="sm_rss"><a href="http://feeds.feedburner.com/nettuts">RSS Updates</a></li>
+        <li class="sm_email"><a href="http://feedburner.google.com/fb/a/mailverify?uri=nettuts">Email Updates</a></li>
+        <li class="sm_twitter"><a href="http://twitter.com/envatowebdev">Twitter</a></li>
+        <li class="sm_facebook"><a href="http://facebook.com/nettutsplus">Facebook</a></li>
+      </ul>
+      
+      <ul class="footer_links">
+        <li class="first">Copyright © 2011 <a href="http://envato.com/">Envato</a></li>
+        <li><a href="http://buysellads.com/buy/view/id/197">Advertise</a></li>
+        <li><a href="http://www.formstack.com/forms/envato-tuts__contact_form">Suggestions</a></li>
+        <li><a href="http://net.tutsplus.com/about/">About Us</a></li>
+        <li><a href="http://wefunction.com/" rel="nofollow external" target="blank">Icons by WeFunction</a></li>
+              </ul>
+      
+    </div>
+  </div>
+</div>
+<!-- [END] Footer -->
+
+<script type="text/javascript">
+  // Sample image replacement
+  $(window).load(function(){
+    var regex = /sample.png/;
+    var newimage = 'http://net.tutsplus.com/wp-content/themes/tuts/images/global/adhere_330.jpg';
+    if($('img', '.bsa_it_i').attr("src",regex)) {
+      $('img', '.bsa_it_i').attr("src",newimage);
+    } 
+  });
+
+  // comment-ribbon 
+  $(function() {
+    $('.is-staff, .is-author').addClass('highlighted').children('div').wrapInner('<div class="wrap-comment" />');
+  });
+
+  // session list text
+	/*
+$('.session-list li').hover(function(){
+    $(".session-block", this).slideDown('fast');
+	}, function() {
+		$(".session-block", this).stop(true, true).slideUp('fast');
+	});
+*/
+  (function($) {
+    $(document).ready(function() {
+      var list_count = $('.single-post .session-list ul').children().length;
+      if ( list_count > 1 ) {
+        $('.single-post .session-post em').append(' - <a href="JavaScript:void(0);" class="show-all">Show All</a>');
+      }
+      $('a.show-all').click(function() {
+        $('.session-list').toggle();
+      });
+    });
+  })(jQuery);
+</script>
+<script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/widget.js"></script>
+				<script type="text/javascript"><!--
+			var seriesdropdown = document.getElementById("orgseries_dropdown");
+			if (seriesdropdown) { 
+			 function onSeriesChange() {
+					if ( seriesdropdown.options[seriesdropdown.selectedIndex].value != ( 0 || -1 ) ) {
+						location.href = "http://net.tutsplus.com/series/"+seriesdropdown.options[seriesdropdown.selectedIndex].value;
+					}
+				}
+				seriesdropdown.onchange = onSeriesChange;
+			}
+			--></script>
+			<script type="text/javascript">
+/* <![CDATA[ */
+var mcapi = {
+	url: "http://net.tutsplus.com/wp-content/themes/tuts/functions/mc/mail-chimp.php"
+};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Getting Clean With PHP   Nettuts+_files/mail-chimp.js"></script>
+<script class="javascript" src="./Getting Clean With PHP   Nettuts+_files/shCore.js"></script>
+<script class="javascript" src="./Getting Clean With PHP   Nettuts+_files/shBrushAll.js"></script>
+	<script class="javascript">
+dp.SyntaxHighlighter.ClipboardSwf = 'http://net.tutsplus.com/wp-content/plugins/google-syntax-highlighter/Scripts/clipboard.swf';
+dp.SyntaxHighlighter.HighlightAll('code');
+</script><style>.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style>.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style>.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style>.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style>.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style>.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style>.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style>.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style>.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style>.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style>
+<script type="text/javascript" charset="utf-8">NREUMQ.push(["nrf2","beacon-1.newrelic.com","fcf8d519de",85036,"WQQXTEVBTUJBWk0WH1QODk1FQU1eQ19ZCUIYEQsSHlNcRUVfVgIcVA0GA18ZTlhFXhUVWUdO",0,910])</script><!-- 150 queries. 0.910 seconds -->
+
+
+
+<!-- Dynamic Page Served (once) in 0.911 seconds -->
+<div id="envato-widget" class="widget-reset" style="display: none; "><div id="envato-widget-switcher-wrap" style="display: none; "><div id="envato-widget-switcher"><ul class="switcher-list-left"><li><a href="http://envato.com/" rel="nofollow"><span class="widget-icon icon-envato"> </span>Envato</a></li><li><a href="http://themeforest.net/" rel="nofollow"><span class="widget-icon icon-themeforest"> </span>ThemeForest</a></li><li><a href="http://graphicriver.net/" rel="nofollow"><span class="widget-icon icon-graphicriver"> </span>GraphicRiver</a></li><li><a href="http://videohive.net/" rel="nofollow"><span class="widget-icon icon-videohive"> </span>VideoHive</a></li><li><a href="http://audiojungle.net/" rel="nofollow"><span class="widget-icon icon-audiojungle"> </span>AudioJungle</a></li><li><a href="http://codecanyon.net/" rel="nofollow"><span class="widget-icon icon-codecanyon"> </span>CodeCanyon</a></li><li><a href="http://activeden.net/" rel="nofollow"><span class="widget-icon icon-activeden"> </span>ActiveDen</a></li><li><a href="http://3docean.net/" rel="nofollow"><span class="widget-icon icon-3docean"> </span>3DOcean</a></li><li><a href="http://marketplace.tutsplus.com/" rel="nofollow"><span class="widget-icon icon-tutsmarketplace"> </span>Tuts+ Marketplace</a></li><li><a href="http://mac.appstorm.net/" rel="nofollow"><span class="widget-icon icon-mac"> </span>Mac.Appstorm</a></li><li><a href="http://web.appstorm.net/" rel="nofollow"><span class="widget-icon icon-web"> </span>Web.Appstorm</a></li><li><a href="http://iphone.appstorm.net/" rel="nofollow"><span class="widget-icon icon-iphone"> </span>iPhone.Appstorm</a></li><li><a href="http://android.appstorm.net/" rel="nofollow"><span class="widget-icon icon-android"> </span>Android.Appstorm</a></li><li><a href="http://ipad.appstorm.net/" rel="nofollow"><span class="widget-icon icon-ipad"> </span>iPad.Appstorm</a></li><li><a href="http://windows.appstorm.net/" rel="nofollow"><span class="widget-icon icon-windows"> </span>Windows.Appstorm</a></li></ul><ul class="switcher-list-right"><li><a href="http://freelanceswitch.com/" rel="nofollow"><span class="widget-icon icon-freelanceswitch"> </span>FreelanceSwitch</a></li><li><a href="http://jobs.freelanceswitch.com/" rel="nofollow"><span class="widget-icon icon-freelanceswitch-jobs"> </span>Freelance Jobs</a></li><li><a href="http://rockablepress.com/" rel="nofollow"><span class="widget-icon icon-rockablepress"> </span>Rockable Press</a></li><li><a href="http://tutsplus.com/" rel="nofollow"><span class="widget-icon icon-tutsplus"> </span>Tuts+ Premium</a></li><li><a href="http://psd.tutsplus.com/" rel="nofollow"><span class="widget-icon icon-psdtuts"> </span>Psdtuts+</a></li><li><a href="http://net.tutsplus.com/" rel="nofollow"><span class="widget-icon icon-nettuts"> </span>Nettuts+</a></li><li><a href="http://vector.tutsplus.com/" rel="nofollow"><span class="widget-icon icon-vectortuts"> </span>Vectortuts+</a></li><li><a href="http://audio.tutsplus.com/" rel="nofollow"><span class="widget-icon icon-audiotuts"> </span>Audiotuts+</a></li><li><a href="http://ae.tutsplus.com/" rel="nofollow"><span class="widget-icon icon-aetuts"> </span>Aetuts+</a></li><li><a href="http://active.tutsplus.com/" rel="nofollow"><span class="widget-icon icon-activetuts"> </span>Activetuts+</a></li><li><a href="http://cg.tutsplus.com/" rel="nofollow"><span class="widget-icon icon-cgtuts"> </span>Cgtuts+</a></li><li><a href="http://photo.tutsplus.com/" rel="nofollow"><span class="widget-icon icon-phototuts"> </span>Phototuts+</a></li><li><a href="http://mobile.tutsplus.com/" rel="nofollow"><span class="widget-icon icon-mobiletuts"> </span>Mobiletuts+</a></li><li><a href="http://webdesign.tutsplus.com/" rel="nofollow"><span class="widget-icon icon-webdesigntuts"> </span>Webdesigntuts+</a></li><li><a href="http://creattica.com/" rel="nofollow"><span class="widget-icon icon-creattica"> </span>Creattica</a></li></ul></div><span class="switcher-arrow"></span></div><div id="envato-search-wrap" style="display: none; "><div id="envato-search"><form action="" method="post" id="ew-form"><input name="search" type="text" value="" class="ew-input"><input type="submit" value="Submit" class="ew-button"></form></div><span class="switcher-arrow"></span></div><div id="envato-support-wrap" style="display: none; "><div id="envato-support"><span class="envato-widget-title">Envato Support</span><ul class="support-list"><li><a href="http://support.envato.com/support/" rel="nofollow"><span class="widget-icon icon-envato-support-center"> </span>Envato Support Center</a></li><li><a href="http://wiki.envato.com/" rel="nofollow"><span class="widget-icon icon-envato-wiki"> </span>Envato Wiki</a></li><li><a href="http://twitter.com/envato_support" rel="nofollow"><span class="widget-icon icon-envato-support-twitter"> </span>Envato Support Twitter</a></li></ul></div><span class="switcher-arrow"></span></div><div id="envato-community-wrap" style="display: none; "><div id="envato-community"><span class="envato-widget-title">Envato Community</span><ul class="community-list"><li><a href="http://notes.envato.com/" rel="nofollow"><span class="widget-icon icon-envato-notes"> </span>Envato Notes</a></li><li><a href="http://notes.envato.com/newsletter/" rel="nofollow"><span class="widget-icon icon-envato-newsletter"> </span>Envato Newsletter</a></li><li><a href="http://notes.envato.com/category/podcasts/" rel="nofollow"><span class="widget-icon icon-envato-podcast"> </span>Envato Podcast</a></li><li><a href="http://wp.envato.com/" rel="nofollow"><span class="widget-icon icon-wp-envato"> </span>WP.Envato</a></li><li><a href="http://elite.envato.com/" rel="nofollow"><span class="widget-icon icon-envato-elite"> </span>Envato Elite</a></li><li><a href="http://www.flickr.com/photos/we-are-envato" rel="nofollow"><span class="widget-icon icon-envato-flickr"> </span>Envato Flickr</a></li><li><a href="http://twitter.com/envato" rel="nofollow"><span class="widget-icon icon-envato-twitter"> </span>Envato Twitter</a></li><li><a href="http://www.facebook.com/envato" rel="nofollow"><span class="widget-icon icon-envato-facebook"> </span>Envato Facebook</a></li><li><a href="http://www.slideshare.net/envato" rel="nofollow"><span class="widget-icon icon-envato-slideshare"> </span>Envato Slideshare</a></li><li><a href="http://dribbble.com/envato" rel="nofollow"><span class="widget-icon icon-envato-dribbble"> </span>Envato Dribbble</a></li><li><a href="https://github.com/envato" rel="nofollow"><span class="widget-icon icon-envato-github"> </span>Envato Github</a></li></ul></div><span class="switcher-arrow"></span></div><a href="javascript:void(0);" class="widget-button envato" rel="nofollow">envato</a><a href="javascript:void(0);" class="widget-button search" rel="nofollow">search</a><a href="javascript:void(0);" class="widget-button support" rel="nofollow">support</a><a href="javascript:void(0);" class="widget-button community" rel="nofollow">community</a></div></body></html>

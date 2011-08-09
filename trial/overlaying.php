@@ -1,0 +1,49 @@
+<?php
+
+
+
+
+
+
+?>
+<html>
+<head>
+<script src="http://localhost/take/jquery/jquery.tools.min.js"></script>
+<style>
+#overlay{display:none;
+			background-color:red;
+			text-align:center;
+			margin :auto;
+			height:100px;width:100px;;
+			width:90%;
+			z-index:10;
+				position:absolute;
+				top:50px;
+				left:50px;}
+#central{padding-top:50px;
+			background-color:yellow;
+			text-align:center;
+			margin :auto;
+			height:100%;
+			width:100%;
+			z-index:4;}
+
+</style>
+</head>
+<body>
+
+<div id="central">
+<p>it contains all the basic html and the other things needed like the button click and others<button id="thebutton">click here</button></p>
+</div>
+<div id="overlay">
+this is the div what id do is use this div as to mask over the other divs on a button click
+<button id="othbutton">close</button>
+
+</div>
+
+<script type="text/javascript" >
+$(document).ready (function(){$("#thebutton").click(function(){$("#overlay").css("display","block");});//$("#central p").hide();
+										$("#othbutton").click(function(){$("#overlay").css("display","none");$("#central p").show();});});
+</script>
+</body>
+</html>

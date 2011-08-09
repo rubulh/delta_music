@@ -1,0 +1,435 @@
+<?php 
+require_once("/var/www/take/files/thekey.php");
+require_once("/var/www/take/files/functions/trackker.php");
+require_once("/var/www/take/files/functions/randomstring.php");
+session_start();
+trackker();
+//ONE HAS TO FIX THIS LINE;;SEE IF IT CAN BE DONE WITHOUT USING DIRECT FILE NAMES AND FOLDER NAMES
+?>
+<?php
+//code_to extract the registration timestamp of the user
+
+//var_dump($_SESSION);
+$connection_me=mysqli_connect($_SERVER['HTTP_HOST'],$sqlusername,$sqlpassword,$databasename);
+$email_id_me=$_SESSION['email_id'];//email_id unique
+$query_to_me="select registration_timestamp, username,friends,profile_string from users_basic where email_id='$email_id_me'";
+$result_to_me=mysqli_query($connection_me,$query_to_me);
+$answer_to_me=mysqli_fetch_array($result_to_me);
+$registration_timestamp_me=$answer_to_me['registration_timestamp'];
+$username_me=$answer_to_me['username'];
+$allfriends_string=$answer_to_me['friends'];
+$my_profile_string=$answer_to_me['profile_string'];
+$database_me=$username_me.'___'.$email_id_me.'___'.$registration_timestamp_me;
+
+$database_connected_me=mysqli_select_db($connection_me,$database_me);
+
+?>
+<html>
+<head>
+<script src="<?=$JQUERY?>/jquery.tools.min.js"></script>
+<style>
+body{background-image:url(<?=$IMAGE?>/basic.png);}
+#complete{float:right;
+          
+          width:83%;
+          height:100%;
+          overflow:hidden;
+          border-style:groove;
+	       }
+#container{float:center;
+           overflow:hidden;
+           width:100%;
+           height:82%;
+          
+           margin-top:0px;
+           margin-bottom:1px;
+           margin-left:0px;
+           margin-right:0px;
+           }	       
+#headbar{width:100%;
+			float:center;
+			height:7%;
+			border-style:groove;
+			background-color:#9999CC;
+			opacity:0.7;}  
+#panelbar{width:100%;
+			height:10%;
+			border-style:groove;
+			border-bottom:0;
+			
+			}
+
+.panel{width:85%;
+		height:94%;
+		
+		border:0;
+		
+		
+		}
+.paneltabs{width:14%;
+				height:76%;
+				border-style:ridge;
+				float:left;
+				background-color:#666699;
+				opacity:0.7;
+				border-left-color:gray;
+				border-right-color:gray;
+				border-bottom:0;
+				//border-left:none;
+				text-align:center;
+				padding-top:14px;
+				//border-bottom-color:#666699;
+			}
+div.paneltabs.current{background-color:#666699;opacity:1.0;border-bottom:0;height:77%;border-style:inset;}				
+.panes{
+		width:100%;
+		height:99%;
+		//border-style:ridge;
+		//border-color:#6666CC;
+		
+		}
+.panes div{display:none;
+				}
+.panecontents{width:100%;
+					height:100%;
+					border-style:dotted;
+					border-color:silver;
+					border-left:none;
+					border-right:none;
+					border-top:none;
+					background-color:#666699;
+					//opacity:0.8;
+					text-align:left;
+					overflow:scroll;
+					}								         
+.anchoraccordionlinksnavigation{text-decoration:none;}
+.accordionlinksnavigation{width:20%;height:40%;margin-left:2px;margin-right:3px;float:left;border-style:dotted;}							         
+#accordion{
+	
+	width:2000px;
+	margin-top:2px;
+	margin-bottom:5px;
+	padding-right:7px;
+	height:18%;
+	float:left;
+	border-top-style:groove;
+	border-top-color:silver;
+	overflow:hidden;
+	}
+#accordion img {
+	float:left;
+	margin-right:-1px;
+	margin-left:5px;
+	margin-top: 2px;
+	cursor:pointer;
+	opacity:0.5;
+	filter: alpha(opacity=50);
+	}
+	
+	
+#accordion img.current {
+	cursor:default;
+	opacity:1;
+	filter: alpha(opacity=100);
+}
+
+.insideaccordion{
+	width:0px;
+	float:left;	
+	display:none;		
+	margin-right:10px;
+}
+</style>
+</head>
+<body>
+<div id="complete">
+	<div id="container">
+		<div id="headbar">
+		<pre><b>  	ME</b>											you are logged in as<?="$username_me"?></pre> 
+		</div>
+		<div id="panelbar">
+			<div class="panel">
+					<div class="paneltabs">wall</div>
+					<div class="paneltabs">info</div>
+					<div class="paneltabs">about me</div>
+               			<div class="paneltabs">contacts</div>
+					<!-- <div class="paneltabs"><a href="<?// = $FILE/view.php?>" style="text-decoration:none;">view</a></div>
+					-->
+					<div class="paneltabs">friends</div>
+			</div>
+		</div>
+		
+<?php
+
+
+
+
+		
+		
+?>		
+		<div class="panes">
+			<div class="panecontents">
+			<!--<div class="mainpane" style="width:100%;height:100%;">-->
+			   <div class="alltogether">
+				
+					
+					<?php
+						//..database is the user specific database
+						$query_to_get_notifications="select * from all_notifications order by notification_timestamp desc";//should i limit
+						$result_to_get_notifications=mysqli_query($connection_me,$query_to_get_notifications)or die(mysqli_error($connection_me));
+						$counter_to_note_the_number_of_notifications=0;
+							while(false!=($one_notification_array=mysqli_fetch_array($result_to_get_notifications)))
+								{
+									if((($counter_to_note_the_number_of_notifications)%5)==0){echo "<div>";}//five on a scroll
+										//code to create the inside divs
+										{
+										//fields are
+										/*
+										notification_timestamp,
+										notification_time_24,
+										notification_date,
+										notification_by_email,
+										notification_by,
+										notification_category,
+										notification_details,
+										notified_song--contains the id for anchor
+										*/
+										
+										//not sure if as to put download in notification
+										$one_notification_array_notification_timestamp=$one_notification_array['notification_timestamp'];
+										$one_notification_array_notification_time_24=$one_notification_array['notification_time_24'];
+										$one_notification_array_notification_date=$one_notification_array['notification_date'];
+										$one_notification_array_notification_by_email=$one_notification_array['notification_by_email'];
+										$one_notification_array_notification_by=$one_notification_array['notification_by'];
+										$one_notification_array_notification_by=$one_notification_array['notification_by_profile_string'];
+										$one_notification_array_notification_category=$one_notification_array['notification_category'];
+										$one_notification_array_notification_details=$one_notification_array['notification_details'];
+										//for a song uplad and download the details are empty
+										//for a comment i have stored the comment
+										$one_notification_array_notified_song=$one_notification_array['notified_song'];
+										$one_notification_array_notified_song_title=$one_notification_array['notified_song_title'];
+												{//construct the div here
+												echo "
+												<div class='smalldivnsiderollup'>
+													<b>$one_notification_array_notification_date</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>$one_notification_array_notification_time_24</i><br><b>$one_notification_array_notification_by</b>";//one inside scroll
+													$thelink_to_the_song_anchor="'$THEALLSONGANCHOR'.'$one_notification_array_notified_song'";
+													if($one_notification_array_notification_category=='upload'){echo "uploaded <a href='$thelink_to_the_song_anchor' style='font-weight:700;'>$one_notification_array_notified_song_title</a><br>";}
+
+													if($one_notification_array_notification_category=='download'){echo "downloaded <a href='$thelink_to_the_song_anchor' style='font-weight:700;'>$one_notification_array_notified_song_title</a><br>";}
+
+
+
+													if($one_notification_array_notification_category=='rate'){echo "rated <a href='$thelink_to_the_song_anchor' style='font-weight:700;'>$one_notification_array_notified_song_title</a>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;$one_notification_array_notification_details<br>";}
+
+													if($one_notification_array_notification_category=='comment'){echo "commented on <a href='$thelink_to_the_song_anchor' style='font-weight:700;'>$one_notification_array_notified_song_title</a>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;$one_notification_array_notification_details<br>";}
+
+
+
+
+												echo "</div>";//one at imside scroll
+
+												}									 
+	
+									}
+								
+									if((($counter_to_note_the_number_of_notifications)%5)==0)
+									{echo "</div>";}//five on a scroll
+
+								}
+							if($counter_to_note_the_number_of_notifications==0)
+							{
+							//this will never happen cause i ll add the first notification on the registration itself	
+							}
+			
+
+					?>					
+				
+			   </div><!-- altogether -->
+			<!--</div>--><!--mainpane-->
+			</div><!-- panecontents -->
+			
+			
+			
+			<div class="panecontents" style="text-align:center;">
+			<?php
+			//..database is the user specific database
+			$query_contacts="select * from usercomplete ";
+			$query_next_three_panes=mysqli_query($connection_me,$query_contacts);//or die(mysqli_error($connection_me));
+			//this single query gives all the next three panecontents
+			/*
+			fields for usercomplete-don't need email-id
+			name
+			course
+			branch
+			year
+			dob
+			about me??decode html
+			contacts-phone//for now make it work
+			email
+			*/
+				{//var_dump(mysqli_error($connection_me));
+					//fetch and extract the values from the array
+					$next_three_panes_result_fetched=mysqli_fetch_array($query_next_three_panes);
+					$next_three_panes_result_fetched_name=$next_three_panes_result_fetched['name'];
+					$next_three_panes_result_fetched_course=$next_three_panes_result_fetched['course'];
+					$next_three_panes_result_fetched_branch=$next_three_panes_result_fetched['branch'];
+					$next_three_panes_result_fetched_year=$next_three_panes_result_fetched['year'];
+					$next_three_panes_result_fetched_dob=$next_three_panes_result_fetched['dob'];
+					$next_three_panes_result_fetched_about_me=$next_three_panes_result_fetched['about_me'];
+
+					$next_three_panes_result_fetched_email_id=$next_three_panes_result_fetched['email_id'];
+					$next_three_panes_result_fetched_phone=$next_three_panes_result_fetched['phone'];
+				}
+$theoutputininfopane=<<<INFOPANEOUTPUT
+<br><br><br><br>
+<b>Name:$next_three_panes_result_fetched_name</b><br><br><br>
+<b>Course:$next_three_panes_result_fetched_course</b><br><br><br>
+<b>Branch:$next_three_panes_result_fetched_branch</b><br><br><br>
+<b>Year:$next_three_panes_result_fetched_year</b><br><br><br>
+<a href="$FILE/viewprofile.php?profile=$my_profile_string">view profile</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="$FILE/editprofile.php">edit profile</a>
+INFOPANEOUTPUT;
+echo $theoutputininfopane;
+			?>
+
+
+			</div><!--panecontents-->
+			
+			<div class="panecontents" style="text-align:center;">
+<?php
+$theoutputinaboutmepane=<<<ABOUTMEPANEOUTPUT
+<br><br><br><br>
+<b>$next_three_panes_result_fetched_about_me</b><br><br><br>
+<a href="$FILE/viewprofile.php?profile=$my_profile_string">view profile</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="$FILE/editprofile.php">edit profile</a>
+
+ABOUTMEPANEOUTPUT;
+echo $theoutputinaboutmepane;
+?>
+			</div><!--panecontents-->
+			<div class="panecontents" style="text-align:center;">
+<?php
+$theoutputinaboutmepane=<<<CONTACTSPANEOUTPUT
+<br><br><br><br>
+<b>Email_ID:$next_three_panes_result_fetched_email_id</b><br><br><br>
+<b>Phone:$next_three_panes_result_fetched_phone</b><br><br><br>
+<a href="$FILE/viewprofile.php?profile=$my_profile_string">view profile</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="$FILE/editprofile.php">edit profile</a>
+
+CONTACTSPANEOUTPUT;
+echo $theoutputinaboutmepane;
+?>
+			</div><!--panecontents-->
+			<div class="panecontents">
+			<!--<div class="mainpane" style="width:100%;height:100%;">-->
+			
+				<?php 
+				//var_dump($allfriends_string);
+				$friends_array=explode("(`#$&^@!--`)",$allfriends_string);//var_dump($friends_array);
+				$counter_to_keep_number_of_friends=0;
+				$back_to_general_database=mysqli_select_db($connection_me,$databasename);//change to general database
+				foreach($friends_array as $one_friend_email)
+				{
+				
+				$query_get_friend_email_and_profile_string="select username, profile_string from users_basic where email_id='$one_friend_email'";
+				$result_get_friend_email_and_profile_string=mysqli_query($connection_me,$query_get_friend_email_and_profile_string);
+				//echo "12344";
+				$friend_get_the_string=mysqli_fetch_array($result_get_friend_email_and_profile_string);
+				//var_dump($friend_get_the_string);echo "12344";
+					{$friend_get_the_string_username=$friend_get_the_string['username'];
+					 $friend_get_the_string_profile_string=$friend_get_the_string['profile_string'];
+// 					if(($counter_to_keep_number_of_friends)%5==0){echo "<div>";}
+						?>
+						<p class='smalldivnsiderollup' style="margin-left:10px;">
+						<a href=<?=$THEPATH_TO_EACH_USER.'?profile='.$friend_get_the_string_profile_string?>><?=$friend_get_the_string_username?></a>
+						</p><!--small div insiderollup-->
+						<?php
+// 					if(($counter_to_keep_number_of_friends)%5==0){echo "</div>";}
+// 					$counter_to_keep_number_of_friends+=1;
+					}
+				}
+				?>
+			 
+			</div><!--panecontents-->
+		</div><!-- panes-->
+		
+		<script>
+
+
+$(function() {
+	// setup ul.tabs to work as tabs for each div directly under div.panes
+	$("div.panel").tabs("div.panes > div");
+});
+</script>		
+ 
+	</div>
+	<<div id="accordion">
+   	<img src="<?=$IMAGE?>/menavigation.png" class="tabes" alt="me" >  
+      <div class="insideaccordion" style="width:410px;height:107px;margin-top:3px;background-color:#666699;">
+       <p style="font-size:10px;">
+       <pre>
+       <a href="me.php" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation" style="margin-left:19px;">me</div></a>     
+      <a href="viewprofile.php?profile=<?=$profile_string_this_is?>" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation">profile</div></a>
+	<a href="songrequests.php" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation">songrequests</div></a>           
+	</pre>       
+       </p>      
+      </div>
+   
+    <img src="<?=$IMAGE?>/musiclibrarynavigation.png" class="tabes" alt="musiclibrary" >  
+      <div class="insideaccordion" style="width:410px;height:107px;margin-top:3px;background-color:#666699;">
+       <p style="font-size:10px;">
+         <pre>
+		 <a href="musiclibrary.php" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation" style="margin-left:19px;">library</div></a>     
+     		 <a href="musiclibrary.php?librarypath=mostplayed" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation">favourates</div></a>
+		<a href="musiclibrary.php?librarypath=myplaylists" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation" style="height:35%;">myplaylists</div></a>   
+        </pre>                   
+       </p>      
+      </div>
+
+	<img src="<?=$IMAGE?>/messagesnavigation.png" class="tabes" alt="messages" >  
+      <div class="insideaccordion" style="width:410px;height:107px;margin-top:3px;background-color:#666699;">
+       <p style="font-size:10px;">
+         <pre>
+		 <a href="demomessages.php?go=all" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation" style="margin-left:19px;">all</div></a>     
+     		 <a href="demomessages.php?go=sent" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation">sent</div></a>
+		<a href="demomessages.php?go=recieved" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation" style="height:35%;">recieved</div></a>   
+        </pre>                   
+       </p>      
+      </div>
+      
+     <img src="<?=$IMAGE?>/accountnavigation.png" class="tabes" alt="account" >  
+      <div class="insideaccordion" style="width:410px;height:107px;margin-top:3px;background-color:#666699;">
+       <p>
+       	<pre>
+		 <a href="editprofile.php" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation" style="margin-left:19px;">settings</div></a>     
+     		 <a href="primarycontacts.php" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation">contacts</div></a>
+		<!-- <a href="" class="anchoraccordionlinksnavigation"><div class="accordionlinksnavigation" style="height:35%;">change<br>password</div></a> -->   
+        </pre>  
+                    
+       </p>      
+      </div>
+	<img src="<?=$IMAGE?>/logoutnavigation.png" class="tabes" alt="logout" >
+	  
+      <div class="insideaccordion" style="width:410px;height:100px;margin-top:5px;background-color:#666699;">
+       <p>
+       	<pre>
+		<a href="logout.php">logout</a> 
+     	   </pre>  
+                    
+       </p>      
+      </div>
+</div>
+
+           <script> 
+                $(function() {
+ 
+                       $("#accordion").tabs(".insideaccordion", {
+	                   tabs: '.tabes', 
+	                    effect: 'horizontal'
+                        });
+                });
+           </script>
+
+
+
+</div>
+
+</body>
+</html>

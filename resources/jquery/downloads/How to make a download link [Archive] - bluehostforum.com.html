@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="keywords" content="songs, download, click, links, implement, site, making, link, make, putting, format, visitors" />
+	<meta name="description" content="I am making a site in which I am putting some songs of myself in wma and   mp3 format for visitors to download when they click on the links of the songs. Can someone tell me how I can implement this please?" />
+	
+	<title> How to make a download link [Archive]  - bluehostforum.com</title>
+	<link rel="stylesheet" type="text/css" href="http://www.bluehostforum.com/archive/archive.css" />
+</head>
+<body>
+<div class="pagebody">
+<div id="navbar"><a href="http://www.bluehostforum.com/archive/index.php?s=0eb3f4c4d819bb4ba7bcb9f52ffb1e55&amp;api=1">bluehostforum.com</a> &gt; <a href="http://www.bluehostforum.com/archive/index.php/f-9.html?s=0eb3f4c4d819bb4ba7bcb9f52ffb1e55">Miscellaneous</a> &gt; <a href="http://www.bluehostforum.com/archive/index.php/f-10.html?s=0eb3f4c4d819bb4ba7bcb9f52ffb1e55">Developers And Designers</a> &gt;  How to make a download link</div>
+<hr />
+<div class="pda"><a href="http://www.bluehostforum.com/archive/index.php/t-1024.html?s=0eb3f4c4d819bb4ba7bcb9f52ffb1e55&amp;api=1&amp;pda=1" rel="nofollow">PDA</a></div>
+<p class="largefont">View Full Version : <a href="http://www.bluehostforum.com/showthread.php?1024-How-to-make-a-download-link&amp;s=0eb3f4c4d819bb4ba7bcb9f52ffb1e55">How to make a download link</a></p>
+<hr />
+<div class="floatcontainer">  </div><br />
+<div class="post"><div class="posttop"><div class="username">newbie</div><div class="date">06-16-2006, 01:25 PM</div></div><div class="posttext">I am making a site in which I am putting some songs of myself in wma and   mp3 format for visitors to download when they click on the links of the songs. Can someone tell me how I can implement this please?</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">grant</div><div class="date">06-16-2006, 01:34 PM</div></div><div class="posttext">Well, you have a few options when it comes to audio file handling.  You can have it streaming, downloadable, or both.  If you want to stream your audio files just follow the steps below.<br />
+<br />
+1. Upload your MP3 to your server<br />
+<br />
+2. Open notepad. write the entire url of the mp3: ie: http://www.myserver.com/mp3s/mysong.mp3 (obviously the full real url of your mp3)<br />
+<br />
+3. Do a 'save as' and call it something but add .m3u on the end of it. eg: mysong.m3u<br />
+<br />
+4. Upload this .m3u file to your server too.<br />
+<br />
+5. This acts as a pointer to your mp3 file and the m3u extension tells it to stream. So in your page you just link to the .m3u file. When people click your link it goes to the m3u which auto redirects and streams the MP3 you pointed it to, in the default player of the users operating system. In my case, realplayer.<br />
+<br />
+The beauty of this is that as the URL is contained in the notepad document no-one can see where the MP3s are to download them.<br />
+<br />
+you can use the exact same technique to stream video and audio in realplayer. Your realplayer file is a .rm - so you create a notepad document with the extension .ram and it functions exactly the same. no need for embedding. just pops up in realplayer.<br />
+<br />
+That's form the knowledge base within Bluehost.  If you want to make it purely a download only file you can link to it like you would another page on your site through the use of &lt;a href =&quot;/mymusic/mysong.mp3&quot;&gt;.  Or where ever you might have the file stored on your site.</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">silentcollision</div><div class="date">06-16-2006, 05:03 PM</div></div><div class="posttext">You could just .zip the files, and put them up. That instantly sets the download.<br />
+<br />
+Other than that, you could tell people to right click and select &quot;save file as&quot;.</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">dvessel</div><div class="date">06-16-2006, 05:55 PM</div></div><div class="posttext">What silent said. Audio files by default gets played by the users designated audio player/plug-in. It should be possible by changing MIME types to have it treated as a direct download instead of playing.</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">newbie</div><div class="date">06-17-2006, 01:06 AM</div></div><div class="posttext">Thank you guys for your responses. I tried Grant's solution of giving a direct hyperlink to the song wma file, but when I clicked the link, it didn't ask where to save the file, the way it generally happens. Instead it started saving the file to temporary files folder and started playing it when the download was complete. Any ideas as to how this can be corrected?</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">grant</div><div class="date">06-17-2006, 11:03 AM</div></div><div class="posttext">Thank you guys for your responses. I tried Grant's solution of giving a direct hyperlink to the song wma file, but when I clicked the link, it didn't ask where to save the file, the way it generally happens. Instead it started saving the file to temporary files folder and started playing it when the download was complete. Any ideas as to how this can be corrected?<br />
+<br />
+Like silentcollision said, you can just put your song(s) into a zip file and that will force the download of the zip file.  I had forgotten about direct linking the song will force media player, winamp, quicktime, etc to open it and play it.  If you want people to simply download them then do what silentcollision suggested.</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">newbie</div><div class="date">06-18-2006, 11:38 AM</div></div><div class="posttext">Well the zip method is a way to do it, but it's not that neat. I have seen some sites where they do have this method for mp3 or other file types also. There is some PHP script or something for it. Should someone have it, I'll be thankful if they give it to me.</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">hlsJeff</div><div class="date">06-30-2006, 04:15 PM</div></div><div class="posttext">The beauty of this is that as the URL is contained in the notepad document no-one can see where the MP3s are to download them.<br />
+<br />
+<br />
+Does this leave a copy of the mp3 in the temporary internet files? I would like to find a way to avoid leaving the file on the user's computer. Thanks.</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">grant</div><div class="date">06-30-2006, 05:47 PM</div></div><div class="posttext">Does this leave a copy of the mp3 in the temporary internet files? I would like to find a way to avoid leaving the file on the user's computer. Thanks.<br />
+<br />
+Ya know.  I really have no idea on that.  :D   Let me try something real quick and I'll get back to you on that in an Edit.<br />
+<br />
+Edit:  Okay, the only thing I can find that this technique will leave on my machine is the m3u file, not the mp3 file.  However, upon opening the m3u file I could easily find the actual mp3 file and download it if I wished to.  Apparenty knowledgebase doesn't have it all right.</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">hlsJeff</div><div class="date">06-30-2006, 06:55 PM</div></div><div class="posttext">Here is the scenerio of how some things are done.<br />
+<br />
+When you download an executable file, you may be asked if you wish to run the program &quot;mid air&quot; or if you wish to save it to your hard drive and you will run it yourself later.<br />
+<br />
+Can an mp3 file be used/played without first (at all) saving it your hard drive?</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">grant</div><div class="date">06-30-2006, 09:02 PM</div></div><div class="posttext">Can an mp3 file be used/played without first (at all) saving it your hard drive?<br />
+<br />
+Yes, if you go the m3u route like I said above.  The only file downloaded in that scenario is the m3u and not the mp3.  The m3u file is simply a text document telling the browser where the mp3 is and opens it with whatever player the user has chosen to open those kinds of files.  No mp3 dowloadning takes place.</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">hlsJeff</div><div class="date">06-30-2006, 09:12 PM</div></div><div class="posttext">Thanks. I will give that a try. Sounds good.</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">hlsJeff</div><div class="date">07-02-2006, 02:21 PM</div></div><div class="posttext">I tried using the m3u method, testing using Internet Explorer 6.0.<br />
+<br />
+I deleted all my temporary internet files.<br />
+<br />
+Then ran the HTML which called the mpu which called the mp3. (From the BlueHost server, not my hard drive)<br />
+<br />
+Then I checked my temporary internet files again.<br />
+<br />
+Now I see the HTML file, which shows the mpu file.<br />
+I see the mpu file (which can cause the mp3 to be played) and which also shows the mp3 filename that can be used to download the mp3 file.<br />
+<br />
+And I even see the mp3 file itself.<br />
+<br />
+I wonder what I missed. It seemed to just make matters worse.  :confused:</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">dvessel</div><div class="date">07-02-2006, 03:08 PM</div></div><div class="posttext">The M3U file doesn't change anything because your just adding an inbetween step to get to the mp3 files. It's still handled through the client ends designated player as usual. Some clients will use realplayer, quicktime, whatever.. And they store their files in their own places.</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">hlsJeff</div><div class="date">07-02-2006, 03:45 PM</div></div><div class="posttext">I guess there is a tradeoff then. Things like no right-click will deter some people, although there is always a way around for the more determined. <br />
+<br />
+If the &quot;ambitious&quot; ones are going to find a way around safeguards anyway, is it worth alienating the merely curious to try to block the inevitable? What is a slap to some becomes a dare for others.</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">dvessel</div><div class="date">07-02-2006, 04:26 PM</div></div><div class="posttext">I'm not even sure on what your trying to accomplish. What are these music files for? Are they for sale and you just want to give a sample of the music?<br />
+<br />
+There are a couple of things you can do. Encode everything 2wice. A very low bitrate or cut off version and serve them as samples and then keep the real files in their own hidden area. Allowing paid downloads is a topic in itself.<br />
+<br />
+If you just want to allow streaming then a streaming server is all you need. It's its' own app that must run on the server with a dedicated IP address. Should talk to support first about it. I've heard conflicting reports on what's allowed.<br />
+<br />
+There are some commercial versions but the darwin streaming server is open source/free. Audio will stream on demand &amp; leave no trace of the file. It can do MP3 among other formats.<br />
+<br />
+http://developer.apple.com/opensource/server/streaming/index.html</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">hlsJeff</div><div class="date">07-02-2006, 04:39 PM</div></div><div class="posttext">Yes, the music is for sale, with links to places like iTunes to make the purchases. Of course people can listen to the songs at iTunes, etc., but we prefer to provide the music on-site, in our environment, with our features. I will check out the the darwin streaming server. Perhaps limiting the version people hear in some way will end up as the best solution in our case.  Thank you for you help.</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">rando</div><div class="date">07-03-2006, 09:45 PM</div></div><div class="posttext">If you use your .htaccess to set the filetype for mp3s to &quot;application/octet-stream&quot;, this should force a download.</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">Resonant1</div><div class="date">07-05-2006, 04:18 PM</div></div><div class="posttext">When you download an executable file, you may be asked if you wish to run the program &quot;mid air&quot; or if you wish to save it to your hard drive and you will run it yourself later.<br />
+Just a note on the Windows take on that dialog. Regardless of whether you select &quot;Open&quot; or &quot;Save&quot;, Windows downloads the file before doing anything. If you selected &quot;Open&quot; then it saves the file in a location of its own choosing, and then launches the appropriate application. If you select &quot;Save&quot; then it asks you where you want the file before downloading. Either way, it hits your hard drive.<br />
+<br />
+I always end up having to go clear the files out of the temporary directory when I have used Open. If you don't want people to see the file, skip direct downloading.</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">adrevol</div><div class="date">04-22-2009, 06:56 AM</div></div><div class="posttext">After Long long  R&amp;D finally i found some interesting and useful tutorial  which helped me to make this  Download Link <br />
+<br />
+http://www.ittreats.com/os/php/how-to-make-dynamic-download-here-link.html<br />
+<br />
+<br />
+To my knowlege  the Example of Exe file download in the above URL will also  work for the MP3  also, <br />
+with this,  you can make your  downloads restriceted to the  registered users <br />
+<br />
+All the best Friends ..</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">hlsJeff</div><div class="date">04-22-2009, 10:12 AM</div></div><div class="posttext">Thanks! I'll do some experimenting!</div></div><hr />
+
+ 
+<div id="copyright">Powered by vBulletin&trade; Version 4.1.3 Copyright &copy; 2011 vBulletin Solutions, Inc. All rights reserved.</div>
+</div>
+</body>
+</html>

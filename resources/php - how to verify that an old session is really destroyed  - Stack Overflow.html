@@ -1,0 +1,628 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0096)http://stackoverflow.com/questions/2719262/how-to-verify-that-an-old-session-is-really-destroyed -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>php - how to verify that an old session is really destroyed? - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico">
+    <link rel="apple-touch-icon" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <script type="text/javascript" async="" src="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/ga.js"></script><script type="text/javascript" async="" src="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/adzerk1_2_4_43,adzerk2_2_17_45,adzerk3_2_4_44"></script><script type="text/javascript" src="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/jquery.min.js"></script>
+    <script type="text/javascript" src="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/all.css">
+    
+    <link rel="canonical" href="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/php - how to verify that an old session is really destroyed  - Stack Overflow.html">
+    <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;how to verify that an old session is really destroyed?&#39;" href="http://stackoverflow.com/feeds/question/2719262">
+    <script type="text/javascript">
+        
+        StackExchange.ready(function () {
+
+            StackExchange.question.init({showAnswerHelp:true,questionId:2719262});
+
+            styleCode();
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        StackExchange.init({"stackAuthUrl":"http://stackauth.com","serverTime":1309726271,"styleCode":true,"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers"},"user":{"isAnonymous":true,"fkey":"ad6fd0fd3dd1df150527a6b1e905bfa4","inboxUnviewedCount":-1}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.js":"dcf6d862901d","js/moderator.js":"840b6dc7096c","js/full-anon.js":"fe3d6b7aadc6","js/full.js":"8fc3d453ec9b","js/wmd.js":"1cee43b4a2a0","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/mobile.js":"1a68f388e0e7","js/help.js":"0b22b23f6f38"});
+    </script>
+
+</head>
+<body class="question-page">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+     
+
+    <div class="container">
+        <div id="header">
+            <div id="portalLink">
+                <a class="genu" onclick="StackExchange.ready(function(){genuwine.click();});return false;">Stack Exchange</a>
+            </div>
+            <div id="topbar">
+                <div id="hlinks">
+                    <span id="hlinks-user">
+                  
+                  </span>
+                  <span id="hlinks-nav">
+                  <a href="http://stackoverflow.com/users/login?returnurl=%2fquestions%2f2719262%2fhow-to-verify-that-an-old-session-is-really-destroyed">log in</a>
+ <span class="lsep">|</span>
+ <a href="http://blog.stackoverflow.com/">blog</a>
+ <span class="lsep">|</span>
+<a href="http://careers.stackoverflow.com/">careers</a>
+ <span class="lsep">|</span>
+
+                  </span>
+                  <span id="hlinks-custom">
+                  <a href="http://chat.stackoverflow.com/">chat</a>
+ <span class="lsep">|</span>
+<a href="http://meta.stackoverflow.com/">meta</a>
+ <span class="lsep">|</span>
+<a href="http://stackoverflow.com/about">about</a>
+ <span class="lsep">|</span>
+<a href="http://stackoverflow.com/faq">faq</a>
+                  </span>
+                </div>
+                <div id="hsearch">
+                    <form id="search" action="http://stackoverflow.com/search" method="get">
+                    <div>
+                        <input name="q" class="textbox" tabindex="1" onfocus="if (this.value==&#39;search&#39;) this.value = &#39;&#39;" type="text" maxlength="140" size="28" value="search">
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">Stack Overflow</a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/badges">Badges</a></li>
+                        <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            
+
+
+
+<div id="question-header">
+    <h1><a href="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/php - how to verify that an old session is really destroyed  - Stack Overflow.html" class="question-hyperlink">how to verify that an old session is really destroyed?</a></h1>
+</div>
+<div id="mainbar">
+
+
+<div id="question">
+
+    <div class="everyonelovesstackoverflow" id="adzerk1"><a href="http://engine.adzerk.net/redirect/0/2568/2444/8277/932d5627ac234070a57d93f1977de7d1/43/1178/2292/634452978789645695?keywords=php%2csession" rel="nofollow" target="_blank" title=""><img src="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/2568.jpg" title="" alt="" border="0" height="90" width="728"></a></div>
+
+    
+    <table>
+    <tbody><tr>
+    <td class="votecell">
+        
+<div class="vote">
+    <input type="hidden" value="2719262">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear (click again to undo)">up vote</a>
+    <span class="vote-count-post">6</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful (click again to undo)">down vote</a>
+
+    <a class="star-off" href="http://stackoverflow.com/questions/2719262/how-to-verify-that-an-old-session-is-really-destroyed#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b>2</b></div>    
+
+</div>
+
+    </td>
+    <td class="postcell">
+        <div>          
+            <div class="post-text">
+                <p>Um, this might sound a bit weird. We were having some problems with a specific browser under a very specific condition, and finally narrowed down the problem to the fact that we were not properly destroying the old sessions after doing session_regenerate_id(). I believe I have solved this problem by doing session_regenerate_id(true) now, but how does one verify that the previous sessions really do not exist any more? Someone suggested cURL but I cannot find my way around their docs. Sadly(?) the boss does not take 'it just works' for an answer so I'd really appreciate any advice!</p>
+
+            </div>            
+            <div class="post-taglist">
+                <a href="http://stackoverflow.com/questions/tagged/php" class="post-tag" title="show questions tagged &#39;php&#39;" rel="tag">php</a> <a href="http://stackoverflow.com/questions/tagged/session" class="post-tag" title="show questions tagged &#39;session&#39;" rel="tag">session</a> 
+            </div>
+            <table class="fw">
+            <tbody><tr>
+            <td class="vt">
+                <div class="post-menu"><a href="http://stackoverflow.com/q/2719262" title="short permalink to this question" id="link-post-2719262">link</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/2719262/edit">improve this question</a></div>
+            </td>
+                        
+
+            <td class="post-signature owner">
+            <div class="user-info"><div class="user-action-time">asked <span title="2010-04-27 06:50:05Z" class="relativetime">Apr 27 '10 at 6:50</span></div><div class="user-gravatar32"><a href="http://stackoverflow.com/users/248566/jodeci"><img src="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/4cb3a73da78acce118fda9eb22c69399" height="32" width="32" alt=""></a></div><div class="user-details"><a href="http://stackoverflow.com/users/248566/jodeci">jodeci</a><br><span class="reputation-score" title="reputation score">91</span><span title="7 bronze badges"><span class="badge3"></span><span class="badgecount">7</span></span></div></div>
+                <br class="cbt">
+                <div class="accept-rate accept-answer-link" title="this user has accepted an answer for 6 of 7 eligible questions">86% accept rate</div>
+            </td>
+            </tr>
+            </tbody></table>
+        </div>
+    </td>
+    </tr>
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-2719262" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-2745190" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">Looks like SO folks tend to upvote questions they don't understand. what do you mean under "session" exactly? What material matters? And why are you so sure you really narrowed down the problem? </span> –&nbsp;<a href="http://stackoverflow.com/users/285587/col-shrapnel" title="1 reputation" class="comment-user">Col. Shrapnel</a> <span class="comment-date"><span title="2010-04-27 07:02:23Z">Apr 27 '10 at 7:02</span></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>    </tbody></table>    
+</div>
+
+
+
+<div id="answers">
+
+    <a name="tab-top"></a>
+    <div id="answers-header">
+        <div class="subheader answers-subheader">
+            <h2>2 Answers</h2>
+            <div id="tabs">
+                <a href="http://stackoverflow.com/questions/2719262/how-to-verify-that-an-old-session-is-really-destroyed?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+<a href="http://stackoverflow.com/questions/2719262/how-to-verify-that-an-old-session-is-really-destroyed?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+<a class="youarehere" href="http://stackoverflow.com/questions/2719262/how-to-verify-that-an-old-session-is-really-destroyed?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+
+            </div>
+        </div>
+    </div>
+
+
+  
+    <a name="2720478"></a>
+    <div id="answer-2720478" class="answer">
+        <table>
+        <tbody><tr>
+        <td class="votecell">
+            
+<div class="vote">
+    <input type="hidden" value="2720478">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post">3</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+<span class="vote-accepted-on" title="The question owner accepted this as the best answer Apr 28 &#39;10 at 4:06">accepted</span>
+</div>
+
+        </td>
+        <td>
+            <div class="post-text"><p>By default <code>session_regenerate_id();</code> will only replace the current session with a new one. So the old session file need not actually get deleted.
+But doing a <code>session_regenerate_id( true );</code> will delete the old session file. ( <a href="http://php.net/session_regenerate_id" rel="nofollow">http://php.net/session_regenerate_id</a> )</p>
+
+<p>To check if old session is deleted you can do something like this</p>
+
+<pre class="lang-php prettyprint"><code><span class="pun">&lt;?</span><span class="pln">php<br>$file</span><span class="pun">=</span><span class="pln">ini_get</span><span class="pun">(</span><span class="str">'session.save_path'</span><span class="pun">).</span><span class="str">"/sess_"</span><span class="pun">.</span><span class="pln">session_id</span><span class="pun">();</span><span class="pln"><br>$gotDeleted </span><span class="pun">=</span><span class="pln"> file_exists</span><span class="pun">(</span><span class="pln"> $file </span><span class="pun">);</span><span class="pln"><br></span><span class="pun">?&gt;</span><span class="pln"><br></span></code></pre>
+
+<p>You can also do a <code>session_destroy()</code>. If you must keep some variables, you can try <code>unset()</code> on specific <code>$_SESSION</code> values.</p>
+</div>
+            <table class="fw">
+            <tbody><tr>
+            <td class="vt">
+                <div class="post-menu"><a href="http://stackoverflow.com/questions/2719262/how-to-verify-that-an-old-session-is-really-destroyed/2720478#2720478" title="permalink to this answer" id="link-post-2720478">link</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/2720478/edit">improve this answer</a></div>
+            </td>
+            
+
+            <td align="right" class="post-signature">   
+       
+
+            <div class="user-info"><div class="user-action-time">answered <span title="2010-04-27 10:47:18Z" class="relativetime">Apr 27 '10 at 10:47</span></div><div class="user-gravatar32"><a href="http://stackoverflow.com/users/326736/kalyan"><img src="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/603df98abd0bf6d97478464fdf1f4de4" height="32" width="32" alt=""></a></div><div class="user-details"><a href="http://stackoverflow.com/users/326736/kalyan">Kalyan</a><br><span class="reputation-score" title="reputation score">99</span><span title="3 bronze badges"><span class="badge3"></span><span class="badgecount">3</span></span></div></div>
+            </td>
+            </tr>
+            </tbody></table>
+        </td>        </tr>
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-2720478" class="comments dno">
+        <table>
+        <tbody>
+        
+            <tr><td></td><td></td></tr>
+        
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>    </tbody></table>
+</div>
+
+    <div class="everyonelovesstackoverflow" id="adzerk3"><a href="http://engine.adzerk.net/redirect/0/2568/2444/8277/051b296a42ee4a959a33347625758b62/44/1178/2292/634452978789645695?keywords=php%2csession" rel="nofollow" target="_blank" title=""><img src="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/2568.jpg" title="" alt="" border="0" height="90" width="728"></a></div>
+
+    
+  
+    <a name="2719316"></a>
+    <div id="answer-2719316" class="answer">
+        <table>
+        <tbody><tr>
+        <td class="votecell">
+            
+<div class="vote">
+    <input type="hidden" value="2719316">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post">1</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+
+</div>
+
+        </td>
+        <td>
+            <div class="post-text"><p>To be sure that the session data are gone, you should look at the session saving backend. By default it stores sessions as plain disk files (this is why a session survives an apache restart for example). You may want to look through them, and check that the one corresponding to the session you were observing has been effectively deleted.</p>
+
+<p>Or, if this is such a critical information, you may want to build your own session backend (which is not difficult at all) to have even more control, and more debugging options (you'd manually destroy the data and you could add logging statements to demonstrate that the data has been deleted).</p>
+
+<p>See here: <a href="http://php.net/manual/en/function.session-set-save-handler.php" rel="nofollow">http://php.net/manual/en/function.session-set-save-handler.php</a></p>
+
+<p>Or here: <a href="http://devzone.zend.com/article/141" rel="nofollow">http://devzone.zend.com/article/141</a></p>
+</div>
+            <table class="fw">
+            <tbody><tr>
+            <td class="vt">
+                <div class="post-menu"><a href="http://stackoverflow.com/questions/2719262/how-to-verify-that-an-old-session-is-really-destroyed/2719316#2719316" title="permalink to this answer" id="link-post-2719316">link</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/2719316/edit">improve this answer</a></div>
+            </td>
+            
+
+            <td align="right" class="post-signature">   
+       
+
+            <div class="user-info"><div class="user-action-time">answered <span title="2010-04-27 07:02:23Z" class="relativetime">Apr 27 '10 at 7:02</span></div><div class="user-gravatar32"><a href="http://stackoverflow.com/users/79456/palantir"><img src="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/5e0ba339d4e52856d8e0d45378186deb" height="32" width="32" alt=""></a></div><div class="user-details"><a href="http://stackoverflow.com/users/79456/palantir">Palantir</a><br><span class="reputation-score" title="reputation score">6,512</span><span title="6 silver badges"><span class="badge2"></span><span class="badgecount">6</span></span><span title="32 bronze badges"><span class="badge3"></span><span class="badgecount">32</span></span></div></div>
+            </td>
+            </tr>
+            </tbody></table>
+        </td>        </tr>
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-2719316" class="comments dno">
+        <table>
+        <tbody>
+        
+            <tr><td></td><td></td></tr>
+        
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>    </tbody></table>
+</div>
+    
+    <a name="new-answer"></a>
+    <form id="post-form" action="http://stackoverflow.com/questions/2719262/answer/submit" method="post">
+        <h2 class="space">Your Answer</h2>
+
+<script type="text/javascript">
+    StackExchange.ready(function() {
+     
+        initTagRenderer("".split(" "), "".split(" "));
+
+        
+            prepareEditor({
+                
+                heartbeatType: 'answer',
+                bindNavPrevention: true,
+                onDemand: true
+                ,autoShowMarkdownHelp:true
+            });
+        
+    });  
+</script>
+
+
+
+
+<div id="post-editor">  
+
+    
+    <div id="wmd-container">
+        <div id="wmd-button-bar"><ul id="wmd-button-row"><li id="wmd-bold-button" class="wmd-button" style="left: 0px; "><span style="background-position: 0px -20px; "></span></li><li id="wmd-italic-button" class="wmd-button" style="left: 25px; "><span style="background-position: -20px -20px; "></span></li><li id="wmd-spacer1" class="wmd-spacer" style="left: 50px; "><span style="background-position: -40px -20px; "></span></li><li id="wmd-link-button" class="wmd-button" style="left: 75px; "><span style="background-position: -40px -20px; "></span></li><li id="wmd-quote-button" class="wmd-button" style="left: 100px; "><span style="background-position: -60px -20px; "></span></li><li id="wmd-code-button" class="wmd-button" style="left: 125px; "><span style="background-position: -80px -20px; "></span></li><li id="wmd-image-button" class="wmd-button" style="left: 150px; "><span style="background-position: -100px -20px; "></span></li><li id="wmd-spacer2" class="wmd-spacer" style="left: 175px; "><span style="background-position: -120px -20px; "></span></li><li id="wmd-olist-button" class="wmd-button" style="left: 200px; "><span style="background-position: -120px -20px; "></span></li><li id="wmd-ulist-button" class="wmd-button" style="left: 225px; "><span style="background-position: -140px -20px; "></span></li><li id="wmd-heading-button" class="wmd-button" style="left: 250px; "><span style="background-position: -160px -20px; "></span></li><li id="wmd-hr-button" class="wmd-button" style="left: 275px; "><span style="background-position: -180px -20px; "></span></li><li id="wmd-spacer3" class="wmd-spacer" style="left: 300px; "><span style="background-position: -200px -20px; "></span></li><li id="wmd-undo-button" class="wmd-button" style="left: 325px; "><span style="background-position: -200px -20px; "></span></li><li id="wmd-redo-button" class="wmd-button" style="left: 350px; "><span style="background-position: -220px -20px; "></span></li></ul></div>
+        <textarea id="wmd-input" name="post-text" cols="92" rows="15" tabindex="101"></textarea>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+
+    <div id="wmd-preview"></div>
+    <div id="wmd-final"></div>
+
+
+    <div id="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="ad6fd0fd3dd1df150527a6b1e905bfa4">
+        <input id="author" name="author" type="text">
+    </div>
+</div>   
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+        <td class="vm open-id-login">
+            <a id="login-link" style="font-size: 200%; margin-left: 30px;" href="http://stackoverflow.com/users/login?returnurl=%2fquestions%2f2719262%2fhow-to-verify-that-an-old-session-is-really-destroyed">log in</a>
+            <script type="text/javascript">
+                StackExchange.ready(function () {
+                    StackExchange.helpers.onClickDraftSave('#login-link');
+                });
+            </script>
+        </td>
+
+    
+        <td class="orcell">
+            <div class="orword">or</div>
+            <div class="orline"></div>
+        </td>
+        <td class="vm">
+            <div>
+                <label for="display-name">Name</label>
+                <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+            </div>
+            <div>
+                <label for="m-address">Email</label>
+                <input id="m-address" name="m-address" type="text" size="40" maxlength="100" value="" tabindex="106">
+                <span class="edit-field-overlay">required, but never shown</span>
+            </div>
+            <div>
+                <label for="home-page">Home Page</label>
+                <input id="home-page" name="home-page" type="text" size="40" maxlength="200" value="" tabindex="107">
+            </div>
+        </td>
+    
+        </tr>
+        </tbody></table>
+    </div>
+               
+        <div class="form-submit cbt"><input id="submit-button" type="submit" value="Post Your Answer" tabindex="110"></div>
+    </form>
+    <h2 class="bottom-notice">
+        Not the answer you're looking for? 
+        Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/php" class="post-tag" title="show questions tagged &#39;php&#39;" rel="tag">php</a> <a href="http://stackoverflow.com/questions/tagged/session" class="post-tag" title="show questions tagged &#39;session&#39;" rel="tag">session</a> 
+        or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.
+    </h2>
+</div>
+</div>
+<div id="sidebar">
+
+<div class="module newuser newuser-greeting" style="display:none">
+    <h4>Hello World!</h4>
+    <div>
+        <p>This is a collaboratively edited question and answer site for <b>professional and enthusiast programmers</b>. It's 100% free, no registration required.</p>
+        <p class="ar"><a href="http://stackoverflow.com/about">about »</a>&nbsp;&nbsp;&nbsp;<a href="http://stackoverflow.com/faq">faq »</a></p>
+    </div>
+</div>    <div class="module">
+        <p class="label-key">tagged</p>
+        <div class="tagged"><a href="http://stackoverflow.com/questions/tagged/php" class="post-tag" title="show questions tagged &#39;php&#39;" rel="tag">php</a>&nbsp;<span class="item-multiplier">×&nbsp;124393</span><br>
+<a href="http://stackoverflow.com/questions/tagged/session" class="post-tag" title="show questions tagged &#39;session&#39;" rel="tag">session</a>&nbsp;<span class="item-multiplier">×&nbsp;5442</span><br>
+</div>
+        <table id="qinfo">
+            <tbody><tr>
+                <td><p class="label-key">asked</p></td>
+                <td style="padding-left:10px"><p class="label-key" title="2010-04-27 06:50:05Z"><b>1 year ago</b></p></td>
+            </tr>
+            <tr>
+                <td><p class="label-key">viewed</p></td>
+
+                <td style="padding-left:10px"><p class="label-key"><b>109 times</b></p></td>
+            </tr>
+            <tr>
+                <td><p class="label-key">active</p></td>
+                <td style="padding-left:10px"><p class="label-key"><b><a href="http://stackoverflow.com/questions/2719262/how-to-verify-that-an-old-session-is-really-destroyed?lastactivity" class="lastactivity-link" title="2010-04-27 10:47:18Z">1 year ago</a></b></p></td>
+            </tr>
+        </tbody></table>
+    </div>
+    
+        <script type="text/javascript">
+            var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = "http://engine2.adzerk.net/z/8277/adzerk1_2_4_43,adzerk2_2_17_45,adzerk3_2_4_44?keywords=php,session"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);
+        </script>
+    
+    <div class="everyonelovesstackoverflow" id="adzerk2"><div id="SE20-ad-container" style="height: 250px; width: 220px;">
+<style>
+#launched-ad { width: 220px; height: 250px; overflow: hidden; background: url(http://sstatic.net/stackexchange/Img/launched-ads/math.png) no-repeat bottom center; }
+#launched-ad-link { display: block; width: 220px; height: 250px; line-height: 1.2; color: #003b52 ; font-family: Georgia,"Times New Roman",serif; font-size: 20px; line-height: 26px; text-decoration: none; cursor: pointer; }
+#launched-ad-inner { width: 195px; margin: 20px 10px 0 15px;}
+</style>
+<a id="launched-ad-link" href="http://engine.adzerk.net/redirect/0/3194/3013/8277/ce1f9c17b7dc488c96843d64dee585e8/45/1178/3561/634452978789645695?keywords=php%2csession&url=http%3A%2F%2Fmath.stackexchange.com%2Fquestions%2F49216%2Fseriously-what-is-the-inverse-of-this-2-by-2-matrix">
+    <div id="launched-ad">
+        <div id="launched-ad-inner">Seriously: What is the inverse of this 2-by-2 matrix?</div>
+    </div>
+</a>
+</div><script type="text/javascript">window._launchedAdUrl= "http://engine.adzerk.net/redirect/0/3194/3013/8277/ce1f9c17b7dc488c96843d64dee585e8/45/1178/3561/634452978789645695?keywords=php%2csession";</script><script type="text/javascript" src="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/js"></script></div>
+
+    
+    <div>
+        <script type="text/javascript">
+            (function(){var q="http://careers.stackoverflow.com/ad/js",g=location.search=="?golarge",a,d=100,c=location.hash.indexOf("#ninjas")>-1,f="Pretty",h="#adzerk2",b="#adzerk1",i="#herebeninjas";(function(){var b="min-height:220px;margin:15px 0",c=$("<div>").addClass("hireme").attr("style",b),a=$("<div>").html(c);document.write(a.html())})();$(function(){setTimeout(r,2e3);a=setTimeout(e,d)});var e=function(){clearTimeout(a);if(m()&&!k()){a=setTimeout(e,d);return}c=c||n();c&&$(b).css("height",$(b).outerHeight()).attr("id","stop-adzerk");if(l()&&!j()){a=setTimeout(e,d);return}g=g||o();f=g?"Large":f;p()},r=function(){clearTimeout(a);var b=$("div.hireme, "+i);b.each(function(){var a=$(this),d=a.html().replace(/\s+/g,"").length==0;if(d){var c=a,b=a.parents(".everyonelovesstackoverflow").first();if(b.length>0)c=b;c.remove()}})},l=function(){return $(h).length>0},j=function(){var a=$(h);return a.length==0?false:a.html().replace(/\s+/g,"").length>0},o=function(){return $("#careersadsdoublehigh").length>0},m=function(){return $(b).length>0},k=function(){var a=$(b);return a.length==0?false:a.html().replace(/\s+/g,"").length>0},n=function(){return $(i).length>0},p=function(){$.ajax({url:s(),dataType:"script",cache:true})},s=function(){return q+"?style="+f+"&gobanner="+c.toString()}})();
+        </script>
+    </div>
+
+      
+
+    <div class="module">
+    <h4 id="h-related">Related</h4>
+    <div class="related">
+    <div class="spacer">
+<a href="http://stackoverflow.com/questions/155920/php-session-data-not-being-saved" class="question-hyperlink">PHP Session data not being saved</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/306132/php-session-problem-only-in-ie-really-strange-problem" class="question-hyperlink">PHP session problem *only in IE* *(??? really strange problem)</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/325836/how-to-re-initialize-a-session-in-php" class="question-hyperlink">How to re-initialize a session in PHP?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/1371649/php-session-ids-differ" class="question-hyperlink">PHP session id's differ</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/1386407/php-how-to-limit-the-number-of-session-files" class="question-hyperlink">PHP: how to limit the number of session files?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/1513971/how-to-create-a-session-in-php-with-a-randomized-string" class="question-hyperlink">How to create a session in PHP with a randomized string?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/1780852/change-session-id-and-keep-data" class="question-hyperlink">Change session ID and keep data?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/2037316/php-session-destroyed-lost-after-header" class="question-hyperlink">PHP session destroyed / lost after header</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/2115739/php-session-problems" class="question-hyperlink">PHP, session problems</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/2521289/how-to-troubleshoot-php-session-file-empty-issue" class="question-hyperlink">How to troubleshoot PHP session file empty issue?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/2801942/how-to-implement-enhanced-session-handling-in-php" class="question-hyperlink">how to implement enhanced session handling in PHP</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3043651/logout-problem-session-not-destroyed" class="question-hyperlink">Logout problem /session not destroyed</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3210724/session-is-getting-overwritten-in-php" class="question-hyperlink">Session is getting overwritten in php</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3319231/what-are-session-id-session-regenerate-id-and-session-name-used-for" class="question-hyperlink">What are session_id, session_regenerate_id and session_name used for?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3365815/register-a-function-to-be-run-in-php-when-sessions-are-destroyed" class="question-hyperlink">Register a function to be run in PHP when sessions are destroyed</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3484477/automatic-session-timeout" class="question-hyperlink">Automatic session timeout</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3838017/strange-session-issue-in-php" class="question-hyperlink">Strange session issue in PHP</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/4116070/how-to-get-the-session-info-with-a-specific-session-id-in-php" class="question-hyperlink">How to get the $_SESSION info with a specific session_id() in PHP?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/4726791/session-being-destroyed-on-remote-server-but-ok-on-local-version-of-site" class="question-hyperlink">Session being destroyed on remote server, but ok on local version of site</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/4824306/how-do-i-create-a-unique-session-based-on-an-existing-variable" class="question-hyperlink">How do I create a unique session based on an existing variable.</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/5381277/how-to-properly-delete-a-php-session" class="question-hyperlink">How to properly delete a PHP session?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/5800298/check-session-with-server-variables" class="question-hyperlink">Check session with server variables</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/5821588/at-what-point-is-session-data-available" class="question-hyperlink">At what point is session data available?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/5859029/php-access-session-data-between-https-and-http" class="question-hyperlink">php access session data between HTTPS and HTTP</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/5947988/php-session-destroyed-in-android-application" class="question-hyperlink">php session destroyed in android application.</a>
+</div>
+
+    </div>
+    </div>
+</div>
+
+<div id="feed-link">
+    <div id="feed-link-text"><a href="http://stackoverflow.com/feeds/question/2719262" title="feed of this question and its answers"><span class="feed-icon"></span>question feed</a></div>
+</div>
+<script type="text/javascript" src="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/32d6"></script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/2719262/ivc/32d6" class="dno" alt=""&gt;&lt;/div&gt;
+</noscript>
+<div style="display:none" id="prettify-lang">lang-php</div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <a href="http://stackoverflow.com/about">about</a> |
+                <a href="http://stackoverflow.com/faq">faq</a> |
+                 <a href="http://blog.stackoverflow.com/">blog</a> |
+                    <a href="http://chat.stackoverflow.com/">chat</a> |
+                <a href="http://data.stackexchange.com/">data</a> |
+                <a href="http://blog.stackoverflow.com/category/podcasts/">podcast</a> |
+                <a href="http://stackexchange.com/legal">legal</a> |
+                <a href="http://engine.adzerk.net/redirect/0/2776/2751/0/4de3c60f719c4dfcb1a57531c7050090/0">advertising info</a> |
+                <b><a href="mailto:team@stackoverflow.com">contact us</a></b>
+                  | <b><a href="http://meta.stackoverflow.com/">feedback always welcome</a></b>
+                <div id="footer-sites">
+                    
+                        <span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://stackoverflow.com/">stackoverflow.com</a>&nbsp; 
+                        <span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://stackapps.com/">api/apps</a>&nbsp; 
+                        <span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://careers.stackoverflow.com/">careers</a>&nbsp; 
+                        <span style="color:#E8272C;font-size:140%">■</span>&nbsp;<a href="http://serverfault.com/">serverfault.com</a>&nbsp; 
+                        <span style="color:#00AFEF;font-size:140%">■</span>&nbsp;<a href="http://superuser.com/">superuser.com</a>&nbsp; 
+                        <span style="color:#969696;font-size:140%">■</span>&nbsp;<a href="http://meta.stackoverflow.com/">meta</a>&nbsp; 
+                        <span style="color:#46937D;font-size:140%">■</span>&nbsp;<a href="http://area51.stackexchange.com/">area&nbsp;51</a>&nbsp; 
+                        <span style="color:#C0D0DC;font-size:140%">■</span>&nbsp;<a href="http://webapps.stackexchange.com/">webapps</a>&nbsp; 
+                        <span style="color:#000000;font-size:140%">■</span>&nbsp;<a href="http://gaming.stackexchange.com/">gaming</a>&nbsp; 
+                        <span style="color:#dd4814;font-size:140%">■</span>&nbsp;<a href="http://askubuntu.com/">ubuntu</a>&nbsp; 
+                        <span style="color:#9ce4fe;font-size:140%">■</span>&nbsp;<a href="http://webmasters.stackexchange.com/">webmasters</a>&nbsp; 
+                        <span style="color:#cf4d3f;font-size:140%">■</span>&nbsp;<a href="http://cooking.stackexchange.com/">cooking</a>&nbsp; 
+                        <span style="color:#f4f28d;font-size:140%">■</span>&nbsp;<a href="http://gamedev.stackexchange.com/">game development</a>&nbsp; 
+                        <span style="color:#0f3559;font-size:140%">■</span>&nbsp;<a href="http://math.stackexchange.com/">math</a>&nbsp; 
+                        <span style="color:#f2f2f2;font-size:140%">■</span>&nbsp;<a href="http://photo.stackexchange.com/">photography</a>&nbsp; 
+                        <span style="color:#037187;font-size:140%">■</span>&nbsp;<a href="http://stats.stackexchange.com/">stats</a>&nbsp; 
+                        <span style="color:#f1e7cc;font-size:140%">■</span>&nbsp;<a href="http://tex.stackexchange.com/">tex</a>&nbsp; 
+                        <span style="color:#e1cdae;font-size:140%">■</span>&nbsp;<a href="http://english.stackexchange.com/">english</a>&nbsp; 
+                        <span style="color:#a2d9f6;font-size:140%">■</span>&nbsp;<a href="http://cstheory.stackexchange.com/">theoretical cs</a>&nbsp; 
+                        <span style="color:#1b3e6c;font-size:140%">■</span>&nbsp;<a href="http://programmers.stackexchange.com/">programmers</a>&nbsp; 
+                        <span style="color:#293a5d;font-size:140%">■</span>&nbsp;<a href="http://unix.stackexchange.com/">unix</a>&nbsp;
+                        <span style="color:#bec0cb;font-size:140%">■</span>&nbsp;<a href="http://apple.stackexchange.com/">apple</a>&nbsp;
+                        <span style="color:#939185;font-size:140%">■</span>&nbsp;<a href="http://wordpress.stackexchange.com/">wordpress</a>&nbsp;
+                        <span style="color:#b5cda4;font-size:140%">■</span>&nbsp;<a href="http://physics.stackexchange.com/">physics</a>&nbsp;
+                        <span style="color:#4176ab;font-size:140%">■</span>&nbsp;<a href="http://diy.stackexchange.com/">home&nbsp;improvement</a>&nbsp;
+                        <span style="color:#d1d8d7;font-size:140%">■</span>&nbsp;<a href="http://gis.stackexchange.com/">gis</a>&nbsp;
+                        <span style="color:#e5e2d3;font-size:140%">■</span>&nbsp;<a href="http://electronics.stackexchange.com/">electronics</a>&nbsp;
+                        <span style="color:#a4c639;font-size:140%">■</span>&nbsp;<a href="http://android.stackexchange.com/">android</a>&nbsp;
+                </div>
+            </div>
+            <div id="footer-flair">
+                <a class="peer1" href="http://www.peer1.com/stackoverflow"></a>  
+	            <a href="http://creativecommons.org/licenses/by-sa/3.0/" class="cc-wiki-link"></a>
+                <div id="svnrev">rev 2011.7.3.1</div>
+            </div>
+            <div id="copyright">
+                site design / logo © 2011 stack exchange inc; 
+                user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc-wiki</a> with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+        </div>
+    <iframe id="global-auth-frame" style="display:none" src="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/read.html"></iframe></div>
+    
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+    
+    <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-5620270-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src='http://www.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();_qoptions={qacct:"p-c1rF4kxgLUzNc"};</script>
+    <script type="text/javascript" src="./php - how to verify that an old session is really destroyed  - Stack Overflow_files/quant.js"></script>
+    
+
+
+</body></html>
